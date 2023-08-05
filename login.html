@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <button onclick="caixaSenhaGestao">Gestoao</button>
+    </div>
+
+    <form action="direcionamentoLogin.php" method="POST">
+        <div>
+            <h3>Sou:</h3>
+
+            <input type="radio" name="sou" id="souAluno" value="aluno">
+            <label for="souAluno">Aluno</label>
+    
+            <input type="radio" name="sou" id="souProfessor" value="professor">
+            <label for="souProfessor">Professor</label>
+        </div>
+
+        <div>
+
+        </div>
+
+        <div class="infos">
+            <input type="email" placeholder="email" value="email" required>
+            <input type="password" placeholder="senha" value="senha" required>
+        </div>
+
+        <input type="submit" value="Entrar">
+    </form>
+</body>
+</html>
