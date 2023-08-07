@@ -3,35 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
-
     <div>
-        <button onclick="caixaSenhaGestao">Gestoao</button>
+        <button onclick="caixaSenhaGestao()">Gestoao</button>
     </div>
 
-    <form action="direcionamentoLogin.php" method="POST">
-        <div>
-            <h3>Sou:</h3>
-
-            <input type="radio" name="sou" id="souAluno" value="aluno">
-            <label for="souAluno">Aluno</label>
-    
-            <input type="radio" name="sou" id="souProfessor" value="professor">
-            <label for="souProfessor">Professor</label>
+    <form action="direcionamentoLogin.php" method="GET">
+        
+        <div id="infosAcess">
+            <input type="email" placeholder="email" name="email" required>
+            <input type="password" placeholder="senha" name="senha" required>
         </div>
-
-        <div>
-
-        </div>
-
-        <div class="infos">
-            <input type="email" placeholder="email" value="email" required>
-            <input type="password" placeholder="senha" value="senha" required>
-        </div>
-
+        
         <input type="submit" value="Entrar">
     </form>
+    
+    <a href="criarConta.html">Criar conta</a>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
