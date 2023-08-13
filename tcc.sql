@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 11-Ago-2023 às 13:00
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 13-Ago-2023 às 21:43
+-- Versão do servidor: 8.0.31
+-- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,12 +27,23 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `aluno`
 --
 
-CREATE TABLE `aluno` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `senha` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `aluno`;
+CREATE TABLE IF NOT EXISTS `aluno` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `senha` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `redefinir_senha` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `aluno`
+--
+
+INSERT INTO `aluno` (`id`, `nome`, `email`, `senha`, `redefinir_senha`) VALUES
+(1, 'Aluno Teste', 'teste@aluno.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', 0),
+(2, 'Teste', 'teste2@aluno.com', '$2y$10$zhswrxHPjUC02qv/VqpbruXY0edohTshx7guH6Erp3S4/HZvFZ1e.', 0);
 
 -- --------------------------------------------------------
 
@@ -40,10 +51,12 @@ CREATE TABLE `aluno` (
 -- Estrutura da tabela `lista_aluno_sala`
 --
 
-CREATE TABLE `lista_aluno_sala` (
-  `id` int(11) NOT NULL,
-  `id_aluno` int(11) NOT NULL,
-  `id_sala` int(11) NOT NULL
+DROP TABLE IF EXISTS `lista_aluno_sala`;
+CREATE TABLE IF NOT EXISTS `lista_aluno_sala` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_aluno` int NOT NULL,
+  `id_sala` int NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -52,10 +65,12 @@ CREATE TABLE `lista_aluno_sala` (
 -- Estrutura da tabela `lista_sala_tipo_maquina`
 --
 
-CREATE TABLE `lista_sala_tipo_maquina` (
-  `id` int(11) NOT NULL,
-  `id_sala` int(11) NOT NULL,
-  `id_tipo_maquina` int(11) NOT NULL
+DROP TABLE IF EXISTS `lista_sala_tipo_maquina`;
+CREATE TABLE IF NOT EXISTS `lista_sala_tipo_maquina` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_sala` int NOT NULL,
+  `id_tipo_maquina` int NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -64,11 +79,13 @@ CREATE TABLE `lista_sala_tipo_maquina` (
 -- Estrutura da tabela `maquna`
 --
 
-CREATE TABLE `maquna` (
-  `id` int(11) NOT NULL,
-  `id_tipo_maquina` int(11) NOT NULL,
-  `modelo` int(11) NOT NULL,
-  `fabricante` int(11) NOT NULL
+DROP TABLE IF EXISTS `maquna`;
+CREATE TABLE IF NOT EXISTS `maquna` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_tipo_maquina` int NOT NULL,
+  `modelo` int NOT NULL,
+  `fabricante` int NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -77,12 +94,15 @@ CREATE TABLE `maquna` (
 -- Estrutura da tabela `professor`
 --
 
-CREATE TABLE `professor` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `cpf` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `senha` varchar(50) NOT NULL
+DROP TABLE IF EXISTS `professor`;
+CREATE TABLE IF NOT EXISTS `professor` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `cpf` int NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `senha` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `redefinir_senha` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -91,9 +111,11 @@ CREATE TABLE `professor` (
 -- Estrutura da tabela `sala`
 --
 
-CREATE TABLE `sala` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
+DROP TABLE IF EXISTS `sala`;
+CREATE TABLE IF NOT EXISTS `sala` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -102,102 +124,12 @@ CREATE TABLE `sala` (
 -- Estrutura da tabela `tipo_maquina`
 --
 
-CREATE TABLE `tipo_maquina` (
-  `id` int(11) NOT NULL,
-  `tipo` varchar(50) NOT NULL
+DROP TABLE IF EXISTS `tipo_maquina`;
+CREATE TABLE IF NOT EXISTS `tipo_maquina` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices para tabela `aluno`
---
-ALTER TABLE `aluno`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `lista_aluno_sala`
---
-ALTER TABLE `lista_aluno_sala`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `lista_sala_tipo_maquina`
---
-ALTER TABLE `lista_sala_tipo_maquina`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `maquna`
---
-ALTER TABLE `maquna`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `professor`
---
-ALTER TABLE `professor`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `sala`
---
-ALTER TABLE `sala`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `tipo_maquina`
---
-ALTER TABLE `tipo_maquina`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `aluno`
---
-ALTER TABLE `aluno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `lista_aluno_sala`
---
-ALTER TABLE `lista_aluno_sala`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `lista_sala_tipo_maquina`
---
-ALTER TABLE `lista_sala_tipo_maquina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `maquna`
---
-ALTER TABLE `maquna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `professor`
---
-ALTER TABLE `professor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `sala`
---
-ALTER TABLE `sala`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `tipo_maquina`
---
-ALTER TABLE `tipo_maquina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
