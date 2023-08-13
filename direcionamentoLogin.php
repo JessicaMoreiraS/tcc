@@ -1,32 +1,44 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "", "tcc"); 
 
+//verifica acesso do gestor
+if(filter_input(INPUT_GET, 'sg')){
+    $sg = filter_input(INPUT_GET, 'sg');
+    if($sg == '123'){
+        $_SESSION['idAcesso'] = 'gestao';
+        header('Location: homeGestao.php');
+    }else{
+        header('Location: login.php?e=1');
+    }
+}
+
+//criar conta de aluno
 if($_SERVER["REQUEST_METHOD"] == "POST"){ 
     $nome = filter_input(INPUT_POST, 'nome');
     $email = filter_input(INPUT_POST, 'email');
-    $cpf = filter_input(INPUT_POST, 'cpf');
     $senha = filter_input(INPUT_POST, 'senha');
     $codSala = filter_input(INPUT_POST, 'codSala');
 
     if(!buscarEmail($conn, 'aluno', $email)){
-        $sqlCriaConta = "INSERT INTO aluno (nome, cpf, email, senha) VALUES ('$nome', '$cpf', '$email', '$senha')";
-        
+        $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+        $sqlCriaConta = "INSERT INTO aluno (nome, email, senha) VALUES ('$nome', '$email', '$senhaCriptografada')";     
 
         if(mysqli_query($conn, $sqlCriaConta)){
             if(buscarEmailSenha($conn, 'aluno', $email, $senha)){
                 header('Location: homeAluno.php');
             }else{
-            echo ('<script>alert("Erro ao reincontrar conta")</script>');
+                header('Location: login.php?e=2');  
             }
         }else{
-            echo ('<script>alert("Erro ao criar conta")</script>');
+            header('Location: login.php?e=3');
         }
     }else{
-        echo ('<script>alert("Esse email já está cadastrado")</script>');
+        header('Location: login.php?e=4');
     }
 }
 
-if($_SERVER["REQUEST_METHOD"] == "GET"){  
+//verificar acesso de aluno ou professo
+if($_SERVER["REQUEST_METHOD"] == "GET" && !filter_input(INPUT_GET, 'sg')){  
     $emailLogin = filter_input(INPUT_GET, 'email');
     $senhaLogin = filter_input(INPUT_GET, 'senha');
 
@@ -36,22 +48,29 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         if(buscarEmailSenha($conn, 'professor', $emailLogin, $senhaLogin)){
             header('Location: homeProfessor.php');
         }else{
-            echo ('<script>alert("usuario ou senha invalidos")</script>');
+            header('Location: login.php?e=5');
         }
     }
 } 
 
+
 function buscarEmailSenha($conn, $tabela, $email, $senha){
-    $sqlBuscaConta = "SELECT * FROM $tabela WHERE email = '$email' AND senha = '$senha'";
+    $sqlBuscaConta = "SELECT * FROM $tabela WHERE email = '$email'";
     $resultado_busca = mysqli_query($conn, $sqlBuscaConta);
-    if($busca = mysqli_fetch_assoc($resultado_busca)){
-        session_start();
-        $_SESSION['idAcesso'] = $busca['id'];
-        return true;
+    if($buscar = mysqli_fetch_assoc($resultado_busca)){
+        if(password_verify($senha, $buscar['senha'])){
+            session_start();
+            $_SESSION['idAcesso'] = $buscar['id'];
+            return true;
+        }else{
+            return false;
+        }
     }else{
         return false;
     }
 }
+
+
 function buscarEmail($conn, $tabela, $email){
     $sqlBuscaConta = "SELECT * FROM $tabela WHERE email = '$email'";
     $resultado_busca = mysqli_query($conn, $sqlBuscaConta);
@@ -62,17 +81,6 @@ function buscarEmail($conn, $tabela, $email){
     }
 }
 
-
 // $dup = var_dump($sou);
-// echo $dup;
-/*
-if($sou == "professor"){
-//buscar no db professor
-}else{
-    if($sou == "aluno"){
-    //buscar no db aluno
-    }else{
-        //error
-    }
-}*/
+
 ?>
