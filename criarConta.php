@@ -6,7 +6,7 @@
     <title>Criar conta</title>
 </head>
 <body>
-    <form action="direcionamentoLogin.php" method="POST">
+    <form action="ConfirmarEmail.php?enviarEmail=true" method="POST">
         <div id="infosCreat">
             <input type="text" placeholder="Nome" name="nome" required>
             <input type="email" placeholder="email" name="email" required>

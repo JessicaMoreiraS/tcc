@@ -4,7 +4,7 @@ $conn = mysqli_connect("localhost", "root", "", "tcc");
 //verifica acesso do gestor
 if(filter_input(INPUT_GET, 'sg')){
     $sg = filter_input(INPUT_GET, 'sg');
-    if($sg == '123'){
+    if($sg == 'senai'){
         $_SESSION['idAcesso'] = 'gestao';
         header('Location: homeGestao.php');
     }else{
@@ -17,7 +17,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nome = filter_input(INPUT_POST, 'nome');
     $email = filter_input(INPUT_POST, 'email');
     $senha = filter_input(INPUT_POST, 'senha');
-    $codSala = filter_input(INPUT_POST, 'codSala');
 
     if(!buscarEmail($conn, 'aluno', $email)){
         $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
