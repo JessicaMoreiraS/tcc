@@ -24,16 +24,22 @@ function erroLogin(n){
             Swal.fire("Senha invalida");
             break;
         case 2:
-            Swal.fire("Erro ao reincontrar conta");
+            Swal.fire("A conta não está apta para verificação");
             break;
         case 3:
-            Swal.fire("Erro ao criar conta");
+            Swal.fire("Erro ao cadastrar conta");
             break;
         case 4:
             Swal.fire("Esse email já está cadastrado");
             break;
         case 5:
             Swal.fire("usuario ou senha invalidos")
+            break;
+        case 6:
+            Swal.fire("Email invalido")
+            break;
+        case 7:
+            Swal.fire("Erro ao autenticar senha")
             break;
     }
 }

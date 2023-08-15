@@ -20,3 +20,11 @@
     </form>
 </body>
 </html>
+
+<?php
+    if(filter_input(INPUT_GET, 'e')){
+        $e = filter_input(INPUT_GET, 'e');
+        echo $e;
+        echo '<script>erroLogin('.$e.')</script>';
+    }
+?>

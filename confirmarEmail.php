@@ -1,67 +1,48 @@
 <?php
 include("conexao.php");
 
-//receber dados
-if($_SERVER["REQUEST_METHOD"] == "POST"){ 
-    if(isset($_POST["code"])){
-        $senha = escape_string(filter_input(INPUT_POST, 'senhaCrip'));
-    }else{
-        $senha = escape_string(filter_input(INPUT_POST, 'senha'));
-    }
-    $nome = escape_string(filter_input(INPUT_POST, 'nome'));
-    $email = escape_string(filter_input(INPUT_POST, 'email'));
-    $enviarEmail = escape_string(filter_input(INPUT_POST, 'enviarEmail'));
-    $senhaCrip = password_hash($senhas, PASSWORD_DEFAULT);
-}
+$codigoConf;
+//criar conta de aluno como pendente
+if(isset($_POST["emailconf"]) && filter_input(INPUT_POST, 'emailconf')){
+    $email = $_POST["emailconf"];
+    $sqlBuscaConta = "SELECT * FROM conta_pendente_aluno WHERE email = '$email'";
 
+    if($busca = $mysqli->query($sqlBuscaConta)){
+        $codigoConf = $busca['cod_confirmacao'];
 
-if(isset($_POST["enviar"])){
-    $time = time();
-    $codConfirmacao = substr(password_hash($time, PASSWORD_DEFAULT),6);
-    $erro = "";
-
-    if($enviarEmail){
-        $subject = 'Confirme sua conta';
-        $message =' 
-        <html>
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Confirmação de email</title>
-            </head>
-            <body>
-                <h3>Confirmação de email</h3>
-                <a href="confirmarEmail.php?enviarEmail=false;nome='.$nome.';email='.$email.';senhaCrip='.$senhaCrip.';code='.$codConfirmacao.';">Acesse o site</a>
-            </body>
-        </html>';
-    }
-
-    
-    //$email = $mysqli->escape_string($_POST['email']); //scape_string evita ataques
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $erro .= "Email invalido ";
-    }else{
-        $dado = $sql_query->fetch_assoc();
-        $total = $sql_query->num_rows;
-        if($total == 0){
-            $erro .= "O email não existe no banco de dados ";
-        }else{
-            if($total > 0){
-                if(mail($email, $subject, $message, "Content-type: text/htmll")){
-                    $sql_code= "UPDATE aluno SET senha = $nscriptografa WHERE email = email";
-                    $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
- 
-                    if($sql_query){
-                        $erro .= "Senha alterada com sucesso ";
-                    }else{
-                        $erro .= "erro ao enviar email ";
-                    }
+        //deleta do pendente e adiciona em aluno
+        if(isset($_GET["codigo"])){
+            if($_GET["codigo"] == $codigoConf){
+                $id = $busca['id'];
+                $nome = $busca['nome'];
+                $senha = $busca['senha'];
+                
+                $sqlCriaContaAluno = "INSERT INTO aluno (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+                $sqlDeletaContaPendente = "DELETE FROM conta_pendente_aluno WHERE id = '$id'";
+                if($mysqli->query($sqlCriaContaAluno) && $mysqli->query($sqlDeletaContaPendente)){
+                    //sucesso
+                    $pSenhaIncorreta = falses;
+                    header('Location: cadastroConfirmado.html');
+                }else{
+                    //erro na comunicacao com o banco
+                    $pSenhaIncorreta = falses;
+                    header('Location: criarConta.php?e=7');
                 }
+            }else{
+                //senha incorreta
+                $pSenhaIncorreta = true;
             }
+        }else{
+            //ainda não tentou por a senha
+            $pSenhaIncorreta = falses;
         }
-    }
+    }else{
+        header('Location: criarConta.php?e=2');
+    }  
 }
 
+    //$email = $mysqli->escape_string($_POST['email']); //scape_string evita ataques
+    //$sql_query = $mysqli->query($sql_code) or die($mysqli->error);
 ?>
 
 <!DOCTYPE html>
@@ -74,9 +55,22 @@ if(isset($_POST["enviar"])){
 </head>
 <body>
     <div>
-        <p>Email confirmado com sucesso</p>
-        <a href="login.php">Acessar sua conta</a>
-        <input type="text" length="6">
+        
+        <form action="" method="GET">
+            <input type="text" length="6" placeholder="Código de confirmação" name="codigo">
+            <input type="submit" value="Enviar">
+        </form>
     </div>
+    <?php
+        if($pSenhaIncorreta = true;){s?>
+            <p>Código incorreta!</p>
+    <?php
+        }
+        if(isset($nome) && isset($email) && isset($senha)){?>
+        <form action="direcionamentoLogin.php?nome=<?php$nome?>/senha=<?php$senha?>/email=<?php$email?>" method='POST'>
+            <input type="submit" value="Reenviar Email" name='enviar'>
+        </form>
+    <?php
+    }?>
 </body>
 </html>

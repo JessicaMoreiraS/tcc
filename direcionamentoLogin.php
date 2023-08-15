@@ -1,38 +1,58 @@
 <?php
+include("conexao.php");
 $conn = mysqli_connect("localhost", "root", "", "tcc"); 
 
 //verifica acesso do gestor
 if(filter_input(INPUT_GET, 'sg')){
     $sg = filter_input(INPUT_GET, 'sg');
     if($sg == 'senai'){
-        $_SESSION['idAcesso'] = 'gestao';
+        $_SESSION['idAcesso'] = 'gestaoSenai';
         header('Location: homeGestao.php');
     }else{
         header('Location: login.php?e=1');
     }
 }
 
-//criar conta de aluno
+/*$sql_code= "UPDATE aluno SET senha = $nscriptografa WHERE email = email";
+$sql_query = $mysqli->query($sql_code) or die($mysqli->error);*/
+
+//criar conta de aluno como pendente
 if($_SERVER["REQUEST_METHOD"] == "POST"){ 
-    $nome = filter_input(INPUT_POST, 'nome');
-    $email = filter_input(INPUT_POST, 'email');
-    $senha = filter_input(INPUT_POST, 'senha');
-
-    if(!buscarEmail($conn, 'aluno', $email)){
+    if(isset(_GET['nome'])){
+        $nome = filter_input(INPUT_POST, 'nome');
+        $email = filter_input(INPUT_POST, 'email');
+        $senha = filter_input(INPUT_POST, 'senha');
         $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
-        $sqlCriaConta = "INSERT INTO aluno (nome, email, senha) VALUES ('$nome', '$email', '$senhaCriptografada')";     
-
-        if(mysqli_query($conn, $sqlCriaConta)){
-            if(buscarEmailSenha($conn, 'aluno', $email, $senha)){
-                header('Location: homeAluno.php');
-            }else{
-                header('Location: login.php?e=2');  
-            }
-        }else{
-            header('Location: login.php?e=3');
+        $codConfirmacao = substr(password_hash(time(), PASSWORD_DEFAULT),6);
+        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+            header('Location: criarConta.php?e=6'); 
         }
-    }else{
-        header('Location: login.php?e=4');
+        if(buscarEmail('aluno', $email)){
+            header('Location: criarConta.php?e=4');
+        }
+        
+        $sqlCriaContaPendente = "INSERT INTO conta_pendente_aluno (nome, email, senha, cod_confimacao) VALUES ('$nome', '$email', '$senhaCriptografada', '$codConfirmacao')";     
+
+        $subject = 'Confirme sua conta';
+        $message =' 
+            <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Confirmação de email</title>
+                </head>
+                <body>
+                    <h3>Confirmação de email</h3>
+                    <p>Seu código de confirmação é: <b>'.$codConfirmacao.'</b></p>
+                    <a href="confirmarEmail.php?emailconf='.$email.'">Acesse o site</a>
+                </body>
+            </html>';
+
+        if($mysqli->query($sqlCriaConta) && mail($email, $subject, $message, "Content-type: text/htmll")){
+            header('Location: confirmeEmail.html'); 
+        }else{
+            header('Location: criarConta.php?e=3');
+        }
     }
 }
 
@@ -69,17 +89,13 @@ function buscarEmailSenha($conn, $tabela, $email, $senha){
     }
 }
 
-
-function buscarEmail($conn, $tabela, $email){
+//verifica exixtencia do email
+function buscarEmail($tabela, $email){
     $sqlBuscaConta = "SELECT * FROM $tabela WHERE email = '$email'";
-    $resultado_busca = mysqli_query($conn, $sqlBuscaConta);
-    if($busca = mysqli_fetch_assoc($resultado_busca)){
+    if($mysqli->query($sqlBuscaConta)){
         return true;
     }else{
         return false;
     }
 }
-
-// $dup = var_dump($sou);
-
 ?>
