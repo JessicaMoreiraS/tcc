@@ -22,9 +22,10 @@ if($_SESSION['idAcesso'] != 'gestaoSenai'){
     </div>
 
     <div>
-        <a href="verProfessores">Vizualizar Professores</a>
-        <a href="verTiposMaquinas">Vizualizar tipos de maquinario</a>
-        <a href="verMaquinas">Vizualizar maquinas</a>
+        <a href="vizualizar.php?view=professor">Vizualizar Professores</a>
+        <a href="vizualizar.php?view=aluno">Vizualizar Alunos</a>
+        <a href="vizualizar.php?view=tipo">Vizualizar tipos de maquinario</a>
+        <a href="vizualizar.php?view=maquina">Vizualizar maquinas</a>
     </div>
 </body>
 </html>

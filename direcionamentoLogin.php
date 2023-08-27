@@ -4,8 +4,9 @@ $conn = mysqli_connect("localhost", "root", "", "tcc");
 
 //verifica acesso do gestor
 if(filter_input(INPUT_GET, 'sg')){
-    $sg = filter_input(INPUT_GET, 'sg');
+    $sg = $_GET['sg'];
     if($sg == 'senai'){
+        echo 'oi';
         $_SESSION['idAcesso'] = 'gestaoSenai';
         header('Location: homeGestao.php');
     }else{

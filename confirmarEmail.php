@@ -38,7 +38,6 @@ if(isset($_POST["emailconf"]) && filter_input(INPUT_POST, 'emailconf')){
         header('Location: criarConta.php?e=2');
     }  
 }
-
     //$email = $mysqli->escape_string($_POST['email']); //scape_string evita ataques
     //$sql_query = $mysqli->query($sql_code) or die($mysqli->error);
 ?>
@@ -59,16 +58,21 @@ if(isset($_POST["emailconf"]) && filter_input(INPUT_POST, 'emailconf')){
             <input type="submit" value="Confimar" name="confimar">
         </form>
     </div>
+
     <?php
-        if($pSenhaIncorreta = true){?>
-            <p>Código incorreto!</p>
+        if(isset($nome) && isset($email) && isset($senha)){?>
+            <form action="direcionamentoLogin.php?nome=<?php $nome?>/senha=<?php $senha?>/email=<?php $email?>" method='POST'>
+                <input type="submit" value="Reenviar Email" name='enviar'>
+            </form>
     <?php
         }
-        if(isset($nome) && isset($email) && isset($senha)){?>
-        <form action="direcionamentoLogin.php?nome=<?php $nome?>/senha=<?php $senha?>/email=<?php $email?>" method='POST'>
-            <input type="submit" value="Reenviar Email" name='enviar'>
-        </form>
+    ?>
+
+    <script src="js/script.js"></script>
     <?php
-    }?>
+        if($pSenhaIncorreta = true){
+            echo '<script>erroLogin(8)</script>';
+        }
+    ?>
 </body>
 </html>

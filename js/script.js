@@ -41,5 +41,8 @@ function erroLogin(n){
         case 7:
             Swal.fire("Erro ao autenticar senha")
             break;
+        case 8:
+            Swal.fire("Código incorreto")
+            break;
     }
 }
