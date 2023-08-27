@@ -12,6 +12,7 @@
         <button onclick="caixaSenhaGestao()">Gestão</button>
     </div>
 
+    <!--Formulario para acessar a conta de aluno de professor-->
     <form action="direcionamentoLogin.php" method="GET">
         
         <div id="infosAcess">
@@ -23,7 +24,23 @@
         <input type="submit" value="Entrar">
     </form>
     
-    <a href="criarConta.html">Criar conta</a>
+    <!--Formulario para criar a conta de aluno-->
+    <form action="ConfirmarEmail.php?enviarEmail=true" method="POST">
+        <div id="infosCreate">
+            <input type="text" placeholder="Nome" name="nome" required>
+            <input type="email" placeholder="email" name="email" required>
+            <input type="password" placeholder="senha" name="senha" required>
+            <input type="password" placeholder="confirme sua senha" required>
+        </div>
+
+        <input type="submit" value="Criar conta">
+    </form>
+    
+
+    <script>
+        //to do:Sistema para conferirir se as duas senhas do formulario de criação de conta coincidem antes do envio do formulario
+        //to do: sistema para deixar visivel apenas um formulario por vez / mudar title da pagina
+    </script>
 
     <script src="js/script.js"></script>
     <!-- sweetalert2 -->
@@ -35,8 +52,7 @@
 
 <?php
     if(filter_input(INPUT_GET, 'e')){
-        $e = filter_input(INPUT_GET, 'e');
-        echo $e;
-        echo '<script>erroLogin('.$e.')</script>';
+        $mensagem_erro = filter_input(INPUT_GET, 'e');
+        echo '<script>erroLogin('.$mensagem_erro.')</script>';
     }
 ?>

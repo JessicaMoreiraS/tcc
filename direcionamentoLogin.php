@@ -18,7 +18,7 @@ $sql_query = $mysqli->query($sql_code) or die($mysqli->error);*/
 
 //criar conta de aluno como pendente
 if($_SERVER["REQUEST_METHOD"] == "POST"){ 
-    if(isset(_GET['nome'])){
+    if(isset($_GET['nome'])){
         $nome = filter_input(INPUT_POST, 'nome');
         $email = filter_input(INPUT_POST, 'email');
         $senha = filter_input(INPUT_POST, 'senha');
@@ -91,6 +91,7 @@ function buscarEmailSenha($conn, $tabela, $email, $senha){
 
 //verifica exixtencia do email
 function buscarEmail($tabela, $email){
+    include("conexao.php");
     $sqlBuscaConta = "SELECT * FROM $tabela WHERE email = '$email'";
     if($mysqli->query($sqlBuscaConta)){
         return true;
