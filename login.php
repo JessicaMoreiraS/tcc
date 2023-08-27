@@ -14,7 +14,6 @@
 
     <!--Formulario para acessar a conta de aluno de professor-->
     <form action="direcionamentoLogin.php" method="GET">
-        
         <div id="infosAcess">
             <input type="email" placeholder="email" name="email" required>
             <input type="password" placeholder="senha" name="senha" required>
@@ -25,7 +24,7 @@
     </form>
     
     <!--Formulario para criar a conta de aluno-->
-    <form action="ConfirmarEmail.php?enviarEmail=true" method="POST">
+    <form action="direcionamentoLogin.php" method="POST">
         <div id="infosCreate">
             <input type="text" placeholder="Nome" name="nome" required>
             <input type="email" placeholder="email" name="email" required>

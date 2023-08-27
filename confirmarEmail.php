@@ -1,5 +1,6 @@
 <?php
 include("conexao.php");
+$pSenhaIncorreta = false;
 
 $codigoConf;
 //criar conta de aluno como pendente
@@ -10,7 +11,7 @@ if(isset($_POST["emailconf"]) && filter_input(INPUT_POST, 'emailconf')){
     if($busca = $mysqli->query($sqlBuscaConta)){
         $codigoConf = $busca['cod_confirmacao'];
 
-        //deleta do pendente e adiciona em aluno
+        //deleta do pendente e adiciona em aluno se codigo de confirmação estiver correta
         if(isset($_GET["codigo"])){
             if($_GET["codigo"] == $codigoConf){
                 $id = $busca['id'];
@@ -20,13 +21,11 @@ if(isset($_POST["emailconf"]) && filter_input(INPUT_POST, 'emailconf')){
                 $sqlCriaContaAluno = "INSERT INTO aluno (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
                 $sqlDeletaContaPendente = "DELETE FROM conta_pendente_aluno WHERE id = '$id'";
                 if($mysqli->query($sqlCriaContaAluno) && $mysqli->query($sqlDeletaContaPendente)){
-                    //sucesso
-                    $pSenhaIncorreta = falses;
+                    //sucesso - mudar para homeAluno
                     header('Location: cadastroConfirmado.html');
                 }else{
                     //erro na comunicacao com o banco
-                    $pSenhaIncorreta = falses;
-                    header('Location: criarConta.php?e=7');
+                    header('Location: login.php?e=7');
                 }
             }else{
                 //senha incorreta
@@ -34,7 +33,6 @@ if(isset($_POST["emailconf"]) && filter_input(INPUT_POST, 'emailconf')){
             }
         }else{
             //ainda não tentou por a senha
-            $pSenhaIncorreta = falses;
         }
     }else{
         header('Location: criarConta.php?e=2');
@@ -58,16 +56,16 @@ if(isset($_POST["emailconf"]) && filter_input(INPUT_POST, 'emailconf')){
         
         <form action="" method="GET">
             <input type="text" length="6" placeholder="Código de confirmação" name="codigo">
-            <input type="submit" value="Enviar">
+            <input type="submit" value="Confimar" name="confimar">
         </form>
     </div>
     <?php
-        if($pSenhaIncorreta = true;){s?>
-            <p>Código incorreta!</p>
+        if($pSenhaIncorreta = true){?>
+            <p>Código incorreto!</p>
     <?php
         }
         if(isset($nome) && isset($email) && isset($senha)){?>
-        <form action="direcionamentoLogin.php?nome=<?php$nome?>/senha=<?php$senha?>/email=<?php$email?>" method='POST'>
+        <form action="direcionamentoLogin.php?nome=<?php $nome?>/senha=<?php $senha?>/email=<?php $email?>" method='POST'>
             <input type="submit" value="Reenviar Email" name='enviar'>
         </form>
     <?php

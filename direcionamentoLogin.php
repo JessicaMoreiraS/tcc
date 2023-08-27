@@ -25,10 +25,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
         $codConfirmacao = substr(password_hash(time(), PASSWORD_DEFAULT),6);
         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-            header('Location: criarConta.php?e=6'); 
+            header('Location: login.php?e=6'); 
         }
         if(buscarEmail('aluno', $email)){
-            header('Location: criarConta.php?e=4');
+            header('Location: login.php?e=4');
         }
         
         $sqlCriaContaPendente = "INSERT INTO conta_pendente_aluno (nome, email, senha, cod_confimacao) VALUES ('$nome', '$email', '$senhaCriptografada', '$codConfirmacao')";     
@@ -49,11 +49,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </html>';
 
         if($mysqli->query($sqlCriaConta) && mail($email, $subject, $message, "Content-type: text/htmll")){
-            header('Location: confirmeEmail.html'); 
+            header('Location: "confirmarEmail.php?emailconf='.$email); 
         }else{
-            header('Location: criarConta.php?e=3');
+            header('Location: login.php?e=3');
         }
+    }else{
+        header('Location: login.php?e=3');
     }
+}else{
+    header('Location: login.php?e=3');
 }
 
 //verificar acesso de aluno ou professo
