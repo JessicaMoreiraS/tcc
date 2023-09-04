@@ -6,9 +6,10 @@ $conn = mysqli_connect("localhost", "root", "", "tcc");
 if(filter_input(INPUT_GET, 'sg')){
     $sg = $_GET['sg'];
     if($sg == 'senai'){
-        echo 'oi';
+        session_start();
         $_SESSION['idAcesso'] = 'gestaoSenai';
         header('Location: homeGestao.php');
+        return;
     }else{
         header('Location: login.php?e=1');
     }

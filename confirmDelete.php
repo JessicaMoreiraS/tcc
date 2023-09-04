@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['idAcesso'] != 'gs') {
+if ($_SESSION['idAcesso'] != 'gestaoSenai') {
     header('Location: index.html');
 }
 

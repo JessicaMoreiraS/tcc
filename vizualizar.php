@@ -19,7 +19,7 @@ if(filter_input(INPUT_GET, 'view')){
     }
 }
 
-function trMaisTbody($campos){
+function trMaisTbody($campos, $tabContent){
     include('conexao.php');
     //cria a tr com os campos segundo o array de campos?>
     <tr>
@@ -32,11 +32,12 @@ function trMaisTbody($campos){
     
     <tbody>
         <?php
-        while($row = $mysqli -> query($tabContent)){?>
+        $conteudo = $mysqli -> query($tabContent);
+        while ($row = mysqli_fetch_assoc($conteudo)){?>
         <tr>
-        <?php
+            <?php
             for($i=0; $i<count($campos); $i++){?>
-                <td><?php $row[$campos[$i]]?></td>
+                <td><?php echo $row[$campos[$i]]?></td>
             <?php
             }?>
             </tr>
@@ -69,7 +70,7 @@ function trMaisTbody($campos){
                         <?php 
                         $idTipo = $rowTipo['id'];
                         $tabContent = "SELECT * FROM $tabelaBusca WHERE id_tipo_maquina = $idTipo";
-                        trMaisTbody($campos) ?>
+                        trMaisTbody($campos, $tabContent) ?>
                     </table>
                     <?php
                 }
@@ -78,7 +79,7 @@ function trMaisTbody($campos){
                 <table>
                     <?php 
                     $tabContent = "SELECT * FROM $tabelaBusca";
-                    trMaisTbody($campos) ?>
+                    trMaisTbody($campos, $tabContent) ?>
                 </table>
                 <?php
             }
