@@ -22,7 +22,7 @@ if(isset($_POST["emailconf"]) && filter_input(INPUT_POST, 'emailconf')){
                 $sqlDeletaContaPendente = "DELETE FROM conta_pendente_aluno WHERE id = '$id'";
                 if($mysqli->query($sqlCriaContaAluno) && $mysqli->query($sqlDeletaContaPendente)){
                     //sucesso - mudar para homeAluno
-                    header('Location: cadastroConfirmado.html');
+                    header('Location: login.html');
                 }else{
                     //erro na comunicacao com o banco
                     header('Location: login.php?e=7');
@@ -35,7 +35,7 @@ if(isset($_POST["emailconf"]) && filter_input(INPUT_POST, 'emailconf')){
             //ainda não tentou por a senha
         }
     }else{
-        header('Location: criarConta.php?e=2');
+        header('Location: login.php?e=2');
     }  
 }
     //$email = $mysqli->escape_string($_POST['email']); //scape_string evita ataques

@@ -39,7 +39,7 @@ function erroLogin(n){
             Swal.fire("Email invalido")
             break;
         case 7:
-            Swal.fire("Erro ao autenticar senha")
+            Swal.fire("Erro ao autenticar código")
             break;
         case 8:
             Swal.fire("Código incorreto")
