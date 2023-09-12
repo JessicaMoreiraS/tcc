@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Set-2023 às 16:23
+-- Tempo de geração: 12-Set-2023 às 16:19
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -155,15 +155,16 @@ INSERT INTO `professor` (`id`, `nome`, `cpf`, `email`, `senha`, `redefinir_senha
 CREATE TABLE `sala` (
   `id` int(11) NOT NULL,
   `turma` varchar(50) NOT NULL,
-  `id_professor` int(11) NOT NULL
+  `id_professor` int(11) NOT NULL,
+  `codigo_acesso` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `sala`
 --
 
-INSERT INTO `sala` (`id`, `turma`, `id_professor`) VALUES
-(1, 'M3P', 1);
+INSERT INTO `sala` (`id`, `turma`, `id_professor`, `codigo_acesso`) VALUES
+(1, 'M3P', 1, '11111111');
 
 -- --------------------------------------------------------
 
