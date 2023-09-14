@@ -9,7 +9,7 @@
 </head>
 <body>
     <div>
-        <button onclick="caixaSenhaGestao()">Gestão</button>
+        <button onclick="caixaSenhaGestao()" id="btnAcessoGestao">Gestão</button>
     </div>
 
     <!--Formulario para acessar a conta de aluno de professor-->
