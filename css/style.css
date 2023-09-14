@@ -1,0 +1,832 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap");
+
+* {
+  margin: 0;
+  border: none;
+  text-decoration: none;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: "Lexend Deca", sans-serif;
+}
+
+:root {
+  --azulPrincipal: #01567d;
+  --azulEscuro: #003f5b;
+  --cinza: #666;
+  --cinzaClaro: #a8a8a8;
+  --box-shadow: 5px 7px 10px 5px rgba(0, 0, 0, 0.25);
+  --box-shadow-insert: 4px -4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  --background-main: #f6f6f6;
+}
+body {
+  background-color: var(--background-main);
+}
+
+.topo-index {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  align-items: center;
+
+  background-color: var(--azulPrincipal);
+}
+.logo-inicial {
+  margin: 0 auto;
+  padding-left: 110px;
+}
+.topo-inicial {
+  background-color: var(--azulPrincipal);
+  display: flex;
+  align-items: center;
+  padding: 30px;
+}
+
+.corpo-index {
+  display: flex;
+  justify-content: space-around;
+  padding: 7.5%;
+  background-color: var(--background-main);
+}
+
+.corpo-inicial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 100px;
+  padding-bottom: 20%;
+  background-color: var(--background-main);
+}
+
+.corpo-inicial h2 {
+  font-size: 35px;
+  color: #666666;
+  margin-bottom: 19px;
+}
+.corpo-inicial .bem-vindo a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--cinza);
+  font-size: 1.2rem;
+  transition: 0.2s ease;
+}
+.corpo-inicial .bem-vindo a:hover {
+  color: var(--azulPrincipal);
+  transform: scale(0.9);
+}
+.corpo-inicial .bem-vindo a i {
+  padding: 3%;
+}
+
+.pesquisa {
+  width: 100%;
+}
+.pesquisar {
+  width: 50%;
+  height: 40px;
+  margin-top: 100px;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow-insert);
+  margin-bottom: 100px;
+  font-family: "Lexend Deca", sans-serif;
+  padding-left: 10px;
+  outline: none;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  padding: 9px;
+  background-image: url(../img/lupa.png);
+  background-repeat: no-repeat;
+  background-position: 6px center;
+  padding-left: 50px;
+}
+
+.aviso h3 {
+  font-size: 35px;
+  margin-bottom: 45px;
+  color: #5b5b5b;
+}
+
+.aviso p {
+  font-size: 18px;
+  color: #5b5b5b;
+}
+
+.aviso a {
+  color: var(--azulPrincipal);
+}
+.container-texto {
+  text-align: center;
+  width: 50%;
+  word-wrap: break-word;
+  margin-top: 70px;
+}
+
+.container-texto h2 {
+  color: var(--azulPrincipal);
+  font-size: 48px;
+}
+.corpo-inicial .turmas {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3%;
+  justify-content: center;
+}
+.corpo-inicial .turmas .card {
+  width: 310px;
+  background-color: #fff;
+  border-radius: 20px;
+  margin: 9px;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
+}
+.corpo-inicial .turmas .card:hover {
+  transform: translateY(-8px);
+  transition: 0.3s ease-in-out;
+  box-shadow: none;
+}
+.corpo-inicial .turmas .card .infos {
+  margin: 32px 0px;
+  padding: 2rem;
+}
+.corpo-inicial .turmas .card #first_p {
+  margin-bottom: 37px;
+  font-size: 1.2rem;
+  color: var(--azulPrincipal);
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-start;
+  word-spacing: 3px;
+}
+.corpo-inicial .turmas .card #second_p {
+  display: flex;
+  justify-content: flex-start;
+}
+.corpo-inicial .turmas .card a {
+  float: left;
+  width: 100%;
+}
+.corpo-inicial .turmas .card .rodape {
+  background-color: var(--azulPrincipal);
+  width: 100%;
+  height: 98px;
+  display: flex;
+  align-items: center;
+}
+
+.corpo-inicial .turmas .card .rodape i {
+  display: flex;
+  margin: 23px 0px 20px 27px;
+  font-size: 24px;
+  color: #f4f4f4;
+}
+.corpo-inicial .turmas .card .rodape i:hover {
+  color: #003f5b;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.icons i {
+  font-size: 35px;
+}
+
+.container-texto p {
+  padding: 50px;
+  font-size: 20px;
+}
+
+.contatos .icones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+  font-size: 18px;
+  background-color: var(--azulPrincipal);
+  color: white;
+  align-items: center;
+  bottom: 0;
+}
+
+.entrar-index {
+  width: 300px;
+  height: 40px;
+  background-color: var(--azulEscuro);
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.escola {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.entrar-index:hover {
+  background-color: var(--azulPrincipal);
+  transition: 1s ease-in-out;
+}
+
+.imagem-index {
+  animation: imagemIndex 3s ease-in-out infinite alternate;
+}
+
+.escola-info {
+  border-left: 1px solid #f5f5f5;
+  padding-left: 30px;
+}
+
+@keyframes imagemIndex {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(10%);
+  }
+}
+
+/* CSS da pagina de LOGIN */
+#header_login {
+  position: relative;
+  z-index: 4;
+}
+
+#main_Login {
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+  transition: 3s ease-in;
+  margin: 90px 0px;
+}
+.form-box {
+  background-color: #fff;
+  border-radius: 25px;
+  width: 563px;
+  height: 600px;
+  box-shadow: var(--box-shadow);
+  padding: 2.5%;
+  position: relative;
+  overflow: hidden;
+  right: 19%;
+  z-index: 2;
+}
+
+.form_inputs {
+  position: absolute;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.form-box .botoes_box {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0px;
+  gap: 30px;
+}
+
+.form-box .botoes_box button {
+  color: #a8a8a8;
+  font-size: 1.2rem;
+  font-weight: 500;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+
+.form-box .botoes_box .ativo {
+  color: var(--azulEscuro);
+  border-bottom: 2px solid var(--azulEscuro);
+}
+.form-box .botoes_box button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #01567d;
+  transition: 0.3s ease;
+}
+.form-box .botoes_box button:hover {
+  border-bottom: none;
+  transform: translateY(-2px);
+  color: #01567d;
+}
+.form-box .botoes_box button:hover::before {
+  width: 100%;
+}
+#infosAcess {
+  margin-top: 54px;
+}
+
+#infosAcess,
+#infosCreate {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#infosAcess .input,
+#infosCreate .input {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 42px;
+  flex-wrap: wrap;
+}
+
+#infosAcess input,
+#infosCreate input {
+  background: #f4f4f4;
+  display: flex;
+  width: 80%;
+  padding: 16px;
+  background-image: url("../img/email.png");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  padding-left: 45px;
+  border-radius: 15px;
+  font-size: 17px;
+  border: none;
+  outline: none;
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
+  transition: 0.18s ease-out;
+}
+
+#infosAcess input:focus,
+#infosCreate input:focus,
+#form_verificacao #codigoVerificacao:focus {
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.01),
+    0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+#infosAcess input::placeholder,
+#infosCreate input::placeholder {
+  color: var(--azulPrincipal);
+  opacity: 90%;
+  font-size: 17px;
+}
+
+#infosAcess a {
+  display: flex;
+  justify-content: center;
+  color: #01567d;
+  margin-top: -20px;
+  transition: 0.9s;
+}
+#infosAcess a:hover {
+  text-decoration: underline;
+}
+.input_entrar {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+#infosCreate p {
+  color: rgb(214, 75, 75);
+}
+
+.input_entrar input {
+  padding: 13px 40px 13px 40px;
+  color: #fff;
+  border-radius: 15px;
+  font-size: 18px;
+  background-color: var(--azulEscuro);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.input_entrar input:disabled {
+  background-color: #666666;
+}
+.input_entrar input:disabled:hover {
+  background-color: #494949;
+  transform: scale(0.9, 0.9);
+}
+.input_entrar input:hover,
+#form_verificacao #botao_verificar:hover {
+  background-color: #036998;
+  transform: scale(0.9, 0.9);
+}
+
+.gestao_link {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.gestao_link a {
+  color: var(--azulPrincipal);
+  font-size: 20px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.gestao_link a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--azulPrincipal);
+  transition: 0.3s ease;
+}
+.gestao_link a:hover {
+  color: var(--azulPrincipal);
+  transform: translateY(-6px);
+}
+.gestao_link a:hover::before {
+  width: 100%;
+}
+
+#login {
+  left: 5%;
+  width: 90%;
+}
+
+#register {
+  left: 100%;
+  width: 90%;
+}
+.eclipses {
+  z-index: 1;
+  margin-top: -230px;
+}
+.eclipses .img {
+  position: absolute;
+  z-index: 3;
+  margin-top: 190px;
+  right: 0;
+}
+.eclipses .img img {
+  width: 100%;
+}
+.eclipse-1 {
+  right: 0;
+  width: 32%;
+  position: absolute;
+}
+.eclipse-2 {
+  right: 5px;
+  width: 35%;
+  position: absolute;
+}
+.eclipse-3 {
+  right: 5px;
+  width: 40%;
+  position: absolute;
+}
+
+#footer_login {
+  position: relative;
+  bottom: 0;
+  z-index: 5;
+}
+#infosCreate #senhaCadastro,
+#infosCreate #confirmarSenhaCadastro,
+#infosAcess #inputSenha {
+  background-image: url(../img/Lock.png);
+}
+#infosCreate #nomeCompleto {
+  background-image: url(../img/Person.png);
+}
+
+/* Sweet-alert */
+.swal2-popup {
+  background-color: var(--azulPrincipal);
+}
+.swal2-title,
+.swal2-content,
+.swal2-icon {
+  color: #fff;
+}
+#swal2-input {
+  color: #fff;
+}
+.swal2-confirm.swal2-styled {
+  background-color: #fff;
+  color: #003f5b;
+}
+
+/* ///////////// */
+
+/* FIM do CSS da pagina de LOGIN */
+
+/* CSS Menu Hamburger */
+.menu {
+  --s: 35px; /* control the size */
+  --c: #fff; /* the color */
+
+  height: 30px;
+  aspect-ratio: 1;
+  border: none;
+  padding: 0;
+  border-inline: calc(var(--s) / 2) solid #0000;
+  box-sizing: content-box;
+  --_g1: linear-gradient(var(--c) 20%, #0000 0 80%, var(--c) 0) no-repeat
+    content-box border-box;
+  --_g2: radial-gradient(circle closest-side at 50% 12.5%, var(--c) 95%, #0000)
+    repeat-y content-box border-box;
+  background: var(--_g2) left var(--_p, 0px) top,
+    var(--_g1) left calc(var(--s) / 10 + var(--_p, 0px)) top,
+    var(--_g2) right var(--_p, 0px) top,
+    var(--_g1) right calc(var(--s) / 10 + var(--_p, 0px)) top;
+  background-size: 20% 80%, 40% 100%;
+  position: relative;
+  clip-path: inset(0 25%);
+  cursor: pointer;
+  transition: background-position 0.3s var(--_s, 0.3s),
+    clip-path 0s var(--_s, 0.6s);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.menu:before,
+.menu:after {
+  content: "";
+  position: absolute;
+  border-radius: var(--s);
+  inset: 40% 0;
+  background: var(--c);
+  transition: transform 0.3s calc(0.3s - var(--_s, 0.3s));
+}
+
+.menu:checked {
+  clip-path: inset(0);
+  --_p: calc(-1 * var(--s));
+  --_s: 0s;
+}
+.menu:checked:before {
+  transform: rotate(45deg);
+}
+.menu:checked:after {
+  transform: rotate(-45deg);
+}
+.menu:focus-visible {
+  clip-path: none;
+  border: none;
+  outline: 2px solid var(--c);
+  outline-offset: 5px;
+}
+
+/*  CSS da pagina de CONFIRMAR EMAIL */
+#main_confirmarEmail {
+  padding: 5%;
+}
+#main_confirmarEmail .introducao {
+  margin-bottom: 10px;
+}
+#main_confirmarEmail .introducao h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+#main_confirmarEmail .introducao p {
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+}
+#main_confirmarEmail .container-form {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+#form_verificacao {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+#form_verificacao label {
+  padding-bottom: 10px;
+}
+#form_verificacao #botao_verificar {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 10px;
+  color: #fff;
+  border-radius: 15px;
+  font-size: 18px;
+  background-color: var(--azulEscuro);
+  cursor: pointer;
+  width: 60%;
+  transition: 0.3s ease;
+}
+
+#form_verificacao #codigoVerificacao {
+  background: #f4f4f4;
+  width: 300px;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 17px;
+  border: none;
+  outline: none;
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
+  padding: 20px;
+  margin: 5px;
+}
+#form_reenviarCodigo {
+  display: flex;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+#form_reenviarCodigo p {
+  margin-right: 10px;
+}
+#form_reenviarCodigo input {
+  color: #0392d4;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+#form_reenviarCodigo input:hover {
+  color: #50bbec;
+  text-decoration: underline;
+}
+
+#footer_confirmarEmail {
+  bottom: 0;
+  display: flex;
+  position: absolute;
+  width: 100%;
+}
+/* FIM da  CSS da pagina de CONFIRMAR EMAIL */
+
+/*Página Turma nova*/
+.conteudoTurmaNova {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+}
+.areaCod {
+  display: flex;
+  flex-direction: column;
+}
+
+.areaCod h2 {
+  font-size: 36px;
+}
+
+.areaCod label {
+  color: #666;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.areaCod input {
+  width: 90%;
+  height: 50px;
+  margin-top: 15px;
+  padding-left: 5px;
+  border-radius: 15px;
+  color: rgba(0, 0, 0, 0.3);
+  outline: none;
+  margin: 10px;
+
+  background: #f4f4f4;
+  border-radius: 10px;
+  font-size: 17px;
+  border: none;
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
+  margin: 5px;
+}
+.areaCod input:focus {
+  box-shadow: inset 4px 0px 4px rgba(0, 0, 0, 0.01),
+    0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+.botoesTurmaNova {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.botoesTurmaNova button {
+  width: 200px;
+  height: 40px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  border-radius: 15px;
+  background: #01567d;
+  color: #fff;
+}
+
+.botoesTurmaNova button:hover {
+  background-color: #036998;
+  transform: scale(0.9, 0.9);
+  cursor: pointer;
+  transition: 1s ease-in-out;
+}
+
+/*Fim da página Turma nova*/
+
+/* página Home Gestao*/
+
+#body_homeGestao {
+  background-image: url(../img/svg/fundoHomeGestao.svg);
+  background-repeat: no-repeat;
+  background-position-x: 4%;
+}
+#header_homeGestao img {
+  display: flex;
+  justify-content: center;
+}
+#main_homeGestao {
+  margin-top: 90px;
+}
+#main_homeGestao .titulo h2 {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+}
+#main_homeGestao .titulo h2 b,
+#main_homeGestao .card .tituloCard b {
+  color: var(--azulPrincipal);
+}
+#main_homeGestao .titulo p {
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+#main_homeGestao .section_cards {
+  margin-top: 90px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#main_homeGestao .card .conteudo_card {
+  padding: 2%;
+}
+#main_homeGestao .card {
+  padding: 3%;
+  width: 331px;
+  height: 331;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  float: left;
+  background-color: #f5f5f5;
+  transition: 1s ease-in-out;
+  margin: 20px;
+}
+#main_homeGestao .card:hover {
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
+}
+
+#main_homeGestao .card .img {
+  background-color: var(--azulPrincipal);
+  width: fit-content;
+  padding: 18px;
+  border-radius: 20px;
+}
+#main_homeGestao .card .tituloCard {
+  color: var(--cinza);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 19px 0px;
+}
+#main_homeGestao .card .descricao {
+  color: var(--cinzaClaro);
+  font-size: 15px;
+  padding: 2%;
+}
+#main_homeGestao .card .btn {
+  float: right;
+}
+#main_homeGestao .card .btn a i {
+  font-size: 2rem;
+  color: var(--azulEscuro);
+  transition: 0.2s ease;
+  margin-top: 10px;
+}
+#main_homeGestao .card .btn a i:hover {
+  color: #0392d4;
+  transform: scale(0.9);
+}
+/*Fim da página Home Gestao*/
+
+/*Página PESSOAS TURMA*/
+#main_pessoasTurma .pessoa div {
+  display: flex;
+}
+
+#main_pessoasTurma {
+  color: black;
+  width: 100%;
+  display: block;
+}
+/*FIM Página PESSOAS TURMA*/
