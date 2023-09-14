@@ -81,8 +81,8 @@
         <div class="card">
           <a href="salaAluno.php?sala=<?php echo $row['id']?>">
             <div class="infos">
-              <p><?php echo $row['turma']?></p>
-              <p><?php echo $row['nome']?></p>
+              <p id="first_p"><?php echo $row['turma']?></p>
+              <p id="second_p"><?php echo $row['nome']?></p>
             </div>
             <div class="rodape">
               <i>
