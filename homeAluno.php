@@ -53,7 +53,7 @@
     <main class="corpo-inicial">
       <div class="bem-vindo">
         <h2>Bem vindo(a), Thalita!</h2>
-        <a href="entrarTurmaNova.html"
+        <a href="entrarTurmaNova.php"
           ><i class="fa fa-plus"></i> Acessar uma nova Turma</a
         >
       </div>
