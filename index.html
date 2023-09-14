@@ -1,12 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCC</title>
-</head>
-<body>
-    <h1>Bem Vindo</h1>
-    <a href="login.php">Entrar</a>
-</body>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mediaQuery.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://unpkg.com/scrollreveal"></script>
+  </head>
+  <body class="index">
+    <header class="topo-index">
+      <img width="140" src="img/logo-senai-branco.png" alt="" />
+      <hr />
+    </header>
+
+    <main class="corpo-index">
+      <section class="imagem-index">
+        <img src="img/imagem-index.png" alt="" />
+      </section>
+
+      <div class="container-texto">
+        <h2>Seja bem vindo(a)</h2>
+        <p>
+          O projeto tem como intuito principal proporcionar aos alunos e
+          professores da instituição a maior facilidade de monitoramento das
+          máquinas utilizadas em aula.
+        </p>
+        <button onclick="direcionarLogin()" class="entrar-index">Entrar</button>
+      </div>
+    </main>
+    <footer>
+      <div class="escola">
+        <img width="150" height="40" src="img/logo-senai-branco.png" alt="" />
+
+        <div class="escola-info">
+          <p>Escola Senai "Nami Jafet"</p>
+          <br />
+          <p>Mogi das Cruzes/SP</p>
+        </div>
+      </div>
+      <div class="contatos">
+        <div class="icones">
+        <i class="fa fa-facebook-square" style=" font-size: 30px;"></i>
+        <i class="fa fa-envelope" style=" font-size: 30px;"></i>
+      </div>
+        <p>Telefone:(11)4728-3900</p>
+      </div>
+    </footer>
+
+    <script src="js/reveal.js"></script>
+    <script>
+      function direcionarLogin() {
+        window.location.href = "/login.php";
+      }
+    </script>
+  </body>
 </html>
