@@ -25,6 +25,8 @@ if($_SESSION['idAcesso'] != 'gestaoSenai'){
     </header>
 
 
+
+    bu
     <main id="main_homeGestao">
       <div class="titulo">
         <h2>GES <b>TÃO</b></h2>
@@ -46,7 +48,7 @@ if($_SESSION['idAcesso'] != 'gestaoSenai'){
                 </div>
               </div>
               <div class="btn">
-                <a href="vizualizar.php?view=professor"><i class="fa fa-arrow-right"></i></a>
+                <a href="visualizar.php?view=professor"><i class="fa fa-arrow-right"></i></a>
               </div>
           </div>
         </div>
@@ -64,7 +66,7 @@ if($_SESSION['idAcesso'] != 'gestaoSenai'){
                 </div>
               </div>
               <div class="btn">
-                <a href="vizualizar.php?view=aluno"><i class="fa fa-arrow-right"></i></a>
+                <a href="visualizar.php?view=aluno"><i class="fa fa-arrow-right"></i></a>
               </div>
           </div>
         </div>
@@ -82,7 +84,7 @@ if($_SESSION['idAcesso'] != 'gestaoSenai'){
                 </div>
               </div>
               <div class="btn">
-                <a href="vizualizar.php?view=maquina"><i class="fa fa-arrow-right"></i></a>
+                <a href="visualizar.php?view=maquina"><i class="fa fa-arrow-right"></i></a>
               </div>
           </div>
         </div>
@@ -100,7 +102,7 @@ if($_SESSION['idAcesso'] != 'gestaoSenai'){
                 </div>
               </div>
               <div class="btn">
-                <a href="vizualizar.php?view=tipo"><i class="fa fa-arrow-right"></i></a>
+                <a href="visualizar.php?view=tipo"><i class="fa fa-arrow-right"></i></a>
               </div>
           </div>
         </div>

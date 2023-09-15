@@ -15,7 +15,7 @@ if (isset($_GET['option'])) {
 }
 ?>
 <?php
-session_start();
+// session_start();
 include('conexao.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm"])) {

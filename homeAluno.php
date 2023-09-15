@@ -76,8 +76,8 @@
       </div>
       <div class="turmas">
         <?php
-    $conteudo = $mysqli ->
-        query($sqlConteudoCard); while ($row = mysqli_fetch_assoc($conteudo)){?>
+    $conteudo = $mysqli -> query($sqlConteudoCard); 
+        while ($row = mysqli_fetch_assoc($conteudo)){?>
         <div class="card">
           <a href="salaAluno.php?sala=<?php echo $row['id']?>">
             <div class="infos">

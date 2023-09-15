@@ -44,5 +44,8 @@ function erroLogin(n){
         case 8:
             Swal.fire("Código incorreto")
             break;
+        case 9:
+            Swal.fire("Erro ao deletar")
+            break;
     }
 }
