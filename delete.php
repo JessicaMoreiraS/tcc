@@ -7,7 +7,7 @@ if ($_SESSION['idAcesso'] != 'gestaoSenai') {
 <?php
 include('conexao.php');
 
-if (isset($_GET["option"]) ) {
+if (isset($_GET["option"])) {
     $option = $_GET["option"];
     echo $option;
 

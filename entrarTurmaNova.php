@@ -1,6 +1,4 @@
-
-
- <?php
+<?php
     session_start();
     $idAluno = $_SESSION['idAcesso'];
     include("conexao.php");
@@ -8,14 +6,15 @@
     $salaNaoEncontrada = false;
     $erroInsert = false;
 
-    if($_SERVER["REQUEST_METHOD"] == "GET"){
-        $codigoTentado = filter_input(INPUT_POST, 'codigoTurma');
+    if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET ["codigoTurma"])){
+        $codigoTentado = filter_input(INPUT_GET, 'codigoTurma');
+        echo $codigoTentado;
 
-        $encontrarSala = "SELECT * FROM sala WHERE sala.codigo_acesso = $codigoTentado";
-        if($sala = $mysqli->query($encontrarSala)){
+        $encontrarSala = "SELECT * FROM sala WHERE sala.codigo_acesso = '$codigoTentado'";
+        if($sala = mysqli_fetch_assoc($mysqli->query($encontrarSala))){
             $salaEncontrada = $sala['id'];
-            $adicionaAlunoEmSala = "INSERT INTO lista_aluno_sala ('id_aluno', 'id_sala') VALUES ('$idAluno', '$salaEncontrada')";
-            if($sala = $mysqli->query($adicionaAlunoEmSala)){
+            $adicionaAlunoEmSala = "INSERT INTO lista_aluno_sala (`id_aluno`, `id_sala`) VALUES ('$idAluno', '$salaEncontrada')";
+            if($mysqli->query($adicionaAlunoEmSala)){
                 //sucess
                 header('location: homeAluno.php');
             }else{
@@ -27,7 +26,7 @@
             $salaNaoEncontrada = true;
         }
     }
-?> 
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -74,7 +73,7 @@
 
     <script>
       function retornar(){
-          window.location.href = "/inicialAluno.html";
+          window.location.href = "homeAluno.php";
       }
   </script>
     

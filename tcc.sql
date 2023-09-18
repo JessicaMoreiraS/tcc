@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Set-2023 às 16:19
+-- Tempo de geração: 18-Set-2023 às 16:18
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -72,7 +72,7 @@ INSERT INTO `esp32_table_test` (`id`, `temperature`, `humidity`, `status_read_se
 --
 
 CREATE TABLE `lista_aluno_sala` (
-  `id` int(11) NOT NULL,
+  `id_lista` int(11) NOT NULL,
   `id_aluno` int(11) NOT NULL,
   `id_sala` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -81,8 +81,10 @@ CREATE TABLE `lista_aluno_sala` (
 -- Extraindo dados da tabela `lista_aluno_sala`
 --
 
-INSERT INTO `lista_aluno_sala` (`id`, `id_aluno`, `id_sala`) VALUES
-(1, 1, 1);
+INSERT INTO `lista_aluno_sala` (`id_lista`, `id_aluno`, `id_sala`) VALUES
+(2, 1, 1),
+(4, 1, 1),
+(6, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -164,7 +166,7 @@ CREATE TABLE `sala` (
 --
 
 INSERT INTO `sala` (`id`, `turma`, `id_professor`, `codigo_acesso`) VALUES
-(1, 'M3P', 1, '11111111');
+(1, 'M3P', 1, 'abcdefgh');
 
 -- --------------------------------------------------------
 
@@ -204,7 +206,7 @@ ALTER TABLE `esp32_table_test`
 -- Índices para tabela `lista_aluno_sala`
 --
 ALTER TABLE `lista_aluno_sala`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_lista`);
 
 --
 -- Índices para tabela `lista_sala_tipo_maquina`
@@ -250,7 +252,7 @@ ALTER TABLE `aluno`
 -- AUTO_INCREMENT de tabela `lista_aluno_sala`
 --
 ALTER TABLE `lista_aluno_sala`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_lista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `lista_sala_tipo_maquina`

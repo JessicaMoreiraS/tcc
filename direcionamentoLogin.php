@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             header('Location: login.php?e=4');
         }
         
-        $sqlCriaContaPendente = "INSERT INTO conta_pendente_aluno (nome, email, senha, cod_confimacao) VALUES ('$nome', '$email', '$senhaCriptografada', '$codConfirmacao')";     
+        $sqlCriaContaPendente = "INSERT INTO conta_pendente_aluno (`nome`, `email`, `senha`, `cod_confimacao`) VALUES ('$nome', '$email', '$senhaCriptografada', '$codConfirmacao')";     
 
         $subject = 'Confirme sua conta';
         $message =' 
@@ -50,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </body>
             </html>';
 
-        if($mysqli->query($sqlCriaConta) && mail($email, $subject, $message, "Content-type: text/htmll")){
+        if($mysqli->query($sqlCriaContaPendente) && mail($email, $subject, $message, "Content-type: text/htmll")){
             header('Location: "confirmarEmail.php?emailconf='.$email); 
         }else{
             header('Location: login.php?e=3');
