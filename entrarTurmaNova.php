@@ -1,4 +1,6 @@
-<?php
+
+
+ <?php
     session_start();
     $idAluno = $_SESSION['idAcesso'];
     include("conexao.php");
@@ -25,30 +27,56 @@
             $salaNaoEncontrada = true;
         }
     }
-?>
-
+?> 
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrar em uma nova turma</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova Turma</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/mediaQuery.css" />
+  </head>
+  <body>
 
+  <header class="topo-index">
+    <a href="inicialAluno.html"><img width="140" src="img/logo-senai-branco.png" alt="" /></a>
+  </header>
+
+  <main class="conteudoTurmaNova">
     <form action="" method="GET">
-        <input type="text" name="codigoTurma" placeholder="Código da nova turma">
-        <input type="submit" value="Entrar">
-    </form>
-    <?php
+     
+    <div class="areaCod">
+      <h2>Código da Turma</h2>
+      <label for="">Digite o código compartilhado pelo professor</label>
+      <input type="text" name="codigoTurma" placeholder="Código da nova turma">
+    </div>
+
+    <div class="botoesTurmaNova">
+      <input type="submit" value="Entrar">
+      <input onclick="retornar()" type="button" value="Cancelar">
+    </div>
+    
+    
+  </form>
+  </main>
+
+     <?php
         if($erroInsert){
             echo "<p>Ops, não foi possível entrar nessa sala</p>";
         }
         if($salaNaoEncontrada){
             echo "<p>Ops, sala não encontrada</p>";
         }
-    ?>
+    ?> 
+
+    <script>
+      function retornar(){
+          window.location.href = "/inicialAluno.html";
+      }
+  </script>
     
 </body>
 </html>
