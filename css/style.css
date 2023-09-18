@@ -713,7 +713,7 @@ footer {
   margin-top: 20px;
 }
 
-.botoesTurmaNova button {
+.botoesTurmaNova input {
   width: 200px;
   height: 40px;
   margin-bottom: 15px;
@@ -723,7 +723,7 @@ footer {
   color: #fff;
 }
 
-.botoesTurmaNova button:hover {
+.botoesTurmaNova input:hover {
   background-color: #036998;
   transform: scale(0.9, 0.9);
   cursor: pointer;
