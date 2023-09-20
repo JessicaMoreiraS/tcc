@@ -92,14 +92,14 @@
 				while ($row = mysqli_fetch_assoc($conteudo)){?>
 				
 
-				<div class="card">
-					<a href="salaAluno.php?sala=<?php echo $row['id']?>">
-						<div class="infos">
-							<p id="first_p"><?php echo $row['turma'];?></p>
-							<p id="second_p"><?php echo $row['nome'];?></p>
+				<div class="card">					
+					<div class="infos">
+						<p id="first_p"><?php echo $row['turma'];?></p>
+						<p id="second_p"><?php echo $row['nome'];?></p>
 								
-							<a href="homeAluno.php?salaSair=<?php echo $row['id_lista']?>">Sair da turma</a>
-						</div>
+						<a href="homeAluno.php?salaSair=<?php echo $row['id_lista']?>">Sair da turma</a>
+					</div>
+					<a href="salaAluno.php?sala=<?php echo $row['id']?>">
 						<div class="rodape">
 							<i>
 								<img src="img/svg/seta.svg" alt="" />
