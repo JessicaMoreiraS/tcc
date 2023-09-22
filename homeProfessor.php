@@ -13,10 +13,11 @@ $sqlBuscaProfessor = "SELECT * FROM professor WHERE id =" . $idProfessor;
 //busca do nome do professor
 $professorNome = mysqli_fetch_assoc(($mysqli->query($sqlBuscaProfessor)))['nome'];
 
-$sqlConteudoCard = "SELECT sala.*, professor.nome AS nome_professor, sala.turma
+$sqlConteudoCard = "SELECT DISTINCT sala.*, sala.turma
                    FROM sala
                    LEFT JOIN professor ON professor.id = sala.id_professor
                    WHERE sala.id_professor = $idProfessor";
+
 
 
 echo $professorNome;
@@ -42,14 +43,14 @@ echo $professorNome;
                 <p id="first_p">
                     Turma: <?php echo $row['turma']; ?>
                 </p>
-                <a href="homeProfessor.php?salaSair=<?php echo $row['id_lista'] ?>">Sair da turma</a>
             </div>
-            <a href="salaAluno.php?sala=<?php echo $row['id'] ?>">
+            <a href="salaProfessor.php?sala=<?php echo $row['id'] ?>">
                 <div class="rodape">
                     <i>
                         <img src="img/svg/seta.svg" alt="" />
                     </i>
                 </div>
+                entrar
             </a>
         </div>
     <?php
