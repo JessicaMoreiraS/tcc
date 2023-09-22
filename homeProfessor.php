@@ -8,23 +8,54 @@ $idProfessor = $_SESSION['idAcesso'];
 include("conexao.php");
 
 //sql para busca do professor
-$sqlBuscaProfessor = "SELECT * FROM professor WHERE id =".$idProfessor;
+$sqlBuscaProfessor = "SELECT * FROM professor WHERE id =" . $idProfessor;
 
 //busca do nome do professor
 $professorNome = mysqli_fetch_assoc(($mysqli->query($sqlBuscaProfessor)))['nome'];
 
-$sqlConteudoCard = "SELECT * FROM lista_aluno_sala LEFT JOIN sala ON sala.id = lista_aluno_sala.id_sala LEFT JOIN professor ON professor.id = sala.id_professor WHERE lista_aluno_sala.id_aluno = $idAluno";
+$sqlConteudoCard = "SELECT sala.*, professor.nome AS nome_professor, sala.turma
+                   FROM sala
+                   LEFT JOIN professor ON professor.id = sala.id_professor
+                   WHERE sala.id_professor = $idProfessor";
+
+
+echo $professorNome;
 
 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+<div class="turmas">
+    <?php
+    $conteudo = $mysqli->query($sqlConteudoCard);
+    while ($row = mysqli_fetch_assoc($conteudo)) { ?>
+        <div class="card">
+            <div class="infos">
+                <p id="first_p">
+                    Turma: <?php echo $row['turma']; ?>
+                </p>
+                <a href="homeProfessor.php?salaSair=<?php echo $row['id_lista'] ?>">Sair da turma</a>
+            </div>
+            <a href="salaAluno.php?sala=<?php echo $row['id'] ?>">
+                <div class="rodape">
+                    <i>
+                        <img src="img/svg/seta.svg" alt="" />
+                    </i>
+                </div>
+            </a>
+        </div>
+    <?php
+    } ?>
+</div>
+
 </body>
+
 </html>

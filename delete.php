@@ -17,9 +17,9 @@ if (isset($_GET["option"])) {
             $opcao = $listaOption[$i];
 
             $alunoId = $_GET["id_delecao"]; ; 
-            $sqlDeleteAluno = "DELETE FROM $opcao WHERE id = $alunoId";
+            $sqlDelete = "DELETE FROM $opcao WHERE id = $alunoId";
     
-            if ($mysqli->query($sqlDeleteAluno)) {
+            if ($mysqli->query($sqlDelete)) {
                 header('Location: visualizar.php?view='.$opcao);
             } else {
                 header('Location: visualizar.php?e=9&view='.$opcao);
