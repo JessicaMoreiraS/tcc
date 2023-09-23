@@ -34,9 +34,14 @@ echo $professorNome;
 </head>
 
 <body>
-    <a href="update.php">editar perfil</a>
+   /
 <div class="turmas">
     <?php
+     echo '
+     <a href="update.php?option=professor&id_atualizacao=' . $idProfessor . '">
+      Atualizar
+     </a>
+      ';
     $conteudo = $mysqli->query($sqlConteudoCard);
     while ($row = mysqli_fetch_assoc($conteudo)) { ?>
         <div class="card">

@@ -1,11 +1,8 @@
 <?php
 //iniciando sessão
 session_start();
-//verificação e confirmação que o usuario e´ gestor
-if ($_SESSION['idAcesso'] != 'gestaoSenai') {
-    header('Location: index.html');
-    exit; 
-}
+
+
 
 //incluindo conexao cm o banc
 include('conexao.php');
@@ -38,12 +35,12 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
 
 
     //variaveis para não aparecerem no form de atualizacao
-    // $ExcluirDaTabela1 = 'senha';
-    // $ExcluirDaTabela2 = 'redefinir_senha';
-    // $ExcluirDaTabela3 = 'id';
+    $colunaExcluir1 = 'senha';
+    $colunaExcluir2 = 'redefinir_senha';
+    $colunaExcluir3 = 'id';
 
     //substituindo os valores de campos(campos dos formuarios) por uma função que ira excluir s variavies criadas acima, da busca sql
-    // $campos = array_diff($campos, array($colunaExcluir1, $colunaExcluir2, $colunaExcluir3));
+    $campos = array_diff($campos, array($colunaExcluir1, $colunaExcluir2, $colunaExcluir3));
 
 
     //verifica se o formuario é do metodo post
