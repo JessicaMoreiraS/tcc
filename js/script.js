@@ -58,24 +58,29 @@ function erroLogin(n) {
 function gerarCodigo(tamanhoCodigo) {
     const caracteres = 'abcdefghijklmopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     let codigo;
-    for(i=0;i< tamanhoCodigo;i++){
-        var caractereAleatorio = Math.floor(Math.random()* caracteres.length);
+    for (i = 0; i < tamanhoCodigo; i++) {
+        var caractereAleatorio = Math.floor(Math.random() * caracteres.length);
         codigo += caracteres.charAt(caractereAleatorio);
-    } 
+    }
 }
 
 function gerarCodigoAcesso(length) {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let codigo = '';
-  
+
     for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * caracteres.length);
-      codigo += caracteres.charAt(randomIndex);
+        const randomIndex = Math.floor(Math.random() * caracteres.length);
+        codigo += caracteres.charAt(randomIndex);
     }
     const inputCodigo = document.getElementById('codigoTurma').value = codigo
-  }
-  
-  function exibirFormCriarSala(){document.querySelector('#form_cria_sala').style.opacity = '1'}
+}
 
- 
-  
+function exibirFormCriarSala() {
+    document.querySelector('#form_cria_sala').style.display = 'block';
+}
+
+function validarFormCriarSala() {
+    
+}
+
+

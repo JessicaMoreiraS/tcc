@@ -36,7 +36,7 @@ echo $professorNome;
    /
 <div class="turmas">
     <?php
-    echo '<a onclick="exibirFormCriarSala()"  href="cadastros.php">Criar Turma</a>';
+    echo '<button onclick="exibirFormCriarSala()">Criar Turma</button>';
    
 
      echo '
@@ -67,10 +67,11 @@ echo $professorNome;
     
     </script>
 
-    <form id="form_cria_sala" action="cadastros.php" method="POST" style="opacity:0;">
+    <form name="cadastrarSala" id="form_cria_sala" action="cadastros.php" method="POST" style="display:none;">
             <input type="text" placeholder="nome da turma"  required>
-            <label for="codigo da sua turma"></label>
-            <input  type="text" id="codigoTurma" disabled>
+            <label for="codigo da sua turma" name="nomeSala"></label>
+            <input  type="text" id="codigoTurma" readonly required name="codigoSala">
+            <a onclick=" gerarCodigoAcesso(10)" style="cursor:pointer">Gerar Código</a>
             <div class="radios">
                 <?php 
                     $conteudo = $mysqli->query($sqlConteudoRadios);
@@ -82,6 +83,7 @@ echo $professorNome;
                 ?> 
             </div>
             <input type="submit" value="Criar">
+            <button id="submitCadastrarSala" onclick="document.querySelector('#form_cria_sala').style.display = 'none';">cancelar</button>
     </form>
 </div>
 

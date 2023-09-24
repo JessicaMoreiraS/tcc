@@ -1,6 +1,10 @@
 <?php
     include('conexao.php');
     //criar sala
+    if(filter_input(INPUT_POST,'cadastrarSala')){
+        $nomeSala = filter_input(INPUT_POST, 'nomeSala');
+        $codigoSala = filter_input(INPUT_POST, 'codigoSala');
+    }
     
 
     //Criar conta de Professor
