@@ -1,25 +1,26 @@
-async function caixaSenhaGestao(){
+async function caixaSenhaGestao() {
     const { value: password } = await Swal.fire({
         title: 'Preencha sua senha',
         input: 'password',
         inputLabel: 'Senha',
         inputPlaceholder: 'Sua senha',
         inputAttributes: {
-          maxlength: 10,
-          autocapitalize: 'off',
-          autocorrect: 'off'
+            maxlength: 10,
+            autocapitalize: 'off',
+            autocorrect: 'off'
         }
     })
-      
+
     if (password) {
         location.assign(`direcionamentoLogin.php?sg=${password}`)
         //Swal.fire(`Entered password: ${password}`)
     }
 }
 
+
 //alertas de erro no login
-function erroLogin(n){
-    switch(n){
+function erroLogin(n) {
+    switch (n) {
         case 1:
             Swal.fire("Senha invalida");
             break;
@@ -49,3 +50,32 @@ function erroLogin(n){
             break;
     }
 }
+
+//SCRIPTS DO HOME PROFESSOR//
+
+//função que gera um codigo de acesso para uma turma
+
+function gerarCodigo(tamanhoCodigo) {
+    const caracteres = 'abcdefghijklmopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    let codigo;
+    for(i=0;i< tamanhoCodigo;i++){
+        var caractereAleatorio = Math.floor(Math.random()* caracteres.length);
+        codigo += caracteres.charAt(caractereAleatorio);
+    } 
+}
+
+function gerarCodigoAcesso(length) {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let codigo = '';
+  
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * caracteres.length);
+      codigo += caracteres.charAt(randomIndex);
+    }
+    const inputCodigo = document.getElementById('codigoTurma').value = codigo
+  }
+  
+  console.log(gerarCodigoAcesso(10));
+
+ 
+  

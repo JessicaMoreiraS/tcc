@@ -1,5 +1,7 @@
 <?php
     include('conexao.php');
+    //criar sala
+    
 
     //Criar conta de Professor
     if(filter_input(INPUT_POST, 'cadastrarProfessor')){

@@ -37,9 +37,12 @@ echo $professorNome;
    /
 <div class="turmas">
     <?php
+    echo' <a href="cadastros.php">Criar Turma</a>';
+   
+
      echo '
      <a href="update.php?option=professor&id_atualizacao=' . $idProfessor . '">
-      Atualizar
+      Atualizar perfil
      </a>
       ';
     $conteudo = $mysqli->query($sqlConteudoCard);
@@ -61,8 +64,18 @@ echo $professorNome;
         </div>
     <?php
     } ?>
+    <script>
+    
+    </script>
+
+    <form action="cadastros.php" method="POST" style="display: block;">
+            <input type="text" placeholder="nome da turma">
+            <label for="codigo da sua turma"></label>
+        <input type="text" id="codigoTurma" disabled>
+     
+    </form>
 </div>
 
 </body>
-
+<script src="js/script.js"></script>
 </html>
