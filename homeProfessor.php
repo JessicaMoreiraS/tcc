@@ -88,11 +88,14 @@ echo $professorNome;
                 $conteudo = $mysqli->query($sqlConteudoRadios);
                 while ($radio = mysqli_fetch_assoc($conteudo)) {
                     echo
-                        '<label for="tipo_maquina">' . $radio['tipo'] . '</label>
-                        <span><input type="radio" required value="' . $radio["tipo"] . ' " ></span';
+                        ' <label for="tipo_maquina">
+                        <input type="checkbox" id="' . $radio['tipo'] . '" name="maquinas[]" value="' . $radio['tipo'] . '">  
+                        ' . $radio['tipo'] . '
+                    </label>';
                 }
                 ;
                 ?>
+
             </div>
             <input name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar" d>
             <button onclick="document.querySelector('#form_cria_sala').style.display = 'none';">cancelar</button>
