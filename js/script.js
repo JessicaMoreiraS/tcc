@@ -55,26 +55,22 @@ function erroLogin(n) {
 
 //função que gera um codigo de acesso para uma turma
 
-function gerarCodigo(tamanhoCodigo) {
-    const caracteres = 'abcdefghijklmopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-    let codigo;
-    for (i = 0; i < tamanhoCodigo; i++) {
-        var caractereAleatorio = Math.floor(Math.random() * caracteres.length);
-        codigo += caracteres.charAt(caractereAleatorio);
-    }
-}
 
 function gerarCodigoAcesso(length) {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let codigo = '';
-
+    //for que percorre o tamanho do definido apra o codigo
     for (let i = 0; i < length; i++) {
+        //funcao que transforma em inteiro, o indice gerado aleatoriamente. para escolher 1 caractere
         const randomIndex = Math.floor(Math.random() * caracteres.length);
+        //adicionando os valores dos indices gerados a variavel codigo
         codigo += caracteres.charAt(randomIndex);
     }
+    //aplicando o codigo gerado no input
     const inputCodigo = document.getElementById('codigoTurma').value = codigo
 }
 
+//exibir o formulario de criar sala
 function exibirFormCriarSala() {
     document.querySelector('#form_cria_sala').style.opacity = '1';
 }

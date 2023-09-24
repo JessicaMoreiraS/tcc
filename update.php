@@ -32,7 +32,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
 
 
 
-
+    // !!IMPORTANTE, redefinir senha ainda não é funcional pelo update.php
 
     //variaveis para não aparecerem no form de atualizacao
     $colunaExcluir1 = 'senha';
