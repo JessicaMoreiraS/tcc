@@ -9,6 +9,7 @@
 		$alunoNome = mysqli_fetch_assoc(($mysqli->query($sqlAluno)))['nome'];
 
 		$sqlConteudoCard = "SELECT * FROM lista_aluno_sala LEFT JOIN sala ON sala.id = lista_aluno_sala.id_sala LEFT JOIN professor ON professor.id = sala.id_professor WHERE lista_aluno_sala.id_aluno = $idAluno";
+		
 
 
 		//detela a ligacao entre o aluno e a sala

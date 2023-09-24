@@ -67,7 +67,7 @@ echo $professorNome;
         } ?>
 
         <form  id="form_cria_sala" action="cadastros.php" method="POST" style="opacity:0;">
-            <input name="idProfessor" type="text" value="1" hidden>';
+            <input name="idProfessor" type="text" value="1" hidden>
             <input type="text" placeholder="nome da turma"  name="nomeSala" required>
             <label for="codigo da sua turma"></label>
             <input type="text" id="codigoTurma" readonly name="codigoSala">
