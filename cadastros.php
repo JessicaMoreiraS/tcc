@@ -1,10 +1,36 @@
 <?php
     include('conexao.php');
     //criar sala
-    if(filter_input(INPUT_POST,'cadastrarSala')){
-        $nomeSala = filter_input(INPUT_POST, 'nomeSala');
-        $codigoSala = filter_input(INPUT_POST, 'codigoSala');
+   if (filter_input(INPUT_POST, 'cadastrarSala')) {
+    $nomeSala = filter_input(INPUT_POST, 'nomeSala');
+    $codigoSala = filter_input(INPUT_POST, 'codigoSala');
+    $idProfessor = filter_input(INPUT_POST, 'idProfessor');
+
+    // Consulta SQL com prepared statement
+    $sqlCriarSala = "INSERT INTO sala (turma, id_professor, codigo_acesso) VALUES (?, ?, ?)";
+    
+    // Preparar a declaração SQL
+    $stmt = $mysqli->prepare($sqlCriarSala);
+
+    // Verificar se a preparação foi bem-sucedida
+    if ($stmt) {
+        // Vincular os parâmetros e definir seus tipos
+        $stmt->bind_param("sis", $nomeSala, $idProfessor, $codigoSala);
+
+        // Executar a consulta
+        if ($stmt->execute()) {
+            echo 'Sala criada com sucesso.';
+        } else {
+            echo 'Erro ao criar a sala: ' . $stmt->error;
+        }
+
+        // Fechar a declaração
+        $stmt->close();
+    } else {
+        echo 'Erro na preparação da consulta: ' . $mysqli->error;
     }
+}
+
     
 
     //Criar conta de Professor

@@ -76,11 +76,9 @@ function gerarCodigoAcesso(length) {
 }
 
 function exibirFormCriarSala() {
-    document.querySelector('#form_cria_sala').style.display = 'block';
+    document.querySelector('#form_cria_sala').style.opacity = '1';
 }
 
-function validarFormCriarSala() {
-    
-}
+
 
 
