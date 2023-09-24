@@ -75,7 +75,7 @@ function gerarCodigoAcesso(length) {
     const inputCodigo = document.getElementById('codigoTurma').value = codigo
   }
   
-  console.log(gerarCodigoAcesso(10));
+  function exibirFormCriarSala(){document.querySelector('#form_cria_sala').style.opacity = '1'}
 
  
   

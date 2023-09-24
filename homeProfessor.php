@@ -17,11 +17,10 @@ $sqlConteudoCard = "SELECT DISTINCT sala.*, sala.turma
                    FROM sala
                    LEFT JOIN professor ON professor.id = sala.id_professor
                    WHERE sala.id_professor = $idProfessor";
-
+$sqlConteudoRadios = "SELECT * FROM tipo_maquina";
 
 
 echo $professorNome;
-
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +36,7 @@ echo $professorNome;
    /
 <div class="turmas">
     <?php
-    echo' <a href="cadastros.php">Criar Turma</a>';
+    echo '<a onclick="exibirFormCriarSala()"  href="cadastros.php">Criar Turma</a>';
    
 
      echo '
@@ -68,11 +67,21 @@ echo $professorNome;
     
     </script>
 
-    <form action="cadastros.php" method="POST" style="display: block;">
-            <input type="text" placeholder="nome da turma">
+    <form id="form_cria_sala" action="cadastros.php" method="POST" style="opacity:0;">
+            <input type="text" placeholder="nome da turma"  required>
             <label for="codigo da sua turma"></label>
-        <input type="text" id="codigoTurma" disabled>
-     
+            <input  type="text" id="codigoTurma" disabled>
+            <div class="radios">
+                <?php 
+                    $conteudo = $mysqli->query($sqlConteudoRadios);
+                    while ($radio = mysqli_fetch_assoc($conteudo)) {
+                        echo
+                        '<label for="tipo_maquina">'.$radio['tipo'].'</label>
+                        <span><input type="radio" required value="'.$radio["tipo"].' " ></span';
+                    };  
+                ?> 
+            </div>
+            <input type="submit" value="Criar">
     </form>
 </div>
 
