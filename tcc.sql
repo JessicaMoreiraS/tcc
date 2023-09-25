@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Set-2023 às 16:18
+-- Tempo de geração: 25-Set-2023 às 20:40
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -46,24 +46,35 @@ INSERT INTO `aluno` (`id`, `nome`, `email`, `senha`, `redefinir_senha`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `esp32_table_test`
+-- Estrutura da tabela `esp32`
 --
 
-CREATE TABLE `esp32_table_test` (
+CREATE TABLE `esp32` (
   `id` varchar(255) NOT NULL,
-  `temperature` float(10,2) NOT NULL,
-  `humidity` int(3) NOT NULL,
-  `status_read_sensor_dht11` varchar(255) NOT NULL,
+  `esp` varchar(50) NOT NULL,
+  `id_maquina` varchar(50) NOT NULL,
+  `temperatura` float NOT NULL,
+  `velocidade` int(11) NOT NULL,
+  `oleo_caixaDeVelocidade` varchar(255) NOT NULL,
+  `viscosidade_caixaDeVelocidade` varchar(255) NOT NULL,
+  `oleo_caixaDeNorton` varchar(255) NOT NULL,
+  `viscosidade_caixaDeNorton` float NOT NULL,
+  `oleo_aventalDoTorno` float NOT NULL,
+  `viscosidade_aventalDoTorno` float NOT NULL,
+  `vibracao` float NOT NULL,
+  `tempo_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `LED_01` varchar(255) NOT NULL,
-  `LED_02` varchar(255) NOT NULL
+  `LED_02` varchar(255) NOT NULL,
+  `LED_03` varchar(255) NOT NULL,
+  `status_read_sensor_dht11` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `esp32_table_test`
+-- Extraindo dados da tabela `esp32`
 --
 
-INSERT INTO `esp32_table_test` (`id`, `temperature`, `humidity`, `status_read_sensor_dht11`, `LED_01`, `LED_02`) VALUES
-('esp32_01', 0.00, 0, 'SUCCESS', 'OFF', 'OFF');
+INSERT INTO `esp32` (`id`, `esp`, `id_maquina`, `temperatura`, `velocidade`, `oleo_caixaDeVelocidade`, `viscosidade_caixaDeVelocidade`, `oleo_caixaDeNorton`, `viscosidade_caixaDeNorton`, `oleo_aventalDoTorno`, `viscosidade_aventalDoTorno`, `vibracao`, `tempo_on`, `LED_01`, `LED_02`, `LED_03`, `status_read_sensor_dht11`) VALUES
+('esp32_01', 'esp32_01', '1', 1, 2, '3.00', '4.00', '5.00', 6, 7, 8, 9, '0000-00-00 00:00:00', 'OFF', 'OFF', 'OFF', 'SUCCEED');
 
 -- --------------------------------------------------------
 
@@ -197,9 +208,9 @@ ALTER TABLE `aluno`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `esp32_table_test`
+-- Índices para tabela `esp32`
 --
-ALTER TABLE `esp32_table_test`
+ALTER TABLE `esp32`
   ADD PRIMARY KEY (`id`);
 
 --
