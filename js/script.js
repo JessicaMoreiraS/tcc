@@ -75,6 +75,38 @@ function exibirFormCriarSala() {
     document.querySelector('#form_cria_sala').style.opacity = '1';
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Captura os elementos do DOM que você deseja verificar
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const codigoTurmaInput = document.querySelector('#codigoTurma');
+    const cadastrarSalaButton = document.querySelector('#submitCadastrarSala');
+
+    // Adiciona um ouvinte de eventos de mudança a todos os checkboxes
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', verificarFormulario);
+    });
+
+    // Adiciona um ouvinte de eventos de entrada ao input de código da turma
+    codigoTurmaInput.addEventListener('input', verificarFormulario);
+
+    // Função para verificar o formulário e habilitar ou desabilitar o botão de cadastro
+    function verificarFormulario() {
+        // Verifica se pelo menos um checkbox está selecionado e o campo códigoTurma está preenchido
+        const checkboxSelecionado = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        const codigoTurmaPreenchido = codigoTurmaInput.value.trim() !== '';
+
+        // Habilita ou desabilita o botão de cadastro com base nas verificações
+        if (checkboxSelecionado && codigoTurmaPreenchido) {
+            cadastrarSalaButton.removeAttribute('disabled');
+        } else {
+            cadastrarSalaButton.setAttribute('disabled', 'disabled');
+        }
+    }
+});
+
+
+//////////////////////////////////////////////////
+
 
 
 
