@@ -74,6 +74,9 @@ function gerarCodigoAcesso(length) {
 function exibirFormCriarSala() {
     document.querySelector('#form_cria_sala').style.opacity = '1';
 }
+function naoExibirFormCriarSala() {
+    document.querySelector('#form_cria_sala').style.opacity = '0';
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     // Captura os elementos do DOM que você deseja verificar
