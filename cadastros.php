@@ -1,7 +1,8 @@
 <?php
+//conexao com o DB
 include('conexao.php');
 
-// Criar ou cadastrar SALA
+// Cadastrar SALA (recenbo o formulario)
 if (filter_input(INPUT_POST, 'cadastrarSala')) {
     // Valores dos inputs aplicados em variáveis
     $nomeSala = filter_input(INPUT_POST, 'nomeSala');
@@ -11,6 +12,7 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
     // SQL para inserir dados na tabela sala, com três placeholders(atributos da tabela), que serão inseridos
     $sqlCriarSala = "INSERT INTO sala (turma, id_professor, codigo_acesso) VALUES (?, ?, ?)";
 
+    //aplicando o sql em um prepare (preparando o sql)
     $preparacaoSeguraSQL = $mysqli->prepare($sqlCriarSala);
 
     // Verificando se o SQL foi bem-sucedido
@@ -19,68 +21,79 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
         // 's' = string, 'i' = int , 's' = string
         $preparacaoSeguraSQL->bind_param("sis", $nomeSala, $idProfessor, $codigoSala);
 
-        // Execução do POST
+        // Execução do POST (sql que ja passou pelo prepare)
         if ($preparacaoSeguraSQL->execute()) {
-            $idSala = $mysqli->insert_id; // Captura o ID da sala recém-inserida
-            echo 'Sala criada com sucesso. ID da sala: ' . $idSala;
+            // Captura o ID da sal
+            $idSala = $mysqli->insert_id; 
+            echo 'Sala criada/ ID da sala: ' . $idSala;
 
+            //fechando o sql
             $preparacaoSeguraSQL->close();
 
-            // Agora, verifique se o array maquinas está definido no POST e se é um array
+            // Verificando se o array das maquinas esta no post
             if (isset($_POST['maquinas']) && is_array($_POST['maquinas'])) {
-                // Loop através das máquinas
+                // Loop atraves das maquinas
                 foreach ($_POST['maquinas'] as $maquina) {
-                    // Consulta SQL para obter o ID do tipo de máquina com base no nome
+                    // SQL que se baseia no nome da maquina, para encontrar o id
                     $sql = "SELECT id FROM tipo_maquina WHERE tipo = ?";
+
+                    //utilizando nvment o prepare, agora na consulta anterior
                     $stmt = $mysqli->prepare($sql);
 
-                    if ($stmt) {
-                        $stmt->bind_param("s", $maquina);
-                        $stmt->execute();
-                        $stmt->bind_result($idTipoMaquina);
+                    if ($stmt) { // verificando se a cnslt deu certo
 
+                        //parametro que aplica valores ao parametro, do sql
+                        $stmt->bind_param("s", $maquina);
+
+                        $stmt->execute(); //executa a consulta
+                        $stmt->bind_result($idTipoMaquina); //recuperando o id damaquina
+
+                        //verificndo se ha mais resultados na consulta
                         if ($stmt->fetch()) {
-                            // O ID do tipo de máquina foi encontrado
+                            
+                            //fechando a consulta
                             $stmt->close();
 
-                            // Insira o ID da sala e o ID do tipo de máquina na tabela lista_sala_tipo_maquina
+                            // sql para inserir registro na tabela de lista_sala_tipo_maquina 
                             $sqlInserirMaquinaSala = "INSERT INTO lista_sala_tipo_maquina (id_sala, id_tipo_maquina) VALUES (?, ?)";
+
+                            //preparacao novmente da variavel
                             $preparacaoSeguraSQL2 = $mysqli->prepare($sqlInserirMaquinaSala);
 
+                            //verificando se a preparcao funcionou
                             if ($preparacaoSeguraSQL2) {
+
+                                //aplicando a parametro da insercao(sql)
                                 $preparacaoSeguraSQL2->bind_param("ii", $idSala, $idTipoMaquina);
+
+                                //verificando a execucao
                                 if ($preparacaoSeguraSQL2->execute()) {
-                                    // Inserção bem-sucedida
-                                    echo "Máquina '$maquina' associada à sala com sucesso.";
+                                    // resultado de sucesso
+                                    echo "Máquina '$maquina' aplicada a sala com sucesso.";
                                 } else {
-                                    // Erro ao inserir a máquina na sala
-                                    echo "Erro ao associar a máquina '$maquina' à sala: " . $preparacaoSeguraSQL2->error;
+                                    // erroo
+                                    echo "Erro ao aplicar a máquina ".'$maquina';
                                 }
+                                //fechando a consulta
                                 $preparacaoSeguraSQL2->close();
                             }
                         } else {
-                            // O nome da máquina não corresponde a um tipo de máquina no banco de dados
-                            echo "Máquina selecionada: $maquina - Tipo de Máquina não encontrado<br>";
+                            //caso nao encontre resultados, a maquina nao existe no banco
+                            echo  $maquina." não encontrado<br>";
                         }
                     } else {
-                        // Erro na preparação da consulta
-                        echo "Erro na preparação da consulta: " . $mysqli->error;
+                        // caso a conulta n de certo(erro)
+                        echo "erro em preparar a consulta ";
                     }
                 }
-            } else {
-                // Nenhuma máquina selecionada
-                echo "Nenhuma máquina foi selecionada.";
-            }
+            } 
         } else {
-            // Exibição de erro se o POST não funcionar
-            echo 'Erro ao criar a sala: ' . $preparacaoSeguraSQL->error;
+            // caso o sql da criar a sala nao funfe
+            echo 'erro ao criar sala';
         }
-    } else {
-        // Erro na preparação do SQL
-        echo 'Erro na preparação do SQL: ' . $mysqli->error;
     }
 }
-
+///////////////////////////////////////////////////
 
 
 
