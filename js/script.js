@@ -54,8 +54,6 @@ function erroLogin(n) {
 //SCRIPTS DO HOME PROFESSOR//
 
 //função que gera um codigo de acesso para uma turma
-
-
 function gerarCodigoAcesso(length) {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let codigo = '';
@@ -70,6 +68,7 @@ function gerarCodigoAcesso(length) {
     const inputCodigo = document.getElementById('codigoTurma').value = codigo
 }
 
+
 //exibir o formulario de criar sala
 function exibirFormCriarSala() {
     document.querySelector('#form_cria_sala').style.opacity = '1';
@@ -78,27 +77,29 @@ function naoExibirFormCriarSala() {
     document.querySelector('#form_cria_sala').style.opacity = '0';
 }
 
+
+//TRECHO DO CODIGO QUE LIBERA A CRIAÇÃO DE SALA, HOME PROFESSOR
 document.addEventListener("DOMContentLoaded", function() {
-    // Captura os elementos do DOM que você deseja verificar
+    // aplicando os inputs qye precisam ser preechidos em variaveis
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const codigoTurmaInput = document.querySelector('#codigoTurma');
     const cadastrarSalaButton = document.querySelector('#submitCadastrarSala');
 
-    // Adiciona um ouvinte de eventos de mudança a todos os checkboxes
+    //  ouvinte de eventos de mudança a todos os checkboxes
     checkboxes.forEach(function(checkbox) {
         checkbox.addEventListener('change', verificarFormulario);
     });
 
-    // Adiciona um ouvinte de eventos de entrada ao input de código da turma
+    // ouvinte ao input  de codigo da turma
     codigoTurmaInput.addEventListener('input', verificarFormulario);
 
-    // Função para verificar o formulário e habilitar ou desabilitar o botão de cadastro
+    // Funçao que verificar o formulario(para habiliyar ou na a criação)
     function verificarFormulario() {
-        // Verifica se pelo menos um checkbox está selecionado e o campo códigoTurma está preenchido
+        // Veridica se pelo menos um checkbox esta selecionado e o codigo esta preenchido
         const checkboxSelecionado = Array.from(checkboxes).some(checkbox => checkbox.checked);
         const codigoTurmaPreenchido = codigoTurmaInput.value.trim() !== '';
 
-        // Habilita ou desabilita o botão de cadastro com base nas verificações
+        // Habilita ou desabilita a criaçao
         if (checkboxSelecionado && codigoTurmaPreenchido) {
             cadastrarSalaButton.removeAttribute('disabled');
         } else {
@@ -106,8 +107,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
-
-
 //////////////////////////////////////////////////
 
 

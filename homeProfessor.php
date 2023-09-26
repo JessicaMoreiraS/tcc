@@ -32,6 +32,7 @@ echo $professorNome;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/script.js"></script>
     <title>Professor</title>
 </head>
 
@@ -97,11 +98,11 @@ echo $professorNome;
                 ?>
 
             </div>
-            <input name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar" d>
+            <input name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar" disabled>
             <button onclick="document.querySelector('#form_cria_sala').style.display = 'none';">cancelar</button>
         </form>
     </div>
 
 </body>
-<script src="js/script.js"></script>
+
 </html>
