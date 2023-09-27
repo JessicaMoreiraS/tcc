@@ -6,10 +6,12 @@
   //---------------------------------------- Condition to check that POST value is not empty.
   if (!empty($_POST)) {
     //........................................ keep track POST values
-    $id = $_POST['id'];//esp
+    $id_esp = $_POST['id'];//esp
     $id_maquina = $_POST['id_maquina'];//esp
     $status_read_sensor_dht11 = $_POST['status_read_sensor_dht11'];
     $id_tipo_maquina;
+    $hora= date("H:i:s");;
+    $data= date('d-m-Y');
 
     if($status_read_sensor_dht11 == "SUCESS"){
       //encontrar qual é o tipo de maquina
@@ -28,12 +30,14 @@
         $dadosAtributoConteudo = $mysqli->query($sqlDadosAtributo);
         while ($dadosAtributo = mysqli_fetch_assoc($dadosAtributoConteudo)){
           $atributoEsp = $dadosAtributo['atributo_esp'];
-          $variavel=$atributoEsp+"Dado";
-          $sqlUpdate = "UPDATE esp32 (variavel) SET ('$atributoEsp')";
+          $variavelEsp = $_POST[$atributoEsp]
+          $sqlUpdate = "UPDATE esp32 (esp, id_atributo, valor,'hora','data') SET ('$id_esp', '$id_atributo','$variavelEsp','$hora', '$data')";
         }
       }
 
     }
+    
+    /*
     $temperatura = $_POST['temperatura'];
     $velocidade = $_POST['velocidade'];
     $oleo_caixaDeVelocidade = $_POST['oleo_caixaDeVelocidade'];
@@ -64,6 +68,6 @@
     $sql = "UPDATE esp32 SET temperatura = ?, velocidade = ?, oleo_caixaDeVelocidade = ?, viscosidade_caixaDeVelocidade = ?, oleo_caixaDeNorton = ?, viscosidade_caixaDeNorton = ?, oleo_aventalDoTorno = ?, vibracao = ?, tempo_On = ?, status_read_sensor_dht11 = ? WHERE id = ?";
     $q = $pdo->prepare($sql);
     $q->execute(array($temperatura,$velocidade, $oleo_caixaDeVelocidade, $viscosidade_caixaDeVelocidade, $oleo_caixaDeNorton, $viscosidade_caixaDeNorton, $oleo_aventalDoTorno, $viscosidade_aventalDoTorno, $vibracao, $tempo_On, $status_read_sensor_dht11, $id));*/
-    Database::disconnect();
+    //Database::disconnect();
   }
 ?>
