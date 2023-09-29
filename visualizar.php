@@ -63,7 +63,16 @@ function trMaisTbody($campos, $tabContent, $tabelaBuscar)
                         </a>
                          </td>';
                 }else if($_GET['view'] == 'sala' ){
-        
+                    $sql = 'SELECT id FROM lista_aluno_sala WHERE id_professor = (?)'
+                    $preparacaoSeguraSQL = $mysqli->prepare($sql);
+
+                    if ($preparacaoSeguraSQL) {
+                        $preparacaoSeguraSQL->bind_param("i",$campos[2]);
+                    }
+                    if ($preparacaoSeguraSQL->execute()){
+                        echo $campos[2;
+                    }
+
                     echo '<td>
                     <a href="visualizar.php?option=aluno&id_atualizacao=' . $id_para_modificar . '">
                      Entrar
