@@ -9,6 +9,7 @@
 </head>
 <body>
     <div>
+    
         <button onclick="caixaSenhaGestao()" id="btnAcessoGestao">Gestão</button>
     </div>
 
@@ -34,13 +35,7 @@
 
         <input type="submit" value="Criar conta">
     </form>
-    
-
-    <script>
-        //to do:Sistema para conferirir se as duas senhas do formulario de criação de conta coincidem antes do envio do formulario
-        //to do: sistema para deixar visivel apenas um formulario por vez / mudar title da pagina
-    </script>
-
+  
     <script src="js/script.js"></script>
     <!-- sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -49,9 +44,9 @@
 </body>
 </html>
 
-<?php
+<!-- <?php
     if(filter_input(INPUT_GET, 'e')){
         $mensagem_erro = filter_input(INPUT_GET, 'e');
         echo '<script>erroLogin('.$mensagem_erro.')</script>';
     }
-?>
+?> -->

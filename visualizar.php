@@ -17,6 +17,9 @@ if (filter_input(INPUT_GET, 'view')) {
     } else if ($_GET['view'] == 'aluno') {
         $tabelaBusca = "aluno";
         $campos = ['nome', 'email'];
+    }else if($_GET['view'] == 'sala'){ //view de exibição da pagina
+        $tabelaBusca = "sala";
+        $campos = ['id','turma', 'id_professor'];     
     }
 }
 
@@ -47,7 +50,6 @@ function trMaisTbody($campos, $tabContent, $tabelaBuscar)
                     <?php
                     $id_para_modificar = $row['id'];
                 } ?>
-                <!-- td a href="delete.php?option=aluno/id_delecao=$row['id']" button -->
                 <td>
                     <a href="<?php echo "delete.php?option=$tabelaBuscar&id_delecao=$id_para_modificar" ?>">
                         delete
@@ -60,6 +62,12 @@ function trMaisTbody($campos, $tabContent, $tabelaBuscar)
                          Atualizar
                         </a>
                          </td>';
+                }else if($_GET['view'] == 'sala' ){
+                    echo '<td>
+                    <a href="sala.php.php?option=' . $tabelaBuscar . '&id_atualizacao=' . $id_para_modificar . '">
+                     Entrar
+                    </a>
+                     </td>';
                 }
                 ?>
 

@@ -1,7 +1,7 @@
 async function caixaSenhaGestao() {
     const { value: password } = await Swal.fire({
         title: 'Preencha sua senha',
-        input: 'password',
+        input: 'password', 
         inputLabel: 'Senha',
         inputPlaceholder: 'Sua senha',
         inputAttributes: {
@@ -16,8 +16,6 @@ async function caixaSenhaGestao() {
         //Swal.fire(`Entered password: ${password}`)
     }
 }
-
-
 //alertas de erro no login
 function erroLogin(n) {
     switch (n) {
