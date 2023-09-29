@@ -18,7 +18,7 @@ if (isset($_GET['id_sala'])) {
         $stmt->execute();
         $stmt->bind_result($nomeAluno);
 
-        echo "<h1>Alunos da Sala</h1>";
+ 
         echo "<ul>";
 
         while ($stmt->fetch()) {
