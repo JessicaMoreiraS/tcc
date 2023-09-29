@@ -9,7 +9,7 @@ include('conexao.php');
 
 if (isset($_GET["option"])) {
     $option = $_GET["option"];
-    $deletarAlunoDaSala = $_GET["deletarDaSala"];
+    $acao = $_GET['acao'];
     echo $option;
 
     $listaOption = ["professor", "aluno","maquina","tipo"];
@@ -27,7 +27,7 @@ if (isset($_GET["option"])) {
             }
         }
 
-        if($deletarAlunoDaSala = true){
+        if($acao = 'deletarAlunoDaSala'){
             $alunoId = $_GET["id_delecao"]; ;
             $sqlDelete = "DELETE  FROM lista_aluno_sala  WHERE id_aluno = $alunoId";
 
@@ -37,7 +37,19 @@ if (isset($_GET["option"])) {
             } else {
                 echo 'aluno não deletado da sala'->mysql_error;
             }
+        }else if($acao = 'deletarAluno'){
+            $alunoId = $_GET["id_delecao"]; ;
+            $sqlDelete = "DELETE FROM aluno WHERE id = $alunoId";
+
+            if ($mysqli->query($sqlDelete)) {
+                echo 'aluno deletado do sistema';
+               } else {
+                   echo 'aluno não deletado do sistema'->mysql_error;
+               }
         }
+
+        $stmt->close();
+        $mysqli->close();
     }
 }
 ?>
