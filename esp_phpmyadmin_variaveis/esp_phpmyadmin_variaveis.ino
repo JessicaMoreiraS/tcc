@@ -241,7 +241,7 @@ void loop() {
     int httpCode;     //--> Variables for HTTP return code.
     
     //........................................ Get LEDs data from database to control LEDs.
-    postData = "id=esp32_01";
+    postData = "id=esp32_01&id_maquina=1";
     payload = "";
   
     digitalWrite(ON_Board_LED, HIGH);
@@ -309,7 +309,7 @@ void loop() {
     Serial.print("httpCode : ");
     Serial.println(httpCode); //--> Print HTTP return code
     Serial.print("payload  : ");
-    Serial.println(payload);  //--> Print request response payload
+    Serial.println(payload);  //--> Print request response payloadkj
     
     http.end();  //Close connection
     Serial.println("---------------");
