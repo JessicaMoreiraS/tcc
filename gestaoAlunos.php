@@ -1,4 +1,4 @@
-// visualizarAlunosSala.php
+
 
 <?php
 include('conexao.php');
@@ -34,6 +34,19 @@ if (isset($_GET['id_sala'])) {
             echo "<td>$idAluno</td>";
             echo "<td>$nomeAluno</td>";
             echo "<td>$emailAluno</td>";
+            echo '<td> <a href="">Deletar</a> </td>';
+            ?>
+                <td>
+                    <a href="<?php echo "delete.php?option=$&id_delecao=$idAluno" ?>">
+                        deletar aluno
+                    </a>
+                </td>
+                <td>
+                    <a href="<?php echo "delete.php?option=$&id_delecao=$idAluno&deletarAlunoDaSala=true" ?>">
+                        deletar da sala
+                    </a>
+                </td>
+            <?php
             echo '</tr>';
         }
 
