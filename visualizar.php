@@ -63,8 +63,9 @@ function trMaisTbody($campos, $tabContent, $tabelaBuscar)
                         </a>
                          </td>';
                 }else if($_GET['view'] == 'sala' ){
+        
                     echo '<td>
-                    <a href="sala.php.php?option=' . $tabelaBuscar . '&id_atualizacao=' . $id_para_modificar . '">
+                    <a href="visualizar.php?option=aluno&id_atualizacao=' . $id_para_modificar . '">
                      Entrar
                     </a>
                      </td>';
