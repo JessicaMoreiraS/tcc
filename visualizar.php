@@ -72,27 +72,6 @@ function trMaisTbody($campos, $tabContent, $tabelaBuscar)
                         </a>
                          </td>';
                 }else if($_GET['view'] == 'sala' ){
-                    // $sql = 'SELECT s.turma, GROUP_CONCAT(a.nome) AS alunos
-                    // FROM sala s
-                    // LEFT JOIN lista_aluno_sala las ON s.id = las.id_sala
-                    // LEFT JOIN aluno a ON las.id_aluno = a.id
-                    // GROUP BY s.turma;
-                    // ';
-                    // $preparacaoSeguraSQL = $mysqli->prepare($sql);
-
-                    // if ($preparacaoSeguraSQL) {
-                    //     $preparacaoSeguraSQL->bind_param("i",$idProfesorDaSala);
-                    // }
-                    // if ($preparacaoSeguraSQL->execute()){
-                    //     echo $idProfesorDaSala;
-                    //     echo '<td>
-                    //     <a href="visualizar.php?view=alunosSala&">
-                    //      Entrar
-                    //     </a>
-                    //      </td>';         
-
-                    // }
-
                     echo '<td>
                     <a href="gestaoAlunos.php?id_sala=' . $id_para_modificar . '">
                      entrar
