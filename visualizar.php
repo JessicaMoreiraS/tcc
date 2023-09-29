@@ -17,10 +17,14 @@ if (filter_input(INPUT_GET, 'view')) {
     } else if ($_GET['view'] == 'aluno') {
         $tabelaBusca = "aluno";
         $campos = ['nome', 'email'];
-    }else if($_GET['view'] == 'sala'){ //view de exibição da pagina
+    }else if($_GET['view'] == 'sala'){ 
         $tabelaBusca = "sala";
         $campos = ['id','turma', 'id_professor'];     
+    }else if($_GET['view'] == 'alunosSala'){ 
+        $tabelaBusca = "lista_aluno_sala";
+        $campos = ['id_lista','id_aluno', 'id_sala'];     
     }
+
 }
 
 function trMaisTbody($campos, $tabContent, $tabelaBuscar)
@@ -49,6 +53,11 @@ function trMaisTbody($campos, $tabContent, $tabelaBuscar)
                     </td>
                     <?php
                     $id_para_modificar = $row['id'];
+                    if($_GET['view'] =='sala'){
+                        $idProfesorDaSala = $row['id_professor'];
+                    }else if($_GET['view'] =='alunosSala'){
+
+                    }
                 } ?>
                 <td>
                     <a href="<?php echo "delete.php?option=$tabelaBuscar&id_delecao=$id_para_modificar" ?>">
@@ -63,19 +72,30 @@ function trMaisTbody($campos, $tabContent, $tabelaBuscar)
                         </a>
                          </td>';
                 }else if($_GET['view'] == 'sala' ){
-                    $sql = 'SELECT id FROM lista_aluno_sala WHERE id_professor = (?)'
-                    $preparacaoSeguraSQL = $mysqli->prepare($sql);
+                    // $sql = 'SELECT s.turma, GROUP_CONCAT(a.nome) AS alunos
+                    // FROM sala s
+                    // LEFT JOIN lista_aluno_sala las ON s.id = las.id_sala
+                    // LEFT JOIN aluno a ON las.id_aluno = a.id
+                    // GROUP BY s.turma;
+                    // ';
+                    // $preparacaoSeguraSQL = $mysqli->prepare($sql);
 
-                    if ($preparacaoSeguraSQL) {
-                        $preparacaoSeguraSQL->bind_param("i",$campos[2]);
-                    }
-                    if ($preparacaoSeguraSQL->execute()){
-                        echo $campos[2;
-                    }
+                    // if ($preparacaoSeguraSQL) {
+                    //     $preparacaoSeguraSQL->bind_param("i",$idProfesorDaSala);
+                    // }
+                    // if ($preparacaoSeguraSQL->execute()){
+                    //     echo $idProfesorDaSala;
+                    //     echo '<td>
+                    //     <a href="visualizar.php?view=alunosSala&">
+                    //      Entrar
+                    //     </a>
+                    //      </td>';         
+
+                    // }
 
                     echo '<td>
-                    <a href="visualizar.php?option=aluno&id_atualizacao=' . $id_para_modificar . '">
-                     Entrar
+                    <a href="gestaoAlunos.php?id_sala=' . $id_para_modificar . '">
+                     entrar
                     </a>
                      </td>';
                 }
