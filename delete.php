@@ -41,25 +41,7 @@ if ( isset($_GET['acao'])) {
         }
     } else if ($acao == 'deletarAluno') {
         $id = $_GET["id_delecao"];
-        $salasDoAluno = array();
-
-        // Realize uma consulta SQL para obter os IDs das salas associadas a esse aluno
-        $sql = "SELECT id_sala FROM lista_aluno_sala WHERE id_aluno = $id";
-        
-        $result = $mysqli->query($sql);
-        
-        if ($result) {
-            // Loop através dos resultados e armazene os IDs das salas no array
-            while ($row = $result->fetch_assoc()) {
-                $salasDoAluno[] = $row['id_sala'];
-            }
-        
-            // Feche o resultado
-            $result->close();
-        } else {
-            // Trate o erro da consulta, se houver
-            echo "Erro na consulta: " . $mysqli->error;
-        }
+       
 
         foreach ($salasDoAluno as $salaId) {
             // Realizar uma consulta SQL para excluir o aluno da sala atual
