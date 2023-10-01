@@ -9,8 +9,6 @@ include('conexao.php');
 
 if (isset($_GET["option"])) {
     $option = $_GET["option"];
-
-
     $listaOption = ["professor", "maquina", "tipo"];
     for ($i = 0; $i < count($listaOption); $i++) {
         if ($option == $listaOption[$i]) {
@@ -43,14 +41,46 @@ if ( isset($_GET['acao'])) {
         }
     } else if ($acao == 'deletarAluno') {
         $id = $_GET["id_delecao"];
-        $sqlDelete = "DELETE FROM aluno WHERE id = $id";
-        $sqlDelete2 = "DELETE  FROM lista_aluno_sala  WHERE id_aluno = $id";
+        $salasDoAluno = array();
 
-        if ($mysqli->query($sqlDelete) && $mysqli->query($sqlDelete2)) {
+        // Realize uma consulta SQL para obter os IDs das salas associadas a esse aluno
+        $sql = "SELECT id_sala FROM lista_aluno_sala WHERE id_aluno = $id";
+        
+        $result = $mysqli->query($sql);
+        
+        if ($result) {
+            // Loop através dos resultados e armazene os IDs das salas no array
+            while ($row = $result->fetch_assoc()) {
+                $salasDoAluno[] = $row['id_sala'];
+            }
+        
+            // Feche o resultado
+            $result->close();
+        } else {
+            // Trate o erro da consulta, se houver
+            echo "Erro na consulta: " . $mysqli->error;
+        }
+
+        foreach ($salasDoAluno as $salaId) {
+            // Realizar uma consulta SQL para excluir o aluno da sala atual
+            $sqlDelete = "DELETE FROM lista_aluno_sala WHERE id_aluno = $id AND id_sala = $salaId";
+        
+            if ($mysqli->query($sqlDelete)) {
+                echo "Aluno excluido da sala: ID $salaId.<br>";
+            } else {
+                echo "Erro ao excluir aluno da sala: ID $salaId: " . $mysqli->error . "<br>";
+            }
+        }
+
+        $sqlDelete = "DELETE FROM aluno WHERE id = $id";
+
+        if ($mysqli->query($sqlDelete)) {
             echo 'aluno deletado do sistema';
         } else {
             echo 'aluno não deletado do sistema'->mysql_error;
         }
+     
     }
+  
 }
 ?>
