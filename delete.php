@@ -35,8 +35,7 @@ if ( isset($_GET['acao'])) {
     $acao = $_GET['acao'];
     if ($acao == 'deletarAlunoDaSala') {
         $id = $_GET["id_delecao"];
-        ;
-        $sqlDelete == "DELETE  FROM lista_aluno_sala  WHERE id_aluno = $id";
+        $sqlDelete = "DELETE  FROM lista_aluno_sala  WHERE id_aluno = $id";
         if ($mysqli->query($sqlDelete)) {
             echo 'aluno deletado da sala';
         } else {
@@ -44,10 +43,10 @@ if ( isset($_GET['acao'])) {
         }
     } else if ($acao == 'deletarAluno') {
         $id = $_GET["id_delecao"];
-        ;
         $sqlDelete = "DELETE FROM aluno WHERE id = $id";
+        $sqlDelete2 = "DELETE  FROM lista_aluno_sala  WHERE id_aluno = $id";
 
-        if ($mysqli->query($sqlDelete)) {
+        if ($mysqli->query($sqlDelete) && $mysqli->query($sqlDelete2)) {
             echo 'aluno deletado do sistema';
         } else {
             echo 'aluno não deletado do sistema'->mysql_error;
