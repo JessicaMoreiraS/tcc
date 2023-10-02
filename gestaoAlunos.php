@@ -4,7 +4,6 @@ include('conexao.php');
 if (isset($_GET['id_sala'])) {
     $idSala = $_GET['id_sala'];
 
-    // Consulta para buscar os alunos dessa sala
     $sql = "SELECT aluno.id, aluno.nome, aluno.email FROM lista_aluno_sala
             INNER JOIN aluno ON lista_aluno_sala.id_aluno = aluno.id
             WHERE lista_aluno_sala.id_sala = ?";
@@ -73,28 +72,25 @@ if (isset($_GET['id_sala'])) {
 
             $salasDoAluno = array();
 
-            // Realize uma consulta SQL para obter os IDs das salas associadas a esse aluno
             $sql = "SELECT id_sala FROM lista_aluno_sala WHERE id_aluno = $idAluno";
 
             $result = $mysqli->query($sql);
 
             if ($result) {
-                // Loop através dos resultados e armazene os IDs das salas no array
                 while ($row = $result->fetch_assoc()) {
                     $salasDoAluno[] = $row['id_sala'];
                 }
 
-                // Feche o resultado
+                
                 $result->close();
-            } else {
-                // Trate o erro da consulta, se houver
+            
                 echo "Erro na consulta: " . $mysqli->error;
             }
             echo "</table>";
 } else {
     echo "Erro na consulta SQL.";
 }
-// Verifique se há valores no array e imprima como uma lista
+
 if (!empty($salasDoAluno)) {
     echo "<ul>";
     echo "<li>salas do aluno $nomeAluno:</li>";

@@ -44,7 +44,6 @@ if ( isset($_GET['acao'])) {
        
 
         foreach ($salasDoAluno as $salaId) {
-            // Realizar uma consulta SQL para excluir o aluno da sala atual
             $sqlDelete = "DELETE FROM lista_aluno_sala WHERE id_aluno = $id AND id_sala = $salaId";
         
             if ($mysqli->query($sqlDelete)) {
