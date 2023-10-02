@@ -1,6 +1,11 @@
 <?php
 //inicisnd sessão 
 session_start();
+$paginasPermitemAcesso "login.php"
+if (!strpos($_SERVER['HTTP_REFERER'], $paginasPermitemAcesso)) {
+    header('Location: index.html');
+}
+
 //capturando o id do professor
 $idProfessor = $_SESSION['idAcesso'];
 
@@ -73,7 +78,7 @@ echo $professorNome;
         } ?>
 
         <!-- formulario para criar uma nova sala -->
-        <form id="form_cria_sala" action="cadastros.php" method="POST" style="opacity:0;">
+        <form id="form_cria_sala" action="cadastrarTurma.php" method="POST" style="opacity:0;">
             <!-- //input escondido que armazena o id do prof -->
             <input name="idProfessor" type="text" value="1" hidden>
             <!-- //nome da Sala -->

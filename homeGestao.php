@@ -1,8 +1,20 @@
 <?php
 session_start();
+$paginasPermitemAcesso = ["login.php", "cadastrarMaquina.php", "gestaoAlunos.php", "cadastrarProfessor.php"];
+$permitido = false;
+for($i = 0; $i < count($paginasPermitemAcesso); $i++){
+  if(!strpos($_SERVER['HTTP_REFERER'], $paginasPermitemAcesso[$i])){
+    if($i == count($paginasPermitemAcesso)-1 && !$permitido){
+      header('Location: index.html');
+    }
+  }else{
+    $permitido=true;
+  }
+}
 if($_SESSION['idAcesso'] != 'gestaoSenai'){
     header('Location: index.html');
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

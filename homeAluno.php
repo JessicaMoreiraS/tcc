@@ -1,28 +1,32 @@
 <!-- CODIGO BACK -->
 
 <?php
-		session_start();
-		$idAluno = $_SESSION['idAcesso'];
+	if (!strpos($_SERVER['HTTP_REFERER'], 'login.php')) {
+		header('Location: index.html');
+	}
 
-		include("conexao.php");
-		$sqlAluno = "SELECT * FROM aluno WHERE id = ".$idAluno;
-		$alunoNome = mysqli_fetch_assoc(($mysqli->query($sqlAluno)))['nome'];
+	session_start();
+	$idAluno = $_SESSION['idAcesso'];
 
-		$sqlConteudoCard = "SELECT * FROM lista_aluno_sala LEFT JOIN sala ON sala.id = lista_aluno_sala.id_sala LEFT JOIN professor ON professor.id = sala.id_professor WHERE lista_aluno_sala.id_aluno = $idAluno";
+	include("conexao.php");
+	$sqlAluno = "SELECT * FROM aluno WHERE id = ".$idAluno;
+	$alunoNome = mysqli_fetch_assoc(($mysqli->query($sqlAluno)))['nome'];
+
+	$sqlConteudoCard = "SELECT * FROM lista_aluno_sala LEFT JOIN sala ON sala.id = lista_aluno_sala.id_sala LEFT JOIN professor ON professor.id = sala.id_professor WHERE lista_aluno_sala.id_aluno = $idAluno";
 		
 
 
-		//detela a ligacao entre o aluno e a sala
-		if (isset($_GET["salaSair"]) ) {
-			$idLista = filter_input(INPUT_GET, 'salaSair');
+	//detela a ligacao entre o aluno e a sala
+	if (isset($_GET["salaSair"]) ) {
+		$idLista = filter_input(INPUT_GET, 'salaSair');
 
-			$sqlDetetaLigacaoAlunoSala = "DELETE FROM lista_aluno_sala WHERE id_lista='$idLista'";
-			if($mysqli->query($sqlDetetaLigacaoAlunoSala)){
-					header('location: homeAluno.php');
-			}else{
-					header('location: homeAluno.php?e=9');
-			}
+		$sqlDetetaLigacaoAlunoSala = "DELETE FROM lista_aluno_sala WHERE id_lista='$idLista'";
+		if($mysqli->query($sqlDetetaLigacaoAlunoSala)){
+				header('location: homeAluno.php');
+		}else{
+				header('location: homeAluno.php?e=9');
 		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +93,7 @@
 			</div>
 			<div class="turmas">
 				<?php
+
 				$conteudo = $mysqli -> query($sqlConteudoCard); 
 				while ($row = mysqli_fetch_assoc($conteudo)){?>
 				
