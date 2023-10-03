@@ -9,7 +9,6 @@ if (isset($_GET['id_sala'])) {
             WHERE lista_aluno_sala.id_sala = ?";
 
 
-
     $stmt = $mysqli->prepare($sql);
 
     if ($stmt) {
