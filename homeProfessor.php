@@ -137,16 +137,16 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
 
         <!-- formulario para criar uma nova sala -->
         <form id="form_cria_sala" action="cadastrarTurma.php" method="POST" style="opacity:0;">
-            <!-- //input escondido que armazena o id do prof -->
+        
             <input name="idProfessor" type="text" value="1" hidden>
-            <!-- //nome da Sala -->
+          
             <input type="text" placeholder="nome da turma" name="nomeSala" required>
-            <!-- //input readonly que sugere codigos aleatorios -->
+       
             <label for="codigo da sua turma"></label>
             <input type="text" id="codigoTurma" readonly name="codigoSala">
             <a onclick=" gerarCodigoAcesso(10)" style="cursor:pointer">Gerar Código</a>
 
-            <!-- //radios para o prof selecionar maquinas disponiveis(ainda nao e´possivel aplicar no banco de dados) -->
+          
             <div class="radios">
                 <?php
                 $conteudo = $mysqli->query($sqlConteudoRadios);
@@ -164,8 +164,8 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
             <input name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar" disabled>
             <button onclick="document.querySelector('#form_cria_sala').style.display = 'none';">cancelar</button>
         </form>
-    </div>
+    
 
 </body>
-
+<script src="js/reveal.js"></script>
 </html>
