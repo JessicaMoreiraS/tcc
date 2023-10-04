@@ -18,6 +18,7 @@
   --box-shadow-insert: 4px -4px 4px 0px rgba(0, 0, 0, 0.25) inset;
   --background-main: #f6f6f6;
 }
+
 body {
   background-color: var(--background-main);
 }
@@ -30,10 +31,12 @@ body {
 
   background-color: var(--azulPrincipal);
 }
+
 .logo-inicial {
   margin: 0 auto;
   padding-left: 110px;
 }
+
 .topo-inicial {
   background-color: var(--azulPrincipal);
   display: flex;
@@ -58,11 +61,13 @@ body {
   background-color: var(--background-main);
 }
 
-.corpo-inicial h2 {
+.corpo-inicial h2,
+#main_homeProfessor h2 {
   font-size: 35px;
   color: #666666;
   margin-bottom: 19px;
 }
+
 .corpo-inicial .bem-vindo a {
   display: flex;
   justify-content: center;
@@ -71,10 +76,12 @@ body {
   font-size: 1.2rem;
   transition: 0.2s ease;
 }
+
 .corpo-inicial .bem-vindo a:hover {
   color: var(--azulPrincipal);
   transform: scale(0.9);
 }
+
 .corpo-inicial .bem-vindo a i {
   padding: 3%;
 }
@@ -82,6 +89,7 @@ body {
 .pesquisa {
   width: 100%;
 }
+
 .pesquisar {
   width: 50%;
   height: 40px;
@@ -116,6 +124,7 @@ body {
 .aviso a {
   color: var(--azulPrincipal);
 }
+
 .container-texto {
   text-align: center;
   width: 50%;
@@ -127,12 +136,14 @@ body {
   color: var(--azulPrincipal);
   font-size: 48px;
 }
+
 .corpo-inicial .turmas {
   display: flex;
   flex-wrap: wrap;
   padding: 3%;
   justify-content: center;
 }
+
 .corpo-inicial .turmas .card {
   width: 310px;
   background-color: #fff;
@@ -140,15 +151,18 @@ body {
   margin: 9px;
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
 }
+
 .corpo-inicial .turmas .card:hover {
   transform: translateY(-8px);
   transition: 0.3s ease-in-out;
   box-shadow: none;
 }
+
 .corpo-inicial .turmas .card .infos {
   margin: 32px 0px;
   padding: 2rem;
 }
+
 .corpo-inicial .turmas .card #first_p {
   margin-bottom: 37px;
   font-size: 1.2rem;
@@ -158,14 +172,17 @@ body {
   justify-content: flex-start;
   word-spacing: 3px;
 }
+
 .corpo-inicial .turmas .card #second_p {
   display: flex;
   justify-content: flex-start;
 }
+
 .corpo-inicial .turmas .card a {
   float: left;
   width: 100%;
 }
+
 .corpo-inicial .turmas .card .rodape {
   background-color: var(--azulPrincipal);
   width: 100%;
@@ -180,6 +197,7 @@ body {
   font-size: 24px;
   color: #f4f4f4;
 }
+
 .corpo-inicial .turmas .card .rodape i:hover {
   color: #003f5b;
 }
@@ -233,6 +251,7 @@ footer {
   gap: 30px;
   align-items: center;
 }
+
 .entrar-index:hover {
   background-color: var(--azulPrincipal);
   transition: 1s ease-in-out;
@@ -270,6 +289,7 @@ footer {
   transition: 3s ease-in;
   margin: 90px 0px;
 }
+
 .form-box {
   background-color: #fff;
   border-radius: 25px;
@@ -309,6 +329,7 @@ footer {
   color: var(--azulEscuro);
   border-bottom: 2px solid var(--azulEscuro);
 }
+
 .form-box .botoes_box button::before {
   content: "";
   position: absolute;
@@ -318,14 +339,17 @@ footer {
   background-color: #01567d;
   transition: 0.3s ease;
 }
+
 .form-box .botoes_box button:hover {
   border-bottom: none;
   transform: translateY(-2px);
   color: #01567d;
 }
+
 .form-box .botoes_box button:hover::before {
   width: 100%;
 }
+
 #infosAcess {
   margin-top: 54px;
 }
@@ -384,9 +408,11 @@ footer {
   margin-top: -20px;
   transition: 0.9s;
 }
+
 #infosAcess a:hover {
   text-decoration: underline;
 }
+
 .input_entrar {
   display: flex;
   justify-content: center;
@@ -406,13 +432,16 @@ footer {
   cursor: pointer;
   transition: 0.3s;
 }
+
 .input_entrar input:disabled {
   background-color: #666666;
 }
+
 .input_entrar input:disabled:hover {
   background-color: #494949;
   transform: scale(0.9, 0.9);
 }
+
 .input_entrar input:hover,
 #form_verificacao #botao_verificar:hover {
   background-color: #036998;
@@ -432,6 +461,7 @@ footer {
   cursor: pointer;
   transition: 0.3s ease;
 }
+
 .gestao_link a::before {
   content: "";
   position: absolute;
@@ -441,10 +471,12 @@ footer {
   background-color: var(--azulPrincipal);
   transition: 0.3s ease;
 }
+
 .gestao_link a:hover {
   color: var(--azulPrincipal);
   transform: translateY(-6px);
 }
+
 .gestao_link a:hover::before {
   width: 100%;
 }
@@ -458,29 +490,35 @@ footer {
   left: 100%;
   width: 90%;
 }
+
 .eclipses {
   z-index: 1;
   margin-top: -230px;
 }
+
 .eclipses .img {
   position: absolute;
   z-index: 3;
   margin-top: 190px;
   right: 0;
 }
+
 .eclipses .img img {
   width: 100%;
 }
+
 .eclipse-1 {
   right: 0;
   width: 32%;
   position: absolute;
 }
+
 .eclipse-2 {
   right: 5px;
   width: 35%;
   position: absolute;
 }
+
 .eclipse-3 {
   right: 5px;
   width: 40%;
@@ -492,11 +530,13 @@ footer {
   bottom: 0;
   z-index: 5;
 }
+
 #infosCreate #senhaCadastro,
 #infosCreate #confirmarSenhaCadastro,
 #infosAcess #inputSenha {
   background-image: url(../img/Lock.png);
 }
+
 #infosCreate #nomeCompleto {
   background-image: url(../img/Person.png);
 }
@@ -505,14 +545,17 @@ footer {
 .swal2-popup {
   background-color: var(--azulPrincipal);
 }
+
 .swal2-title,
 .swal2-content,
 .swal2-icon {
   color: #fff;
 }
+
 #swal2-input {
   color: #fff;
 }
+
 .swal2-confirm.swal2-styled {
   background-color: #fff;
   color: #003f5b;
@@ -524,8 +567,10 @@ footer {
 
 /* CSS Menu Hamburger */
 .menu {
-  --s: 35px; /* control the size */
-  --c: #fff; /* the color */
+  --s: 35px;
+  /* control the size */
+  --c: #fff;
+  /* the color */
 
   height: 30px;
   aspect-ratio: 1;
@@ -533,10 +578,8 @@ footer {
   padding: 0;
   border-inline: calc(var(--s) / 2) solid #0000;
   box-sizing: content-box;
-  --_g1: linear-gradient(var(--c) 20%, #0000 0 80%, var(--c) 0) no-repeat
-    content-box border-box;
-  --_g2: radial-gradient(circle closest-side at 50% 12.5%, var(--c) 95%, #0000)
-    repeat-y content-box border-box;
+  --_g1: linear-gradient(var(--c) 20%, #0000 0 80%, var(--c) 0) no-repeat content-box border-box;
+  --_g2: radial-gradient(circle closest-side at 50% 12.5%, var(--c) 95%, #0000) repeat-y content-box border-box;
   background: var(--_g2) left var(--_p, 0px) top,
     var(--_g1) left calc(var(--s) / 10 + var(--_p, 0px)) top,
     var(--_g2) right var(--_p, 0px) top,
@@ -551,6 +594,7 @@ footer {
   -moz-appearance: none;
   appearance: none;
 }
+
 .menu:before,
 .menu:after {
   content: "";
@@ -566,12 +610,15 @@ footer {
   --_p: calc(-1 * var(--s));
   --_s: 0s;
 }
+
 .menu:checked:before {
   transform: rotate(45deg);
 }
+
 .menu:checked:after {
   transform: rotate(-45deg);
 }
+
 .menu:focus-visible {
   clip-path: none;
   border: none;
@@ -580,31 +627,82 @@ footer {
 }
 
 /*  CSS da pagina de CONFIRMAR EMAIL */
-#main_confirmarEmail {
-  padding: 5%;
+
+.areaCodTurmaNova {
+  display: flex;
+  flex-direction: column;
+}
+
+.areaCodTurmaNova label {
+  color: rgb(53, 53, 53);
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  max-width: 400px;
+}
+
+.areaCodTurmaNova input {
+  width: 90%;
+  height: 50px;
+  margin-top: 15px;
+  padding-left: 5px;
+  border-radius: 15px;
+  color: rgba(0, 0, 0, 0.781);
+  outline: none;
+  margin: 10px;
+
+  background: #f4f4f4;
+  border-radius: 10px;
+  font-size: 17px;
+  border: none;
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
+  margin: 5px;
+}
+
+.reenviar {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  background-color: #d4d4d4bd;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+}
+
+
+.areaCodTurmaNova input::placeholder {
+  color: #4d4d4d;
+}
+
+.areaCodTurmaNova input:focus-visible {
+  box-shadow: inset 4px 0px 4px rgba(0, 0, 0, 0.01),
+    0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* #main_confirmarEmail {
+  padding: 10%;
+display: flex;
+justify-content: center;
+flex-direction: column;
 }
 #main_confirmarEmail .introducao {
   margin-bottom: 10px;
 }
 #main_confirmarEmail .introducao h2 {
-  display: flex;
-  justify-content: center;
   margin-bottom: 10px;
 }
 #main_confirmarEmail .introducao p {
   display: flex;
-  justify-content: center;
-  font-size: 1rem;
-}
-#main_confirmarEmail .container-form {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-#form_verificacao {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  font-size: 1.1rem;
+  color: #666666;
+  max-width: 400px;
+} */
+/* #main_confirmarEmail .container-form {
+display: flex;
+} */
+/* #form_verificacao input {
+background-color: #003f5b;
 }
 #form_verificacao label {
   padding-bottom: 10px;
@@ -623,17 +721,23 @@ footer {
   transition: 0.3s ease;
 }
 
+
 #form_verificacao #codigoVerificacao {
+  width: 90%;
+  height: 50px;
+  margin-top: 15px;
+  padding-left: 5px;
+  border-radius: 15px;
+  color: rgba(0, 0, 0, 0.3);
+  outline: none;
+  margin: 10px;
   background: #f4f4f4;
-  width: 300px;
-  padding: 16px;
   border-radius: 10px;
   font-size: 17px;
-  border: none;
-  outline: none;
   box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
-  padding: 20px;
   margin: 5px;
+  max-width: 400px;
+ 
 }
 #form_reenviarCodigo {
   display: flex;
@@ -658,7 +762,7 @@ footer {
   display: flex;
   position: absolute;
   width: 100%;
-}
+} */
 /* FIM da  CSS da pagina de CONFIRMAR EMAIL */
 
 /*Página Turma nova*/
@@ -668,19 +772,21 @@ footer {
   justify-content: center;
   align-items: center;
   padding: 10%;
+  margin-top: 50px;
 }
+
 .areaCod {
   display: flex;
   flex-direction: column;
 }
 
 .areaCod h2 {
-  font-size: 36px;
+  font-size: 24px;
 }
 
 .areaCod label {
-  color: #666;
-  font-size: 20px;
+  color: rgb(53, 53, 53);
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -692,7 +798,7 @@ footer {
   margin-top: 15px;
   padding-left: 5px;
   border-radius: 15px;
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.781);
   outline: none;
   margin: 10px;
 
@@ -703,14 +809,21 @@ footer {
   box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
   margin: 5px;
 }
+
+.areaCod input::placeholder {
+  color: #4d4d4d;
+}
+
 .areaCod input:focus {
   box-shadow: inset 4px 0px 4px rgba(0, 0, 0, 0.01),
     0px 0px 8px rgba(0, 0, 0, 0.2);
 }
+
 .botoesTurmaNova {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  align-items: center;
 }
 
 .botoesTurmaNova input {
@@ -739,13 +852,16 @@ footer {
   background-repeat: no-repeat;
   background-position-x: 4%;
 }
+
 #header_homeGestao img {
   display: flex;
   justify-content: center;
 }
+
 #main_homeGestao {
   margin-top: 90px;
 }
+
 #main_homeGestao .titulo h2 {
   display: flex;
   justify-content: center;
@@ -753,24 +869,29 @@ footer {
   font-size: 2.2rem;
   margin-bottom: 5px;
 }
+
 #main_homeGestao .titulo h2 b,
 #main_homeGestao .card .tituloCard b {
   color: var(--azulPrincipal);
 }
+
 #main_homeGestao .titulo p {
   display: flex;
   justify-content: center;
   font-size: 1.1rem;
 }
+
 #main_homeGestao .section_cards {
   margin-top: 90px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 #main_homeGestao .card .conteudo_card {
   padding: 2%;
 }
+
 #main_homeGestao .card {
   padding: 3%;
   width: 331px;
@@ -782,6 +903,7 @@ footer {
   transition: 1s ease-in-out;
   margin: 20px;
 }
+
 #main_homeGestao .card:hover {
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
 }
@@ -792,6 +914,7 @@ footer {
   padding: 18px;
   border-radius: 20px;
 }
+
 #main_homeGestao .card .tituloCard {
   color: var(--cinza);
   font-size: 20px;
@@ -799,24 +922,29 @@ footer {
   letter-spacing: 1px;
   margin: 19px 0px;
 }
+
 #main_homeGestao .card .descricao {
   color: var(--cinzaClaro);
   font-size: 15px;
   padding: 2%;
 }
+
 #main_homeGestao .card .btn {
   float: right;
 }
+
 #main_homeGestao .card .btn a i {
   font-size: 2rem;
   color: var(--azulEscuro);
   transition: 0.2s ease;
   margin-top: 10px;
 }
+
 #main_homeGestao .card .btn a i:hover {
   color: #0392d4;
   transform: scale(0.9);
 }
+
 /*Fim da página Home Gestao*/
 
 /*Página PESSOAS TURMA*/
@@ -829,4 +957,310 @@ footer {
   width: 100%;
   display: block;
 }
+
 /*FIM Página PESSOAS TURMA*/
+
+/*Página  visualizarMaquina*/
+
+/*FIM Página visualizarMaquina/
+
+
+/*Página  HOME PROFESSOR*/
+#body_homeProfessor {
+  background-image: url(../img/svg/bg_homeProfessor.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: 20%;
+}
+
+
+#main_homeProfessor * {
+  align-items: center;
+}
+
+#main_homeProfessor {
+  padding: 7%;
+}
+
+#main_homeProfessor .btnCriarSala {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+#main_homeProfessor .btnCriarSala a:hover {
+  color: var(--azulEscuro);
+  background-color: var(--background-main);
+  transform: scale(0.9);
+}
+
+#main_homeProfessor .btnCriarSala a {
+  margin-right: 5px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--cinza);
+  font-size: 1.2rem;
+  transition: 0.2s ease;
+  color: var(--background-main);
+  align-items: center;
+  background-color: #003f5b;
+  font-size: 24px;
+
+  transition: .3s;
+  padding: 10px;
+  border-radius: 10px;
+}
+#main_homeProfessor .btnCriarSala a i{
+  margin-right: 10px;
+}
+
+#main_homeProfessor .pesquisa {
+  display: flex;
+  justify-content: center;
+}
+
+#main_homeProfessor .turmas {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3%;
+  justify-content: center;
+}
+
+#main_homeProfessor .turmas .card {
+  width: 310px;
+  background-color: #fff;
+  border-radius: 20px;
+  margin: 9px;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
+  transition: 0.3s ease-in-out;
+}
+
+#main_homeProfessor .turmas .card:hover {
+  transform: translateY(-20px)!important;
+  box-shadow: none;
+}
+
+#main_homeProfessor .turmas .card .infos {
+  margin: 32px 0px;
+  padding: 2rem;
+}
+
+#main_homeProfessor .turmas .card #first_p {
+  margin-bottom: 37px;
+  font-size: 1.2rem;
+  color: var(--azulPrincipal);
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-start;
+  word-spacing: 3px;
+}
+
+#main_homeProfessor .turmas .card #second_p {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#main_homeProfessor .turmas .card a {
+  float: left;
+  width: 100%;
+}
+
+#main_homeProfessor .turmas .card .rodape {
+  background-color: var(--azulPrincipal);
+  width: 100%;
+  height: 98px;
+  display: flex;
+  align-items: center;
+}
+
+ .turmas .card .rodape i {
+  display: flex;
+  margin: 23px 0px 20px 27px;
+  font-size: 24px;
+  color: #f4f4f4;
+}
+
+ .turmas .card .rodape i:hover {
+  color: #003f5b;
+}
+
+ .bem-vindo {
+  display: flex;
+  justify-content: center;
+}
+
+ h2 {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--background-main);
+}
+
+ h2 b {
+  border-radius: 10px;
+}
+
+ .form_cadastrarTurma{
+    display: flex;
+    justify-content: center;
+   
+}
+.form_cadastrarTurma .container {
+    background-color: var(--azulPrincipal);
+    padding: 6vw;
+    border-radius: 61px;
+   
+
+}
+ .form_cadastrarTurma .container .logo, .form_cadastrarTurma .container .icone{
+    display: flex;
+    justify-content: center;
+}
+.form_cadastrarTurma .container .icone img{
+    width: 60px;
+}
+ .form_cadastrarTurma .container .logo {
+   margin-bottom: 25px;
+}
+ .form_cadastrarTurma .container .input_nome{
+    display: flex;
+    justify-content: center;
+    margin: 40px 0px 25px 0px;
+}
+.form_cadastrarTurma .container .input_nome input {
+  background: #f4f4f4;
+  display: flex;
+
+  padding: 10px;
+  padding-left: 10px;
+  border-radius: 15px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0,0.3);
+  transition: 0.18s ease-out;
+}
+.form_cadastrarTurma .container .input_nome input{
+  width: 100%;
+}
+.form_cadastrarTurma .container  .input_codigo{
+  display: flex;
+  justify-content: center;
+}
+ .form_cadastrarTurma .container .input_nome input:focus{
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.01),
+  0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+.form_cadastrarTurma .container .checkboxes{
+    display: flex;
+    flex-direction: column;
+}
+.form_cadastrarTurma .container .checkboxes .titulo, .form_cadastrarTurma label {
+color: #b6e4f0;
+font-size: 17px;
+font-weight: 500;
+display: flex;
+justify-content: center;
+width: 100%;
+margin-bottom: 20px;
+}
+ .container-checkboxes{
+  margin: 27px 40px ;
+}
+
+.cyberpunk-checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #b6e4f0;
+    border-radius: 5px;
+    background-color: transparent;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+ 
+   
+  }
+  
+  .cyberpunk-checkbox:before {
+    content: "";
+    background-color: #b6e4f0;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .cyberpunk-checkbox:checked:before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .cyberpunk-checkbox-label {
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
+  
+
+.form_cadastrarTurma .container  .bnts {
+   display: flex;
+   justify-content: center;
+   gap: 20px;
+}
+.form_cadastrarTurma .container  .bnts button,.form_cadastrarTurma .container  .bnts input {
+  cursor: pointer;
+}
+ .form_cadastrarTurma .container .header{
+   margin-top: -20px;
+}
+
+
+ .form_cadastrarTurma .container  .bnts input:hover, .form_cadastrarTurma .container  .bnts button:hover {
+  color: var(--azulEscuro);
+  background-color: var(--background-main);
+  transform: scale(0.9);
+}
+
+ .form_cadastrarTurma .container  .bnts input, .form_cadastrarTurma .container  .bnts button{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--cinza);
+  font-size: 1.2rem;
+  transition: 0.2s ease;
+  color: var(--background-main);
+  align-items: center;
+  background-color: #003f5b;
+  font-size: 15px;
+  transition: .3s;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* QUANDO O FORM APARECER: */
+/* .form_cadastrarTurma{
+  position: absolute;
+  
+bottom: 10%;left: 20%; right: 20%;
+}
+main{
+  opacity: 20%;
+
+}
+body{
+  background-image:  none !important;
+} */
+/*FIM Página HOME PROFESSOR/
