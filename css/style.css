@@ -28,7 +28,6 @@ body {
   justify-content: center;
   padding: 30px;
   align-items: center;
-
   background-color: var(--azulPrincipal);
 }
 
@@ -985,6 +984,7 @@ background-color: #003f5b;
 #main_homeProfessor .btnCriarSala {
   display: flex;
   justify-content: center;
+  
 }
 
 
@@ -993,6 +993,7 @@ background-color: #003f5b;
   color: var(--azulEscuro);
   background-color: var(--background-main);
   transform: scale(0.9);
+  
 }
 
 #main_homeProfessor .btnCriarSala a {
