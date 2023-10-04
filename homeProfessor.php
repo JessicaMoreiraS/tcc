@@ -128,11 +128,9 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
                             <img src="img/svg/seta.svg" alt="" />
                         </i>
                     </div>
-                    entrar
                 </a>
             </div>
             <?php
-
         } ?>
 
 </main>
