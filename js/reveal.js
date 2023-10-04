@@ -107,3 +107,44 @@ sr.reveal('#main_homeGestao .section_cards .card .btn',{
   delay: 300
 });
 ///////////////////////
+
+
+//REVEAL HOME PROFESSOR//
+sr.reveal('#main_homeProfessor .btnCriarSala',{ 
+  duration: 1000, // Duração da animação em milissegundos
+  scale: 1, // Escala final (100%)
+  opacity: 1, // Opacidade final (100%)
+  distance: '150px', // Distância de deslocamento
+  origin: 'top'
+});
+sr.reveal('#main_homeProfessor .bem-vindo',{ 
+  duration: 1000, // Duração da animação em milissegundos
+  scale: 1, // Escala final (100%)
+  opacity: 1, // Opacidade final (100%)
+  distance: '150px', // Distância de deslocamento
+  origin: 'top',
+  delay:500
+});
+sr.reveal('#main_homeProfessor .pesquisa',{ 
+  duration: 1000,
+  scale: 1,
+  opacity: 1,
+  distance: '150px',
+  origin: 'right'
+});
+sr.reveal('#main_homeProfessor .card',{ 
+  duration: 1000,
+  scale: 1,
+  opacity: 1,
+  distance: '100px',
+  origin: 'left'
+});
+sr.reveal('#main_homeProfessor .card .',{ 
+  duration: 1000,
+  scale: 1,
+  opacity: 1,
+  distance: '100px',
+  origin: 'left'
+});
+/////////////////
+
