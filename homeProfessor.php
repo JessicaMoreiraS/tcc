@@ -131,7 +131,25 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
                 </a>
             </div>
             <?php
-        } ?>
+        }else{
+            echo '
+            
+            <section class="sem_turma">
+            <div>
+            <img src="img/svg/Nothing_Found_icon.svg">
+            Ops!
+            </div>
+            <div>
+              Você não está participando de nenhuma turma.
+            </div>
+          </section>
+            '
+        } 
+        
+        
+        ?>
+
+       
 
 </main>
 
