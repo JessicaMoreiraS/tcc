@@ -114,7 +114,8 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
     //   ';
         //while que imprime os card (logica do Home Aluno)
         $conteudo = $mysqli->query($sqlConteudoCard);
-        while ($row = mysqli_fetch_assoc($conteudo)) { ?>
+        if( $conteudo &&  $conteudo->num_rows > 0){
+          while ($row = mysqli_fetch_assoc($conteudo)) { ?>
             <div class="card">
                 <div class="infos">
                     <p id="first_p">
@@ -131,20 +132,21 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
                 </a>
             </div>
             <?php
+        }
         }else{
-            echo '
-            
+          echo '
             <section class="sem_turma">
             <div>
-            <img src="img/svg/Nothing_Found_icon.svg">
-            Ops!
+            <p>Ops!</p>
             </div>
-            <div>
-              Você não está participando de nenhuma turma.
-            </div>
-          </section>
-            '
-        } 
+            <p> Você não está participando de nenhuma turma.</p>
+            </section>
+            ';
+        }
+    
+        
+           
+        
         
         
         ?>
