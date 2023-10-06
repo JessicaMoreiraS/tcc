@@ -36,9 +36,6 @@ if($_SESSION['idAcesso'] != 'gestaoSenai'){
       <img src="img/logo-senai-branco.png" alt="" />
     </header>
 
-
-
-    bu
     <main id="main_homeGestao">
       <div class="titulo">
         <h2>GES <b>TÃO</b></h2>
