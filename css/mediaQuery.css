@@ -113,7 +113,7 @@ font-size:16px ;
 /* FIM CSS Pagina confirmar Email */
 
 /* CSS HOME GESTAO*/
-@media (max-width: 991px){
+@media (max-width:1023px){
     #main_homeGestao .titulo{
         margin-top: 100px;
         padding: 1%;
@@ -122,6 +122,9 @@ font-size:16px ;
     } 
     #main_homeGestao .section_cards {
         margin-top: -80px;
+    }
+    #main_homeGestao p{
+        background-color: #f5f5f5;
     }
    
 }
