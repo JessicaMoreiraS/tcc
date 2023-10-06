@@ -867,6 +867,7 @@ background-color: #003f5b;
   font-weight: bold;
   font-size: 2.2rem;
   margin-bottom: 5px;
+
 }
 
 #main_homeGestao .titulo h2 b,
@@ -984,6 +985,7 @@ background-color: #003f5b;
 #main_homeProfessor .btnCriarSala {
   display: flex;
   justify-content: center;
+  cursor: pointer;
   
 }
 
@@ -1083,23 +1085,27 @@ background-color: #003f5b;
   font-size: 24px;
   color: #f4f4f4;
 }
+.turmas .card .rodape img{
+  transform: scale(0.9);
+  cursor: pointer;
+}
 
  .turmas .card .rodape i:hover {
   color: #003f5b;
 }
 
- .bem-vindo {
+#main_homeProfessor .bem-vindo {
   display: flex;
   justify-content: center;
 }
 
- h2 {
+#main_homeProfessor h2 {
+  background-color: var(--background-main);
   padding: 10px;
   border-radius: 10px;
-  background-color: var(--background-main);
 }
 
- h2 b {
+#main_homeProfessor h2 b {
   border-radius: 10px;
 }
 
