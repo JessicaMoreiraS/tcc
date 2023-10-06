@@ -1271,17 +1271,8 @@ margin-bottom: 20px;
   border-radius: 10px;
 }
 
-/* QUANDO O FORM APARECER: */
-/* .form_cadastrarTurma{
-  position: absolute;
-  
-bottom: 10%;left: 20%; right: 20%;
-}
-main{
-  opacity: 20%;
+/* FIM Página HOME PROFESSOR */
 
+.OpenHiddenDiv{
+  display: block;
 }
-body{
-  background-image:  none !important;
-} */
-/*FIM Página HOME PROFESSOR/
