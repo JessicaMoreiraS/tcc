@@ -52,28 +52,32 @@ function erroLogin(n) {
 //SCRIPTS DO HOME PROFESSOR//
 
 //função que gera um codigo de acesso para uma turma
-// function gerarCodigoAcesso(length) {
-//     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-//     let codigo = '';
-//     //for que percorre o tamanho do definido apra o codigo
-//     for (let i = 0; i < length; i++) {
-//         //funcao que transforma em inteiro, o indice gerado aleatoriamente. para escolher 1 caractere
-//         const randomIndex = Math.floor(Math.random() * caracteres.length);
-//         //adicionando os valores dos indices gerados a variavel codigo
-//         codigo += caracteres.charAt(randomIndex);
-//     }
-//     //aplicando o codigo gerado no input
-//     const inputCodigo = document.getElementById('codigoTurma').value = codigo
-// }
+function gerarCodigoAcesso(length) {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let codigo = '';
+    //for que percorre o tamanho do definido apra o codigo
+    for (let i = 0; i < length; i++) {
+        //funcao que transforma em inteiro, o indice gerado aleatoriamente. para escolher 1 caractere
+        const randomIndex = Math.floor(Math.random() * caracteres.length);
+        //adicionando os valores dos indices gerados a variavel codigo
+        codigo += caracteres.charAt(randomIndex);
+    }
+    //aplicando o codigo gerado no input
+    const inputCodigo = document.getElementById('codigoTurma').value = codigo
+}
 
 
-// //exibir o formulario de criar sala
-// function exibirFormCriarSala() {
-//     document.querySelector('.form_cadastrarTurma').style.display = 'block';
-// }
-// function naoExibirFormCriarSala() {
-//     document.querySelector('.form_cadastrarTurma').style.display = 'none';
-// }
+
+var from_criar_sala = document.getElementById("section_form");
+var mostrarBotao = document.getElementById("criar_turma");
+var ocultarBotao = document.getElementById("cancelar_button");
+mostrarBotao.addEventListener("click", function() {
+    from_criar_sala.style.display = "block"; 
+});
+
+ocultarBotao.addEventListener("click", function() {
+    from_criar_sala.style.display = "none"; 
+});
 
 
 //TRECHO DO CODIGO QUE LIBERA A CRIAÇÃO DE SALA, HOME PROFESSOR
