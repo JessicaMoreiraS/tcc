@@ -14,9 +14,12 @@
     $sql = 'SELECT * FROM maquina WHERE id="' . $id . '"';
     foreach ($pdo->query($sql) as $row) {
       $myObj->id = $row['id'];
-      $myObj->LED_01 = $row['led_vermelho'];
-      $myObj->LED_02 = $row['led_amarelo'];
-      $myObj->LED_03 = $row['led_verde'];
+      //Led verde = LED 01.
+      //Led amarelo = LED 02
+      //Led vermelho = Led 03
+      $myObj->Led_verde = $row['led_vermelho'];
+      $myObj->Led_amarelo= $row['led_amarelo'];
+      $myObj->Led_vermelho = $row['led_verde'];
       
       $myJSON = json_encode($myObj);
       
