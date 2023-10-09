@@ -58,7 +58,7 @@ if(isset($_POST["enviar"])){
     ?>
 
     <form action="" method="POST">
-        <input type="email" name="email" require>
+        <input type="text" name="codigo" require>
         <input type="submit" value="enviar">
     </form>
 </body>
