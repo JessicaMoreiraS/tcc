@@ -26,18 +26,6 @@ $sqlConteudoCard = "SELECT DISTINCT sala.*, sala.turma
 
 //sql para coletar os tipos de maquinas já cadastrados
 $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
-
-function gerarCodico($lenght){
-  $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVabcdefghijklmnopqrstuv1234567890';
-  $codigo;
-  for($i=0; $i<$lenght;$i++){
-    $index_aleatorio = rand(0, $length - 1); 
-    $caracter_aleatorio = $caracteres[$index_aleatorio];
-    $codigo .= $caracter_aleatorio;
-  }
-  echo $codigo;
-} 
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -92,9 +80,6 @@ function gerarCodico($lenght){
         <input style="font-size: 16px" placeholder="Pesquise por uma turma" class="pesquisar" type="text" />
       </div>
     </section>
-    <form method="post" action="funcao.php">
-        <input type="submit" name="chamarFuncao" value="Chamar Função PHP Gerar Codigo">
-    </form>
     <div class="turmas">
       <?php
       //while que imprime os card (logica do Home Aluno)
@@ -105,10 +90,12 @@ function gerarCodico($lenght){
             <div class="infos">
               <p id="first_p">
                 Turma:
-                <?php echo $row['turma']; ?>
+                <?php echo $row['turma'];
+                ?>
               </p>
             </div>
             <a href="salaProfessor.php?sala=<?php echo $row['id'] ?>">
+            
               <div class="rodape">
                 <i>
                   <img src="img/svg/seta.svg" alt="" />
@@ -129,7 +116,6 @@ function gerarCodico($lenght){
             ';
       }
       ?>
-      <button onclick="gerarCodico(5)">gerar codigo</button>
   </main>
 
   <section id="section_form" style="display: none;">
