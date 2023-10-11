@@ -27,6 +27,16 @@ $sqlConteudoCard = "SELECT DISTINCT sala.*, sala.turma
 //sql para coletar os tipos de maquinas já cadastrados
 $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
 
+function gerarCodico($lenght){
+  $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVabcdefghijklmnopqrstuv1234567890';
+  $codigo;
+  for($i=0; $i<$lenght;$i++){
+    $index_aleatorio = rand(0, $length - 1); 
+    $caracter_aleatorio = $caracteres[$index_aleatorio];
+    $codigo .= $caracter_aleatorio;
+  }
+  echo $codigo;
+} 
 
 ?>
 <!DOCTYPE html>
@@ -82,7 +92,9 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
         <input style="font-size: 16px" placeholder="Pesquise por uma turma" class="pesquisar" type="text" />
       </div>
     </section>
-
+    <form method="post" action="funcao.php">
+        <input type="submit" name="chamarFuncao" value="Chamar Função PHP Gerar Codigo">
+    </form>
     <div class="turmas">
       <?php
       //while que imprime os card (logica do Home Aluno)
@@ -117,6 +129,7 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
             ';
       }
       ?>
+      <button onclick="gerarCodico(5)">gerar codigo</button>
   </main>
 
   <section id="section_form" style="display: none;">
@@ -129,11 +142,10 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
           <div class="icone">
             <img src="img/svg/icone_chapeu_academico.svg" alt="" />
           </div>
+          
         </div>
-        <form id="form_cria_sala" action="cadastrarTurma.php" method="POST">
-
+        <form id="form_cria_sala" action="cadastro.php" method="POST">
           <input name="idProfessor" type="text" value="1" hidden>
-
           <div class="input_nome">
             <input type="text" placeholder="Nome da Turma" name="nomeSala" required />
           </div>
@@ -152,7 +164,6 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
             }
             ;
             ?>
-
           </div>
           <div class="bnts">
             <input name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar" disabled>
