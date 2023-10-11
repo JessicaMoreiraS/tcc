@@ -9,19 +9,24 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
     // $codigoSala = filter_input(INPUT_POST, 'codigoSala');
     $idProfessor = filter_input(INPUT_POST, 'idProfessor');
 
-   
-   
-    function gerarCodico(){
-        $codigo='';
-        $caracteres = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','w','z','1','2','3','4','5','6','7','8','9','0'];
-        for($i=0; $i<15;$i++){
-          $index_aleatorio = rand(0, count($caracteres) - 1); 
-          $caracter_aleatorio =  $caracteres[$index_aleatorio];
-          $codigo .= $caracter_aleatorio;
+
+    //funcao que gera um novo codigo de acesso
+    function gerarCodico()
+    {
+        $codigo = '';
+        //caracteres possiveis no codigo
+        $caracteres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'w', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+        //for que roda 15 vezes (numero de carateres do codigo)
+        for ($i = 0; $i < 15; $i++) {
+            //gera um indice aleatorio
+            $index_aleatorio = rand(0, count($caracteres) - 1);
+            //aplica este indice em uma nova variavel e recupera uma caractere deste indice
+            $caracter_aleatorio = $caracteres[$index_aleatorio];
+            //adiciona este caractere ao codigo
+            $codigo .= $caracter_aleatorio;
         }
         return $codigo;
     }
-    
 
     // SQL para inserir dados na tabela sala, com três placeholders(atributos da tabela), que serão inseridos
     $sqlCriarSala = "INSERT INTO sala (turma, id_professor, codigo_acesso) VALUES (?, ?, ?)";
@@ -38,7 +43,7 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
         // Execução do POST (sql que ja passou pelo prepare)
         if ($preparacaoSeguraSQL->execute()) {
             // Captura o ID da sal
-            $idSala = $mysqli->insert_id; 
+            $idSala = $mysqli->insert_id;
             echo 'Sala criada/ ID da sala: ' . $idSala;
 
             //fechando o sql
@@ -64,7 +69,7 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
 
                         //verificndo se ha mais resultados na consulta
                         if ($stmt->fetch()) {
-                            
+
                             //fechando a consulta
                             $stmt->close();
 
@@ -83,24 +88,24 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
                                 //verificando a execucao
                                 if ($preparacaoSeguraSQL2->execute()) {
                                     // resultado de sucesso
-                                    echo "Máquina '$maquina' aplicada a sala com sucesso.";
+                                    exit;
                                 } else {
                                     // erroo
-                                    echo "Erro ao aplicar a máquina ".'$maquina';
+                                    echo "Erro ao aplicar a máquina " . '$maquina';
                                 }
                                 //fechando a consulta
                                 $preparacaoSeguraSQL2->close();
                             }
                         } else {
                             //caso nao encontre resultados, a maquina nao existe no banco
-                            echo  $maquina." não encontrado<br>";
+                            echo $maquina . " não encontrado<br>";
                         }
                     } else {
                         // caso a conulta n de certo(erro)
                         echo "erro em preparar a consulta ";
                     }
                 }
-            } 
+            }
         } else {
             // caso o sql da criar a sala nao funfe
             echo 'erro ao criar sala';
