@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27-Set-2023 às 16:19
+-- Tempo de geração: 11-Out-2023 às 16:13
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -32,16 +32,17 @@ CREATE TABLE `aluno` (
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `redefinir_senha` tinyint(1) NOT NULL DEFAULT 0
+  `redefinir_senha` tinyint(1) NOT NULL DEFAULT 0,
+  `codigo_recuperacao` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `aluno`
 --
 
-INSERT INTO `aluno` (`id`, `nome`, `email`, `senha`, `redefinir_senha`) VALUES
-(1, 'Aluno Teste', 'teste@aluno.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', 0),
-(2, 'Teste', 'teste2@aluno.com', '$2y$10$zhswrxHPjUC02qv/VqpbruXY0edohTshx7guH6Erp3S4/HZvFZ1e.', 0);
+INSERT INTO `aluno` (`id`, `nome`, `email`, `senha`, `redefinir_senha`, `codigo_recuperacao`) VALUES
+(1, 'Aluno Teste', 'teste@aluno.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', 0, ''),
+(2, 'Teste', 'teste2@aluno.com', '$2y$10$zhswrxHPjUC02qv/VqpbruXY0edohTshx7guH6Erp3S4/HZvFZ1e.', 0, '');
 
 -- --------------------------------------------------------
 
@@ -69,6 +70,28 @@ INSERT INTO `atributo_tipo` (`id`, `atributo`, `atributo_esp`) VALUES
 (7, 'óleo avental do torno', 'oleo_aventalDoTorno'),
 (8, 'viscosidade avental do torno', 'viscosidade_aventalDoTorno'),
 (9, 'vibracao', 'vibracao');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `checklist`
+--
+
+CREATE TABLE `checklist` (
+  `id` int(11) NOT NULL,
+  `id_aluno` int(11) NOT NULL,
+  `id_professor` int(11) NOT NULL,
+  `id_maquina` varchar(255) NOT NULL,
+  `data` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `checklist`
+--
+
+INSERT INTO `checklist` (`id`, `id_aluno`, `id_professor`, `id_maquina`, `data`) VALUES
+(1, 0, 1, '1', '2023-10-11 14:14:23'),
+(2, 1, 0, '1', '2023-10-11 15:10:32');
 
 -- --------------------------------------------------------
 
@@ -112,7 +135,7 @@ CREATE TABLE `lista_aluno_sala` (
 INSERT INTO `lista_aluno_sala` (`id_lista`, `id_aluno`, `id_sala`) VALUES
 (2, 1, 1),
 (4, 1, 1),
-(6, 1, 1);
+(5, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -163,10 +186,10 @@ INSERT INTO `lista_tipo_maquina_atributo` (`id`, `id_tipo_maquina`, `id_atributo
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `lista_tipo_maquina_pecas`
+-- Estrutura da tabela `lista_tipo_maquina_peca`
 --
 
-CREATE TABLE `lista_tipo_maquina_pecas` (
+CREATE TABLE `lista_tipo_maquina_peca` (
   `id` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL,
   `id_peca` int(11) NOT NULL
@@ -286,6 +309,12 @@ ALTER TABLE `atributo_tipo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `checklist`
+--
+ALTER TABLE `checklist`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `esp32`
 --
 ALTER TABLE `esp32`
@@ -310,9 +339,9 @@ ALTER TABLE `lista_tipo_maquina_atributo`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `lista_tipo_maquina_pecas`
+-- Índices para tabela `lista_tipo_maquina_peca`
 --
-ALTER TABLE `lista_tipo_maquina_pecas`
+ALTER TABLE `lista_tipo_maquina_peca`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -362,6 +391,12 @@ ALTER TABLE `atributo_tipo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de tabela `checklist`
+--
+ALTER TABLE `checklist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de tabela `lista_aluno_sala`
 --
 ALTER TABLE `lista_aluno_sala`
@@ -380,9 +415,9 @@ ALTER TABLE `lista_tipo_maquina_atributo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de tabela `lista_tipo_maquina_pecas`
+-- AUTO_INCREMENT de tabela `lista_tipo_maquina_peca`
 --
-ALTER TABLE `lista_tipo_maquina_pecas`
+ALTER TABLE `lista_tipo_maquina_peca`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
