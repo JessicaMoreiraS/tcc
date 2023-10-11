@@ -93,13 +93,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // // ouvinte ao input  de codigo da turma
-    codigoTurmaInput.addEventListener('input', verificarFormulario);
+    // codigoTurmaInput.addEventListener('input', verificarFormulario);
 
     // Funçao que verificar o formulario(para habiliyar ou na a criação)
     function verificarFormulario() {
         // Veridica se pelo menos um checkbox esta selecionado e o codigo esta preenchido
         const checkboxSelecionado = Array.from(checkboxes).some(checkbox => checkbox.checked);
-        const codigoTurmaPreenchido = codigoTurmaInput.value.trim() !== '';
+        // const codigoTurmaPreenchido = codigoTurmaInput.value.trim() !== '';
 
         // Habilita ou desabilita a criaçao
         if (checkboxSelecionado) {
