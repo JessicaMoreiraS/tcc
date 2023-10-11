@@ -6,8 +6,22 @@ include('conexao.php');
 if (filter_input(INPUT_POST, 'cadastrarSala')) {
     // Valores dos inputs aplicados em variáveis
     $nomeSala = filter_input(INPUT_POST, 'nomeSala');
-    $codigoSala = filter_input(INPUT_POST, 'codigoSala');
+    // $codigoSala = filter_input(INPUT_POST, 'codigoSala');
     $idProfessor = filter_input(INPUT_POST, 'idProfessor');
+
+   
+   
+    function gerarCodico(){
+        $codigo='';
+        $caracteres = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','w','z','1','2','3','4','5','6','7','8','9','0'];
+        for($i=0; $i<15;$i++){
+          $index_aleatorio = rand(0, count($caracteres) - 1); 
+          $caracter_aleatorio =  $caracteres[$index_aleatorio];
+          $codigo .= $caracter_aleatorio;
+        }
+        return $codigo;
+    }
+    
 
     // SQL para inserir dados na tabela sala, com três placeholders(atributos da tabela), que serão inseridos
     $sqlCriarSala = "INSERT INTO sala (turma, id_professor, codigo_acesso) VALUES (?, ?, ?)";
@@ -19,7 +33,7 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
     if ($preparacaoSeguraSQL) {
         // Vinculando os valores aos placeholders(?,?,?)
         // 's' = string, 'i' = int , 's' = string
-        $preparacaoSeguraSQL->bind_param("sis", $nomeSala, $idProfessor, $codigoSala);
+        $preparacaoSeguraSQL->bind_param("sis", $nomeSala, $idProfessor, gerarCodico());
 
         // Execução do POST (sql que ja passou pelo prepare)
         if ($preparacaoSeguraSQL->execute()) {
@@ -113,8 +127,4 @@ if (filter_input(INPUT_POST, 'cadastrarProfessor')) {
         header('Location: criarConta.php?ProfessorSucess=false');
     }
 }
-
-
-
-
 ?>
