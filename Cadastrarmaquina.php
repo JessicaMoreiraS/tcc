@@ -1,3 +1,70 @@
+<?php
+include('conexao.php');
+
+// Verifica se o formulário foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Conectando ao banco de dados
+    $conn = mysqli_connect($host, $usuario, $senha, $database);
+
+    if ($conn->connect_error) {
+        die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+    }
+
+    // Recebendo os dados do formulário
+    $nome = $_POST["nome"];
+    $tipo_maquina = $_POST["tipo_maquina"];
+    $novo_tipo_maquina = $_POST["novo_tipo_maquina"];
+    $sensores = isset($_POST["sensores"]) ? implode(", ", $_POST["sensores"]) : "";
+    $modelo = $_POST["modelo"];
+    $fabricante = $_POST["fabricante"];
+
+    // Verificando tipo de máquina
+    if ($tipo_maquina === "outro" && !empty($novo_tipo_maquina)) {
+        $tipo_maquina = $novo_tipo_maquina;
+
+        // Verificando se o tipo de máquina já existe
+        $sqlVerificaTipoMaquina = "SELECT * FROM tipo_maquina WHERE tipo = '$tipo_maquina'";
+        $result = $conn->query($sqlVerificaTipoMaquina);
+
+        if ($result->num_rows > 0) {
+            // Obtendo informações existentes do tipo de máquina
+            $row = $result->fetch_assoc();
+            $atributos = $row['atributos'];
+            $pecas = $row['pecas'];
+        } else {
+            $atributos = 'Peso, Tamanho, Potência';
+            $pecas = 'Motor, Sensor, Placa de Circuito';
+
+            // Inserir o novo tipo de máquina na tabela 'tipo_maquina'
+            $sqlInserirTipoMaquina = "INSERT INTO tipo_maquina (tipo, atributos, pecas) VALUES (?, ?, ?)";
+            $stmtInserirTipoMaquina = $conn->prepare($sqlInserirTipoMaquina);
+            $stmtInserirTipoMaquina->bind_param("sss", $tipo_maquina, $atributos, $pecas);
+
+            if ($stmtInserirTipoMaquina->execute()) {
+                echo "Novo tipo de máquina cadastrado com sucesso!";
+            } else {
+                echo "Erro ao cadastrar novo tipo de máquina: " . $stmtInserirTipoMaquina->error;
+            }
+
+            $stmtInserirTipoMaquina->close();
+        }
+    }
+
+    // Enviando os dados para a tabela 'maquina'
+    $sql = "INSERT INTO maquina (nome, tipo_maquina, sensores, modelo, fabricante) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssss", $nome, $tipo_maquina, $sensores, $modelo, $fabricante);
+
+    if ($stmt->execute()) {
+        echo "Máquina cadastrada com sucesso!";
+    } else {
+        echo "Erro ao cadastrar a máquina: " . $stmt->error;
+    }
+    
+    $stmt->close();
+    $conn->close();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,44 +119,3 @@
     </script>
 </body>
 </html>
-
-<?php
-include('conexao.php');
-
-// Verifica se o formulário foi enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Conectando ao banco de dados
-    $conn = mysqli_connect($host, $usuario, $senha, $database);
-
-    // Verifica a conexão
-    if ($conn->connect_error) {
-        die("Erro na conexão com o banco de dados: " . $conn->connect_error);
-    }
-
-    // Recebendo os dados do formulário
-    $nome = $_POST["nome"];
-    $tipo_maquina = $_POST["tipo_maquina"];
-    $novo_tipo_maquina = $_POST["novo_tipo_maquina"];
-    $sensores = isset($_POST["sensores"]) ? implode(", ", $_POST["sensores"]) : "";
-    $modelo = $_POST["modelo"];
-    $fabricante = $_POST["fabricante"];
-
-    // Verificando tipo de máquina
-    if ($tipo_maquina === "outro" && !empty($novo_tipo_maquina)) {
-        $tipo_maquina = $novo_tipo_maquina;
-    }
-
-    // enviando os dados p tabela
-    $sql = "INSERT INTO maquinas (nome, tipo_maquina, sensores, modelo, fabricante) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $nome, $tipo_maquina, $sensores, $modelo, $fabricante);
-
-    if ($stmt->execute()) {
-        echo "Máquina cadastrada com sucesso!";
-    } else {
-        echo "Erro ao cadastrar a máquina: " . $stmt->error;
-    }
-    $stmt->close();
-    $conn->close();
-}
-?>

@@ -8,7 +8,6 @@
     $id = $_POST['id_maquina'];
     
     $myObj = (object)array();
-    
     //........................................ 
     $pdo = Database::connect();
     $sql = 'SELECT * FROM maquina WHERE id="' . $id . '"';
@@ -17,9 +16,9 @@
       //Led verde = LED 01.
       //Led amarelo = LED 02
       //Led vermelho = Led 03
-      $myObj->Led_verde = $row['led_vermelho'];
-      $myObj->Led_amarelo= $row['led_amarelo'];
-      $myObj->Led_vermelho = $row['led_verde'];
+      $myObj->led_vermelho = $row['led_vermelho'];
+      $myObj->led_amarelo= $row['led_amarelo'];
+      $myObj->led_verde = $row['led_verde'];
       
       $myJSON = json_encode($myObj);
       
