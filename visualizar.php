@@ -119,10 +119,15 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                         if ($aluno) {
                             $queryAluno = "SELECT * FROM lista_aluno_sala INNER JOIN sala ON lista_aluno_sala.id_sala = sala.id WHERE  " . $row['id'] . " = id_aluno";
                             $conteudoAluno = $mysqli->query($queryAluno); ?>
-                            <td>
+                            <td class="table-row__td">
+                            <select class="custom-select">
                                 <?php while ($rowSalsDoAluno = mysqli_fetch_assoc($conteudoAluno)) {
-                                    echo $rowSalsDoAluno['turma'] . " ";
+
+                                    echo "
+                                    <option  class='link_option'>" .$rowSalsDoAluno['turma']."</option>
+                                    ";
                                 } ?>
+                            </select>
                             </td>
                         <?php }
                         if ($tipo) {
@@ -153,7 +158,7 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                         $queryResponsavel = "SELECT * FROM " . $responsavel . " WHERE id=" . $id_responsavel;
                         $conteudoResponsavel = $mysqli->query($queryResponsavel);
                         while ($rowResponsavel = mysqli_fetch_assoc($conteudoResponsavel)) {
-                            echo "<td>" . $responsavel . " " . $rowResponsavel['nome'] . "</td><td>" . $rowResponsavel['email'] . "</td>";
+                            echo "<td class='table-row__td'>" . $responsavel . " " . $rowResponsavel['nome'] . "</td><td class='table-row__td'>" . $rowResponsavel['email'] . "</td>";
                         }
                     }
                 }
