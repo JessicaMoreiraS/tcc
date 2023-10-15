@@ -1,7 +1,15 @@
 //configuração padrao que os docs pedem 
 window.sr = ScrollReveal({reset: true});
 
-
+//barra de pesquisa
+sr.reveal(' .pesquisar',{ 
+  duration: 1000,
+  distance: '300px',
+  scale: 1,
+  origin: 'top',
+  distance: '50px',
+  delay:500
+});
 
 ///
 //PAG de LOGIN
@@ -57,9 +65,6 @@ sr.reveal('.gestao_link',{
 ///////////////////////
 
 //PAG INDEX
-
-
-
 sr.reveal('.corpo-index .imagem-index',{ 
   duration: 1000,
   origin: 'left',
@@ -139,7 +144,7 @@ sr.reveal('#main_homeProfessor .card',{
   distance: '100px',
   origin: 'left'
 });
-sr.reveal('#main_homeProfessor .card .',{ 
+sr.reveal('#main_homeProfessor .card',{ 
   duration: 1000,
   scale: 1,
   opacity: 1,
@@ -148,3 +153,66 @@ sr.reveal('#main_homeProfessor .card .',{
 });
 /////////////////
 
+
+///TABELAS
+sr.reveal('#body_tables .row__title',{ 
+  duration: 1000,
+  scale: 1,
+  opacity: 1,
+  distance: '200px',
+  origin: 'top'
+});
+sr.reveal('#body_tables .table__th',{ 
+  duration: 1000,
+  scale: 1,
+  opacity: 1,
+  distance: '200px',
+  origin: 'top',
+  delay: 120
+});
+sr.reveal('#body_tables .table-row__td',{ 
+  duration: 1000,
+  scale: 1,
+  opacity: 0,
+  distance: '100px',
+  origin: 'left',
+});
+sr.reveal('#body_tables .table-row__img',{ 
+  duration: 1000,
+  scale: 1.5,
+  opacity: 1,
+  distance: '100px',
+  origin: 'top',
+  delay:550
+});
+//////
+
+///MAQUINAS DA TURMA
+sr.reveal('#main_maquinasDaTurmas .bem-vindo',{ 
+  duration: 1000,
+  distance: '300px',
+  origin: 'top',
+});
+sr.reveal('#main_maquinasDaTurmas .bem-vindo',{ 
+  duration: 1000,
+  distance: '300px',
+  origin: 'top',
+});
+sr.reveal('.maquinas .card',{ 
+  duration: 1000,
+  distance: '300px',
+  origin: 'right',
+});
+sr.reveal('.maquinas .card img',{ 
+  duration: 1000,
+  distance: '100px',
+  origin: 'top',
+  delay:550
+});
+sr.reveal('.maquinas .card h2',{ 
+  duration: 1000,
+  distance: '40px',
+  origin: 'bottom',
+  delay:400
+});
+///
