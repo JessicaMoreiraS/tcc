@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap");
 
-* {
+*{
   margin: 0;
   border: none;
   text-decoration: none;
@@ -28,6 +28,7 @@ body {
   justify-content: center;
   padding: 30px;
   align-items: center;
+
   background-color: var(--azulPrincipal);
 }
 
@@ -867,7 +868,6 @@ background-color: #003f5b;
   font-weight: bold;
   font-size: 2.2rem;
   margin-bottom: 5px;
-
 }
 
 #main_homeGestao .titulo h2 b,
@@ -960,11 +960,6 @@ background-color: #003f5b;
 
 /*FIM Página PESSOAS TURMA*/
 
-/*Página  visualizarMaquina*/
-
-/*FIM Página visualizarMaquina/
-
-
 /*Página  HOME PROFESSOR*/
 #body_homeProfessor {
   background-image: url(../img/svg/bg_homeProfessor.svg);
@@ -985,8 +980,6 @@ background-color: #003f5b;
 #main_homeProfessor .btnCriarSala {
   display: flex;
   justify-content: center;
-  cursor: pointer;
-  
 }
 
 
@@ -995,7 +988,6 @@ background-color: #003f5b;
   color: var(--azulEscuro);
   background-color: var(--background-main);
   transform: scale(0.9);
-  
 }
 
 #main_homeProfessor .btnCriarSala a {
@@ -1030,17 +1022,6 @@ background-color: #003f5b;
   flex-wrap: wrap;
   padding: 3%;
   justify-content: center;
-}
-#main_homeProfessor .turmas .sem_turma div, .corpo-inicial .turmas .sem_turma div{
-  display: flex;
-  justify-content: center;
-}
-
-#main_homeProfessor .turmas .sem_turma div p, .corpo-inicial .turmas .sem_turma div p{
-  color: #5B5B5B;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 10px;
 }
 
 #main_homeProfessor .turmas .card {
@@ -1096,30 +1077,23 @@ background-color: #003f5b;
   font-size: 24px;
   color: #f4f4f4;
 }
-.turmas .card .rodape img{
-  transition: .3 ease;
-}
-.turmas .card .rodape img:hover{
-  transform: scale(0.9, 0.9);
-  cursor: pointer;
-}
 
  .turmas .card .rodape i:hover {
   color: #003f5b;
 }
 
-#main_homeProfessor .bem-vindo {
+ .bem-vindo {
   display: flex;
   justify-content: center;
 }
 
-#main_homeProfessor h2 {
-  background-color: var(--background-main);
+ h2 {
   padding: 10px;
   border-radius: 10px;
+  background-color: var(--background-main);
 }
 
-#main_homeProfessor h2 b {
+ h2 b {
   border-radius: 10px;
 }
 
@@ -1271,8 +1245,436 @@ margin-bottom: 20px;
   border-radius: 10px;
 }
 
-/* FIM Página HOME PROFESSOR */
+/*FIM Página HOME PROFESSOR*/
 
-.OpenHiddenDiv{
-  display: block;
+
+/* CSS DAS TABELAS */
+#html_tables,#body_tables{
+  display:table;
+  height:100%;
+  width:100%;
+  color: #252a3b;
+  background-color: var(--background-main);
 }
+#body_tables{
+  background-image: url(../img/svg/bg_tabelaAlunos.svg);
+  background-repeat: no-repeat;
+  background-position-y: 70%;
+  background-position-x: 50%;
+}
+
+.table-container{
+  display: flex;
+  justify-content: center;
+}
+.row__title{
+  color: #53646f;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  color: rgba(83, 99, 110, 0.40);
+  font-size: 27px;
+  font-weight: 700;
+
+}
+.row__title b{
+  color: var(--azulPrincipal);
+  margin-right: 10px;
+}
+.row--top-40{
+  margin-top: 40px;
+}
+
+.row--top-20{
+  margin-top: 20px;
+}
+.table__th {
+    color: #9eabb4;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+   cursor: pointer;
+    border:0 !important;
+  padding: 15px 8px !important;
+}
+
+.table-row {
+    border-bottom: 1px solid #e4e9ea;
+  background-color: #fff;
+}
+.table__th:hover {
+    color: #01b9d1;
+}
+
+.table--select-all {
+    width: 18px;
+    height: 18px;
+    padding: 0 !important;
+    border-radius: 50%;
+    border: 2px solid #becad2;
+}
+.table-row__td {
+    padding: 12px 8px !important;
+    vertical-align: middle !important;
+    color: #53646f;
+    font-size: 13px;
+    font-weight: 400;
+  position:relative;
+    line-height: 18px !important;
+  border:0 !important;
+}
+
+.table-row__img{
+   width: 36px;
+    height: 36px;
+    display: inline-block;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+   vertical-align: middle;
+}
+
+.table-row--student .table-row__img {
+    background-image: url('../img/svg/Student.svg');
+}
+.table-row--teacher .table-row__img {
+    background-image: url('../img/svg/professor.svg');
+}
+.table-row--class .table-row__img {
+    background-image: url('../img/svg/class.svg');
+}
+.table-row--checklist .table-row__img {
+    background-image: url('../img/svg/checklist.svg');
+}
+.table-row--gears .table-row__img {
+    background-image: url('../img/svg/Gears.svg');
+}
+
+.table-row__info {
+    display: inline-block;
+    padding-left: 12px;
+  vertical-align: middle;
+}
+
+.table-row__id {
+    color: #53646f;
+    font-size: 14px;
+    font-weight: 400;
+  line-height: 18px;
+    margin-bottom: 0px;
+}
+
+.table-row__small {
+    color: #9eabb4;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.table-row__p {
+    color: #53646f;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    margin-bottom: 0px;
+}
+.table-row__p-status {
+    margin-bottom: 0;
+    font-size: 13px;
+    vertical-align: middle;
+    display: inline-block;
+  color: #9eabb4;
+}
+.table-row__status{
+    margin-bottom: 0;
+    font-size: 13px;
+    vertical-align: middle;
+    display: inline-block;
+  color: #9eabb4;
+}
+.table_delete{
+  cursor: pointer;
+}
+.table_delete:hover{
+  fill: red;
+}
+
+.table-row__progress{
+    margin-bottom: 0;
+    font-size: 13px;
+    vertical-align: middle;
+    display: inline-block;
+  color: #9eabb4;
+}
+
+.status:before{
+   content: '';
+  margin-bottom: 0;
+  width: 9px;
+  height: 9px;
+  display: inline-block;
+  margin-right: 7px;
+  border-radius: 50%; 
+}
+
+.status--red:before{
+  background-color: #e36767;
+}
+
+.status--red{
+  color: #e36767;
+}
+
+.status--blue:before{
+  background-color: #3fd2ea;
+}
+
+.status--blue{
+  color: #3fd2ea;
+}
+
+.status--yellow:before{
+  background-color: #ecce4e;
+}
+
+.status--yellow{
+  color: #ecce4e;
+}
+
+.status--green{
+  color: #6cdb56;
+}
+.status--green:before{
+  background-color: #6cdb56;
+}
+
+.status--grey{
+  color: #9eabb4;
+}
+.status--grey:before{
+  background-color: #9eabb4;
+}
+
+.table__select-row {
+    appearence: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -webkit-appearance: none;
+    width: 17px;
+    height: 17px;
+    margin: 0 0 0 5px !important;
+    vertical-align: middle;
+    border: 2px solid #beccd7;
+    border-radius: 50%;
+  cursor: pointer;
+}
+
+.table__select-row:hover{
+  border-color:#01b9d1;
+}
+
+
+
+.table-row--overdue {
+    width: 3px;
+    background-color: #e36767;
+    display: inline-block;
+    position: absolute;
+    height: calc(100% - 24px);
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.table-row__edit {
+    width: 46px;
+    padding: 8px 17px;
+    display: inline-block;
+    background-color: #daf3f8;
+    border-radius: 18px;
+    vertical-align: middle;
+    margin-right: 10px;
+  cursor: pointer;
+}
+
+.table-row__bin {
+    width: 16px;
+    display: inline-block;
+    vertical-align: middle;
+  cursor: pointer;
+}
+
+.table-row--red {
+    background-color: #fff2f2;
+} 
+.excluirDaTurma_btn{
+  color: rgb(202, 16, 16);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.custom-select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1.3;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.custom-select .link_option{
+  color: #003f5b;
+  text-decoration: underline;
+  cursor: auto;
+}
+
+
+/* FIM CSS DAS TABELAS */
+
+/*CSS VISUALIZAR MAQUINA*/
+.container-infoMaq{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12%;
+  margin-top: 20px;
+ 
+
+}
+
+.subInfo .id h3, .nome_maquina{
+  color: #01567d;
+  font-size: large;
+}
+
+.btns .btn{
+  width: 130px;
+  background-color: var(--azulPrincipal);
+  text-align: center;
+  margin-top: 5px;
+  border-radius: 7px;
+ 
+
+}
+
+
+.btns .btn a{
+color: white;
+ 
+}
+
+.nome_maquina{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.graficos .card-grafico{
+  background-color: white;
+  width: 200px;
+}
+/*FIM CSS VISUALIZAR MAQUINA*/
+
+/*CSS MAQUINAS DA TURMA*/
+#main_maquinasDaTurmas *{
+  overflow-x: visible;
+}
+#main_maquinasDaTurmas .maquinas{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px 50px;
+  flex-wrap: wrap;
+  padding: 100px 50px;
+}
+#main_maquinasDaTurmas .maquinas .card{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 330px;
+  height: 405px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
+  transition: 0.5s ease;
+  align-self: flex-start;
+  z-index: 2;
+  cursor: pointer;
+  margin: 5px;
+}
+#main_maquinasDaTurmas .maquinas .card:hover{
+  height: 350px;
+  box-shadow: none;
+}
+#main_maquinasDaTurmas .maquinas .card .imgBx{
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  top: 20px;
+  border-radius: 12px;
+  transition: 0.5s;
+  z-index: 1;
+}
+#main_maquinasDaTurmas .maquinas .card:hover .imgBx{
+  top: -100px;
+  scale:0.75;
+}
+#main_maquinasDaTurmas .maquinas .card .imgBx img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  object-fit: cover;
+}
+#main_maquinasDaTurmas .maquinas .card .content{
+  top: 290px;
+  position: absolute;
+  width: 100%;
+  padding:0px 30px;
+  text-align: center;
+  height:75px;
+  overflow: hidden;
+  transition: 0.5s ease;
+}
+#main_maquinasDaTurmas .maquinas .card .content div{
+  display: flex;
+  justify-content: center;
+}
+#main_maquinasDaTurmas .maquinas .card .content h2{
+ color: #003f5b;
+ font-size: 1.9rem;
+ background-color: #fff;
+ font-weight: 600;
+ transition: .2s;
+}
+#main_maquinasDaTurmas .maquinas .card:hover .content{
+  height: 250px;
+  top: 170px;
+}
+#main_maquinasDaTurmas .maquinas .card .content h2:hover{
+  color: #01b9d1;
+}
+#main_maquinasDaTurmas .maquinas .card .content p{
+  color: var(--azulEscuro);
+ padding: 2px;
+}
+#main_maquinasDaTurmas .maquinas .card .content a{
+  display: flex;
+  justify-content: center;
+  color: var(--background-main);
+  background-color: #003f5b;
+  font-size: 15px;
+  transition: .3s;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  width: 40%;
+  margin-top: 15px;
+}
+#main_maquinasDaTurmas .maquinas .card:hover .content a:hover{
+  color: var(--background-main);
+  background-color: #0392d4;
+  transform: scale(0.9);
+}
+/*FIM CSS MAQUINAS DA TURMA*/
