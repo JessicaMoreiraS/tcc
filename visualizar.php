@@ -8,20 +8,21 @@ $checklist = false;
 $tipo = false;
 $tema = "";
 $icone = "";
+$nomeTurma ="";
 
 if (filter_input(INPUT_GET, 'view')) {
     if ($_GET['view'] == 'professor') {
         $tema = "Professores";
         $query = "SELECT * FROM professor";
         $camposBusca = ['nome', 'cpf', 'email'];
-        $camposTema = ['Nome', 'CPF', 'Email'];
+        $camposTema = ['Nome', 'CPF', 'Email','Funções'];
 
 
     } else if ($_GET['view'] == 'tipo') {
         $tema = "Categorias de Máquinas";
         $query = "SELECT * FROM tipo_maquina";
         $camposBusca = ['tipo'];
-        $camposTema = ['Categoria', 'quantidade'];
+        $camposTema = ['Categoria', 'Quantidade','Funções'];
         $tipo = true;
 
     } else if ($_GET['view'] == 'aluno') {
@@ -29,22 +30,39 @@ if (filter_input(INPUT_GET, 'view')) {
         $query = "SELECT * FROM aluno";
         $camposBusca = ['nome', 'email'];
         $aluno = true;
-        $camposTema = ['Nome', 'Email', 'Turma(s)'];
+        $camposTema = ['Nome', 'Email', 'Turma(s)','Funções'];
 
     } else if ($_GET['view'] == 'maquina') {
         $tema = "Máquinas";
         $query = "SELECT * FROM maquina INNER JOIN tipo_maquina ON maquina.id_tipo_maquina = tipo_maquina.id";
         $camposBusca = ['id', 'modelo', 'fabricante', 'tipo'];
-        $camposTema = ['ID', 'Modelo', 'Fabricante', 'Categoria'];
+        $camposTema = ['ID', 'Modelo', 'Fabricante', 'Categoria','Funções'];
 
     } else if ($_GET['view'] == 'sala') {
         $tema = "Turmas";
         $query = "SELECT * FROM sala INNER JOIN professor ON sala.id_professor = professor.id";
         $camposBusca = ['turma', 'nome'];
-        $camposTema = ['Turma', 'Professor'];
+        $camposTema = ['Turma', 'Professor','Funções'];
 
     } else if ($_GET['view'] == 'alunosSala') {
         if (isset($_GET['id_sala_view'])) {
+            include('conexao.php');
+            $id_sala = $_GET['id_sala_view'];
+            $query = "SELECT turma FROM sala WHERE id = ?";
+            
+            $stmt = $mysqli->prepare($query);
+
+            if ($stmt) {
+                $stmt->bind_param("i", $id_sala); // "i" indica que $id_sala é um inteiro
+                $stmt->execute();
+                $stmt->bind_result($nomeTurma);
+
+                if ($stmt->fetch()) {
+                    // Aqui você tem o nome da turma
+                    $nomeTurma = $nomeTurma;
+                } 
+            }
+
             $tema = "Alunos da Turma";
             $idDaSala = $_GET['id_sala_view'];
             $query = "SELECT * FROM lista_aluno_sala INNER JOIN aluno ON lista_aluno_sala.id_aluno = aluno.id WHERE lista_aluno_sala.id_sala = " . $idDaSala . "";
@@ -86,6 +104,7 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
 
         while ($row = mysqli_fetch_assoc($conteudo)) { ?>
             <tbody class="table__tbody">
+            <tr>
                 <?php
                 if ($_GET['view'] == 'professor') {
                     echo '<tr class="table-row table-row--teacher table ">';
@@ -99,7 +118,7 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                     echo '<tr class="table-row table-row--gears table ">';
                 }
                 ?>
-
+                
                 <td class="table-row__td">
                     <div class="table-row__img"></div>
                     <div class="table-row__info">
@@ -162,6 +181,12 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                         }
                     }
                 }
+                
+                echo '<td><a href="delete.php?option='.$_GET['view'].'&id_delecao='.$row['id'].'">Excluir</a>';
+                if ($_GET['view'] == 'sala'){
+                    echo '<a href="visualizar.php?view=alunosSala&id_sala_view='.$row['id'].'">Alunos</a>';
+                }
+                echo '</td>';
                 ?>
                 </tr>
             </tbody>
@@ -193,7 +218,7 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
             <div class="col-md-12">
                 <div class="table-container">
                     <h2 class="row__title">
-                        <?php echo '<b>' . $tema . '</b>' ?> do Sistema:
+                        <?php echo '<b>' . $tema ." ".$nomeTurma. '</b>' ?> do Sistema:
                     </h2>
 
 
