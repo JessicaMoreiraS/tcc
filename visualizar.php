@@ -75,7 +75,7 @@ if (filter_input(INPUT_GET, 'view')) {
         $checklist = true;
         $query = "SELECT * FROM checklist INNER JOIN maquina ON checklist.id_maquina = maquina.id";
         $camposBusca = ['data', 'id', 'modelo'];
-        $camposTema = ['data', 'Maquina', 'Modelo', 'Responsavel', 'Email'];
+        $camposTema = ['data', 'Maquina', 'Modelo', 'Responsavel', 'Email', 'Funções'];
     } else {
         header('Location: homeGestor.php');
     }
@@ -182,11 +182,16 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                     }
                 }
                 
-                echo '<td><a href="delete.php?option='.$_GET['view'].'&id_delecao='.$row['id'].'">Excluir</a>';
-                if ($_GET['view'] == 'sala'){
-                    echo '<a href="visualizar.php?view=alunosSala&id_sala_view='.$row['id'].'">Alunos</a>';
+                //to do:
+                if($GET['view'] == 'alunosSala'){
+                    echo '<td><a href="delete.php?acao=deletarAlunoDaSala&id_delecao='.$row['id'].'">Excluir</a>';
+                }else{
+                    echo '<td><a href="delete.php?option='.$_GET['view'].'&id_delecao='.$row['id'].'">Excluir</a>';
+                    if ($_GET['view'] == 'sala'){
+                        echo '<a href="visualizar.php?view=alunosSala&id_sala_view='.$row['id'].'">Alunos</a>';
+                    }
+                    echo '</td>';
                 }
-                echo '</td>';
                 ?>
                 </tr>
             </tbody>
