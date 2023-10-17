@@ -8,6 +8,8 @@ session_start();
 include('conexao.php');
 
 
+
+
 if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     $tabelaBuscar = $_GET['option'];
     $id_atualizacao = $_GET['id_atualizacao'];
@@ -47,7 +49,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
-    
+
         //sql da atualização de dados
         //tabelaBuscar = tabela em questao
         $sql = "UPDATE $tabelaBuscar SET ";
@@ -67,10 +69,12 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
         //rtrim($sql, ', ') é uma funçaõ de remocao de caracteres, onde aqui esta removendo as virgulas na consulta (aplicadas anteriormente)
         $sql = rtrim($sql, ', ') . " WHERE id = $id_atualizacao";
 
-        // verifica se foi executado a consulta e redireciona
+        // verifica se foi executado a consulta 
         if ($mysqli->query($sql)) {
-            // echo 'perfil atualizado';
-        } 
+            echo '<script>';
+            echo "alert('Perfil Atualizado')";
+            echo '</script>';
+        }
     }
 
 
@@ -83,103 +87,97 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     //nome da coluna = chave , valor da coluna = dados
     $dados = mysqli_fetch_assoc($resultado);
 
-    
-    ?>
+
+?>
     <!DOCTYPE html>
     <html lang="pt-br">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <script src="https://unpkg.com/scrollreveal"></script>
-        <title>update</title>
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <title>Perfil</title>
     </head>
+
     <body id="body_perfil">
-    <header class="topo-inicial">
-      <img
-        width="140"
-        class="logo-inicial"
-        src="img/logo-senai-branco.png"
-        alt=""
-      />
+        <header class="topo-inicial">
+            <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
 
-      <div class="icons">
-        <i
-          class="fa fa-user-circle"
-          style="color: rgb(255, 255, 255); cursor: pointer"
-        ></i>
-        <input
-          type="checkbox"
-          role="button"
-          aria-label="Display the menu"
-          class="menu"
-        />
-      </div>
-    </header>
-    <main id="main_formPerfil">
-        <div class="container_form">
-        <section>
-         <div >
-            <img src="img/svg/user.svg" />
-         </div>
-         <div  class="edit_Icon">
-            <img onclick="liberarEdicaoPerfil()" src="img/svg/Edit.svg" id="imgEditIcon" />
-         </div>
-        </section>
-        <form id="form_perfil" method="POST" action="<?php echo "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao" ?>">
-            <?php
+            <div class="icons">
+                <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
+                <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
+            </div>
+        </header>
+        <main id="main_formPerfil">
+            <div class="container_form">
+                <section>
+                    <div>
+                        <img src="img/svg/user.svg" />
+                    </div>
+                    <div class="edit_Icon">
+                        <img onclick="liberarEdicaoPerfil()" src="img/svg/Edit.svg" id="imgEditIcon" />
+                    </div>
+                </section>
+                <form id="form_perfil" method="POST" action="<?php echo "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao" ?>">
+                    <?php
 
-            //iteraçao pela array campos (array do fetch que armazena os dados da tabela)
-            foreach ($campos as $campo) {
-                // valor atual = dados do campo em especifico
-                $valorAtual = $dados[$campo];
-                ?>  
-                <div class="input">
-                <input class = "<?php echo $campo ?>"  required readonly type="text" id="<?php echo $campo; ?>" name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
-                </div>
-                <?php
-            }
-            ?>
-            <div class="bnts">
-           <div class="inputs">
-            <input type="submit" value="Salvar">
-            <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()" style="display: none;">
-           </div>
-            <a href="#">Mudar Senha</a>
-         </div>
-        </form>
-        </div>
+                    //iteraçao pela array campos (array do fetch que armazena os dados da tabela)
+                    foreach ($campos as $campo) {
+                        // valor atual = dados do campo em especifico
+                        $valorAtual = $dados[$campo];
+                    ?>
+                        <div class="input">
+                            <input class="<?php echo $campo ?>" required readonly type="text" id="<?php echo $campo; ?>" name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <div class="bnts">
+                        <div class="inputs">
+                            <input type="submit" value="Salvar">
+                            <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()" style="display: none;">
+                        </div>
+                        <a href="#">Mudar Senha</a>
+                    </div>
+                </form>
+            </div>
         </main>
+
     </body>
     <script src="js/reveal.js"></script>
-  
+
     <script>
         //script editar perfil
-const edit_button = document.getElementById("imgEditIcon");
-const cancel_button = document.getElementById("botaoCancelar");
-function liberarEdicaoPerfil() {
-  const form_perfil = document.getElementById("form_perfil");
-  const inputs = form_perfil.querySelectorAll("input");
-  cancel_button.style.display = 'block';  
-  inputs.forEach(function (input) {
-    input.removeAttribute('readonly');
-    if(input.placeholder == 'Nome' || input.placeholder == 'Turma'){
-        input.focus();
-    }
-  });
-}
-function cancelarEdicaoPerfil(){
-    location.reload()
-}
+        const edit_button = document.getElementById("imgEditIcon");
+        const cancel_button = document.getElementById("botaoCancelar");
+        const inputs = form_perfil.querySelectorAll("input");
+        function liberarEdicaoPerfil() {
+            const form_perfil = document.getElementById("form_perfil");
+           
+            cancel_button.style.display = 'block';
+            inputs.forEach(function(input) {
+                input.removeAttribute('readonly');
+                if (input.placeholder == 'Nome' || input.placeholder == 'Turma') {
+                    input.focus();
+                }
+            });
+        }
 
-////
+        setTimeout(function() {
+            inputs.forEach(function(input) {
+                input.style.width = 'auto';
+            });
+        }, 100);
+
+        function cancelarEdicaoPerfil() {
+            location.reload()
+        }
+
+        ////
     </script>
+
     </html>
-    <?php
-} 
-
-
+<?php
+}
