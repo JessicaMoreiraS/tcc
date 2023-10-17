@@ -69,7 +69,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
 
         // verifica se foi executado a consulta e redireciona
         if ($mysqli->query($sql)) {
-            header("Location: visualizar.php?view=$tabelaBuscar");
+            // echo 'perfil atualizado';
         } 
     }
 
