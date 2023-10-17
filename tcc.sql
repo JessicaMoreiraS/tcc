@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Out-2023 às 16:27
--- Versão do servidor: 10.4.25-MariaDB
--- versão do PHP: 8.1.10
+-- Tempo de geração: 17-Out-2023 às 16:19
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `aluno` (
   `senha` varchar(255) NOT NULL,
   `redefinir_senha` tinyint(1) NOT NULL DEFAULT 0,
   `codigo_recuperacao` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `aluno`
@@ -53,7 +53,7 @@ CREATE TABLE `atributo_tipo` (
   `id` int(11) NOT NULL,
   `atributo` varchar(255) NOT NULL,
   `atributo_esp` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `atributo_tipo`
@@ -82,7 +82,7 @@ CREATE TABLE `checklist` (
   `id_professor` int(11) NOT NULL,
   `id_maquina` varchar(255) NOT NULL,
   `data` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `checklist`
@@ -104,7 +104,7 @@ CREATE TABLE `conta_pendente_aluno` (
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `conta_pendente_aluno` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -120,14 +120,15 @@ CREATE TABLE `esp32` (
   `valor` float NOT NULL,
   `hora` time NOT NULL,
   `data` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Extraindo dados da tabela `esp32`
 --
 
 INSERT INTO `esp32` (`id`, `esp`, `id_maquina`, `id_atributos`, `valor`, `hora`, `data`) VALUES
-('esp32_01', 'esp32_01', '1', 0, 0, '00:00:00', '');
+('esp32', 'esp32', '1', 2, 55, '12:10:03', '03/10/2023'),
+('esp32_01', 'esp32_01', '1', 1, 10, '00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,7 @@ CREATE TABLE `gestor` (
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `gestor`
@@ -161,7 +162,7 @@ CREATE TABLE `lista_aluno_sala` (
   `id_lista` int(11) NOT NULL,
   `id_aluno` int(11) NOT NULL,
   `id_sala` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `lista_aluno_sala`
@@ -182,7 +183,7 @@ CREATE TABLE `lista_sala_tipo_maquina` (
   `id` int(11) NOT NULL,
   `id_sala` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `lista_sala_tipo_maquina`
@@ -201,7 +202,7 @@ CREATE TABLE `lista_tipo_maquina_atributo` (
   `id` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL,
   `id_atributo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `lista_tipo_maquina_atributo`
@@ -228,7 +229,7 @@ CREATE TABLE `lista_tipo_maquina_peca` (
   `id` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL,
   `id_peca` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -245,7 +246,7 @@ CREATE TABLE `maquina` (
   `led_verde` varchar(50) NOT NULL,
   `led_amarelo` varchar(50) NOT NULL,
   `led_vermelho` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `maquina`
@@ -265,7 +266,7 @@ CREATE TABLE `peca_tipo` (
   `codigo` varchar(50) NOT NULL,
   `peca` int(11) NOT NULL,
   `tempo_de_troca` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -280,7 +281,7 @@ CREATE TABLE `professor` (
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `redefinir_senha` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `professor`
@@ -300,7 +301,7 @@ CREATE TABLE `sala` (
   `turma` varchar(50) NOT NULL,
   `id_professor` int(11) NOT NULL,
   `codigo_acesso` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `sala`
@@ -318,14 +319,15 @@ INSERT INTO `sala` (`id`, `turma`, `id_professor`, `codigo_acesso`) VALUES
 CREATE TABLE `tipo_maquina` (
   `id` int(11) NOT NULL,
   `tipo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tipo_maquina`
 --
 
 INSERT INTO `tipo_maquina` (`id`, `tipo`) VALUES
-(1, 'torno');
+(1, 'torno'),
+(2, 'fresadora');
 
 --
 -- Índices para tabelas despejadas
@@ -453,7 +455,7 @@ ALTER TABLE `conta_pendente_aluno`
 -- AUTO_INCREMENT de tabela `gestor`
 --
 ALTER TABLE `gestor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `lista_aluno_sala`
@@ -507,7 +509,7 @@ ALTER TABLE `sala`
 -- AUTO_INCREMENT de tabela `tipo_maquina`
 --
 ALTER TABLE `tipo_maquina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
