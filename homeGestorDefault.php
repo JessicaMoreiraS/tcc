@@ -3,7 +3,7 @@ session_start();
 include 'conexao.php';
 
 // Verificando a permissão do usuário
-if ($_SESSION['idAcesso'] != 'gestaoDefault') {
+if ($_SESSION['idAcesso'] != 'gestaoDefault' || $_SESSION['tipo'] != 'defalt') {
     header('Location: index.html');
     exit();
 }
@@ -11,7 +11,7 @@ if ($_SESSION['idAcesso'] != 'gestaoDefault') {
 //Função pra excluir o Gestor
 function excluirGestor($idGestor) {
     global $mysqli;
-    $stmt = $mysqli->prepare("DELETE FROM gestores WHERE id = ?");
+    $stmt = $mysqli->prepare("DELETE FROM gestor WHERE id = ?");
     $stmt->bind_param("i", $idGestor);
 
     // Executar a query
@@ -26,7 +26,7 @@ function excluirGestor($idGestor) {
 
 // Consultar gestores no banco de dados
 $gestores = [];
-$result = $mysqli->query("SELECT id, nome_completo FROM gestores");
+$result = $mysqli->query("SELECT * FROM gestor");
 
 if ($result) {
     // Transformar o resultado em um array associativo
@@ -43,13 +43,14 @@ if ($result) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cadastrarGestor'])) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-    $nomeCompleto = $_POST['nomeCompleto'];
+    $nome = $_POST['nome'];
+    $cpf = $_POST['cpf'];
 
     // Validar e inserir gestor no banco de dados
     $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
 
-    $stmt = $mysqli->prepare("INSERT INTO gestores (email, senha, nome_completo) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $email, $senhaHash, $nomeCompleto);
+    $stmt = $mysqli->prepare("INSERT INTO gestor (nome, cpf, email, senha) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param('ssss', $nome, $cpf, $email, $senhaHash);
 
     if ($stmt->execute()) {
         echo "Gestor cadastrado com sucesso!";
@@ -60,26 +61,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cadastrarGestor'])) {
     $stmt->close();
 }
 
+// Função para validar a senha do Gestor Default
+function senhaGestorDefaultCorreta($senha) {
+    global $mysqli;
+
+    $senhaGestorDefaultHashed = '$2y$10$P6KoVMxrnt0rlpLFdFv8LOCUEMzZEbASF940OS0tsQJpzuThkbG1C'; 
+
+    // Verificar se a senha fornecida corresponde à senha do Gestor Default
+    return password_verify($senha, $senhaGestorDefaultHashed);
+}
+
 // Verificar se foi excluído
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) {
     $idGestorExcluir = $_POST['idGestorExcluir'];
     $senhaGestorDefault = $_POST['senhaGestorDefault'];
 
-    // Função para validar a senha do Gestor Default
-    function senhaGestorDefaultCorreta($senha) {
-        global $mysqli;
-
-        $senhaGestorDefaultHashed = 'HASH_DA_SENHA_GESTOR_DEFAULT'; 
-
-        // Verificar se a senha fornecida corresponde à senha do Gestor Default
-        return password_verify($senha, $senhaGestorDefaultHashed);
-    }
-
     // Validar a senha do Gestor Default
     if (senhaGestorDefaultCorreta($senhaGestorDefault)) {
         excluirGestor($idGestorExcluir);
         // Redirecionar para a mesma página após a exclusão
-        header('Location: homeGestorDefault.php');
+        // echo '<script>location.reload();</script>';
+        
         exit();
     } else {
         echo "Senha do Gestor Default incorreta!";
@@ -114,8 +116,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
             <?php
             foreach ($gestores as $gestor) {
                 echo "<tr>
-                        <td>{$gestor['id']}</td>
-                        <td>{$gestor['nome_completo']}</td>
+                        <td>{$gestor['cpf']}</td>
+                        <td>{$gestor['nome']}</td>
+                        <td>{$gestor['email']}</td>
                         <td>
                             <button onclick='confirmarExclusao({$gestor['id']})'>Excluir</button>
                         </td>
@@ -139,12 +142,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
         <!-- Formulário pop-up para adicionar novo gestor -->
         <div id="cadastroGestor" style="display:none;">
             <form method="post">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" name="nome" id="nome" required>
+                <label for="cpf">CPF:</label>
+                <input type="text" name="cpf" id="cpf" required>
                 <label for="email">Email:</label>
-                <input type="text" name="email" required>
+                <input type="text" name="email" id="email" required>
                 <label for="senha">Senha:</label>
-                <input type="password" name="senha" required>
-                <label for="nomeCompleto">Nome Completo:</label>
-                <input type="text" name="nomeCompleto" required>
+                <input type="password" name="senha" id="senha" required>
+
                 <button type="submit" name="cadastrarGestor">Cadastrar</button>
             </form>
             <button type="button" onclick="fecharCadastroGestor()">Fechar</button>

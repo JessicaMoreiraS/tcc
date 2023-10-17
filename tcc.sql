@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Out-2023 às 16:13
+-- Tempo de geração: 16-Out-2023 às 16:27
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -41,8 +41,7 @@ CREATE TABLE `aluno` (
 --
 
 INSERT INTO `aluno` (`id`, `nome`, `email`, `senha`, `redefinir_senha`, `codigo_recuperacao`) VALUES
-(1, 'Aluno Teste', 'teste@aluno.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', 0, ''),
-(2, 'Teste', 'teste2@aluno.com', '$2y$10$zhswrxHPjUC02qv/VqpbruXY0edohTshx7guH6Erp3S4/HZvFZ1e.', 0, '');
+(1, 'Aluno Teste', 'teste@aluno.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', 0, '');
 
 -- --------------------------------------------------------
 
@@ -96,6 +95,20 @@ INSERT INTO `checklist` (`id`, `id_aluno`, `id_professor`, `id_maquina`, `data`)
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `conta_pendente_aluno`
+--
+
+CREATE TABLE `conta_pendente_aluno` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `conta_pendente_aluno` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `esp32`
 --
 
@@ -115,6 +128,28 @@ CREATE TABLE `esp32` (
 
 INSERT INTO `esp32` (`id`, `esp`, `id_maquina`, `id_atributos`, `valor`, `hora`, `data`) VALUES
 ('esp32_01', 'esp32_01', '1', 0, 0, '00:00:00', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `gestor`
+--
+
+CREATE TABLE `gestor` (
+  `id` int(11) NOT NULL,
+  `cpf` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `senha` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `gestor`
+--
+
+INSERT INTO `gestor` (`id`, `cpf`, `nome`, `email`, `senha`) VALUES
+(1, 123456, 'Pessoa', 'gestor@teste.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK'),
+(9, 456, 'Jessica', 'jessica@teste.com', '$2y$10$DDOkzf/4JS.dok8KMpERROVT1BiPrfA7c0XybkQyZZhrylkWYPau.');
 
 -- --------------------------------------------------------
 
@@ -315,9 +350,21 @@ ALTER TABLE `checklist`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `conta_pendente_aluno`
+--
+ALTER TABLE `conta_pendente_aluno`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `esp32`
 --
 ALTER TABLE `esp32`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `gestor`
+--
+ALTER TABLE `gestor`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -397,6 +444,18 @@ ALTER TABLE `checklist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de tabela `conta_pendente_aluno`
+--
+ALTER TABLE `conta_pendente_aluno`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `gestor`
+--
+ALTER TABLE `gestor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT de tabela `lista_aluno_sala`
 --
 ALTER TABLE `lista_aluno_sala`
@@ -454,5 +513,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-ALTER TABLE conta_pendente_aluno ADD COLUMN cod_confirmacao VARCHAR(6);

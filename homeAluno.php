@@ -1,11 +1,11 @@
 <!-- CODIGO BACK -->
 
 <?php
-	if (!strpos($_SERVER['HTTP_REFERER'], 'login.php')) {
+	session_start();
+	if (!strpos($_SERVER['HTTP_REFERER'], 'login.php') || $_SESSION['tipo'] != 'aluno') {
 		header('Location: index.html');
 	}
 
-	session_start();
 	$idAluno = $_SESSION['idAcesso'];
 
 	include("conexao.php");

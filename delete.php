@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['idAcesso'] != 'gestaoSenai') {
+if ($_SESSION['tipo'] != 'gestor') {
     header('Location: index.html');
 }
 ?>
@@ -9,7 +9,7 @@ include('conexao.php');
 
 if (isset($_GET["option"])) {
     $option = $_GET["option"];
-    $listaOption = ["professor", "maquina", "tipo"];
+    $listaOption = ["professor", "maquina", "tipo","aluno"];
     for ($i = 0; $i < count($listaOption); $i++) {
         if ($option == $listaOption[$i]) {
             $opcao = $listaOption[$i];
@@ -24,8 +24,8 @@ if (isset($_GET["option"])) {
                 header('Location: visualizar.php?e=9&view=' . $opcao);
             }
         }
-        $stmt->close();
-        $mysqli->close();
+        // $stmt->close();
+        // $mysqli->close();
     }
 }
 if ( isset($_GET['acao'])) {

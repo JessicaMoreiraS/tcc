@@ -7,8 +7,9 @@ if(filter_input(INPUT_GET, 'sg')){
     $sg = $_GET['sg'];
     if($sg == 'senai'){
         session_start();
-        $_SESSION['idAcesso'] = 'gestaoSenai';
-        header('Location: homeGestao.php');
+        $_SESSION['idAcesso'] = 'gestaoDefault';
+        $_SESSION['tipo'] = 'defalt';
+        header('Location: homeGestorDefault.php');
         return;
     }else{
         header('Location: login.php?e=1');
@@ -72,6 +73,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && !filter_input(INPUT_GET, 'sg')){
     }else{
         if(buscarEmailSenha($conn, 'professor', $emailLogin, $senhaLogin)){
             header('Location: homeProfessor.php');
+        }else if(buscarEmailSenha($conn, 'gestor', $emailLogin, $senhaLogin)){
+            header('Location: homeGestao.php');
         }else{
             header('Location: login.php?e=5');
         }
@@ -86,6 +89,7 @@ function buscarEmailSenha($conn, $tabela, $email, $senha){
         if(password_verify($senha, $buscar['senha'])){
             session_start();
             $_SESSION['idAcesso'] = $buscar['id'];
+            $_SESSION['tipo'] = $tabela;
             return true;
         }else{
             return false;
