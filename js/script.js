@@ -89,6 +89,26 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 //////////////////////////////////////////////////
 
+//script editar perfil
+const edit_button = document.getElementById("imgEditIcon");
+const cancel_button = document.getElementById("botaoCancelar");
+function liberarEdicaoPerfil() {
+  const form_perfil = document.getElementById("form_perfil");
+  const inputs = form_perfil.querySelectorAll("input");
+  cancel_button.style.display = 'block';  
+  inputs.forEach(function (input) {
+    input.removeAttribute('readonly');
+    if(input.placeholder == 'Nome' || input.placeholder == 'Turma'){
+        input.focus();
+    }
+  });
+}
+function cancelarEdicaoPerfil(){
+    location.reload()
+}
+
+////
+
 
 
 

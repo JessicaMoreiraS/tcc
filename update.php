@@ -37,9 +37,10 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     //variaveis para não aparecerem no form de atualizacao
     $colunaExcluir1 = 'senha';
     $colunaExcluir3 = 'id';
+    $colunaExcluir2 = 'redefinir_senha';
 
     //substituindo os valores de campos(campos dos formuarios) por uma função que ira excluir s variavies criadas acima, da busca sql
-    $campos = array_diff($campos, array($colunaExcluir1, $colunaExcluir3));
+    $campos = array_diff($campos, array($colunaExcluir1, $colunaExcluir3, $colunaExcluir2));
 
 
     //verifica se o formuario é do metodo post
@@ -89,25 +90,94 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://unpkg.com/scrollreveal"></script>
         <title>update</title>
     </head>
-    <body>
-        <form method="POST" action="<?php echo "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao" ?>">
+    <body id="body_perfil">
+    <header class="topo-inicial">
+      <img
+        width="140"
+        class="logo-inicial"
+        src="img/logo-senai-branco.png"
+        alt=""
+      />
+
+      <div class="icons">
+        <i
+          class="fa fa-user-circle"
+          style="color: rgb(255, 255, 255); cursor: pointer"
+        ></i>
+        <input
+          type="checkbox"
+          role="button"
+          aria-label="Display the menu"
+          class="menu"
+        />
+      </div>
+    </header>
+    <main id="main_formPerfil">
+        <div class="container_form">
+        <section>
+         <div >
+            <img src="img/svg/user.svg" />
+         </div>
+         <div  class="edit_Icon">
+            <img onclick="liberarEdicaoPerfil()" src="img/svg/Edit.svg" id="imgEditIcon" />
+         </div>
+        </section>
+        <form id="form_perfil" method="POST" action="<?php echo "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao" ?>">
             <?php
 
             //iteraçao pela array campos (array do fetch que armazena os dados da tabela)
             foreach ($campos as $campo) {
                 // valor atual = dados do campo em especifico
                 $valorAtual = $dados[$campo];
-                ?> 
-                <label><?php echo $campo; ?></label>
-                <input type="text" id="<?php echo $campo; ?>" name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
+                ?>  
+                <div class="input">
+                <input class = "<?php echo $campo ?>"  required readonly type="text" id="<?php echo $campo; ?>" name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
+                </div>
                 <?php
             }
             ?>
-            <input type="submit" value="atualizar">
+            <div class="bnts">
+           <div class="inputs">
+            <input type="submit" value="Salvar">
+            <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()" style="display: none;">
+           </div>
+            <a href="#">Mudar Senha</a>
+         </div>
         </form>
+        </div>
+        </main>
     </body>
+    <script src="js/reveal.js"></script>
+  
+    <script>
+        //script editar perfil
+const edit_button = document.getElementById("imgEditIcon");
+const cancel_button = document.getElementById("botaoCancelar");
+function liberarEdicaoPerfil() {
+  const form_perfil = document.getElementById("form_perfil");
+  const inputs = form_perfil.querySelectorAll("input");
+  cancel_button.style.display = 'block';  
+  inputs.forEach(function (input) {
+    input.removeAttribute('readonly');
+    if(input.placeholder == 'Nome' || input.placeholder == 'Turma'){
+        input.focus();
+    }
+  });
+}
+function cancelarEdicaoPerfil(){
+    location.reload()
+}
+
+////
+    </script>
     </html>
     <?php
 } 

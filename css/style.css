@@ -370,7 +370,7 @@ footer {
 }
 
 #infosAcess input,
-#infosCreate input {
+#infosCreate input, #main_formPerfil .container_form  .input input {
   background: #f4f4f4;
   display: flex;
   width: 80%;
@@ -389,7 +389,7 @@ footer {
 
 #infosAcess input:focus,
 #infosCreate input:focus,
-#form_verificacao #codigoVerificacao:focus {
+#form_verificacao #codigoVerificacao:focus, #main_formPerfil .container_form  .input input:focus {
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.01),
     0px 0px 8px rgba(0, 0, 0, 0.2);
 }
@@ -1663,3 +1663,109 @@ h2 b {
   transform: scale(0.9);
 }
 /*FIM CSS MAQUINAS DA TURMA*/
+
+
+/* CSS FORM EDITAR PERFIL*/
+#body_perfil{
+  background-image: url(../img/svg/bg_perfil.svg);
+  background-repeat: no-repeat;
+  background-position: top;
+ background-position-y: 14%;
+}
+#main_formPerfil{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+#main_formPerfil .container_form{
+ width: 280px;
+} 
+#main_formPerfil .container_form section{
+  background-color: rgb(240, 238, 238);
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+}
+#main_formPerfil .container_form section .edit_Icon{
+  display: flex;
+  margin-bottom: 160px;
+  margin-left: 226px;
+  position: absolute;
+  padding: 6px;
+  cursor: pointer;
+  transition: .3s ease;
+}
+#main_formPerfil .container_form section .edit_Icon:hover{
+ transform:  scale(0.8);
+}
+#main_formPerfil .container_form form{
+  margin-top: 40px;
+}
+
+#main_formPerfil .container_form  .input {
+  margin-bottom: 50px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 36px;
+  align-items: center;
+}
+
+#main_formPerfil .container_form  .input input{
+  margin: 2px;
+}
+#main_formPerfil .container_form  .input .nome{background-image: url(../img/Person.png);}
+#main_formPerfil .container_form  .input .cpf{background-image: url(../img/svg/documentoIcone.svg);}
+
+#main_formPerfil .container_form form  .bnts{
+  display: flex;
+  flex-direction: column;
+}
+#main_formPerfil .container_form form  .bnts .inputs{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#main_formPerfil .container_form form  .bnts input{
+  display: flex;
+  justify-content: center;
+  color: var(--cinza);
+  font-size: 1.2rem;
+  transition: 0.2s ease;
+  color: var(--background-main);
+  background-color: #003f5b;
+  font-size: 15px;
+  transition: .3s;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 100%;
+  margin: 10px 0px 0px 10px;
+}
+#main_formPerfil .container_form form  .bnts input:hover{
+  color: var(--azulEscuro);
+  background-color: var(--background-main);
+  transform: scale(0.9);
+}
+#main_formPerfil .container_form form  .bnts  a{
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+  color: var(--azulPrincipal);
+  text-decoration: underline;
+  transition: .2s ease;
+}
+#main_formPerfil .container_form form  .bnts  a:hover{
+  color: #01b9d1;
+}
+#main_formPerfil #botaoCancelar{
+  background-color: rgb(202, 60, 60);
+  margin-top: 10px;
+  transition: .5s ease;
+}
+#main_formPerfil  #botaoCancelar:hover{
+  color:  rgb(202, 60, 60);
+  background-color: var(--background-main);
+  transform: scale(0.9);
+}
+
+/*FIM CSS FORM EDITAR PERFIL*/
