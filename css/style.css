@@ -370,7 +370,11 @@ footer {
 }
 
 #infosAcess input,
+<<<<<<< HEAD
 #infosCreate input , #main_formPerfil .container_form  .input input{
+=======
+#infosCreate input, #main_formPerfil .container_form  .input input {
+>>>>>>> e14d4a35bde1f17c0bfed08ccda7b8039ee65634
   background: #f4f4f4;
   display: flex;
   width: 80%;
@@ -389,7 +393,11 @@ footer {
 
 #infosAcess input:focus,
 #infosCreate input:focus,
+<<<<<<< HEAD
 #form_verificacao #codigoVerificacao:focus,  #main_formPerfil .container_form  .input input:focus {
+=======
+#form_verificacao #codigoVerificacao:focus, #main_formPerfil .container_form  .input input:focus {
+>>>>>>> e14d4a35bde1f17c0bfed08ccda7b8039ee65634
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.01),
     0px 0px 8px rgba(0, 0, 0, 0.2);
 }
@@ -1868,6 +1876,10 @@ color: white;
   background-color: rgb(240, 238, 238);
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
+=======
+  border-radius: 15px;
+>>>>>>> e14d4a35bde1f17c0bfed08ccda7b8039ee65634
 }
 #main_formPerfil .container_form section .edit_Icon{
   display: flex;
@@ -1905,6 +1917,7 @@ color: white;
 #main_formPerfil .container_form form  .bnts .inputs{
   width: 100%;
   display: flex;
+<<<<<<< HEAD
   flex-wrap: wrap;
 }
 #main_formPerfil .container_form form  .bnts input{
@@ -1912,17 +1925,33 @@ color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+=======
+  justify-content: space-around;
+  align-items: center;
+}
+#main_formPerfil .container_form form  .bnts input{
+  display: flex;
+  justify-content: center;
+>>>>>>> e14d4a35bde1f17c0bfed08ccda7b8039ee65634
   color: var(--cinza);
   font-size: 1.2rem;
   transition: 0.2s ease;
   color: var(--background-main);
+<<<<<<< HEAD
   align-items: center;
+=======
+>>>>>>> e14d4a35bde1f17c0bfed08ccda7b8039ee65634
   background-color: #003f5b;
   font-size: 15px;
   transition: .3s;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
+<<<<<<< HEAD
+=======
+  height: 100%;
+  margin: 10px 0px 0px 10px;
+>>>>>>> e14d4a35bde1f17c0bfed08ccda7b8039ee65634
 }
 #main_formPerfil .container_form form  .bnts input:hover{
   color: var(--azulEscuro);
@@ -1951,4 +1980,8 @@ color: white;
   transform: scale(0.9);
 }
 
+<<<<<<< HEAD
 /*FIM CSS FORM EDITAR PERFIL*/
+=======
+/*FIM CSS FORM EDITAR PERFIL*/
+>>>>>>> e14d4a35bde1f17c0bfed08ccda7b8039ee65634

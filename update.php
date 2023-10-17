@@ -8,6 +8,8 @@ session_start();
 include('conexao.php');
 
 
+
+
 if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     $tabelaBuscar = $_GET['option'];
     $id_atualizacao = $_GET['id_atualizacao'];
@@ -37,16 +39,17 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     //variaveis para não aparecerem no form de atualizacao
     $colunaExcluir1 = 'senha';
     $colunaExcluir3 = 'id';
+    $colunaExcluir2 = 'redefinir_senha';
 
     //substituindo os valores de campos(campos dos formuarios) por uma função que ira excluir s variavies criadas acima, da busca sql
-    $campos = array_diff($campos, array($colunaExcluir1, $colunaExcluir3));
+    $campos = array_diff($campos, array($colunaExcluir1, $colunaExcluir3, $colunaExcluir2));
 
 
     //verifica se o formuario é do metodo post
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
-    
+
         //sql da atualização de dados
         //tabelaBuscar = tabela em questao
         $sql = "UPDATE $tabelaBuscar SET ";
@@ -66,10 +69,12 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
         //rtrim($sql, ', ') é uma funçaõ de remocao de caracteres, onde aqui esta removendo as virgulas na consulta (aplicadas anteriormente)
         $sql = rtrim($sql, ', ') . " WHERE id = $id_atualizacao";
 
-        // verifica se foi executado a consulta e redireciona
+        // verifica se foi executado a consulta 
         if ($mysqli->query($sql)) {
-            header("Location: visualizar.php?view=$tabelaBuscar");
-        } 
+            echo '<script>';
+            echo "alert('Perfil Atualizado')";
+            echo '</script>';
+        }
     }
 
 
@@ -82,34 +87,97 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     //nome da coluna = chave , valor da coluna = dados
     $dados = mysqli_fetch_assoc($resultado);
 
-    
-    ?>
+
+?>
     <!DOCTYPE html>
     <html lang="pt-br">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>update</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <title>Perfil</title>
     </head>
-    <body>
-        <form method="POST" action="<?php echo "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao" ?>">
-            <?php
 
-            //iteraçao pela array campos (array do fetch que armazena os dados da tabela)
-            foreach ($campos as $campo) {
-                // valor atual = dados do campo em especifico
-                $valorAtual = $dados[$campo];
-                ?> 
-                <label><?php echo $campo; ?></label>
-                <input type="text" id="<?php echo $campo; ?>" name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
-                <?php
-            }
-            ?>
-            <input type="submit" value="atualizar">
-        </form>
+    <body id="body_perfil">
+        <header class="topo-inicial">
+            <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
+
+            <div class="icons">
+                <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
+                <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
+            </div>
+        </header>
+        <main id="main_formPerfil">
+            <div class="container_form">
+                <section>
+                    <div>
+                        <img src="img/svg/user.svg" />
+                    </div>
+                    <div class="edit_Icon">
+                        <img onclick="liberarEdicaoPerfil()" src="img/svg/Edit.svg" id="imgEditIcon" />
+                    </div>
+                </section>
+                <form id="form_perfil" method="POST" action="<?php echo "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao" ?>">
+                    <?php
+
+                    //iteraçao pela array campos (array do fetch que armazena os dados da tabela)
+                    foreach ($campos as $campo) {
+                        // valor atual = dados do campo em especifico
+                        $valorAtual = $dados[$campo];
+                    ?>
+                        <div class="input">
+                            <input class="<?php echo $campo ?>" required readonly type="text" id="<?php echo $campo; ?>" name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <div class="bnts">
+                        <div class="inputs">
+                            <input type="submit" value="Salvar">
+                            <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()" style="display: none;">
+                        </div>
+                        <a href="#">Mudar Senha</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+
     </body>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        //script editar perfil
+        const edit_button = document.getElementById("imgEditIcon");
+        const cancel_button = document.getElementById("botaoCancelar");
+        const inputs = form_perfil.querySelectorAll("input");
+        function liberarEdicaoPerfil() {
+            const form_perfil = document.getElementById("form_perfil");
+           
+            cancel_button.style.display = 'block';
+            inputs.forEach(function(input) {
+                input.removeAttribute('readonly');
+                if (input.placeholder == 'Nome' || input.placeholder == 'Turma') {
+                    input.focus();
+                }
+            });
+        }
+
+        setTimeout(function() {
+            inputs.forEach(function(input) {
+                input.style.width = 'auto';
+            });
+        }, 100);
+
+        function cancelarEdicaoPerfil() {
+            location.reload()
+        }
+
+        ////
+    </script>
+
     </html>
-    <?php
-} 
-
-
+<?php
+}
