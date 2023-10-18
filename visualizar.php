@@ -186,7 +186,7 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                 
                 //to do:
                 if($_GET['view'] == 'alunosSala'){
-                    echo '<td><a href="delete.php?acao=deletarAlunoDaSala&id_delecao='.$row['id'].'">Excluir</a>';
+                    echo '<td><a href="delete.php?acao=deletarAlunoDaSala&id_delecao='.$row['id'].'">Remover Aluno da Sala</a>';
                 }else{
                     echo '<td><a href="delete.php?option='.$_GET['view'].'&id_delecao='.$row['id'].'">Excluir</a>';
                     if ($_GET['view'] == 'sala'){
