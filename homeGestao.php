@@ -1,19 +1,19 @@
 <?php
-session_start();
-$paginasPermitemAcesso = ["login.php", "homeGestao.php","cadastrarMaquina.php", "gestaoAlunos.php", "cadastrarProfessor.php"];
-$permitido = false;
+// session_start();
+// $paginasPermitemAcesso = ["login.php", "homeGestao.php","cadastrarMaquina.php", "gestaoAlunos.php", "cadastrarProfessor.php"];
+// $permitido = false;
 
-for($i = 0; $i < count($paginasPermitemAcesso); $i++){
-    // echo $paginasPermitemAcesso[$i];
-    if(!strpos($_SERVER['HTTP_REFERER'], $paginasPermitemAcesso[$i])){
-        if(($i == count($paginasPermitemAcesso)-1 && !$permitido) || $_SESSION['tipo'] != 'gestor'){
-            // echo $paginasPermitemAcesso[$i];
-            header('Location: index.html');
-        }
-    }else{
-        $permitido=true;
-    }
-}
+// for($i = 0; $i < count($paginasPermitemAcesso); $i++){
+//     // echo $paginasPermitemAcesso[$i];
+//     if(!strpos($_SERVER['HTTP_REFERER'], $paginasPermitemAcesso[$i])){
+//         if(($i == count($paginasPermitemAcesso)-1 && !$permitido) || $_SESSION['tipo'] != 'gestor'){
+//             // echo $paginasPermitemAcesso[$i];
+//             header('Location: index.html');
+//         }
+//     }else{
+//         $permitido=true;
+//     }
+// }
 
 ?>
 <!DOCTYPE html>
@@ -53,7 +53,7 @@ for($i = 0; $i < count($paginasPermitemAcesso); $i++){
                         <p>Gerenciamento de <b>Professores</b></p>
                         </div>
                         <div class="descricao">
-                            Cadastrar, excluir , visualizar ou editar algum Professor de acordo com a necessidade. Com acesso a todas informações dos professores 
+                            Cadastrar, excluir ou visualizar  algum Professor de acordo com a necessidade. Com acesso a todas informações dos professores 
                         </div>
                     </div>
                     <div class="btn">
@@ -72,7 +72,43 @@ for($i = 0; $i < count($paginasPermitemAcesso); $i++){
                         <p>Gerenciamento de <b>Turmas</b></p>
                         </div>
                         <div class="descricao">
-                            Excluir , visualizar ou editar alguma Turma de acordo com a necessidade. Com acesso aos alunos e professores de cada turma 
+                            Excluir , visualizar ou editar alguma Turma de acordo com a necessidade. Com acesso aos alunos de cada turma 
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <a href="visualizar.php?view=sala"><i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="conteudo_card">
+                    <div class="img">
+                        <img src="img/svg/Student_white.svg">
+                    </div>
+                    <div class="textos">
+                        <div class="tituloCard">
+                        <p>Gerenciamento de <b>Alunos</b></p>
+                        </div>
+                        <div class="descricao">
+                            Excluir ou visualizar algum aluno cadastrado, de acordo com a necessidade.
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <a href="visualizar.php?view=sala"><i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="conteudo_card">
+                    <div class="img">
+                    <img src="img/svg/checklist_white.svg" >
+                    </div>
+                    <div class="textos">
+                        <div class="tituloCard">
+                        <p>Gerenciamento de <b>Checklists</b></p>
+                        </div>
+                        <div class="descricao">
+                          Visualizar checklists feitas por professores ou alunos.
                         </div>
                     </div>
                     <div class="btn">
