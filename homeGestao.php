@@ -160,9 +160,3 @@
     <script src="js/reveal.js"></script>
 </html>
 
-<!-- Criar cadastros no database
-   <div>
-    <a href="cadastrar.php?option=professor">Cadastrar novo Professor</a>
-    <a href="cadastrar.php?option=tipo">Cadastrar nova categoria de maquinário</a>
-    <a href="cadastrar.php?option=maquina">Cadastrar nova maquina</a>
-</div>
