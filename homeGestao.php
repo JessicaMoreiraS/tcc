@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="btn">
-                        <a href="visualizar.php?view=sala"><i class="fa fa-arrow-right"></i></a>
+                        <a href="visualizar.php?view=aluno"><i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="btn">
-                        <a href="visualizar.php?view=sala"><i class="fa fa-arrow-right"></i></a>
+                        <a href="visualizar.php?view=checklist"><i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
