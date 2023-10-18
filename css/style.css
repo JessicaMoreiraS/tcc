@@ -1087,12 +1087,14 @@ background-color: #003f5b;
   justify-content: center;
 }
 
- h2 {
+.bem-vindo h2 {
   padding: 10px;
   border-radius: 10px;
-  background-color: var(--background-main);
 }
-
+#main_homeProfessor h2{
+  padding: 0px;
+  background-color: transparent;
+}
  h2 b {
   border-radius: 10px;
 }
@@ -1868,7 +1870,7 @@ color: white;
   background-color: rgb(240, 238, 238);
   display: flex;
   justify-content: center;
-  
+
   border-radius: 15px;
 }
 #main_formPerfil .container_form section .edit_Icon{
