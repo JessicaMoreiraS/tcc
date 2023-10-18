@@ -9,6 +9,7 @@ $tipo = false;
 $tema = "";
 $icone = "";
 $nomeTurma ="";
+$linkCadastro;
 
 if (filter_input(INPUT_GET, 'view')) {
     if ($_GET['view'] == 'professor') {
@@ -16,27 +17,28 @@ if (filter_input(INPUT_GET, 'view')) {
         $query = "SELECT * FROM professor";
         $camposBusca = ['nome', 'cpf', 'email'];
         $camposTema = ['Nome', 'CPF', 'Email','Funções'];
-
-
+        $linkCadastro = "cadastrarProfessor.php";
+        
     } else if ($_GET['view'] == 'tipo') {
         $tema = "Categorias de Máquinas";
         $query = "SELECT * FROM tipo_maquina";
         $camposBusca = ['tipo'];
         $camposTema = ['Categoria', 'Quantidade','Funções'];
         $tipo = true;
-
+        
     } else if ($_GET['view'] == 'aluno') {
         $tema = "Alunos";
         $query = "SELECT * FROM aluno";
         $camposBusca = ['nome', 'email'];
         $aluno = true;
         $camposTema = ['Nome', 'Email', 'Turma(s)','Funções'];
-
+        
     } else if ($_GET['view'] == 'maquina') {
         $tema = "Máquinas";
         $query = "SELECT * FROM maquina INNER JOIN tipo_maquina ON maquina.id_tipo_maquina = tipo_maquina.id";
         $camposBusca = ['id', 'modelo', 'fabricante', 'tipo'];
         $camposTema = ['ID', 'Modelo', 'Fabricante', 'Categoria','Funções'];
+        $linkCadastro = "cadastrarMaquina.php";
 
     } else if ($_GET['view'] == 'sala') {
         $tema = "Turmas";
@@ -183,7 +185,7 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                 }
                 
                 //to do:
-                if($GET['view'] == 'alunosSala'){
+                if($_GET['view'] == 'alunosSala'){
                     echo '<td><a href="delete.php?acao=deletarAlunoDaSala&id_delecao='.$row['id'].'">Excluir</a>';
                 }else{
                     echo '<td><a href="delete.php?option='.$_GET['view'].'&id_delecao='.$row['id'].'">Excluir</a>';
@@ -218,6 +220,15 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
     <header class="topo-index" id="header_homeGestao">
         <img src="img/logo-senai-branco.png" alt="" />
     </header>
+
+    <div>
+        <?php
+            if(!empty($linkCadastro) && $linkCadastro !=""){
+                echo "<a href='".$linkCadastro."'>Cadastrar ".$tema."</a>";
+            }
+        ?>
+    </div>
+
     <div class="container">
         <div class="row row--top-40">
             <div class="col-md-12">
