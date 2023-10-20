@@ -12,30 +12,89 @@
         $idDaMaquina = $_GET['id_maquina'];
     }
 
-    function buscarInfosMaquina($idMaquina){
+    function buscarNoBanco($idMaquina, $sql){
         include('conexao.php');
-        
-        $sql = "SELECT * FROM esp32 INNER JOIN atributo_tipo ON esp32.id_atributos = atributo_tipo.id WHERE id_maquina = $idMaquina";
         $result = mysqli_query($mysqli, $sql);
-        
         
         if (!$result) {
             die("Erro na consulta: " . mysqli_error($mysqli));
         }
-        
+        return $result;
+    }
+
+    function buscarInfosMaquina($idMaquina){
+        $sql = "SELECT * FROM esp32 INNER JOIN atributo_tipo ON esp32.id_atributos = atributo_tipo.id WHERE id_maquina = $idMaquina";
+        $result = buscarNoBanco($idMaquina, $sql);
         $data = [];
+
         while ($row = mysqli_fetch_assoc($result)) {
             $array = [$row['atributo'], $row['valor']];
-            $data[] = $array;
-            foreach($data as $info){
-               // echo $info[0]." - ". $info[1]."<br>";
-                if($info[0] == "temperatura" || $info[0] == "velocidade" || $info[0] == "vibracao"){
-                    // echo "console.log('".$info[0]."')";
-                    echo '<script>';
-                    echo 'graficoVelocimetro('.$info[1].', "'.$info[0].'");'; // Chama a função JavaScript
-                    echo '</script>';
+            
+            if($row['atributo'] == "temperatura"){
+                echo '<script>';
+                echo 'temometro('.$row['valor'].');'; 
+                echo '</script>';
+            }
+            if($row['atributo'] == "velocidade" || $row['atributo'] == "vibracao"){
+                echo '<script>';
+                // echo "console.log('".$info[0]."');";
+                echo 'graficoVelocimetro('.$row['valor'] .', "'.$row['atributo'].'");';
+                echo '</script>';
+                
+            }
+        }
+    }
+
+    function itensChecklist($idMaquina){
+        $sql = "SELECT * FROM maquina INNER JOIN lista_tipo_maquina_item_checklist ON lista_tipo_maquina_item_checklist.id_tipo_maquina = maquina.id_tipo_maquina INNER JOIN item_checklist ON item_checklist.id = lista_tipo_maquina_item_checklist.id_item_checklist WHERE maquina.id = $idMaquina";
+        $result = buscarNoBanco($idMaquina, $sql);
+        $dataItens = []; 
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $info = $row['item'];
+
+            echo '<div class="checkbox-wrapper-19">
+                    <input id="'.$info.'" type="checkbox" name="item_1">
+                    <label class="check-box" for="'.$info.'" style="padding-left:30px">'.$info.'</label>
+                </div>';
+        } 
+    }
+    function atributosChecklist($idMaquina){
+        $sql = "SELECT * FROM maquina INNER JOIN lista_tipo_maquina_atributo ON maquina.id_tipo_maquina = lista_tipo_maquina_atributo.id_tipo_maquina INNER JOIN atributo_tipo ON atributo_tipo.id = lista_tipo_maquina_atributo.id_atributo WHERE maquina.id = $idMaquina";
+        $result = buscarNoBanco($idMaquina, $sql);
+        
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+            $atributo = $row['atributo'];
+            $idAtributo = $row['id'];
+            $valorReferencia = $row['valor_referencia'];
+            
+            $sqlDadosEsp = "SELECT * FROM esp32 WHERE esp32.id_maquina = $idMaquina";
+            $resultEsp = buscarNoBanco($idMaquina, $sqlDadosEsp);
+
+            while ($rowEsp = mysqli_fetch_assoc($resultEsp)) {
+                // echo $rowEsp['id_atributos'];
+                // echo "<br>";
+                // echo $idAtributo;
+                // echo "<br>";
+                // echo "<br>";
+
+                if($rowEsp['id_atributos'] == $idAtributo){
+                    if($rowEsp['valor'] <= $valorReferencia){
+                        echo '<div class="checkbox-wrapper-19">
+                                <input id="'.$atributo.'" type="checkbox" name="item_1" checked="true">
+                                <label class="check-box" for="'.$atributo.'" style="padding-left:30px">'.$atributo.'</label>
+                            </div>';
+                    }else{
+                        echo '<div class="checkbox-wrapper-19">
+                                <input id="'.$atributo.'" type="checkbox" name="item_1" disabled class="boderRed">
+                                <label class="check-box" for="'.$atributo.'" style="padding-left:30px">'.$atributo.'</label>
+                            </div>';
+                    }
                 }
             }
+            
+           
         }
     }
 ?>
@@ -57,6 +116,21 @@
         width: 100%;
         height: 200px;
         }
+        #temometro{
+            background-color: rgb(194, 194, 194);
+            width: 50px;
+            height: 200px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+        #valorTemometro{
+            background-color: red;
+            width: 100%;
+            border-radius: 0px 0px 50px 50px;
+        }
+
     </style>
 </head>
 <body id="visualizarMaquinas">
@@ -110,18 +184,10 @@
         
         <section class="checklist" id="checklist">
             <h2>Checklist</h2>
-            <div class="checkbox-wrapper-19">
-                <input id="check1" type="checkbox" name="item_1">
-                <label class="check-box" for="check1">Item</label>
-            </div>
-                <div class="checkbox-wrapper-19">
-                    <input id="check2" type="checkbox" name="item_2">
-                    <label class="check-box" for="check2">Item</label>
-            </div>
-            <div class="checkbox-wrapper-19">
-                <input id="check3" type="checkbox" name="item_3">
-                <label class="check-box" for="check3">Item</label>
-            </div>
+            <?php
+                itensChecklist($idDaMaquina);
+                atributosChecklist($idDaMaquina);
+            ?>
 
     </section>
 </main>

@@ -1,5 +1,6 @@
 function graficoVelocimetro(valorGrafico, nomeDiv){
     
+    
     var elementoPai = document.getElementById("graficos")
     var novaDiv = document.createElement("div");
     novaDiv.id = nomeDiv;
@@ -74,7 +75,19 @@ function graficoVelocimetro(valorGrafico, nomeDiv){
             });
         }, 2000);
     
-    }); // end am5.ready()
+    }); // end am5.ready()  
+
+}
+
+function temometro(valor){
+    console.log(valor)
+    var elementoPai = document.getElementById("graficos");
+    var porcentagem = (valor/200)*100;
     
+    console.log(porcentagem);
+    var novaDiv = `<div id="temometro" onclick="mudarTemp()">
+    <div id="valorTemometro" style="height:${porcentagem}px"></div>
+    </div>`;
+    elementoPai.innerHTML += novaDiv;
 
 }
