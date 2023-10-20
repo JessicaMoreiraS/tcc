@@ -28,7 +28,7 @@ if ($stmt) {
 //////////
 
 //buscar tipos de maquinas disponeis na turma
-$sqlTipos = "SELECT * FROM tipo_maquina LEFT JOIN lista_sala_tipo_maquina ON lista_sala_tipo_maquina.id_tipo_maquina = tipo_maquina.id";
+$sqlTipos = "SELECT * FROM tipo_maquina INNER JOIN lista_sala_tipo_maquina ON lista_sala_tipo_maquina.id_tipo_maquina = tipo_maquina.id";
 
 $tiposDaSalaId = [];
 $tiposDaSalaNome = [];
