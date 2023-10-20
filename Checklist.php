@@ -73,11 +73,6 @@
             $resultEsp = buscarNoBanco($idMaquina, $sqlDadosEsp);
 
             while ($rowEsp = mysqli_fetch_assoc($resultEsp)) {
-                // echo $rowEsp['id_atributos'];
-                // echo "<br>";
-                // echo $idAtributo;
-                // echo "<br>";
-                // echo "<br>";
 
                 if($rowEsp['id_atributos'] == $idAtributo){
                     if($rowEsp['valor'] <= $valorReferencia){
