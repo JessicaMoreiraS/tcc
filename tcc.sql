@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17-Out-2023 às 16:19
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- Tempo de geração: 20-Out-2023 às 16:28
+-- Versão do servidor: 10.4.25-MariaDB
+-- versão do PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `aluno` (
   `senha` varchar(255) NOT NULL,
   `redefinir_senha` tinyint(1) NOT NULL DEFAULT 0,
   `codigo_recuperacao` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `aluno`
@@ -52,23 +52,24 @@ INSERT INTO `aluno` (`id`, `nome`, `email`, `senha`, `redefinir_senha`, `codigo_
 CREATE TABLE `atributo_tipo` (
   `id` int(11) NOT NULL,
   `atributo` varchar(255) NOT NULL,
-  `atributo_esp` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `atributo_esp` varchar(255) NOT NULL,
+  `valor_referencia` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `atributo_tipo`
 --
 
-INSERT INTO `atributo_tipo` (`id`, `atributo`, `atributo_esp`) VALUES
-(1, 'temperatura', 'temperatura'),
-(2, 'velocidade', 'velocidade'),
-(3, 'óleo caixa de velocidade', 'oleo_caixaDeVelocidade'),
-(4, 'viscosidade caixa de velocidade', 'viscosidade_caixaDeVelocidade'),
-(5, 'óleo caixa norton', 'oleo_caixaDeNorton'),
-(6, 'viscosidade caixa norton', 'viscosidade_caixaDeNorton'),
-(7, 'óleo avental do torno', 'oleo_aventalDoTorno'),
-(8, 'viscosidade avental do torno', 'viscosidade_aventalDoTorno'),
-(9, 'vibracao', 'vibracao');
+INSERT INTO `atributo_tipo` (`id`, `atributo`, `atributo_esp`, `valor_referencia`) VALUES
+(1, 'temperatura', 'temperatura', 100),
+(2, 'velocidade', 'velocidade', 60),
+(3, 'óleo caixa de velocidade', 'oleo_caixaDeVelocidade', 20),
+(4, 'viscosidade caixa de velocidade', 'viscosidade_caixaDeVelocidade', 35),
+(5, 'óleo caixa norton', 'oleo_caixaDeNorton', 29),
+(6, 'viscosidade caixa norton', 'viscosidade_caixaDeNorton', 8),
+(7, 'óleo avental do torno', 'oleo_aventalDoTorno', 52),
+(8, 'viscosidade avental do torno', 'viscosidade_aventalDoTorno', 78),
+(9, 'vibracao', 'vibracao', 16);
 
 -- --------------------------------------------------------
 
@@ -82,7 +83,7 @@ CREATE TABLE `checklist` (
   `id_professor` int(11) NOT NULL,
   `id_maquina` varchar(255) NOT NULL,
   `data` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `checklist`
@@ -104,7 +105,7 @@ CREATE TABLE `conta_pendente_aluno` (
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `conta_pendente_aluno` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -120,15 +121,16 @@ CREATE TABLE `esp32` (
   `valor` float NOT NULL,
   `hora` time NOT NULL,
   `data` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `esp32`
 --
 
 INSERT INTO `esp32` (`id`, `esp`, `id_maquina`, `id_atributos`, `valor`, `hora`, `data`) VALUES
+('', 'esp32', '1', 5, 30, '18:57:57', '19/10/2023'),
 ('esp32', 'esp32', '1', 2, 55, '12:10:03', '03/10/2023'),
-('esp32_01', 'esp32_01', '1', 1, 10, '00:00:00', '');
+('esp32_01', 'esp32_01', '1', 1, 100, '00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -142,7 +144,7 @@ CREATE TABLE `gestor` (
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `gestor`
@@ -155,6 +157,26 @@ INSERT INTO `gestor` (`id`, `cpf`, `nome`, `email`, `senha`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `item_checklist`
+--
+
+CREATE TABLE `item_checklist` (
+  `id` int(11) NOT NULL,
+  `item` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `item_checklist`
+--
+
+INSERT INTO `item_checklist` (`id`, `item`) VALUES
+(1, 'Vazamentos'),
+(2, 'Peças soltas'),
+(3, 'Sujeira');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `lista_aluno_sala`
 --
 
@@ -162,7 +184,7 @@ CREATE TABLE `lista_aluno_sala` (
   `id_lista` int(11) NOT NULL,
   `id_aluno` int(11) NOT NULL,
   `id_sala` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_aluno_sala`
@@ -183,7 +205,7 @@ CREATE TABLE `lista_sala_tipo_maquina` (
   `id` int(11) NOT NULL,
   `id_sala` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_sala_tipo_maquina`
@@ -202,7 +224,7 @@ CREATE TABLE `lista_tipo_maquina_atributo` (
   `id` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL,
   `id_atributo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_tipo_maquina_atributo`
@@ -222,6 +244,27 @@ INSERT INTO `lista_tipo_maquina_atributo` (`id`, `id_tipo_maquina`, `id_atributo
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `lista_tipo_maquina_item_checklist`
+--
+
+CREATE TABLE `lista_tipo_maquina_item_checklist` (
+  `id` int(11) NOT NULL,
+  `id_tipo_maquina` int(11) NOT NULL,
+  `id_item_checklist` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `lista_tipo_maquina_item_checklist`
+--
+
+INSERT INTO `lista_tipo_maquina_item_checklist` (`id`, `id_tipo_maquina`, `id_item_checklist`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `lista_tipo_maquina_peca`
 --
 
@@ -229,7 +272,7 @@ CREATE TABLE `lista_tipo_maquina_peca` (
   `id` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL,
   `id_peca` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -246,7 +289,7 @@ CREATE TABLE `maquina` (
   `led_verde` varchar(50) NOT NULL,
   `led_amarelo` varchar(50) NOT NULL,
   `led_vermelho` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `maquina`
@@ -266,7 +309,7 @@ CREATE TABLE `peca_tipo` (
   `codigo` varchar(50) NOT NULL,
   `peca` int(11) NOT NULL,
   `tempo_de_troca` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -281,7 +324,7 @@ CREATE TABLE `professor` (
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `redefinir_senha` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `professor`
@@ -301,7 +344,7 @@ CREATE TABLE `sala` (
   `turma` varchar(50) NOT NULL,
   `id_professor` int(11) NOT NULL,
   `codigo_acesso` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `sala`
@@ -319,7 +362,7 @@ INSERT INTO `sala` (`id`, `turma`, `id_professor`, `codigo_acesso`) VALUES
 CREATE TABLE `tipo_maquina` (
   `id` int(11) NOT NULL,
   `tipo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `tipo_maquina`
@@ -370,6 +413,12 @@ ALTER TABLE `gestor`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `item_checklist`
+--
+ALTER TABLE `item_checklist`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `lista_aluno_sala`
 --
 ALTER TABLE `lista_aluno_sala`
@@ -385,6 +434,12 @@ ALTER TABLE `lista_sala_tipo_maquina`
 -- Índices para tabela `lista_tipo_maquina_atributo`
 --
 ALTER TABLE `lista_tipo_maquina_atributo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `lista_tipo_maquina_item_checklist`
+--
+ALTER TABLE `lista_tipo_maquina_item_checklist`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -458,6 +513,12 @@ ALTER TABLE `gestor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT de tabela `item_checklist`
+--
+ALTER TABLE `item_checklist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de tabela `lista_aluno_sala`
 --
 ALTER TABLE `lista_aluno_sala`
@@ -474,6 +535,12 @@ ALTER TABLE `lista_sala_tipo_maquina`
 --
 ALTER TABLE `lista_tipo_maquina_atributo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de tabela `lista_tipo_maquina_item_checklist`
+--
+ALTER TABLE `lista_tipo_maquina_item_checklist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `lista_tipo_maquina_peca`
