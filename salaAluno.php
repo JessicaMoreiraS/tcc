@@ -45,7 +45,7 @@
                 $conteudo = $mysqli -> query($sqlBuscaMaquinas);
                 while($rowMaquina = mysqli_fetch_assoc($conteudo)){
                 ?> 
-                <a href="<?php echo "Checklist.php?id_maquina=".$rowMaquina['id'] ?>"> <!--Card da maquina-->
+                <a href="<?php echo "checklist.php?id_maquina=".$rowMaquina['id'] ?>"> <!--Card da maquina-->
                     <!-- <img src="<?php echo $rowMaquina['imagem']?>"> -->
                     <h2><?php echo $rowMaquina['modelo']?></h2>
                     <h3><?php echo $rowMaquina['id']?></h3>
