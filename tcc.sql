@@ -79,10 +79,10 @@ INSERT INTO `atributo_tipo` (`id`, `atributo`, `atributo_esp`, `valor_referencia
 
 CREATE TABLE `checklist` (
   `id` int(11) NOT NULL,
-  `id_aluno` int(11) NOT NULL,
-  `id_professor` int(11) NOT NULL,
+  `id_aluno` int(11),
+  `id_professor` int(11),
   `id_maquina` varchar(255) NOT NULL,
-  `data` datetime NOT NULL
+  `date_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -162,17 +162,18 @@ INSERT INTO `gestor` (`id`, `cpf`, `nome`, `email`, `senha`) VALUES
 
 CREATE TABLE `item_checklist` (
   `id` int(11) NOT NULL,
-  `item` varchar(50) NOT NULL
+  `item` varchar(50) NOT NULL,
+  `name_item` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `item_checklist`
 --
 
-INSERT INTO `item_checklist` (`id`, `item`) VALUES
-(1, 'Vazamentos'),
-(2, 'Peças soltas'),
-(3, 'Sujeira');
+INSERT INTO `item_checklist` (`id`, `item`,`name_item`) VALUES
+(1, 'Vazamentos', 'vazamentos'),
+(2, 'Peças soltas', 'pecasdoltas'),
+(3, 'Sujeira', 'sujeira');
 
 -- --------------------------------------------------------
 
