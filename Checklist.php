@@ -45,17 +45,19 @@
         }
     }
 
+   
+
     function itensChecklist($idMaquina){
         $sql = "SELECT * FROM maquina INNER JOIN lista_tipo_maquina_item_checklist ON lista_tipo_maquina_item_checklist.id_tipo_maquina = maquina.id_tipo_maquina INNER JOIN item_checklist ON item_checklist.id = lista_tipo_maquina_item_checklist.id_item_checklist WHERE maquina.id = $idMaquina";
         $result = buscarNoBanco($idMaquina, $sql);
-        $dataItens = []; 
 
         while ($row = mysqli_fetch_assoc($result)) {
             $info = $row['item'];
+            $name = $row['name_item'];
 
             echo '<div class="checkbox-wrapper-19">
-                    <input id="'.$info.'" type="checkbox" name="item_1">
-                    <label class="check-box" for="'.$info.'" style="padding-left:30px">'.$info.'</label>
+                    <input id="'.$name.'" type="checkbox" name="'.$name.'">
+                    <label class="check-box" for="'.$name.'" style="padding-left:30px">'.$info.'</label>
                 </div>';
         } 
     }
@@ -66,6 +68,7 @@
         
         while ($row = mysqli_fetch_assoc($result)) {
             $atributo = $row['atributo'];
+            $name = $row['atributo_esp'];
             $idAtributo = $row['id'];
             $valorReferencia = $row['valor_referencia'];
             
@@ -77,13 +80,13 @@
                 if($rowEsp['id_atributos'] == $idAtributo){
                     if($rowEsp['valor'] <= $valorReferencia){
                         echo '<div class="checkbox-wrapper-19">
-                                <input id="'.$atributo.'" type="checkbox" name="item_1" checked="true">
-                                <label class="check-box" for="'.$atributo.'" style="padding-left:30px">'.$atributo.'</label>
+                                <input id="'.$name.'" type="checkbox" name="'.$name.'" checked="true">
+                                <label class="check-box" for="'.$name.'" style="padding-left:30px">'.$atributo.'</label>
                             </div>';
                     }else{
                         echo '<div class="checkbox-wrapper-19">
-                                <input id="'.$atributo.'" type="checkbox" name="item_1" disabled class="boderRed">
-                                <label class="check-box" for="'.$atributo.'" style="padding-left:30px">'.$atributo.'</label>
+                                <input id="'.$name.'" type="checkbox" name="'.$name.'" disabled class="boderRed">
+                                <label class="check-box" for="'.$name.'" style="padding-left:30px">'.$atributo.'</label>
                             </div>';
                     }
                 }
@@ -179,10 +182,13 @@
         
         <section class="checklist" id="checklist">
             <h2>Checklist</h2>
-            <?php
+            <form action="processaChecklist.php?id_maquina=<?php echo $idDaMaquina; ?>">
+
+                <?php
                 itensChecklist($idDaMaquina);
                 atributosChecklist($idDaMaquina);
-            ?>
+                ?>
+            </form>
 
     </section>
 </main>
