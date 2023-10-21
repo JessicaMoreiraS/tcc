@@ -423,7 +423,7 @@ footer {
   color: rgb(214, 75, 75);
 }
 
-.input_entrar input {
+.input_entrar input, #gestor_default_main .bnts input {
   padding: 13px 40px 13px 40px;
   color: #fff;
   border-radius: 15px;
@@ -443,7 +443,7 @@ footer {
 }
 
 .input_entrar input:hover,
-#form_verificacao #botao_verificar:hover {
+#form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover {
   background-color: #036998;
   transform: scale(0.9, 0.9);
 }
@@ -643,7 +643,7 @@ footer {
 }
 
 .areaCodTurmaNova input {
-  width: 90%;
+  width: 96%;
   height: 50px;
   margin-top: 15px;
   padding-left: 5px;
@@ -651,7 +651,6 @@ footer {
   color: rgba(0, 0, 0, 0.781);
   outline: none;
   margin: 10px;
-
   background: #f4f4f4;
   border-radius: 10px;
   font-size: 17px;
@@ -667,6 +666,7 @@ footer {
   background-color: #d4d4d4bd;
   cursor: pointer;
   transition: 0.3s ease;
+  
 
 }
 
@@ -680,6 +680,20 @@ footer {
     0px 0px 8px rgba(0, 0, 0, 0.2);
 }
 
+.verificacaoEmail{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.conteudoConfirmarEmail{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  
+}
 /* #main_confirmarEmail {
   padding: 10%;
 display: flex;
@@ -772,7 +786,7 @@ background-color: #003f5b;
   justify-content: center;
   align-items: center;
   padding: 10%;
-  margin-top: 50px;
+
 }
 
 .areaCod {
@@ -1087,14 +1101,12 @@ background-color: #003f5b;
   justify-content: center;
 }
 
-.bem-vindo h2 {
+ h2 {
   padding: 10px;
   border-radius: 10px;
+  background-color: var(--background-main);
 }
-#main_homeProfessor h2{
-  padding: 0px;
-  background-color: transparent;
-}
+
  h2 b {
   border-radius: 10px;
 }
@@ -1104,12 +1116,10 @@ background-color: #003f5b;
     justify-content: center;
    
 }
-.form_cadastrarTurma .container {
+.form_cadastrarTurma .container,.w3-modal-content {
     background-color: var(--azulPrincipal);
-    padding: 6vw;
-    border-radius: 61px;
-   
-
+    padding: 1vw;
+    border-radius: 20px;
 }
  .form_cadastrarTurma .container .logo, .form_cadastrarTurma .container .icone{
     display: flex;
@@ -1121,25 +1131,35 @@ background-color: #003f5b;
  .form_cadastrarTurma .container .logo {
    margin-bottom: 25px;
 }
- .form_cadastrarTurma .container .input_nome{
+ .form_cadastrarTurma .container .input_nome, .input_modal{
     display: flex;
     justify-content: center;
     margin: 40px 0px 25px 0px;
+    width: 100%;
 }
-.form_cadastrarTurma .container .input_nome input {
-  background: #f4f4f4;
-  display: flex;
-  padding: 10px;
-  padding-left: 10px;
-  border-radius: 15px;
-  font-size: 15px;
-  border: none;
+.form_cadastrarTurma .container .input_nome input, .input_modal input {
+  width: 100%;
+
+  height: 45px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid lightgrey;
   outline: none;
-  box-shadow: inset 1px 2px 8px rgba(0, 0, 0,0.3);
-  transition: 0.18s ease-out;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0px 0px 20px -18px;
 }
 .form_cadastrarTurma .container .input_nome input{
   width: 100%;
+}
+.form_cadastrarTurma .container .input_nome input, .input_modal input:hover{
+  border: 2px solid lightgrey;
+  box-shadow: 0px 0px 20px -17px;
+}
+.form_cadastrarTurma .container .input_nome input:active, .input_modal input:active{
+  transform: scale(0.95);
+}
+.form_cadastrarTurma .container .input_nome input:focus, .input_modal input:focus{
+  border: 2px solid grey;
 }
 .form_cadastrarTurma .container  .input_codigo{
   display: flex;
@@ -1178,8 +1198,6 @@ margin-bottom: 20px;
     margin-right: 10px;
     cursor: pointer;
     margin-bottom: 10px;
- 
-   
   }
   
   .cyberpunk-checkbox:before {
@@ -1351,6 +1369,9 @@ margin-bottom: 20px;
 .table-row--gears .table-row__img {
     background-image: url('../img/svg/Gears.svg');
 }
+.table-row--gestor .table-row__img {
+    background-image: url('../img/svg/gestor.svg');
+}
 
 .table-row__info {
     display: inline-block;
@@ -1424,29 +1445,6 @@ margin-bottom: 20px;
 
 .status--red{
   color: #e36767;
-}
-
-.status--blue:before{
-  background-color: #3fd2ea;
-}
-
-.status--blue{
-  color: #3fd2ea;
-}
-
-.status--yellow:before{
-  background-color: #ecce4e;
-}
-
-.status--yellow{
-  color: #ecce4e;
-}
-
-.status--green{
-  color: #6cdb56;
-}
-.status--green:before{
-  background-color: #6cdb56;
 }
 
 .status--grey{
@@ -1570,10 +1568,38 @@ color: white;
   margin-top: 50px;
 }
 
+.graficos{
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+width: 100%;
+}
+
 .graficos .card-grafico{
   background-color: white;
-  width: 200px;
+  width: 400px;
+  border-radius: 30px;
+  box-shadow: var(--box-shadow);
+  padding: 10px;
 }
+
+#chartdiv {
+  width: 100%;
+  height: 200px;
+
+}
+.tituloCheck{
+  margin: 0 auto;
+  margin-top: 50px;
+  color: #003f5b;
+  text-align: center;
+}
+
+.container-check{
+padding-left: 43%;
+margin-top: 15px;
+}
+
 
 .checkbox-wrapper-19 {
   box-sizing: border-box;
@@ -1658,7 +1684,7 @@ color: white;
 }
 
 #visualizarMaquinas *{
-  overflow-x: visible;
+    overflow-x: visible;
 }
 
 .checkbox-wrapper-19 .check-box {
@@ -1744,6 +1770,11 @@ color: white;
   -webkit-animation: dothatopcheck-19 0.4s ease 0s forwards;
   animation: dothatopcheck-19 0.4s ease 0s forwards;
 }
+
+
+
+
+
 /*FIM CSS VISUALIZAR MAQUINA*/
 
 /*CSS MAQUINAS DA TURMA*/
@@ -1807,6 +1838,7 @@ color: white;
   height:75px;
   overflow: hidden;
   transition: 0.5s ease;
+  flex-direction: column;
 }
 #main_maquinasDaTurmas .maquinas .card .content div{
   display: flex;
@@ -1826,9 +1858,11 @@ color: white;
 #main_maquinasDaTurmas .maquinas .card .content h2:hover{
   color: #01b9d1;
 }
-#main_maquinasDaTurmas .maquinas .card .content p{
+#main_maquinasDaTurmas .maquinas .card .content p, #main_maquinasDaTurmas .maquinas .card .content h2 p{
   color: var(--azulEscuro);
  padding: 2px;
+ font-size: 15px;
+ font-weight: 400;
 }
 #main_maquinasDaTurmas .maquinas .card .content a{
   display: flex;
@@ -1870,7 +1904,6 @@ color: white;
   background-color: rgb(240, 238, 238);
   display: flex;
   justify-content: center;
-
   border-radius: 15px;
 }
 #main_formPerfil .container_form section .edit_Icon{
@@ -1882,6 +1915,7 @@ color: white;
   cursor: pointer;
   transition: .3s ease;
 }
+
 #main_formPerfil .container_form section .edit_Icon:hover{
  transform:  scale(0.8);
 }
@@ -1901,6 +1935,8 @@ color: white;
 }
 #main_formPerfil .container_form  .input .nome{background-image: url(../img/Person.png);}
 #main_formPerfil .container_form  .input .cpf{background-image: url(../img/svg/documentoIcone.svg);}
+#main_formPerfil .container_form  .input .turma{background-image: url(../img/svg/nameTag.svg);}
+#main_formPerfil .container_form  .input .codigo{background-image: url(../img/svg/Lock.svg);}
 
 #main_formPerfil .container_form form  .bnts{
   display: flex;
@@ -1909,13 +1945,6 @@ color: white;
 #main_formPerfil .container_form form  .bnts .inputs{
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-}
-#main_formPerfil .container_form form  .bnts input{
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   justify-content: space-around;
   align-items: center;
 }
@@ -1926,7 +1955,6 @@ color: white;
   font-size: 1.2rem;
   transition: 0.2s ease;
   color: var(--background-main);
-  align-items: center;
   background-color: #003f5b;
   font-size: 15px;
   transition: .3s;
@@ -1962,5 +1990,43 @@ color: white;
   background-color: var(--background-main);
   transform: scale(0.9);
 }
+
 /*FIM CSS FORM EDITAR PERFIL*/
 
+/*CSS FORM EDITAR turma*/
+#checkboxesEditarTurma .cyberpunk-checkbox{
+  border: #0d394d 2px solid;
+}
+#checkboxesEditarTurma .cyberpunk-checkbox:before{
+    background-color: #003f5b;
+}
+/*FIM CSS FORM EDITAR turma*/
+
+
+/* CSS GESTOR DEAFULT*/
+
+ /* - modal - */
+#gestor_default_main .bnts{
+  display: flex;
+  justify-content: center;
+  margin-top: 88px;
+  gap: 5px;
+}
+#gestor_default_main .bnts input{
+  font-size: 15px;
+  padding: 10px;
+}
+
+#gestor_default_main .w3-button{
+   color: white;
+}
+.form_modal .header{
+ display: flex;
+ justify-content: center;
+}
+.form_modal form{
+  padding: 2vw;
+}
+ /* ----- */
+
+/* FIM CSS GESTOR DEAFULT*/
