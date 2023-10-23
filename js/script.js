@@ -46,6 +46,9 @@ function erroLogin(n) {
         case 9:
             Swal.fire("Erro ao deletar")
             break;
+        case 10:
+            Swal.fire("As senhas não coincidem")
+            break;
     }
 }
 

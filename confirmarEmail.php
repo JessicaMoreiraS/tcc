@@ -1,10 +1,13 @@
 <?php
 include("conexao.php");
 $pSenhaIncorreta = false;
+$email;
+if(isset($_GET["emailconf"])){
+    $email=$_GET["emailconf"];
+}
 
 if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
     $codigoInserido = $_GET["codigo"];
-    $email = $_GET["emailconf"];
 
     $sqlBuscaConta = "SELECT * FROM conta_pendente_aluno WHERE email = '$email'";
 
@@ -21,8 +24,8 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
             $sqlDeletaContaPendente = "DELETE FROM conta_pendente_aluno WHERE id = '$id'";
 
             if ($mysqli->query($sqlCriaContaAluno) && $mysqli->query($sqlDeletaContaPendente)) {
-                // Sucesso - redirecionar para a página de login
-                header('Location: login.php');
+                // Sucesso - redirecionar 
+                header('Location: direcionamentoLogin.php?email='.$email.'&senha='.$senha);
             } else {
                 // Erro na comunicação com o banco
                 header('Location: login.php?e=7');
@@ -47,22 +50,22 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
 </head>
 <body>
     <div>
-        <form action="confirmar_email.php" method="GET">
+        <form action="confirmarEmail.php?emailconf=<?php echo $email?>" method="GET">
             <input type="text" length="6" placeholder="Código de confirmação" name="codigo" required>
-            <input type="hidden" name="emailconf" value="<?php echo $email; ?>">
             <input type="submit" value="Confirmar" name="confirmar">
         </form>
     </div>
 
     <?php
-    if (isset($nome) && isset($email) && isset($senha)) { ?>
-        <form action="confirmar_email.php?nome=<?php echo $nome; ?>&senha=<?php echo $senha; ?>&email=<?php echo $email; ?>" method='POST'>
+    if (isset($email)) { ?>
+        <form action="confirmarEmail.php?email=<?php echo $email; ?>" method='POST'>
             <input type="submit" value="Reenviar Email" name='enviar'>
         </form>
-    <?php } else { ?>
-        <a href="cadastro.php">Reenviar Código ou Corrigir Email</a>
-    <?php }
-    ?>
+    <?php } ?>
+    
+    <a href="direcionamentoLogin.php?email=<?php echo $email ?>&reenviarCodigo=true">Reenviar Código</a>
+
+
 
     <script src="js/script.js"></script>
     <?php
