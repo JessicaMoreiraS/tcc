@@ -104,7 +104,11 @@
                 </div>
 
                 <div class="input_entrar">
+<<<<<<< HEAD
                     <input disabled type="submit" value="Criar conta" id="criarConta"  name="criarConta"/>
+=======
+                    <input type="submit" value="Criar conta" id="criarConta" disabled name="criarConta"/>
+>>>>>>> 5b648d90661df805785214f5ac824b36ea9db32a
                 </div>
             </form>
             </div>

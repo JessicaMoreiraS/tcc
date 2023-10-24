@@ -442,6 +442,12 @@ footer {
   transform: none;
   cursor: not-allowed;
 }
+.input_entrar input:disabled:hover {
+    background-color: #666666;
+  cursor: not-allowed;
+  transform: none;
+}
+
 
 .input_entrar input:hover,
 #form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover {
