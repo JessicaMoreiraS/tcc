@@ -171,10 +171,47 @@
             form_login.style.left = "100%";
             form_register.style.left = "5%";
         }
+
+        const botaoCriarConta = document.getElementById("criarConta");
+
+const inputSenha = document.getElementById("senhaCadastro");
+const inputConfirmarSenha = document.getElementById("confirmarSenhaCadastro");
+const comparacaoSenhasP = document.getElementById("comparacaoSenhas");
+const verificacaoNomeCompletoP = document.getElementById(
+  "verificacaoNomeCompleto"
+);
+const inputNomeCompleto = document.getElementById("nomeCompleto");
+//confirmar se as senhas conferem
+
+inputSenha.addEventListener("input", validarCadastro);
+inputConfirmarSenha.addEventListener("input", validarCadastro);
+inputNomeCompleto.addEventListener("input", validarCadastro);
+
+function validarCadastro() {
+  //capturar a qauntidades de palavras no nome input
+  const palavrasinputNomeCompleto = inputNomeCompleto.value
+    .split(/\s+/)
+    .filter(Boolean).length;
+
+  //verificar se há no minimo duas palavras em nome
+  comparacaoSenhasP.style.display =
+    inputSenha.value === inputConfirmarSenha.value ? "none" : "block";
+  verificacaoNomeCompletoP.style.display =
+    palavrasinputNomeCompleto > 1 ? "none" : "block";
+
+  if (
+    inputSenha.value === inputConfirmarSenha.value &&
+    palavrasinputNomeCompleto > 1
+  ) {
+    botaoCriarConta.removeAttribute("disabled");
+  } else {
+    botaoCriarConta.setAttribute("disabled", "true");
+  }
+}
         </script>
     <script src="js/reveal.js"></script>
     <script src="js/login.js"></script>
-    <script src="js/script.js"></script>
+   
     <!-- sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
