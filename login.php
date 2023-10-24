@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="input_entrar">
-                    <input type="submit" value="Criar conta" id="criarConta" name="criarConta"/>
+                    <input disabled type="submit" value="Criar conta" id="criarConta"  name="criarConta"/>
                 </div>
             </form>
             </div>
@@ -210,7 +210,6 @@ function validarCadastro() {
 }
         </script>
     <script src="js/reveal.js"></script>
-    <script src="js/login.js"></script>
    
     <!-- sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
