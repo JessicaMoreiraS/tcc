@@ -28,8 +28,8 @@ DHT dht11_sensor(DHTPIN, DHTTYPE); //--> Initialize DHT sensor.
 
 
 //======================================== SSID and Password of your WiFi router.
-const char* ssid = "Rebeca";
-const char* password = "Rebeca123";
+const char* ssid = "Mi 9T Pro";
+const char* password = "e18ff26ed35ba";
 
 
 //======================================== Variables for HTTP POST request data.
@@ -261,7 +261,7 @@ void loop() {
 
     // http.begin("http://REPLACE_WITH_YOUR_COMPUTER_IP_ADDRESS/REPLACE_WITH_PROJECT_FOLDER_NAME_IN_htdocs_FOLDER/getdata.php");
     // Example : http.begin("http://192.168.56.1/tcc/getdata.php");
-    http.begin("http://192.168.76.214/tcc/getdata.php");  //--> Specify request destination
+    http.begin("http://192.168.232.214/tcc/getdata.php");  //--> Specify request destination
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");        //--> Specify content-type header
    
     httpCode = http.POST(postData); //--> Send the request
@@ -286,7 +286,7 @@ void loop() {
     get_DHT11_sensor_data();
   
     //........................................ The process of sending the DHT11 sensor data to the database.
-    postData = "id=esp32_01";
+    postData = "id=esp32_01&id_maquina=1";
     postData += "&temperatura=" + String(send_temperatura);
     postData += "&velocidade=" + String(send_velocidade);
     postData += "&oleo_caixaDeVelocidade=" + String(send_oleo_caixaDeVelocidade);
@@ -305,7 +305,7 @@ void loop() {
     Serial.println();
     Serial.println("---------------updateDHT11data.php");
     // Example : http.begin("http://192.168.56.1/tcc/updateDHT11data.php");
-    http.begin("http://192.168.76.214/tcc/updateDHT11data.php");  //--> Specify request destination
+    http.begin("http://192.168.232.214/tcc/updateDHT11data.php");  //--> Specify request destination
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //--> Specify content-type header
    
     httpCode = http.POST(postData); //--> Send the request

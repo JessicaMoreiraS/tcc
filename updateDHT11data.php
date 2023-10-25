@@ -13,6 +13,8 @@
     $id_tipo_maquina;
 
     if($status_read_sensor_dht11 == "SUCESS"){
+        console.log("dentro do sucess");
+        
         //encontrar qual é o tipo de maquina
         include("conexao.php");
         $sqlBuscaAtributos = "SELECT * FROM maquina WHERE id = $id_maquina";
