@@ -152,7 +152,7 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
             ?>
           </div>
           <div class="bnts">
-            <input name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar" disabled>
+            <input name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar" >
             <button id="cancelar_button">cancelar</button>
 
           </div>
@@ -162,7 +162,47 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
   </section>
 
 </body>
-<script src="js/script.js"></script>
+<script>
+ //TRECHO DO CODIGO QUE LIBERA A CRIAÇÃO DE SALA, HOME PROFESSOR
+document.addEventListener("DOMContentLoaded", function() {
+    // aplicando os inputs qye precisam ser preechidos em variaveis
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const cadastrarSalaButton = document.querySelector('#submitCadastrarSala');
+
+    //  ouvinte de eventos de mudança a todos os checkboxes
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', verificarFormulario);
+    });
+
+
+    // Funçao que verificar o formulario(para habiliyar ou na a criação)
+    function verificarFormulario() {
+        // Veridica se pelo menos um checkbox esta selecionado e o codigo esta preenchido
+        const checkboxSelecionado = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        // Habilita ou desabilita a criaçao
+        if (checkboxSelecionado) {
+            cadastrarSalaButton.removeAttribute('disabled');
+        } else {
+            cadastrarSalaButton.setAttribute('disabled', 'disabled');
+        }
+    }
+});
+////////////////////////////////////////////////// 
+//SCRIPTS DO HOME PROFESSOR//
+
+//front-end do botao de criar turma
+var from_criar_sala = document.getElementById("section_form");
+var mostrarBotao = document.getElementById("criar_turma");
+var ocultarBotao = document.getElementById("cancelar_button");
+mostrarBotao.addEventListener("click", function() {
+    from_criar_sala.style.display = "block"; 
+});
+ocultarBotao.addEventListener("click", function() {
+    from_criar_sala.style.display = "none"; 
+});
+////////
+
+</script>
 <script src="js/reveal.js"></script>
 
 </html>

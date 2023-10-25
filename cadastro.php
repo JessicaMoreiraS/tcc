@@ -53,9 +53,10 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
 
     // Verificando se o SQL foi bem-sucedido
     if ($preparacaoSeguraSQL) {
+        $codigoAcesso = gerarCodigo();
         // Vinculando os valores aos placeholders(?,?,?)
         // 's' = string, 'i' = int , 's' = string
-        $preparacaoSeguraSQL->bind_param("sis", $nomeSala, $idProfessor, gerarCodico());
+        $preparacaoSeguraSQL->bind_param("sis", $nomeSala, $idProfessor, $codigoAcesso);
 
         // Execução do POST (sql que ja passou pelo prepare)
         if ($preparacaoSeguraSQL->execute()) {
@@ -108,7 +109,8 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
                                     exit;
                                 } else {
                                     // erroo
-                                    echo "Erro ao aplicar a máquina " . '$maquina';
+                                    echo "Erro ao aplicar a máquina: " . mysqli_error($mysqli);
+
                                 }
                                 //fechando a consulta
                                 $preparacaoSeguraSQL2->close();
