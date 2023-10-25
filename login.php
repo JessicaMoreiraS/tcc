@@ -104,11 +104,8 @@
                 </div>
 
                 <div class="input_entrar">
-<<<<<<< HEAD
-                    <input disabled type="submit" value="Criar conta" id="criarConta"  name="criarConta"/>
-=======
                     <input type="submit" value="Criar conta" id="criarConta" disabled name="criarConta"/>
->>>>>>> 5b648d90661df805785214f5ac824b36ea9db32a
+
                 </div>
             </form>
             </div>
@@ -211,6 +208,25 @@ function validarCadastro() {
   } else {
     botaoCriarConta.setAttribute("disabled", "true");
   }
+}
+
+async function caixaSenhaGestao() {
+    const { value: password } = await Swal.fire({
+        title: 'Preencha sua senha',
+        input: 'password', 
+        inputLabel: 'Senha',
+        inputPlaceholder: 'Sua senha',
+        inputAttributes: {
+            maxlength: 10,
+            autocapitalize: 'off',
+            autocorrect: 'off'
+        }
+    })
+
+    if (password) {
+        location.assign(`direcionamentoLogin.php?sg=${password}`)
+        //Swal.fire(`Entered password: ${password}`)
+    }
 }
         </script>
     <script src="js/reveal.js"></script>
