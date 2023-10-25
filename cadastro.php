@@ -10,7 +10,7 @@ $sqlCriaContaAluno = "INSERT INTO aluno (nome, email, senha, codigo_recuperacao)
 
 if ($mysqli->query($sqlCriaContaAluno)) {
     // Envie o email com o código de confirmação para o usuário
-    enviarCodigoConfirmacao($email, $codigoConf);
+    // enviarCodigoConfirmacao($email, $codigoConf);
 
     // Redireciona para a página de confirmação de email
     header('Location: confirmar_email.php?emailconf=' . $email);
@@ -141,12 +141,12 @@ if (filter_input(INPUT_POST, 'cadastrarProfessor')) {
     $cpf = filter_input(INPUT_POST, 'cpf');
     $primeiraSenhaCriptografada = password_hash($cpf, PASSWORD_DEFAULT);
 
-    $sqlCriarContaProfessor = "INSERT INTO professor (nome, cpf, email, senha, redefinir_senha) VALUES ('$nome', '$cpf', '$email', '$primeiraSenhaCriptografada', 1)";
+    $sqlCriarContaProfessor = "INSERT INTO professor (nome, cpf, email, senha, redefinir_senha) VALUES ('$nome', '$cpf', '$email', '$primeiraSenhaCriptografada', 0)";
 
     if ($mysqli->query($sqlCriarContaProfessor)) {
-        header('Location: criarConta.php?ProfessorSucess=true');
+        echo 'professor cadastrado';
     } else {
-        header('Location: criarConta.php?ProfessorSucess=false');
+        echo 'erro em cadastrar professor'->mysql_error;
     }
 }
 ?>
