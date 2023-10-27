@@ -172,17 +172,17 @@ void control_LEDs() {
     }
   
     Serial.printf("Temperatura : %.2f °C\n", send_temperatura);
-    Serial.printf("Velocidade : %d %%\n", send_velocidade);
-    Serial.printf("Oleo caixa De Velocidade: %d %%\n", send_oleo_caixaDeVelocidade);
-    Serial.printf("Viscosidade caixa De Velocidade: %d %%\n", send_viscosidade_caixaDeVelocidade);
-    Serial.printf("Oleo caixa De Norton: %d %%\n", send_oleo_caixaDeNorton);
-    Serial.printf("Viscosidade caixa De Norton: %d %%\n", send_viscosidade_caixaDeNorton);
-    Serial.printf("Oleo avental Do Torno: %d %%\n", send_oleo_aventalDoTorno);
-    Serial.printf("Viscosidade avental Do Torno: %d %%\n", send_viscosidade_aventalDoTorno);
-    Serial.printf("Vibracao: %d %%\n", send_vibracao);
+    Serial.printf("Velocidade : %.2f %\n", send_velocidade);
+    Serial.printf("Oleo caixa De Velocidade: %.2f %\n", send_oleo_caixaDeVelocidade);
+    Serial.printf("Viscosidade caixa De Velocidade: %.2f %\n", send_viscosidade_caixaDeVelocidade);
+    Serial.printf("Oleo caixa De Norton: %.2f %\n", send_oleo_caixaDeNorton);
+    Serial.printf("Viscosidade caixa De Norton: %.2f %\n", send_viscosidade_caixaDeNorton);
+    Serial.printf("Oleo avental Do Torno: %.2f %\n", send_oleo_aventalDoTorno);
+    Serial.printf("Viscosidade avental Do Torno: %.2f %\n", send_viscosidade_aventalDoTorno);
+    Serial.printf("Vibracao: %f %\n", send_vibracao);
     //to do: ver como vai medir o tempo
-    Serial.printf("Tempo On: %d %%\n", send_tempo_On);
-    Serial.printf("Tempo Off: %d %%\n", send_tempo_Off);
+    Serial.printf("Tempo On: %.2f %\n", send_tempo_On);
+    Serial.printf("Tempo Off: %.2f %\n", send_tempo_Off);
     Serial.printf("Status Read DHT11 Sensor : %s\n", send_Status_Read_DHT11);
     Serial.println("------------------------------");
   }
@@ -267,7 +267,7 @@ void loop() {
     Serial.println("---------------getdata.php");
    
    
-    http.begin("http://192.168.86.214/tcc/getdata.php");
+    http.begin("http://192.168.146.214/tcc/getdata.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
    
     httpCode = http.POST(postData);
@@ -320,7 +320,7 @@ void loop() {
     digitalWrite(ON_Board_LED, HIGH);
     Serial.println();
     Serial.println("---------------updateDHT11data.php");
-    http.begin("http://192.168.86.214/tcc/updateDHT11data.php");
+    http.begin("http://192.168.146.214/tcc/updateDHT11data.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviando os dados ao servidor
