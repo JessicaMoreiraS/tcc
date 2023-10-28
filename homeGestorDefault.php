@@ -9,7 +9,8 @@ if ($_SESSION['idAcesso'] != 'gestaoDefault' || $_SESSION['tipo'] != 'defalt') {
 }
 
 //Função pra excluir o Gestor
-function excluirGestor($idGestor) {
+function excluirGestor($idGestor)
+{
     global $mysqli;
     $stmt = $mysqli->prepare("DELETE FROM gestor WHERE id = ?");
     $stmt->bind_param("i", $idGestor);
@@ -62,10 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cadastrarGestor'])) {
 }
 
 // Função para validar a senha do Gestor Default
-function senhaGestorDefaultCorreta($senha) {
+function senhaGestorDefaultCorreta($senha)
+{
     global $mysqli;
 
-    $senhaGestorDefaultHashed = '$2y$10$P6KoVMxrnt0rlpLFdFv8LOCUEMzZEbASF940OS0tsQJpzuThkbG1C'; 
+    $senhaGestorDefaultHashed = '$2y$10$P6KoVMxrnt0rlpLFdFv8LOCUEMzZEbASF940OS0tsQJpzuThkbG1C';
 
     // Verificar se a senha fornecida corresponde à senha do Gestor Default
     return password_verify($senha, $senhaGestorDefaultHashed);
@@ -81,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
         excluirGestor($idGestorExcluir);
         // Redirecionar para a mesma página após a exclusão
         // echo '<script>location.reload();</script>';
-        
+
         exit();
     } else {
         echo "Senha do Gestor Default incorreta!";
@@ -92,91 +94,246 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/mediaQuery.css" />
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
     <title>Home - Gestor Default</title>
 </head>
-<body>
-    <header>
-       
+
+<body id="body_tables">
+    <header class="topo-index" id="header_homeGestao">
+        <img src="img/logo-senai-branco.png" alt="" />
     </header>
+    <main id="gestor_default_main">
 
-    <main>
-        <h2>Gerenciamento de Gestores</h2>
+        <div class="container">
+            <div class="row row--top-40">
+                <div class="col-md-12">
+                    <h2 class="row__title">Gerenciamento de <span>GESTORES</span></h2>
+                </div>
+            </div>
+            <div class="row row--top-20">
+                <div class="col-md-12">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead class="table__thead">
+                                <tr>
 
-        <!-- tabela com as informações dos gestores -->
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Ações</th>
-            </tr>
-            <?php
-            foreach ($gestores as $gestor) {
-                echo "<tr>
-                        <td>{$gestor['cpf']}</td>
-                        <td>{$gestor['nome']}</td>
-                        <td>{$gestor['email']}</td>
+                                    <th class="table__th">ID</th>
+                                    <th class="table__th">CPF</th>
+                                    <th class="table__th">Nome</th>
+                                    <th class="table__th">Email</th>
+                                    <th class="table__th"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table__tbody">
+                                <?php
+                                foreach ($gestores as $gestor) {
+                                    echo "<tr class='table-row table-row--gestor table'>
+                                    <td class='table-row__td'>
+                                    <div class='table-row__img'></div>
+                                    <div class='table-row__info'>
+                                      <p class='table-row__id'>{$gestor['id']}</p>
+                                    </div>
+                                  </td>
+                     
+                        <td class='table-row__td' data-column='CPF'>
+                            <div >
+                                <p class='table-row__p'></p>
+                            </div>
+                        {$gestor['cpf']}
+                        </td>
+                        <td class='table-row__td' data-column='Nome'>{$gestor['nome']}</td>
+                        <td class='table-row__td' data-column='Email'>{$gestor['email']}</td>
                         <td>
                             <button onclick='confirmarExclusao({$gestor['id']})'>Excluir</button>
                         </td>
                       </tr>";
-            }
-            ?>
-        </table>
-
-        <!-- Pop-up de confirmação de exclusão -->
-        <div id="confirmacaoExclusao" style="display:none;">
-            <p>Você tem certeza que deseja excluir este gestor?</p>
-            <form method="post">
-                <input type="hidden" name="idGestorExcluir" id="idGestorExcluir">
-                <label for="senhaGestorDefault">Senha do Gestor Default:</label>
-                <input type="password" name="senhaGestorDefault" required>
-                <button type="submit" name="confirmarExclusao">Sim</button>
-                <button type="button" onclick="fecharConfirmacaoExclusao()">Não</button>
-            </form>
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Formulário pop-up para adicionar novo gestor -->
-        <div id="cadastroGestor" style="display:none;">
-            <form method="post">
-                <label for="nome">Nome Completo:</label>
-                <input type="text" name="nome" id="nome" required>
-                <label for="cpf">CPF:</label>
-                <input type="text" name="cpf" id="cpf" required>
-                <label for="email">Email:</label>
-                <input type="text" name="email" id="email" required>
-                <label for="senha">Senha:</label>
-                <input type="password" name="senha" id="senha" required>
-
-                <button type="submit" name="cadastrarGestor">Cadastrar</button>
-            </form>
-            <button type="button" onclick="fecharCadastroGestor()">Fechar</button>
+        <div class="bnts">
+            <input onclick="document.getElementById('cadastroGestor').style.display='block'" type="button"
+                value="Cadastrar Gestor" />
+            <input type="button" value="Atualizar a Tabela" onclick=" location.reload()" />
         </div>
-
-        <!-- Botão para cadastrar novo gestor -->
-        <button type="button" onclick="abrirCadastroGestor()">Cadastrar Novo Gestor</button>
     </main>
+    <div class="w3-container">
+        <div id="confirmacaoExclusao" class="w3-modal">
+            <div class="w3-modal-content w3-animate-top">
+                <span onclick="document.getElementById('confirmacaoExclusao').style.display='none'"
+                    class="w3-button w3-display-topright">&times;</span>
 
+                <div class="form_modal">
+                    <p class="p_modal">
+                        Você tem certeza que deseja excluir este Gestor?
+                    </p>
+                    <form method="post">
+                        <input type="hidden" name="idGestorExcluir" id="idGestorExcluir" />
+                        <div class="input_modal">
+                            <input class="senhaGestorDefault" placeholder="Senha Gestor Default" type="password"
+                                name="senhaGestorDefault" required />
+                        </div>
+
+                        <div class="bnts">
+                            <button class="btn" type="submit" name="confirmarExclusao">Excluir</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-container">
+        <div id="cadastroGestor" class="w3-modal">
+            <div class="w3-modal-content w3-animate-top">
+                <span onclick="document.getElementById('cadastroGestor').style.display='none'"
+                    class="w3-button w3-display-topright">&times;</span>
+                <div class="form_modal">
+                    <div class="container">
+                        <div class="header">
+                            <div>
+                                <div class="logo">
+                                    <img src="img/svg/Senai _logoSVG.svg" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <form method="post">
+
+                            <div class="input_modal">
+                                <input type="text" name="nome" id="nome" placeholder="Nome Completo" required>
+                            </div>
+                            <p class="p_modal" id="verificacaoNomeCompleto" style="display: none">
+                                Digite um nome completo
+                            </p>
+                            <div class="input_modal">
+                                <input type="email" placeholder="Email" name="email" id="email" required />
+                            </div>
+                            <div class="input_modal">
+                                <input type="text" placeholder="CPF" name="cpf" oninput="mascara(this)" maxlength="11"
+                                    id="cpf" required />
+                            </div>
+                            <p id="verificacaoCPF_p" style="display: none">
+                                Digite um CPF válido
+                            </p>
+                            <div class="input_modal">
+                                <input id="senhaCadastro" placeholder="Senha" type="password" name="senha" id="senha"
+                                    required />
+                            </div>
+                            <div class="input_modal">
+                                <input id="confirmarSenhaCadastro" placeholder="Confirmar Senha" type="password"
+                                    name="senha" id="senha" required />
+                            </div>
+                            <div>
+                                <p class="p_modal" id="comparacaoSenhas" style="display: none">
+                                    As senhas não conferem
+                                </p>
+                            </div>
+                            <div class="bnts">
+                                <button disabled type="submit" name="cadastrarGestor" id="submitCadastrarGestor">
+                                    Cadastrar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-        function confirmarExclusao(idGestor) {
+       function confirmarExclusao(idGestor) {
             document.getElementById('idGestorExcluir').value = idGestor;
             document.getElementById('confirmacaoExclusao').style.display = 'block';
         }
+        //mascara CPF
+        function mascara(i) {
+            var v = i.value;
+            if (isNaN(v[v.length - 1])) {
+                // impede entrar outro caractere que não seja número
+                i.value = v.substring(0, v.length - 1);
+                return;
+            }
 
-        function fecharConfirmacaoExclusao() {
-            document.getElementById('confirmacaoExclusao').style.display = 'none';
+            i.setAttribute("maxlength", "14");
+            if (v.length == 3 || v.length == 7) i.value += ".";
+            if (v.length == 11) i.value += "-";
         }
 
-        function abrirCadastroGestor() {
-            document.getElementById('cadastroGestor').style.display = 'block';
-        }
+        ///////
 
-        function fecharCadastroGestor() {
-            document.getElementById('cadastroGestor').style.display = 'none';
+        const botaoCriarConta = document.getElementById("submitCadastrarGestor");
+
+        const inputSenha = document.getElementById("senhaCadastro");
+        const inputConfirmarSenha = document.getElementById(
+            "confirmarSenhaCadastro"
+        );
+
+        const comparacaoSenhasP = document.getElementById("comparacaoSenhas");
+        const verificacaoNomeCompletoP = document.getElementById(
+            "verificacaoNomeCompleto"
+        );
+
+        const inputNomeCompleto = document.getElementById("nome");
+
+        inputSenha.addEventListener("input", validarCadastro);
+        inputConfirmarSenha.addEventListener("input", validarCadastro);
+        inputNomeCompleto.addEventListener("input", validarCadastro);
+
+        //verifca se as senhas conferem e se nao esta digitando apenas um nome
+        function validarCadastro() {
+            const inputCPF = document.getElementById("cpf");
+            const verificacaoCPF_p = document.getElementById("verificacaoCPF_p");
+            var comprimentoCPF = inputCPF.value.length;
+
+            inputCPF.addEventListener("input", function () {
+                 comprimentoCPF = inputCPF.value.length;
+                verificacaoCPF_p.style.display = comprimentoCPF < 11 ? "block" : "none";
+                
+            });
+
+            const palavrasinputNomeCompleto = inputNomeCompleto.value
+                .split(/\s+/)
+                .filter(Boolean).length;
+
+            comparacaoSenhasP.style.display =
+                inputSenha.value === inputConfirmarSenha.value ? "none" : "block";
+
+            verificacaoNomeCompletoP.style.display =
+                palavrasinputNomeCompleto > 1 ? "none" : "block";
+
+
+            if (
+                inputSenha.value === inputConfirmarSenha.value &&
+                palavrasinputNomeCompleto > 1
+            ) {
+                botaoCriarConta.removeAttribute("disabled");
+            } else {
+                botaoCriarConta.setAttribute("disabled", "true");
+            }
         }
+        ///////////////////////////
     </script>
 </body>
+
 </html>

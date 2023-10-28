@@ -7,6 +7,9 @@
     <title>Landing</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaQuery.css" />
+    <style>
+      
+  </style>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -54,5 +57,71 @@
     </footer>
 
     <script src="js/reveal.js"></script>
+    <script>
+      //mascara CPF
+      function mascara(i) {
+        var v = i.value;
+        if (isNaN(v[v.length - 1])) {
+          // impede entrar outro caractere que não seja número
+          i.value = v.substring(0, v.length - 1);
+          return;
+        }
+  
+        i.setAttribute("maxlength", "14");
+        if (v.length == 3 || v.length == 7) i.value += ".";
+        if (v.length == 11) i.value += "-";
+      }
+  
+      ///////
+  
+      const botaoCriarConta = document.getElementById("submitCadastrarGestor");
+  
+      const inputSenha = document.getElementById("senhaCadastro");
+      const inputConfirmarSenha = document.getElementById(
+        "confirmarSenhaCadastro"
+      );
+  
+      const comparacaoSenhasP = document.getElementById("comparacaoSenhas");
+      const verificacaoNomeCompletoP = document.getElementById(
+        "verificacaoNomeCompleto"
+      );
+  
+      const inputNomeCompleto = document.getElementById("nome");
+  
+      inputSenha.addEventListener("input", validarCadastro);
+      inputConfirmarSenha.addEventListener("input", validarCadastro);
+      inputNomeCompleto.addEventListener("input", validarCadastro);
+  
+      //verifca se as senhas conferem e se nao esta digitando apenas um nome
+      function validarCadastro() {
+        const palavrasinputNomeCompleto = inputNomeCompleto.value
+          .split(/\s+/)
+          .filter(Boolean).length;
+  
+        comparacaoSenhasP.style.display =
+          inputSenha.value === inputConfirmarSenha.value ? "none" : "block";
+  
+        verificacaoNomeCompletoP.style.display =
+          palavrasinputNomeCompleto > 1 ? "none" : "block";
+  
+        const inputCPF = document.getElementById("cpf");
+        const verificacaoCPF_p = document.getElementById("verificacaoCPF_p");
+  
+        inputCPF.addEventListener("input", function () {
+          var comprimentoCPF = inputCPF.value.length;
+          verificacaoCPF_p.style.display = comprimentoCPF < 11 ? "block" : "none";
+        });
+        if (
+          inputSenha.value === inputConfirmarSenha.value &&
+          palavrasinputNomeCompleto > 1 &&
+          comprimentoCPF == 11
+        ) {
+          botaoCriarConta.removeAttribute("disabled");
+        } else {
+          botaoCriarConta.setAttribute("disabled", "true");
+        }
+      }
+      ///////////////////////////
+    </script>
   </body>
 </html>
