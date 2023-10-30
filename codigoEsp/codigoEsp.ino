@@ -131,15 +131,15 @@ void control_LEDs() {
   
     // Ler temperatura em Celsius (o padrão)
     // send_Temp = 24;//dht11_sensor.readTemperature();
-    send_temperatura = 1/*rand() % 101*/;
-    send_velocidade = 2/*rand() % 101*/;
-    send_oleo_caixaDeVelocidade = 3;
-    send_viscosidade_caixaDeVelocidade = 4;
-    send_oleo_caixaDeNorton = 5;
-    send_viscosidade_caixaDeNorton = 6;
-    send_oleo_aventalDoTorno = 7;
-    send_viscosidade_aventalDoTorno = 8;
-    send_vibracao = 9;
+    send_temperatura = rand() % 101;
+    send_velocidade = rand() % 101;
+    send_oleo_caixaDeVelocidade = rand() % 101;
+    send_viscosidade_caixaDeVelocidade = rand() % 101;
+    send_oleo_caixaDeNorton = rand() % 101;
+    send_viscosidade_caixaDeNorton = rand() % 101;
+    send_oleo_aventalDoTorno = rand() % 101;
+    send_viscosidade_aventalDoTorno = rand() % 101;
+    send_vibracao = rand() % 101;
 
     //to do: ver como vai medir o tempo
     send_tempo_On = 10;
@@ -267,7 +267,7 @@ void loop() {
     Serial.println("---------------getdata.php");
    
    
-    http.begin("http://192.168.146.214/tcc/getdata.php");
+    http.begin("http://192.168.246.214/tcc/getdata.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
    
     httpCode = http.POST(postData);
@@ -320,7 +320,7 @@ void loop() {
     digitalWrite(ON_Board_LED, HIGH);
     Serial.println();
     Serial.println("---------------updateDHT11data.php");
-    http.begin("http://192.168.146.214/tcc/updateDHT11data.php");
+    http.begin("http://192.168.246.214/tcc/updateDHT11data.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviando os dados ao servidor

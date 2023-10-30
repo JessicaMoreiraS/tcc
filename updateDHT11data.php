@@ -3,14 +3,17 @@
   require 'database.php';
   include("conexao.php");
   
-  //---------------------------------------- Condition to check that POST value is not empty.
-  if (!empty($_POST)) {
+//---------------------------------------- Condition to check that POST value is not empty.
+if (!empty($_POST)) {
     //........................................ keep track POST values
     $id_esp = $_POST['id'];//esp
     $id_maquina = $_POST['id_maquina'];//maquina
     $status_read_sensor_dht11 = $_POST['status_read_sensor_dht11'];//ststus semsor
     $date_time= date('Y-m-d H:i:s');
     $id_tipo_maquina;
+
+    //acende o led verde
+    acendeVerde($id_maquina);
 
     if($status_read_sensor_dht11 == "SUCCEED"){
         
@@ -37,11 +40,12 @@
             while ($dadosAtributo = mysqli_fetch_assoc($dadosAtributoConteudo)){
                 $atributoEsp = $dadosAtributo['atributo_esp'];
                 $variavelEsp = $_POST[$atributoEsp];
-                //$sqlUpdate = "UPDATE esp32 (esp, id_maquina, id_atributo, valor, date_time) SET ('$id_esp', '$id_maquina', '$id_atributo','$variavelEsp','$date_time') WHERE id_maquina = $id_maquina AND id_atributos = $id_atributo";
+    
                 $sqlUpdate = "UPDATE esp32 SET esp = '$id_esp', valor = '$variavelEsp', date_time = '$date_time' WHERE id_maquina = '$id_maquina' AND id_atributos = '$id_atributo'";
 
-                //to do: verificar valores com valores de referencia e alterar leds para verde ou vermelho
-
+                //to do: verificar valores com valores de referencia e alterar leds para vermelho
+                verificaValorReferencia($id_atributo, $variavelEsp, $id_maquina);
+                
                 // Executar a consulta
                 if ($mysqli->query($sqlUpdate)) {
                     echo "Sucesso.";
@@ -50,40 +54,35 @@
                 }
             }
         }
-
     }
-    
-    /*
-    $temperatura = $_POST['temperatura'];
-    $velocidade = $_POST['velocidade'];
-    $oleo_caixaDeVelocidade = $_POST['oleo_caixaDeVelocidade'];
-    $viscosidade_caixaDeVelocidade = $_POST['viscosidade_caixaDeVelocidade'];
-    $oleo_caixaDeNorton = $_POST['oleo_caixaDeNorton'];
-    $viscosidade_caixaDeNorton = $_POST['viscosidade_caixaDeNorton'];
-    $oleo_aventalDoTorno = $_POST['oleo_aventalDoTorno'];
-    $viscosidade_aventalDoTorno = $_POST['viscosidade_aventalDoTorno'];
-    $vibracao = $_POST['vibracao'];
-    $tempo_On = $_POST['tempo_On'];
-    //........................................
-    
-    //........................................ Updating the data in the table.
-    $pdo = Database::connect();
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+
+function verificaValorReferencia($id, $valor, $id_maquina){
+    include("conexao.php");
+    $sqlValorRef = "SELECT * FROM atributo_tipo WHERE id= $id";
+    $trataSql = $mysqli->query($sqlValorRef);
+    $valorReferencia;
+
+    while ($dadosAtributos = mysqli_fetch_assoc($trataSql)){
+        $valorReferencia = $dadosAtributos['valor_referencia'];
+    }
+
+    if($valor > $valorReferencia){
+        acendeVermelho($id_maquina);
+    }
+}
 
 
-    $sql = "UPDATE esp32 SET temperatura = ?, velocidade = ?, oleo_caixaDeVelocidade = ?, viscosidade_caixaDeVelocidade = ?, oleo_caixaDeNorton = ?, viscosidade_caixaDeNorton = ?, oleo_aventalDoTorno = ?, viscosidade_aventalDoTorno = ?, vibracao = ?, tempo_On = ?, status_read_sensor_dht11 = ? WHERE id = ?";
-    $q = $pdo->prepare($sql);
-    $q->execute(array(
-        $temperatura, $velocidade, $oleo_caixaDeVelocidade, 
-        $viscosidade_caixaDeVelocidade, $oleo_caixaDeNorton, 
-        $viscosidade_caixaDeNorton, $oleo_aventalDoTorno, 
-        $viscosidade_aventalDoTorno, $vibracao, $tempo_On, 
-        $status_read_sensor_dht11, $id
-    ));
-/*
-    $sql = "UPDATE esp32 SET temperatura = ?, velocidade = ?, oleo_caixaDeVelocidade = ?, viscosidade_caixaDeVelocidade = ?, oleo_caixaDeNorton = ?, viscosidade_caixaDeNorton = ?, oleo_aventalDoTorno = ?, vibracao = ?, tempo_On = ?, status_read_sensor_dht11 = ? WHERE id = ?";
-    $q = $pdo->prepare($sql);
-    $q->execute(array($temperatura,$velocidade, $oleo_caixaDeVelocidade, $viscosidade_caixaDeVelocidade, $oleo_caixaDeNorton, $viscosidade_caixaDeNorton, $oleo_aventalDoTorno, $viscosidade_aventalDoTorno, $vibracao, $tempo_On, $status_read_sensor_dht11, $id));*/
-    //Database::disconnect();
-  }
+function acendeVermelho($id_maquina){
+    include("conexao.php");
+    $sqlVermelho = "UPDATE maquina SET led_verde = 'OFF', led_amarelo = 'OFF', led_vermelho = 'ON'";
+    $mysqli->query($sqlVermelho);
+}
+
+
+function acendeVerde($id_maquina){
+    include("conexao.php");
+    $sqlVerde = "UPDATE maquina SET led_verde = 'ON', led_amarelo = 'OFF', led_vermelho = 'OFF'";
+    $mysqli->query($sqlVerde);
+}
 ?>
