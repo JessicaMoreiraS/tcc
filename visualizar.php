@@ -143,7 +143,6 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                             <td class="table-row__td">
                             <select class="custom-select">
                                 <?php while ($rowSalsDoAluno = mysqli_fetch_assoc($conteudoAluno)) {
-
                                     echo "
                                     <option  class='link_option'>" .$rowSalsDoAluno['turma']."</option>
                                     ";
@@ -167,7 +166,6 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                         </td>";
                         }
                     }
-
                     if ($checklist && $camposBusca[$i] == "modelo") {
                         if ($row['id_aluno'] > 0) {
                             $id_responsavel = $row['id_aluno'];
@@ -188,7 +186,11 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                 if($_GET['view'] == 'alunosSala'){
                     echo '<td><a href="delete.php?acao=deletarAlunoDaSala&id_delecao='.$row['id'].'">Remover Aluno da Sala</a>';
                 }else{
-                    echo '<td><a href="delete.php?option='.$_GET['view'].'&id_delecao='.$row['id'].'">Excluir</a>';
+                    echo '<td class="table-row__td">
+                            <a href="delete.php?option='.$_GET['view'].'&id_delecao='.$row['id'].'">
+                                <img class="table_delete" src="img/svg/Delete.svg" title="Excluir"/>
+                            </a>';
+                    
                     if ($_GET['view'] == 'sala'){
                         echo '<a href="visualizar.php?view=alunosSala&id_sala_view='.$row['id'].'">Alunos</a>';
                     }
@@ -218,7 +220,7 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
 
 <body id="body_tables">
     <header class="topo-index" id="header_homeGestao">
-        <img src="img/logo-senai-branco.png" alt="" />
+        <img src="img/logo-senai-branco.png" />
     </header>
 
     <div>
@@ -236,8 +238,6 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                     <h2 class="row__title">
                         <?php echo '<b>' . $tema ." ".$nomeTurma. '</b>' ?> do Sistema:
                     </h2>
-
-
                 </div>
             </div>
         </div>
