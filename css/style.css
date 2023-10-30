@@ -558,8 +558,14 @@ footer {
 }
 
 .swal2-confirm.swal2-styled {
-  background-color: #fff;
-  color: #003f5b;
+  background-color: #003f5b;
+  color: #fff;
+}
+.swal2-title  {
+  background-color: var(--azulPrincipal);
+}
+.swal2-input-label{
+  color: white;
 }
 
 /* ///////////// */
@@ -1417,9 +1423,10 @@ margin-bottom: 20px;
 }
 .table_delete{
   cursor: pointer;
+  transition: .3s ease;
 }
 .table_delete:hover{
-  fill: red;
+  transform: scale(0.9, 0.9);
 }
 
 .table-row__progress{

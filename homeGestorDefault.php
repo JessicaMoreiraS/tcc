@@ -159,9 +159,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
                         </td>
                         <td class='table-row__td' data-column='Nome'>{$gestor['nome']}</td>
                         <td class='table-row__td' data-column='Email'>{$gestor['email']}</td>
-                        <td>
-                            <button onclick='confirmarExclusao({$gestor['id']})'>Excluir</button>
-                        </td>
+                        <td class='table-row__td'>
+                        <img onclick='confirmarExclusao({$gestor['id']})' class='table_delete' src='img/svg/Delete.svg' title='Excluir aluno do sistema'/>
+                      </td>
                       </tr>";
                                 }
                                 ?>
