@@ -305,12 +305,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
             const inputCPF = document.getElementById("cpf");
             const verificacaoCPF_p = document.getElementById("verificacaoCPF_p");
             var comprimentoCPF = inputCPF.value.length;
+            var cpfValido = false;
 
             inputCPF.addEventListener("input", function () {
                  comprimentoCPF = inputCPF.value.length;
                 verificacaoCPF_p.style.display = comprimentoCPF < 11 ? "block" : "none";
-                
+                if(comprimentoCPF == 14){
+                    botaoCriarConta.removeAttribute("disabled");
+                }else{
+                    botaoCriarConta.setAttribute("disabled","true");
+                }
+              
             });
+
 
             const palavrasinputNomeCompleto = inputNomeCompleto.value
                 .split(/\s+/)
@@ -325,7 +332,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
 
             if (
                 inputSenha.value === inputConfirmarSenha.value &&
-                palavrasinputNomeCompleto > 1
+                palavrasinputNomeCompleto > 1 && cpfValido
             ) {
                 botaoCriarConta.removeAttribute("disabled");
             } else {
