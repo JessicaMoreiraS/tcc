@@ -423,7 +423,7 @@ footer {
   color: rgb(214, 75, 75);
 }
 
-.input_entrar input, #gestor_default_main .bnts input {
+.input_entrar input, #gestor_default_main .bnts button {
   padding: 13px 40px 13px 40px;
   color: #fff;
   border-radius: 15px;
@@ -438,16 +438,9 @@ footer {
 }
 
 .input_entrar input:disabled:hover {
-  background-color: #666666;
-  transform: none;
-  cursor: not-allowed;
+  background-color: #494949;
+  transform: scale(0.9, 0.9);
 }
-.input_entrar input:disabled:hover {
-    background-color: #666666;
-  cursor: not-allowed;
-  transform: none;
-}
-
 
 .input_entrar input:hover,
 #form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover {
@@ -1538,6 +1531,11 @@ margin-bottom: 20px;
 /* FIM CSS DAS TABELAS */
 
 /*CSS VISUALIZAR MAQUINA*/
+
+#visualizarMaquinas *{
+  overflow-x: visible;
+}
+
 .container-infoMaq{
   display: flex;
   justify-content: center;
@@ -1575,211 +1573,118 @@ color: white;
   margin-top: 50px;
 }
 
-.graficos{
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-width: 100%;
+.graficos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+ margin: 0 100px 0 100px;
+ max-width: 100%;
 }
 
-.graficos .card-grafico{
+.graficos .card-grafico {
   background-color: white;
-  width: 400px;
-  border-radius: 30px;
-  box-shadow: var(--box-shadow);
+  width:400px;
+  border-radius: 10px;
+  box-shadow:     8px 8px 16px #cecece,
+  -8px -8px 16px #f2f2f2;
   padding: 10px;
+  margin: 10px;
 }
 
 #chartdiv {
   width: 100%;
-  height: 200px;
-
+  height: 200px; 
 }
 .tituloCheck{
-  margin: 0 auto;
   margin-top: 50px;
   color: #003f5b;
   text-align: center;
 }
 
+.infoCheck{
+ text-align: center;
+ color: #003f5b;
+ font-weight: 600;
+ font-size: 18px;
+}
+
 .container-check{
-padding-left: 43%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 margin-top: 15px;
+
+
 }
 
 
-.checkbox-wrapper-19 {
-  box-sizing: border-box;
-  --background-color: #fff;
-  --checkbox-height: 25px;
-}
 
-@-moz-keyframes dothabottomcheck-19 {
-  0% {
-    height: 0;
-  }
-
-  100% {
-    height: calc(var(--checkbox-height) / 2);
-  }
-}
-
-@-webkit-keyframes dothabottomcheck-19 {
-  0% {
-    height: 0;
-  }
-
-  100% {
-    height: calc(var(--checkbox-height) / 2);
-  }
-}
-
-@keyframes dothabottomcheck-19 {
-  0% {
-    height: 0;
-  }
-
-  100% {
-    height: calc(var(--checkbox-height) / 2);
-  }
-}
-
-@keyframes dothatopcheck-19 {
-  0% {
-    height: 0;
-  }
-
-  50% {
-    height: 0;
-  }
-
-  100% {
-    height: calc(var(--checkbox-height) * 1.2);
-  }
-}
-
-@-webkit-keyframes dothatopcheck-19 {
-  0% {
-    height: 0;
-  }
-
-  50% {
-    height: 0;
-  }
-
-  100% {
-    height: calc(var(--checkbox-height) * 1.2);
-  }
-}
-
-@-moz-keyframes dothatopcheck-19 {
-  0% {
-    height: 0;
-  }
-
-  50% {
-    height: 0;
-  }
-
-  100% {
-    height: calc(var(--checkbox-height) * 1.2);
-  }
-}
-
-.checkbox-wrapper-19 input[type=checkbox] {
-  display: none;
-}
-
-#visualizarMaquinas *{
-    overflow-x: visible;
-}
-
-.checkbox-wrapper-19 .check-box {
-  height: var(--checkbox-height);
-  width: var(--checkbox-height);
-  background-color: transparent;
-  border: calc(var(--checkbox-height) * .1) solid #000;
-  border-radius: 5px;
-  position: relative;
-  display: inline-block;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-transition: border-color ease 0.2s;
-  -o-transition: border-color ease 0.2s;
-  -webkit-transition: border-color ease 0.2s;
-  transition: border-color ease 0.2s;
+.material-checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #777777;
   cursor: pointer;
 }
 
-.checkbox-wrapper-19 .check-box::before,
-  .checkbox-wrapper-19 .check-box::after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+.material-checkbox input[type="checkbox"] {
   position: absolute;
+  opacity: 0;
+  width: 0;
   height: 0;
-  width: calc(var(--checkbox-height) * .2);
-  background-color: #34b93d;
+}
+
+.checkmark {
+  position: relative;
   display: inline-block;
-  -moz-transform-origin: left top;
-  -ms-transform-origin: left top;
-  -o-transform-origin: left top;
-  -webkit-transform-origin: left top;
-  transform-origin: left top;
-  border-radius: 5px;
-  content: " ";
-  -webkit-transition: opacity ease 0.5;
-  -moz-transition: opacity ease 0.5;
-  transition: opacity ease 0.5;
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  border: 2px solid #021a07;
+  border-radius: 4px;
+  transition: all 0.3s;
 }
 
-.checkbox-wrapper-19 .check-box::before {
-  top: calc(var(--checkbox-height) * .72);
-  left: calc(var(--checkbox-height) * .41);
-  box-shadow: 0 0 0 calc(var(--checkbox-height) * .05) var(--background-color);
-  -moz-transform: rotate(-135deg);
-  -ms-transform: rotate(-135deg);
-  -o-transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-  transform: rotate(-135deg);
+.material-checkbox input[type="checkbox"]:checked ~ .checkmark {
+  background-color: var(--background-main);
+  border-color: #5ef059;
+ 
 }
 
-.checkbox-wrapper-19 .check-box::after {
-  top: calc(var(--checkbox-height) * .37);
-  left: calc(var(--checkbox-height) * .05);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+.material-checkbox input[type="checkbox"]:checked ~ .checkmark:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 6px;
+  height: 12px;
+  border: solid rgb(55, 194, 21);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
-.checkbox-wrapper-19 input[type=checkbox]:checked + .check-box,
-  .checkbox-wrapper-19 .check-box.checked {
-  border-color: #34b93d;
+.material-checkbox input[type="checkbox"]:focus ~ .checkmark {
+  box-shadow: 0 0 0 2px #67f714b2;
 }
 
-.checkbox-wrapper-19 input[type=checkbox]:checked + .check-box::after,
-  .checkbox-wrapper-19 .check-box.checked::after {
-  height: calc(var(--checkbox-height) / 2);
-  -moz-animation: dothabottomcheck-19 0.2s ease 0s forwards;
-  -o-animation: dothabottomcheck-19 0.2s ease 0s forwards;
-  -webkit-animation: dothabottomcheck-19 0.2s ease 0s forwards;
-  animation: dothabottomcheck-19 0.2s ease 0s forwards;
+.material-checkbox:hover input[type="checkbox"] ~ .checkmark {
+  border-color: #000000;
 }
 
-.checkbox-wrapper-19 input[type=checkbox]:checked + .check-box::before,
-  .checkbox-wrapper-19 .check-box.checked::before {
-  height: calc(var(--checkbox-height) * 1.2);
-  -moz-animation: dothatopcheck-19 0.4s ease 0s forwards;
-  -o-animation: dothatopcheck-19 0.4s ease 0s forwards;
-  -webkit-animation: dothatopcheck-19 0.4s ease 0s forwards;
-  animation: dothatopcheck-19 0.4s ease 0s forwards;
+.material-checkbox input[type="checkbox"]:disabled ~ .checkmark {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.material-checkbox input[type="checkbox"]:disabled ~ .checkmark:hover {
+  border-color: #1ed418;
 }
 
 
-
+#botao-desabilitado{
+  border-color: #ff0101;
+}
 
 
 /*FIM CSS VISUALIZAR MAQUINA*/
@@ -1845,7 +1750,6 @@ margin-top: 15px;
   height:75px;
   overflow: hidden;
   transition: 0.5s ease;
-  flex-direction: column;
 }
 #main_maquinasDaTurmas .maquinas .card .content div{
   display: flex;
@@ -1865,11 +1769,9 @@ margin-top: 15px;
 #main_maquinasDaTurmas .maquinas .card .content h2:hover{
   color: #01b9d1;
 }
-#main_maquinasDaTurmas .maquinas .card .content p, #main_maquinasDaTurmas .maquinas .card .content h2 p{
+#main_maquinasDaTurmas .maquinas .card .content p{
   color: var(--azulEscuro);
  padding: 2px;
- font-size: 15px;
- font-weight: 400;
 }
 #main_maquinasDaTurmas .maquinas .card .content a{
   display: flex;
@@ -2012,28 +1914,52 @@ margin-top: 15px;
 
 /* CSS GESTOR DEAFULT*/
 
- /* - modal - */
-#gestor_default_main .bnts{
+/* - modal - */
+#gestor_default_main .bnts {
   display: flex;
   justify-content: center;
   margin-top: 88px;
   gap: 5px;
 }
-#gestor_default_main .bnts input{
+#gestor_default_main .bnts #submitCadastrarSala {
+  width: 50%;
+}
+#gestor_default_main .bnts input {
   font-size: 15px;
   padding: 10px;
 }
 
-#gestor_default_main .w3-button{
-   color: white;
+#gestor_default_main .w3-button {
+  color: white;
 }
-.form_modal .header{
- display: flex;
- justify-content: center;
+.form_modal .header {
+  display: flex;
+  justify-content: center;
 }
-.form_modal form{
+.form_modal form {
   padding: 2vw;
 }
- /* ----- */
+.form_modal .container .header {
+  padding: 10px;
+}
+.form_modal .container .header .logo {
+  padding: 20px;
+}
+.form_modal .container .header .icone {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.form_modal .p_modal {
+  color: #bfe8fbb2;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+}
+.form_modal #exclusaoGestor_p {
+ margin-top: 10px;
+}
+
+/* ----- */
 
 /* FIM CSS GESTOR DEAFULT*/

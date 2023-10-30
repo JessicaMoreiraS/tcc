@@ -40,9 +40,10 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     $colunaExcluir1 = 'senha';
     $colunaExcluir3 = 'id';
     $colunaExcluir2 = 'redefinir_senha';
+    $colunaExcluir4 = 'codigo_recuperacao';
 
     //substituindo os valores de campos(campos dos formuarios) por uma função que ira excluir s variavies criadas acima, da busca sql
-    $campos = array_diff($campos, array($colunaExcluir1, $colunaExcluir3, $colunaExcluir2));
+    $campos = array_diff($campos, array($colunaExcluir1, $colunaExcluir3, $colunaExcluir2, $colunaExcluir4));
 
 
     //verifica se o formuario é do metodo post
@@ -88,7 +89,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     $dados = mysqli_fetch_assoc($resultado);
 
 
-?>
+    ?>
     <!DOCTYPE html>
     <html lang="pt-br">
 
@@ -120,24 +121,27 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                         <img onclick="liberarEdicaoPerfil()" src="img/svg/Edit.svg" id="imgEditIcon" />
                     </div>
                 </section>
-                <form id="form_perfil" method="POST" action="<?php echo "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao" ?>">
+                <form id="form_perfil" method="POST"
+                    action="<?php echo "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao" ?>">
                     <?php
 
                     //iteraçao pela array campos (array do fetch que armazena os dados da tabela)
                     foreach ($campos as $campo) {
                         // valor atual = dados do campo em especifico
                         $valorAtual = $dados[$campo];
-                    ?>
+                        ?>
                         <div class="input">
-                            <input class="<?php echo $campo ?>" required readonly type="text" id="<?php echo $campo; ?>" name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
+                            <input class="<?php echo $campo ?>" required readonly type="text" id="<?php echo $campo; ?>"
+                                name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
                         </div>
-                    <?php
+                        <?php
                     }
                     ?>
                     <div class="bnts">
                         <div class="inputs">
                             <input type="submit" value="Salvar">
-                            <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()" style="display: none;">
+                            <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()"
+                                style="display: none;">
                         </div>
                         <a href="#">Mudar Senha</a>
                     </div>
@@ -155,9 +159,9 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
         const inputs = form_perfil.querySelectorAll("input");
         function liberarEdicaoPerfil() {
             const form_perfil = document.getElementById("form_perfil");
-           
+
             cancel_button.style.display = 'block';
-            inputs.forEach(function(input) {
+            inputs.forEach(function (input) {
                 input.removeAttribute('readonly');
                 if (input.placeholder == 'Nome' || input.placeholder == 'Turma') {
                     input.focus();
@@ -165,8 +169,8 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
             });
         }
 
-        setTimeout(function() {
-            inputs.forEach(function(input) {
+        setTimeout(function () {
+            inputs.forEach(function (input) {
                 input.style.width = 'auto';
             });
         }, 100);
@@ -179,5 +183,5 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     </script>
 
     </html>
-<?php
+    <?php
 }

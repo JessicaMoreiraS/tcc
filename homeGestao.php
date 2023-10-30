@@ -1,7 +1,7 @@
 <?php
-// session_start();
-// $paginasPermitemAcesso = ["login.php", "homeGestao.php","cadastrarMaquina.php", "gestaoAlunos.php", "cadastrarProfessor.php"];
-// $permitido = false;
+session_start();
+$paginasPermitemAcesso = ["login.php", "homeGestao.php", "cadastrarMaquina.php", "gestaoAlunos.php", "cadastrarProfessor.php"];
+$permitido = false;
 
 // for($i = 0; $i < count($paginasPermitemAcesso); $i++){
 //     // echo $paginasPermitemAcesso[$i];
@@ -14,46 +14,61 @@
 //         $permitido=true;
 //     }
 // }
-
+$idGestor = $_SESSION['idAcesso'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="css/mediaQuery.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
-        <script src="https://unpkg.com/scrollreveal"></script>
-        <title>Home - Gestão</title>
-    </head>
-    <body id="body_homeGestao">
-        <header class="topo-index" id="header_homeGestao">
-            <img src="img/logo-senai-branco.png" alt="" />
-        </header>
 
-        <main id="main_homeGestao">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/mediaQuery.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>Home - Gestão</title>
+</head>
+
+<body id="body_homeGestao">
+
+    <header class="topo-inicial">
+        <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
+
+        <div class="icons">
+            <?php
+            echo '
+      <a href="update.php?option=gestor&id_atualizacao=' . $idGestor . '">
+         <i
+           class="fa fa-user-circle"
+           style="color: rgb(255, 255, 255); cursor: pointer"
+         ></i>
+      </a>';
+
+            ?>
+            <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
+        </div>
+    </header>
+
+    <main id="main_homeGestao">
         <div class="titulo">
             <h2>GES <b>TÃO</b></h2>
             <p>Bem-vindo(a) ao gerenciamento</p>
         </div>
 
         <section class="section_cards">
-            <div class="card" >
+            <div class="card">
                 <div class="conteudo_card">
                     <div class="img">
                         <img src="img/professorICONE.png" alt="" />
                     </div>
                     <div class="textos">
                         <div class="tituloCard">
-                        <p>Gerenciamento de <b>Professores</b></p>
+                            <p>Gerenciamento de <b>Professores</b></p>
                         </div>
                         <div class="descricao">
-                            Cadastrar, excluir ou visualizar  algum Professor de acordo com a necessidade. Com acesso a todas informações dos professores 
+                            Cadastrar, excluir ou visualizar algum Professor de acordo com a necessidade. Com acesso a
+                            todas informações dos professores
                         </div>
                     </div>
                     <div class="btn">
@@ -69,10 +84,11 @@
                     </div>
                     <div class="textos">
                         <div class="tituloCard">
-                        <p>Gerenciamento de <b>Turmas</b></p>
+                            <p>Gerenciamento de <b>Turmas</b></p>
                         </div>
                         <div class="descricao">
-                            Excluir , visualizar ou editar alguma Turma de acordo com a necessidade. Com acesso aos alunos de cada turma 
+                            Excluir , visualizar ou editar alguma Turma de acordo com a necessidade. Com acesso aos
+                            alunos de cada turma
                         </div>
                     </div>
                     <div class="btn">
@@ -87,7 +103,7 @@
                     </div>
                     <div class="textos">
                         <div class="tituloCard">
-                        <p>Gerenciamento de <b>Alunos</b></p>
+                            <p>Gerenciamento de <b>Alunos</b></p>
                         </div>
                         <div class="descricao">
                             Excluir ou visualizar algum aluno cadastrado, de acordo com a necessidade.
@@ -101,14 +117,14 @@
             <div class="card">
                 <div class="conteudo_card">
                     <div class="img">
-                    <img src="img/svg/checklist_white.svg" >
+                        <img src="img/svg/checklist_white.svg">
                     </div>
                     <div class="textos">
                         <div class="tituloCard">
-                        <p>Gerenciamento de <b>Checklists</b></p>
+                            <p>Gerenciamento de <b>Checklists</b></p>
                         </div>
                         <div class="descricao">
-                          Visualizar checklists feitas por professores ou alunos.
+                            Visualizar checklists feitas por professores ou alunos.
                         </div>
                     </div>
                     <div class="btn">
@@ -124,10 +140,10 @@
                     </div>
                     <div class="textos">
                         <div class="tituloCard">
-                        <p>Gerenciamento de <b>Máquinas</b></p>
+                            <p>Gerenciamento de <b>Máquinas</b></p>
                         </div>
                         <div class="descricao">
-                        Cadastrar, excluir , visualizar ou editar alguma máquina de acordo com a necessidade.
+                            Cadastrar, excluir , visualizar ou editar alguma máquina de acordo com a necessidade.
                         </div>
                     </div>
                     <div class="btn">
@@ -143,10 +159,10 @@
                     </div>
                     <div class="textos">
                         <div class="tituloCard">
-                        <p>Gerenciamento de <b>Tipo de Máquinas</b></p>
+                            <p>Gerenciamento de <b>Tipo de Máquinas</b></p>
                         </div>
                         <div class="descricao">
-                        Gerenciamento do Tipo da máquina
+                            Gerenciamento do Tipo da máquina
                         </div>
                     </div>
                     <div class="btn">
@@ -155,8 +171,8 @@
                 </div>
             </div>
         </section>
-        </main>
-    </body>
-    <script src="js/reveal.js"></script>
-</html>
+    </main>
+</body>
+<script src="js/reveal.js"></script>
 
+</html>
