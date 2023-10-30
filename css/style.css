@@ -408,8 +408,14 @@ footer {
   margin-top: -20px;
   transition: 0.9s;
 }
-
-#infosAcess a:hover {
+#cadastrarProfLink{
+  transition: 0.9s;
+   color: #01567d;
+   display: flex;
+   justify-content: center;
+   margin-top: 20px;
+}
+#infosAcess a:hover,  #cadastrarProfLink:hover {
   text-decoration: underline;
 }
 
@@ -1275,6 +1281,7 @@ margin-bottom: 20px;
 
 
 /* CSS DAS TABELAS */
+
 #html_tables,#body_tables{
   display:table;
   height:100%;

@@ -223,13 +223,7 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
         <img src="img/logo-senai-branco.png" />
     </header>
 
-    <div>
-        <?php
-            if(!empty($linkCadastro) && $linkCadastro !=""){
-                echo "<a href='".$linkCadastro."'>Cadastrar ".$tema."</a>";
-            }
-        ?>
-    </div>
+    
 
     <div class="container">
         <div class="row row--top-40">
@@ -249,6 +243,13 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                 </div>
             </div>
         </div>
+    </div>
+    <div >
+        <?php
+            if(!empty($linkCadastro) && $linkCadastro !=""){
+                echo "<a id='cadastrarProfLink' href='".$linkCadastro."'>Cadastrar ".$tema."</a>";
+            }
+        ?>
     </div>
 </body>
 <script src="js/reveal.js"></script>
