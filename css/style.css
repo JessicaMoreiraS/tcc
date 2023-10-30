@@ -60,14 +60,26 @@ body {
   padding-bottom: 20%;
   background-color: var(--background-main);
 }
-
+#a_sairSala{
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+  bottom: 0;
+}
+#a_sairSala img{
+  margin-right: 10px;
+  
+}
 .corpo-inicial h2,
 #main_homeProfessor h2 {
   font-size: 35px;
   color: #666666;
   margin-bottom: 19px;
 }
-
+.bem-vindo{
+  display: flex;
+  flex-direction: column;
+}
 .corpo-inicial .bem-vindo a {
   display: flex;
   justify-content: center;

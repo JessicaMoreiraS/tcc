@@ -104,7 +104,7 @@ if (isset($_GET["salaSair"])) {
 								<?php echo $row['nome']; ?>
 							</p>
 
-							<a href="homeAluno.php?salaSair=<?php echo $row['id_lista'] ?>">Sair da turma</a>
+							<a id="a_sairSala" href="homeAluno.php?salaSair=<?php echo $row['id_lista'] ?>"> <img  src="img/svg/Logout.svg" width="30"> Sair da turma</a>
 						</div>
 						<a href="salaAluno.php?sala=<?php echo $row['id'] ?>">
 							<div class="rodape">
