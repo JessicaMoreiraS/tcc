@@ -164,10 +164,9 @@ body {
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
 }
 
-.corpo-inicial .turmas .card:hover {
-  transform: translateY(-8px);
+.corpo-inicial .turmas .card  .rodape img:hover, #a_sairSala:hover {
+  transform: translateY(-5px);
   transition: 0.3s ease-in-out;
-  box-shadow: none;
 }
 
 .corpo-inicial .turmas .card .infos {
