@@ -341,6 +341,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
         }
         ///////////////////////////
     </script>
+    <script src="js/reveal.js"></script>
 </body>
 
 </html>
