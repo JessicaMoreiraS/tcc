@@ -65,11 +65,18 @@ body {
   align-items: center;
   margin-top: 25px;
   bottom: 0;
+  color: #e64545;
+  transition: .3s;
+}
+#a_sairSala:hover, #a_sairSala img:hover{
+  color: #970a0a;
+  transform: scale(0.9,0.9);
 }
 #a_sairSala img{
   margin-right: 10px;
-  
+  transition: .3s;
 }
+
 .corpo-inicial h2,
 #main_homeProfessor h2 {
   font-size: 35px;
