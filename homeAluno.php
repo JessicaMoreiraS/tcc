@@ -43,7 +43,7 @@ if (isset($_GET["salaSair"])) {
 	<script src="https://unpkg.com/scrollreveal"></script>
 </head>
 
-<body>
+<body id="body_homeAluno">
 	<header class="topo-inicial">
 		<img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
 
@@ -101,16 +101,16 @@ if (isset($_GET["salaSair"])) {
 								<?php echo $row['turma']; ?>
 							</p>
 							<p id="second_p">
-								<?php echo $row['nome']; ?>
+								<?php echo 'Professor(a): '. $row['nome']; ?>
 							</p>
 
 							<a id="a_sairSala" href="homeAluno.php?salaSair=<?php echo $row['id_lista'] ?>"> <img  src="img/svg/Logout.svg" width="30"> Sair da turma</a>
 						</div>
 						<a href="salaAluno.php?sala=<?php echo $row['id'] ?>">
 							<div class="rodape">
-								<i>
+								
 									<img src="img/svg/seta.svg" alt="" />
-								</i>
+							
 							</div>
 						</a>
 					</div>
@@ -127,13 +127,7 @@ if (isset($_GET["salaSair"])) {
 					';
 
 			}
-
-
-
-
 			?>
-
-
 		</div>
 	</main>
 </body>

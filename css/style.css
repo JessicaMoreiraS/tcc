@@ -60,6 +60,7 @@ body {
   padding-bottom: 20%;
   background-color: var(--background-main);
 }
+
 #a_sairSala{
   display: flex;
   align-items: center;
@@ -1116,7 +1117,7 @@ background-color: #003f5b;
   align-items: center;
 }
 
- .turmas .card .rodape i {
+ .turmas .card .rodape img{
   display: flex;
   margin: 23px 0px 20px 27px;
   font-size: 24px;
@@ -1124,7 +1125,7 @@ background-color: #003f5b;
 }
 
  .turmas .card .rodape i:hover {
-  color: #003f5b;
+  transform: scale(0.9,0.9);
 }
 
  .bem-vindo {
