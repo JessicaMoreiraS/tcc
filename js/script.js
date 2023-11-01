@@ -49,6 +49,9 @@ function erroLogin(n) {
         case 10:
             Swal.fire("As senhas não coincidem")
             break;
+        case 11:
+            Swal.fire("Essa maquina já está cadastrada")
+            break;
     }
 }
 
