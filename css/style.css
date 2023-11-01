@@ -1154,6 +1154,7 @@ background-color: #003f5b;
     padding: 1vw;
     border-radius: 20px;
     width: 30vw;
+    
 }
  .form_cadastrarTurma .container .logo, .form_cadastrarTurma .container .icone{
     display: flex;
@@ -2043,7 +2044,7 @@ background-color: #ee7d7d;
 #main_cadastrarProfessor{
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  padding-top: 100px;
 }
 #main_cadastrarProfessor h2{
   color: #fff;
