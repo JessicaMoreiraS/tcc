@@ -1153,7 +1153,7 @@ background-color: #003f5b;
     background-color: var(--azulPrincipal);
     padding: 1vw;
     border-radius: 20px;
-    width: 50vw;
+    width: 30vw;
 }
  .form_cadastrarTurma .container .logo, .form_cadastrarTurma .container .icone{
     display: flex;
@@ -1174,7 +1174,7 @@ background-color: #003f5b;
 .form_cadastrarTurma .container .input_nome input, .input_modal input {
   width: 100%;
 
-  height: 25px;
+  height: 20px;
   padding: 12px;
   border-radius: 12px;
   border: 1.5px solid lightgrey;
@@ -2037,6 +2037,6 @@ background-color: #ee7d7d;
 #main_cadastrarProfessor{
   display: flex;
   justify-content: center;
-
+  margin-top: 10px;
 }
 /* FIM CSS CADASTRAR prof*/

@@ -17,92 +17,106 @@ session_start();
 </head>
 
 <body id="body_cadastrarProfessor">
-<header class="topo-inicial">
-      <img
-        width="140"
-        class="logo-inicial"
-        src="img/logo-senai-branco.png"
-        alt=""
-      />
+    <header class="topo-inicial">
+        <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
 
-      <div class="icons">
-        <i
-          class="fa fa-user-circle"
-          style="color: rgb(255, 255, 255); cursor: pointer"
-        ></i>
-        <input
-          type="checkbox"
-          role="button"
-          aria-label="Display the menu"
-          class="menu"
-        />
-      </div>
+        <div class="icons">
+            <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
+            <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
+        </div>
     </header>
     <main id="main_cadastrarProfessor">
 
-    <!-- <form action="cadastro.php" method="POST">
-        <input id="id" type="number" value="1" hidden name="id" required>
-        <input id="nome" type="text" name="nome" placeholder="Nome" required>
-        <input id="CPF" type="text" name="cpf" placeholder="CPF" required>
-        <input id="email" type="email" name="email" placeholder="Email" required>
 
-        <input type="submit" name="cadastrarProfessor" value="Cadastrar">
-    </form> -->
-
-    <div class="w3-modal-content w3-animate-top">
-    <input id="id" type="number" value="1" hidden name="id" required>
-        <div class="form_modal">
-          <div class="container">
-            <div class="header">
-              <div>
-                <div class="icone">
-                  <img src="img/svg/School Director-branco.svg" alt="" />
+        <div class="w3-modal-content w3-animate-top">
+            <input id="id" type="number" value="1" hidden name="id" required>
+            <div class="form_modal">
+                <div class="container">
+                    <div class="header">
+                        <div>
+                            <div class="icone">
+                                <img src="img/svg/School Director-branco.svg" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <form action="cadastro.php" method="POST">
+                        <input name="idProfessor" type="text" value="1" hidden />
+                        <div class="input_modal">
+                            <input id="nome" type="text" name="nome" placeholder="Nome" required />
+                        </div>
+                        <p class="p_modal" id="verificacaoNomeCompleto" style="display: none">
+                            Digite um nome completo
+                        </p>
+                        <div class="input_modal">
+                            <input type="text" placeholder="CPF" name="CPF" oninput="mascara(this)" maxlength="11"
+                                id="cpf" required />
+                        </div>
+                        <p id="verificacaoCPF_p" style="display: none">
+                            Digite um CPF válido
+                        </p>
+                        <div class="input_modal">
+                            <input id="email" type="email" name="email" placeholder="Email" required />
+                        </div>
+                        <div class="bnts">
+                            <input type="submit" name="cadastrarProfessor" value="Cadastrar"
+                                id="submitCadastrarProfessor">
+                        </div>
+                    </form>
                 </div>
-              </div>
             </div>
-            <form action="cadastro.php" method="POST">
-              <input name="idProfessor" type="text" value="1" hidden />
-              <div class="input_modal">
-                <input
-                id="nome" type="text" name="nome" placeholder="Nome" required
-                />
-              </div>
-              <p
-                class="p_modal"
-                id="verificacaoNomeCompleto"
-                style="display: none"
-              >
-                Digite um nome completo
-              </p>
-              <div class="input_modal">
-                <input
-                  type="text"
-                  placeholder="CPF"
-                  name="CPF"
-                  oninput="mascara(this)"
-                  maxlength="11"
-                  id="CPF"
-                  required
-                />
-              </div>
-              <p id="verificacaoCPF_p" style="display: none">
-                Digite um CPF válido
-              </p>
-              <div class="input_modal">
-                <input
-                id="email" type="email" name="email" placeholder="Email" required
-                />
-              </div>
-              <div class="bnts">
-              <input type="submit" name="cadastrarProfessor" value="Cadastrar">
-              </div>
-            </form>
-          </div>
         </div>
-      </div>
 
     </main>
-    
+    <script>
+        const botaoCriarConta = document.getElementById("submitCadastrarProfessor");
+        const verificacaoNomeCompletoP = document.getElementById(
+            "verificacaoNomeCompleto"
+        );
+        const inputNomeCompleto = document.getElementById("nome");
+
+
+        inputNomeCompleto.addEventListener("input", validarCadastro);
+
+        //verifca se as senhas conferem e se nao esta digitando apenas um nome
+        function validarCadastro() {
+            const inputCPF = document.getElementById("cpf");
+            const verificacaoCPF_p = document.getElementById("verificacaoCPF_p");
+            var comprimentoCPF = inputCPF.value.length;
+            var cpfValido = false;
+
+            inputCPF.addEventListener("input", function () {
+                comprimentoCPF = inputCPF.value.length;
+                verificacaoCPF_p.style.display = comprimentoCPF < 11 ? "block" : "none";
+                if (comprimentoCPF == 14) {
+                    botaoCriarConta.removeAttribute("disabled");
+                } else {
+                    botaoCriarConta.setAttribute("disabled", "true");
+                }
+
+            });
+
+
+            const palavrasinputNomeCompleto = inputNomeCompleto.value
+                .split(/\s+/)
+                .filter(Boolean).length;
+
+
+            verificacaoNomeCompletoP.style.display =
+                palavrasinputNomeCompleto > 1 ? "none" : "block";
+
+
+            if (
+                palavrasinputNomeCompleto > 1 && cpfValido
+            ) {
+                botaoCriarConta.removeAttribute("disabled");
+            } else {
+                botaoCriarConta.setAttribute("disabled", "true");
+            }
+        }
+///////////////////////////
+    </script>
 </body>
+<script src="js/mascaraCPF.js"></script>
+<script src="js/reveal.js"></script>
 
 </html>
