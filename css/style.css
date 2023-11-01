@@ -448,7 +448,7 @@ footer {
   color: rgb(214, 75, 75);
 }
 
-.input_entrar input, #gestor_default_main .bnts input, #submitCadastrarGestor, #submitConfirmarExclusao,#submitCadastrarProfessor {
+.input_entrar input, #gestor_default_main .bnts input, #submitCadastrarGestor, #submitConfirmarExclusao,#submitCadastrarProfessor  {
   padding: 13px 40px 13px 40px;
   color: #fff;
   border-radius: 15px;
@@ -1572,6 +1572,7 @@ margin-bottom: 20px;
 #removerAluno_da_sala{
   color: #e05252;
   padding: 3px;
+  font-size: 13px;
 }
 #removerAluno_da_sala:hover{
   color: #f80404;
@@ -2030,7 +2031,9 @@ background-color: #ee7d7d;
 .form_modal #exclusaoGestor_p {
  margin-top: 10px;
 }
-
+#verificacaoCPF_p{
+  color: #0392d4;
+}
 /* ----- */
 
 /* FIM CSS GESTOR DEAFULT*/
@@ -2041,5 +2044,10 @@ background-color: #ee7d7d;
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+#main_cadastrarProfessor h2{
+  color: #fff;
+  display: flex;
+  justify-content: center;
 }
 /* FIM CSS CADASTRAR prof*/

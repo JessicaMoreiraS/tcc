@@ -40,6 +40,7 @@ session_start();
                         </div>
                     </div>
                     <form action="cadastro.php" method="POST">
+                        <h2>Cadastrar Professor</h2>
                         <input name="idProfessor" type="text" value="1" hidden />
                         <div class="input_modal">
                             <input id="nome" type="text" name="nome" placeholder="Nome" required />
@@ -48,7 +49,7 @@ session_start();
                             Digite um nome completo
                         </p>
                         <div class="input_modal">
-                            <input type="text" placeholder="CPF" name="CPF" oninput="mascara(this)" maxlength="11"
+                            <input type="text" placeholder="CPF" name="cpf" oninput="mascara(this)" maxlength="11"
                                 id="cpf" required />
                         </div>
                         <p id="verificacaoCPF_p" style="display: none">

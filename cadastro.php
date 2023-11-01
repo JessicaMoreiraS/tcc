@@ -6,18 +6,18 @@ include('conexao.php');
 $codigoConf = mt_rand(100000, 999999); // Gera um código de confirmação de seis dígitos
 
 // Insere a nova conta na tabela de alunos
-$sqlCriaContaAluno = "INSERT INTO aluno (nome, email, senha, codigo_recuperacao) VALUES ('$nome', '$email', '$senha', '$codigoConf')";
+// $sqlCriaContaAluno = "INSERT INTO aluno (nome, email, senha, codigo_recuperacao) VALUES ('$nome', '$email', '$senha', '$codigoConf')";
 
-if ($mysqli->query($sqlCriaContaAluno)) {
-    // Envie o email com o código de confirmação para o usuário
-    // enviarCodigoConfirmacao($email, $codigoConf);
+// if ($mysqli->query($sqlCriaContaAluno)) {
+//     // Envie o email com o código de confirmação para o usuário
+//     // enviarCodigoConfirmacao($email, $codigoConf);
 
-    // Redireciona para a página de confirmação de email
-    header('Location: confirmar_email.php?emailconf=' . $email);
-} else {
-    // Erro na comunicação com o banco
-    header('Location: cadastro.php?e=7');
-}
+//     // Redireciona para a página de confirmação de email
+//     header('Location: confirmar_email.php?emailconf=' . $email);
+// } else {
+//     // Erro na comunicação com o banco
+//     header('Location: cadastro.php?e=7');
+// }
 
 // Cadastrar SALA (recenbo o formulario)
 if (filter_input(INPUT_POST, 'cadastrarSala')) {

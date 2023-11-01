@@ -8,7 +8,7 @@ $checklist = false;
 $tipo = false;
 $tema = "";
 $icone = "";
-$nomeTurma ="";
+$nomeTurma = "";
 $linkCadastro;
 
 if (filter_input(INPUT_GET, 'view')) {
@@ -16,42 +16,42 @@ if (filter_input(INPUT_GET, 'view')) {
         $tema = "Professores";
         $query = "SELECT * FROM professor";
         $camposBusca = ['nome', 'cpf', 'email'];
-        $camposTema = ['Nome', 'CPF', 'Email','Funções'];
+        $camposTema = ['Nome', 'CPF', 'Email'];
         $linkCadastro = "cadastrarProfessor.php";
-        
+
     } else if ($_GET['view'] == 'tipo') {
         $tema = "Categorias de Máquinas";
         $query = "SELECT * FROM tipo_maquina";
         $camposBusca = ['tipo'];
-        $camposTema = ['Categoria', 'Quantidade','Funções'];
+        $camposTema = ['Categoria', 'Quantidade'];
         $tipo = true;
-        
+
     } else if ($_GET['view'] == 'aluno') {
         $tema = "Alunos";
         $query = "SELECT * FROM aluno";
         $camposBusca = ['nome', 'email'];
         $aluno = true;
-        $camposTema = ['Nome', 'Email', 'Turma(s)','Funções'];
-        
+        $camposTema = ['Nome', 'Email', 'Turma(s)'];
+
     } else if ($_GET['view'] == 'maquina') {
         $tema = "Máquinas";
         $query = "SELECT * FROM maquina INNER JOIN tipo_maquina ON maquina.id_tipo_maquina = tipo_maquina.id";
         $camposBusca = ['id', 'modelo', 'fabricante', 'tipo'];
-        $camposTema = ['ID', 'Modelo', 'Fabricante', 'Categoria','Funções'];
+        $camposTema = ['ID', 'Modelo', 'Fabricante', 'Categoria'];
         $linkCadastro = "cadastrarMaquina.php";
 
     } else if ($_GET['view'] == 'sala') {
         $tema = "Turmas";
         $query = "SELECT * FROM sala INNER JOIN professor ON sala.id_professor = professor.id";
         $camposBusca = ['turma', 'nome'];
-        $camposTema = ['Turma', 'Professor','Funções'];
+        $camposTema = ['Turma', 'Professor'];
 
     } else if ($_GET['view'] == 'alunosSala') {
         if (isset($_GET['id_sala_view'])) {
             include('conexao.php');
             $id_sala = $_GET['id_sala_view'];
             $query = "SELECT turma FROM sala WHERE id = ?";
-            
+
             $stmt = $mysqli->prepare($query);
 
             if ($stmt) {
@@ -62,7 +62,7 @@ if (filter_input(INPUT_GET, 'view')) {
                 if ($stmt->fetch()) {
                     // Aqui você tem o nome da turma
                     $nomeTurma = $nomeTurma;
-                } 
+                }
             }
 
             $tema = "Alunos da Turma";
@@ -77,7 +77,7 @@ if (filter_input(INPUT_GET, 'view')) {
         $checklist = true;
         $query = "SELECT * FROM checklist INNER JOIN maquina ON checklist.id_maquina = maquina.id";
         $camposBusca = ['data', 'id', 'modelo'];
-        $camposTema = ['data', 'Maquina', 'Modelo', 'Responsavel', 'Email', 'Funções'];
+        $camposTema = ['data', 'Maquina', 'Modelo', 'Responsavel', 'Email'];
     } else {
         header('Location: homeGestor.php');
     }
@@ -106,97 +106,98 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
 
         while ($row = mysqli_fetch_assoc($conteudo)) { ?>
             <tbody class="table__tbody">
-            <tr>
-                <?php
-                if ($_GET['view'] == 'professor') {
-                    echo '<tr class="table-row table-row--teacher table ">';
-                } elseif ($_GET['view'] == 'aluno') {
-                    echo '<tr class="table-row table-row--student table ">';
-                } elseif ($_GET['view'] == 'sala') {
-                    echo '<tr class="table-row table-row--class table ">';
-                }elseif($_GET['view'] == 'checklist'){
-                    echo '<tr class="table-row table-row--checklist table ">';
-                }else{
-                    echo '<tr class="table-row table-row--gears table ">';
-                }
-                ?>
-                
-                <td class="table-row__td">
-                    <div class="table-row__img"></div>
-                    <div class="table-row__info">
-                    </div>
-                </td>
-                <?php for ($i = 0; $i < count($camposBusca); $i++) { ?>
-                    <td class="table-row__td " data-column= "<?php echo $camposTema[$i]?>">
-                        <div>
-                            <p class="table-row__p">
-                                <?php echo $row[$camposBusca[$i]]; ?>
-                            </p>
+                <tr>
+                    <?php
+                    if ($_GET['view'] == 'professor') {
+                        echo '<tr class="table-row table-row--teacher table ">';
+                    } elseif ($_GET['view'] == 'aluno') {
+                        echo '<tr class="table-row table-row--student table ">';
+                    } elseif ($_GET['view'] == 'sala') {
+                        echo '<tr class="table-row table-row--class table ">';
+                    } elseif ($_GET['view'] == 'checklist') {
+                        echo '<tr class="table-row table-row--checklist table ">';
+                    } else {
+                        echo '<tr class="table-row table-row--gears table ">';
+                    }
+                    ?>
+
+                    <td class="table-row__td">
+                        <div class="table-row__img"></div>
+                        <div class="table-row__info">
                         </div>
                     </td>
-                    <?php
+                    <?php for ($i = 0; $i < count($camposBusca); $i++) { ?>
+                        <td class="table-row__td " data-column="<?php echo $camposTema[$i] ?>">
+                            <div>
+                                <p class="table-row__p">
+                                    <?php echo $row[$camposBusca[$i]]; ?>
+                                </p>
+                            </div>
+                        </td>
+                        <?php
 
-                    if ($i == count($camposBusca) - 1) {
-                        if ($aluno) {
-                            $queryAluno = "SELECT * FROM lista_aluno_sala INNER JOIN sala ON lista_aluno_sala.id_sala = sala.id WHERE  " . $row['id'] . " = id_aluno";
-                            $conteudoAluno = $mysqli->query($queryAluno); ?>
-                            <td class="table-row__td">
-                            <select class="custom-select">
-                                <?php while ($rowSalsDoAluno = mysqli_fetch_assoc($conteudoAluno)) {
-                                    echo "
-                                    <option  class='link_option'>" .$rowSalsDoAluno['turma']."</option>
+                        if ($i == count($camposBusca) - 1) {
+                            if ($aluno) {
+                                $queryAluno = "SELECT * FROM lista_aluno_sala INNER JOIN sala ON lista_aluno_sala.id_sala = sala.id WHERE  " . $row['id'] . " = id_aluno";
+                                $conteudoAluno = $mysqli->query($queryAluno); ?>
+                                <td class="table-row__td">
+                                    <select class="custom-select">
+                                        <?php while ($rowSalsDoAluno = mysqli_fetch_assoc($conteudoAluno)) {
+                                            echo "
+                                    <option  class='link_option'>" . $rowSalsDoAluno['turma'] . "</option>
                                     ";
-                                } ?>
-                            </select>
-                            </td>
-                        <?php }
-                        if ($tipo) {
-                            $quantidade = 0;
-                            $queryContarMaquinas = "SELECT * FROM tipo_maquina INNER JOIN maquina ON tipo_maquina.id = maquina.id_tipo_maquina";
-                            $conteudoContagem = $mysqli->query($queryContarMaquinas);
-                            while ($rowResponsavel = mysqli_fetch_assoc($conteudoContagem)) {
-                                $quantidade = $quantidade + 1;
-                            }
-                            echo " <td class='table-row__td'>
+                                        } ?>
+                                    </select>
+                                </td>
+                            <?php }
+                            if ($tipo) {
+                                $quantidade = 0;
+                                $queryContarMaquinas = "SELECT * FROM tipo_maquina INNER JOIN maquina ON tipo_maquina.id = maquina.id_tipo_maquina";
+                                $conteudoContagem = $mysqli->query($queryContarMaquinas);
+                                while ($rowResponsavel = mysqli_fetch_assoc($conteudoContagem)) {
+                                    $quantidade = $quantidade + 1;
+                                }
+                                echo " <td class='table-row__td'>
                             <div>
                                 <p class='table-row__p'>
                                    $quantidade
                                 </p>
                             </div>
                         </td>";
+                            }
+                        }
+                        if ($checklist && $camposBusca[$i] == "modelo") {
+                            if ($row['id_aluno'] > 0) {
+                                $id_responsavel = $row['id_aluno'];
+                                $responsavel = "aluno";
+                            } else {
+                                $id_responsavel = $row['id_professor'];
+                                $responsavel = "professor";
+                            }
+                            $queryResponsavel = "SELECT * FROM " . $responsavel . " WHERE id=" . $id_responsavel;
+                            $conteudoResponsavel = $mysqli->query($queryResponsavel);
+                            while ($rowResponsavel = mysqli_fetch_assoc($conteudoResponsavel)) {
+                                echo "<td class='table-row__td'>" . $responsavel . " " . $rowResponsavel['nome'] . "</td><td class='table-row__td'>" . $rowResponsavel['email'] . "</td>";
+                            }
                         }
                     }
-                    if ($checklist && $camposBusca[$i] == "modelo") {
-                        if ($row['id_aluno'] > 0) {
-                            $id_responsavel = $row['id_aluno'];
-                            $responsavel = "aluno";
-                        } else {
-                            $id_responsavel = $row['id_professor'];
-                            $responsavel = "professor";
-                        }
-                        $queryResponsavel = "SELECT * FROM " . $responsavel . " WHERE id=" . $id_responsavel;
-                        $conteudoResponsavel = $mysqli->query($queryResponsavel);
-                        while ($rowResponsavel = mysqli_fetch_assoc($conteudoResponsavel)) {
-                            echo "<td class='table-row__td'>" . $responsavel . " " . $rowResponsavel['nome'] . "</td><td class='table-row__td'>" . $rowResponsavel['email'] . "</td>";
-                        }
-                    }
-                }
-                
-                //to do:
-                if($_GET['view'] == 'alunosSala'){
-                    echo '<td><a id="removerAluno_da_sala" href="delete.php?acao=deletarAlunoDaSala&id_delecao='.$row['id'].'">Remover da Sala</a>';
-                }else{
-                    echo '<td class="table-row__td">
-                            <a href="delete.php?option='.$_GET['view'].'&id_delecao='.$row['id'].'">
+
+                    //to do:
+                    if ($_GET['view'] == 'alunosSala') {
+                        echo '<td><a id="removerAluno_da_sala" href="delete.php?acao=deletarAlunoDaSala&id_delecao=' . $row['id'] . '">Remover da Sala</a>';
+                    } else {
+                        echo '<td class="table-row__td">
+                            <a href="delete.php?option=' . $_GET['view'] . '&id_delecao=' . $row['id'] . '">
                                 <img class="table_delete" src="img/svg/Delete.svg" title="Excluir"/>
                             </a>';
-                    
-                    if ($_GET['view'] == 'sala'){
-                        echo '<a href="visualizar.php?view=alunosSala&id_sala_view='.$row['id'].'">Alunos</a>';
+
+                        if ($_GET['view'] == 'sala') {
+                            echo '<td class="table-row__td">
+                                    <a href="visualizar.php?view=alunosSala&id_sala_view=' . $row['id'] . '">Alunos</a>';
+                        }
+                        echo '</td>';
                     }
-                    echo '</td>';
-                }
-                ?>
+                    ?>
                 </tr>
             </tbody>
         <?php } ?>
@@ -223,14 +224,14 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
         <img src="img/logo-senai-branco.png" />
     </header>
 
-    
+
 
     <div class="container">
         <div class="row row--top-40">
             <div class="col-md-12">
                 <div class="table-container">
                     <h2 class="row__title">
-                        <?php echo '<b>' . $tema ." ".$nomeTurma. '</b>' ?> do Sistema:
+                        <?php echo '<b>' . $tema . " " . $nomeTurma . '</b>' ?> do Sistema:
                     </h2>
                 </div>
             </div>
@@ -244,13 +245,14 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
             </div>
         </div>
     </div>
-    <div >
+    <div>
         <?php
-            if(!empty($linkCadastro) && $linkCadastro !=""){
-                echo "<a id='cadastrarProfLink' href='".$linkCadastro."'>Cadastrar ".$tema."</a>";
-            }
+        if (!empty($linkCadastro) && $linkCadastro != "") {
+            echo "<a id='cadastrarProfLink' href='" . $linkCadastro . "'>Cadastrar " . $tema . "</a>";
+        }
         ?>
     </div>
 </body>
 <script src="js/reveal.js"></script>
+
 </html>
