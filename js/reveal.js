@@ -216,3 +216,11 @@ sr.reveal('.maquinas .card h2',{
   delay:400
 });
 ///
+
+///CADASTRAR PROFessor
+sr.reveal('.form_modal',{ 
+  duration: 1000,
+  distance: '40px',
+  origin: 'bottom'
+});
+///FIM CADASTRAR PROFessor
