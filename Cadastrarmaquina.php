@@ -1,77 +1,81 @@
 <?php
-include('conexao.php');
+include("conexao.php");
 
-function getTiposMaquina($mysqli) {
-    $tipos = array();
-
-    $sql = "SELECT id, tipo FROM tipo_maquina";
-    $result = $mysqli->query($sql);
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $tipos[$row['id']] = $row['tipo'];
-        }
-    }
-
-    return $tipos;
+// Verificar a conexão
+if ($mysqli->connect_error) {
+    die("Falha na conexão: " . $mysqli->connect_error);
 }
+$mensagem = '';
 
-// Processamento do formulário
+// Se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $tipo_maquina = $_POST["tipo_maquina"];
+    $id_maquina = $_POST["id_maquina"];
+    $id_tipo_maquina = $_POST["tipo_maquina"];
     $modelo = $_POST["modelo"];
     $fabricante = $_POST["fabricante"];
+    $imagem = $_FILES["imagem"]["tmp_name"] ? file_get_contents($_FILES["imagem"]["tmp_name"]) : null;
 
-    $sql_maquina = "INSERT INTO maquina (id_tipo_maquina, modelo, fabricante) VALUES (?, ?, ?)";
-    $stmt_maquina = $mysqli->prepare($sql_maquina);
-    $stmt_maquina->bind_param("iss", $tipo_maquina, $modelo, $fabricante);
-    $stmt_maquina->execute();
-    $maquina_id = $stmt_maquina->insert_id;
+    // Verificar se o tipo de máquina já existe
+    $stmt = $mysqli->prepare("SELECT id FROM tipo_maquina WHERE id = ?");
+    $stmt->bind_param("i", $id_tipo_maquina);
+    $stmt->execute();
+    $stmt->store_result();
 
-    if ($tipo_maquina == 'novo' && isset($_POST['pecas'])) {
-        foreach ($_POST['pecas'] as $peca_id) {
-            $sql_lista_peca = "INSERT INTO lista_tipo_maquina_peca (id_tipo_maquina, id_peca) VALUES (?, ?)";
-            $stmt_lista_peca = $mysqli->prepare($sql_lista_peca);
-            $stmt_lista_peca->bind_param("ii", $maquina_id, $peca_id); // Use $maquina_id aqui
-            $stmt_lista_peca->execute();
-            $stmt_lista_peca->close();
+    if ($stmt->num_rows > 0) {
+        // Tipo de máquina existe
+        $stmt = $mysqli->prepare("INSERT INTO maquina (id, id_tipo_maquina, modelo, fabricante, imagem) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("iissb", $id_maquina, $id_tipo_maquina, $modelo, $fabricante, $imagem);
+        $stmt->send_long_data(4, $imagem);  // Para dados BLOB (imagem)
+
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            $mensagem = "Máquina cadastrada com sucesso!";
+        } else {
+            $mensagem = "Erro ao cadastrar a máquina. Verifique se todos os campos estão preenchidos corretamente.";
+            $mensagem .= " Erro MySQL: " . $stmt->error;
         }
-    }
 
-    $stmt_maquina->close();
+        $stmt->close();
+    } else {
+        // Tipo de máquina não existe, redirecionar para cadastrar novo tipo
+        header("Location: cadastrarNovaMaquina.php");
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Máquina</title>
+    <title>Criar Máquina</title>
 </head>
 <body>
+    <h2>Criar Máquina</h2>
 
-<form action="processa_cadastro.php" method="post" enctype="multipart/form-data">
-    <label for="tipo_maquina">Tipo de Máquina:</label>
-    <select name="tipo_maquina" id="tipo_maquina">
-        <?php
-        // Preenche as opções do tipo de máquina
-        foreach ($tiposMaquina as $id => $tipo) {
-            echo '<option value="' . $id . '">' . $tipo . '</option>';
-        }
-        ?>
-        <option value="novo">Novo Tipo</option>
-    </select>
+    <?php echo $mensagem; ?>
 
-    <label for="modelo">Modelo:</label>
-    <input type="text" name="modelo" required>
+    <form action="" method="post" enctype="multipart/form-data">
+        ID da Máquina:
+        <input type="text" name="id_maquina" required><br>
+        Tipo de Máquina:
+        <select name="tipo_maquina">
+            <?php
+                // Recuperar tipos de máquinas para exibir no formulário
+                $result = $mysqli->query("SELECT id, tipo FROM tipo_maquina");
+                $tipos_maquinas = $result->fetch_all(MYSQLI_ASSOC);
 
-    <label for="fabricante">Fabricante:</label>
-    <input type="text" name="fabricante" required>
-
-    <label for="imagem">Imagem:</label>
-    <input type="file" name="imagem">
-
-    <button type="submit">Cadastrar</button>
-</form>
+                foreach ($tipos_maquinas as $tipo_maquina) {
+                    echo '<option value="' . $tipo_maquina['id'] . '">' . $tipo_maquina['tipo'] . '</option>';
+                }
+            ?>
+        </select><br>
+        Modelo: <input type="text" name="modelo" required><br>
+        Fabricante: <input type="text" name="fabricante" required><br>
+        Imagem: <input type="file" name="imagem"><br>
+        <input type="submit" value="Cadastrar">
+    </form>
+    <form action="cadastrarNovaMaquina.php" method="get">
+        <input type="submit" value="Cadastrar nova máquina">
+    </form>
 </body>
 </html>
