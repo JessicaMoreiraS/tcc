@@ -1,8 +1,20 @@
 <?php
 // PHP code to update DHT11 sensor data in the table/database.
-  require 'database.php';
-  include("conexao.php");
-  
+require 'database.php';
+include("conexao.php");
+$array = array();
+
+function carregaArrayAtributos($id_maquina){
+    include("conexao.php");
+    $sqlVerificaAtributo = "SELECT * FROM esp32 WHERE id_maquina = $id_maquina";
+    $tranformaSqlVerificaAtributo = $mysqli->query($sqlVerificaAtributo);
+    while ($rowEsp = mysqli_fetch_assoc($tranformaSqlVerificaAtributo)){
+        $id_espAtributo = $rowEsp['id_atributos'];
+        $array[] = $id_espAtributo;
+    }
+    return $array;
+}
+
 //---------------------------------------- Condition to check that POST value is not empty.
 if (!empty($_POST)) {
     //........................................ keep track POST values
@@ -11,6 +23,8 @@ if (!empty($_POST)) {
     $status_read_sensor_dht11 = $_POST['status_read_sensor_dht11'];//ststus semsor
     $date_time= date('Y-m-d H:i:s');
     $id_tipo_maquina;
+
+    $arrayAtributos = carregaArrayAtributos($id_maquina);
 
     //acende o led verde
     acendeVerde($id_maquina);
@@ -35,6 +49,9 @@ if (!empty($_POST)) {
             echo $atributo['id_atributos'];
             $id_atributo= $atributo['id_atributos'];
             $sqlDadosAtributo = "SELECT *FROM atributo_tipo WHERE id = $id_atributo";
+
+            $arrayAtributosAtualizado = verificaAtributosNovos($array, $id_esp, $id_atributo, $id_maquina, $date_time);
+
             $dadosAtributoConteudo = $mysqli->query($sqlDadosAtributo);
 
             while ($dadosAtributo = mysqli_fetch_assoc($dadosAtributoConteudo)){
@@ -56,6 +73,41 @@ if (!empty($_POST)) {
         }
     }
 }
+
+
+function verificaAtributosNovos($array, $id_esp, $id_atributo, $id_maquina, $date_time){
+    for($i=0; $i<count($array); $i++){
+        if($array[$i] == $id_atributo){
+            if($i == count($array)-1){
+                $novoArray = addAtributosNovos($id_esp, $id_atributo, $id_maquina, $date_time);
+            }
+        }else{
+            return $array;
+        }
+    }
+    // foreach ($array as $value) {
+    //     if($value->date == $id_atributo){
+    //         return $array;
+    //     } else{
+    //         return $novoArray;
+    //     }
+    // }
+}
+
+function addAtributosNovos($id_esp, $id_atributo, $id_maquina, $date_time){
+    include("conexao.php");
+    $sqlInsertAtributo = "INSERT INTO esp32 (esp, id_maquina, id_atributos, valor, date_time) VALUES ('$id_esp', '$id_maquina', '$id_atributo', '0', '$date_time')";
+    if ($mysqli->query($sqlInsertAtributo)) {
+        $recarregaArray = carregaArrayAtributos($id_maquina);
+        return $recarregaArray; 
+    } else {
+        echo "erro";
+        //addAtributosNovos($id_atributo, $id_maquina, $date_time);
+    }
+}
+
+
+
 
 function verificaValorReferencia($id, $valor, $id_maquina){
     include("conexao.php");
