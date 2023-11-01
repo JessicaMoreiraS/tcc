@@ -448,7 +448,7 @@ footer {
   color: rgb(214, 75, 75);
 }
 
-.input_entrar input, #gestor_default_main .bnts input, #submitCadastrarGestor, #submitConfirmarExclusao {
+.input_entrar input, #gestor_default_main .bnts input, #submitCadastrarGestor, #submitConfirmarExclusao,#submitCadastrarProfessor {
   padding: 13px 40px 13px 40px;
   color: #fff;
   border-radius: 15px;
@@ -469,7 +469,7 @@ footer {
 }
 
 .input_entrar input:hover,
-#form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover,  #submitCadastrarGestor:hover, #submitConfirmarExclusao:hover {
+#form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover,  #submitCadastrarGestor:hover, #submitConfirmarExclusao:hover, #submitCadastrarProfessor:hover {
   background-color: #036998;
   transform: scale(0.9, 0.9);
 }
@@ -1569,7 +1569,14 @@ margin-bottom: 20px;
   text-decoration: underline;
   cursor: auto;
 }
-
+#removerAluno_da_sala{
+  color: #e05252;
+  padding: 3px;
+}
+#removerAluno_da_sala:hover{
+  color: #f80404;
+  background-color: rgba(229, 230, 231, 0.2);
+}
 
 /* FIM CSS DAS TABELAS */
 
@@ -2029,11 +2036,7 @@ background-color: #ee7d7d;
 /* FIM CSS GESTOR DEAFULT*/
 
 /* CSS CADASTRAR prof*/
-#body_cadastrarProfessor{
-  background-image: url(../img/svg/bg_formularios.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-}
+
 #main_cadastrarProfessor{
   display: flex;
   justify-content: center;
