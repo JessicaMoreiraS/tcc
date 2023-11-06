@@ -1,44 +1,64 @@
 <?php
  include("conexao.php");
-    session_start();
-    $idAluno = $_SESSION['idAcesso'];
-    $sala = $_GET['sala'];
-
-    $sql = "SELECT turma FROM sala WHERE id=?";
-    $stmt = $mysqli->prepare($sql);
-
-    
-if ($stmt) {
-    //aplicando o id da sala ao  parametro da consulta
-    $stmt->bind_param("i", $sala);
-    //verificando se o sql executou
-    if ($stmt->execute()) {
-        //resganto o resultado
-        $stmt->bind_result($nomeTurma);
-        $stmt->fetch();
-        $stmt->close();
-    }
-} else {
-    echo $mysqli->error;
-}
-
-   
-
-
-    //buscar tipos de maquinas disponeis na turma
-    $sqlTipos = "SELECT * FROM tipo_maquina LEFT JOIN lista_sala_tipo_maquina ON lista_sala_tipo_maquina.id_tipo_maquina = tipo_maquina.id";
-    
-    $tiposDaSalaId = [];
-    $tiposDaSalaNome = [];
-    $conteudoTipo = $mysqli->query($sqlTipos);
-    while($rowTipo = mysqli_fetch_assoc($conteudoTipo)){
-        $addId = $rowTipo['id'];
-        $addTipo = $rowTipo['tipo'];
-        array_push($tiposDaSalaId, $addId);
-        array_push($tiposDaSalaNome, $addTipo);
-    }
-
-    //$sqlBuscaMaquinas = "SELECT * FROM tipo_maquina RIGHT JOIN lista_sala_tipo_maquina ON tipo_maquina.id = lista_sala_tipo_maquina.id_tipo_maquina WHERE ";
+ session_start();
+ $id = $_SESSION['idAcesso'];
+ $sala = $_GET['sala'];
+ 
+ $sql = "SELECT turma FROM sala WHERE id=?";
+ $stmt = $mysqli->prepare($sql);
+ 
+ 
+ if ($stmt) {
+     //aplicando o id da sala ao  parametro da consulta
+     $stmt->bind_param("i", $sala);
+     //verificando se o sql executou
+     if ($stmt->execute()) {
+         //resganto o resultado
+         $stmt->bind_result($nomeTurma);
+         $stmt->fetch();
+         $stmt->close();
+     }
+ } else {
+     echo $mysqli->error;
+ }
+ 
+ //buscar o codigo acesso da turma
+ $sql = 'SELECT codigo_acesso FROM sala WHERE id = ?';
+ //stmt do sql
+ $stmt = $mysqli->prepare($sql);
+ 
+ if ($stmt) {
+     //aplicando o id da sala ao  parametro da consulta
+     $stmt->bind_param("i", $sala);
+     //verificando se o sql executou
+     if ($stmt->execute()) {
+         //resganto o resultado
+         $stmt->bind_result($codigoTurma);
+         if ($stmt->fetch()) {
+             echo 'Código de acesso da turma: ' . $codigoTurma;
+         }
+         $stmt->close();
+     }
+ } else {
+     echo $mysqli->error;
+ }
+ //////////
+ 
+ //buscar tipos de maquinas disponeis na turma
+ $sqlTipos = "SELECT * FROM tipo_maquina INNER JOIN lista_sala_tipo_maquina ON lista_sala_tipo_maquina.id_tipo_maquina = tipo_maquina.id";
+ 
+ $tiposDaSalaId = [];
+ $tiposDaSalaNome = [];
+ $conteudoTipo = $mysqli->query($sqlTipos);
+ while ($rowTipo = mysqli_fetch_assoc($conteudoTipo)) {
+     $addId = $rowTipo['id'];
+     $addTipo = $rowTipo['tipo'];
+     array_push($tiposDaSalaId, $addId);
+     array_push($tiposDaSalaNome, $addTipo);
+ }
+ 
+ //$sqlBuscaMaquinas = "SELECT * FROM tipo_maquina RIGHT JOIN lista_sala_tipo_maquina ON tipo_maquina.id = lista_sala_tipo_maquina.id_tipo_maquina WHERE ";
+ 
     
     ?>
 <!DOCTYPE html>
