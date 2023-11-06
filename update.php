@@ -11,6 +11,7 @@ include('conexao.php');
 
 
 if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
+    $editarTurma = false;
     $tabelaBuscar = $_GET['option'];
     $id_atualizacao = $_GET['id_atualizacao'];
 
@@ -24,6 +25,10 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     $campos = array();
 
 
+    //verifica se a url é sobre editar a turma
+    if (isset($_GET['editarTurma'])) {
+        $editarTurma = true;
+    }
 
     while ($row = mysqli_fetch_assoc($resultado)) {
 
@@ -36,20 +41,19 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
 
     // !!IMPORTANTE, redefinir senha ainda não é funcional pelo update.php
 
-    //variaveis para não aparecerem no form de atualizacao
+    //variaveis para não aparecerem no form de 
+    $colunaExcluir = 'id_professor';
     $colunaExcluir1 = 'senha';
     $colunaExcluir3 = 'id';
     $colunaExcluir2 = 'redefinir_senha';
     $colunaExcluir4 = 'codigo_recuperacao';
 
     //substituindo os valores de campos(campos dos formuarios) por uma função que ira excluir s variavies criadas acima, da busca sql
-    $campos = array_diff($campos, array($colunaExcluir1, $colunaExcluir3, $colunaExcluir2, $colunaExcluir4));
+    $campos = array_diff($campos, array($colunaExcluir,$colunaExcluir1, $colunaExcluir3, $colunaExcluir2, $colunaExcluir4));
 
 
     //verifica se o formuario é do metodo post
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
 
         //sql da atualização de dados
         //tabelaBuscar = tabela em questao
@@ -143,7 +147,13 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                             <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()"
                                 style="display: none;">
                         </div>
-                        <a href="#">Mudar Senha</a>
+                        <?php
+                            if(!$editarTurma){
+                                echo'<a id="mudarSenha" href="#">Mudar Senha</a>';
+                            }
+                               
+                            
+                        ?>
                     </div>
                 </form>
             </div>
@@ -179,7 +189,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
             location.reload()
         }
 
-        ////
+            ////
     </script>
 
     </html>
