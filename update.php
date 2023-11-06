@@ -141,6 +141,25 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                         <?php
                     }
                     if ($editarTurma) {
+                        $sala = $id_atualizacao;
+
+                        $sql = "SELECT turma FROM sala WHERE id=?";
+                        $stmt = $mysqli->prepare($sql);
+
+
+                        if ($stmt) {
+                            //aplicando o id da sala ao  parametro da consulta
+                            $stmt->bind_param("i", $sala);
+                            //verificando se o sql executou
+                            if ($stmt->execute()) {
+                                //resganto o resultado
+                                $stmt->bind_result($nomeTurma);
+                                $stmt->fetch();
+                                $stmt->close();
+                            }
+                        } else {
+                            echo $mysqli->error;
+                        }
 
                         //buscar tipos de máquinas disponíveis na turma
                         $sqlTipos = "SELECT DISTINCT tipo_maquina.id, tipo_maquina.tipo FROM tipo_maquina
@@ -175,14 +194,13 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                             $sqlBuscaMaquinas = "SELECT * FROM maquina WHERE maquina.id_tipo_maquina = $tipoId";
                             $conteudo = $mysqli->query($sqlBuscaMaquinas);
                             while ($radio = mysqli_fetch_assoc($conteudo)) {
-                                echo
-                                    ' <label for="tipo_maquina" class="cyberpunk-checkbox-label">
+                                echo '<label for="tipo_maquina" class="cyberpunk-checkbox-label">
                                 <input  class="cyberpunk-checkbox" type="checkbox" id="' . $radio['tipo'] . '" name="maquinas[]" value="' . $radio['tipo'] . '">  
                                 ' . $radio['tipo'] . '
                             </label>';
                             }
                         }
-                        ;
+                        echo ' </div>';
                         ?>
                 </div>
 
@@ -239,7 +257,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                 location.reload()
             }
 
-                                    ////
+                                            ////
         </script>
 
         </html>

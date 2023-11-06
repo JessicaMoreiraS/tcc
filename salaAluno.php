@@ -142,9 +142,7 @@ if ($stmt) {
             }
             ?>
         </div>
-        <div class="maquinaNotFound" style="display:none">
-            <h4>Máquina não encontrada</h4>
-        </div>
+        
     </main>
 </body>
 <script>
