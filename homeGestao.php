@@ -38,7 +38,7 @@ $idGestor = $_SESSION['idAcesso'];
         <div class="icons">
             <?php
             echo '
-      <a href="update.php?option=gestor&id_atualizacao=' . $idGestor . '">
+      <a href="update.php?option=sala&id_atualizacao=' . $idGestor . '">
          <i
            class="fa fa-user-circle"
            style="color: rgb(255, 255, 255); cursor: pointer"
