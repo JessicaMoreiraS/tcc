@@ -90,14 +90,12 @@ while ($rowTipo = mysqli_fetch_assoc($conteudoTipo)) {
             </h2>
         </div>
         <div class="pesquisa">
-            <input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por um modelo, ID ou Fabricante" class="pesquisar" type="text" />
+            <input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por um modelo ou ID" class="pesquisar" type="text" />
         </div>
         <div class="maquinas">
             <?php
 
             for ($i = 0; $i < count($tiposDaSalaId); $i++) {
-                //print_r($tiposDaSalaId);
-                //print_r($tiposDaSalaNome);
                 $tipoId = $tiposDaSalaId[$i];
                 $tipoNome = $tiposDaSalaNome[$i];
                 $sqlBuscaMaquinas = "SELECT * FROM maquina WHERE maquina.id_tipo_maquina = $tipoId";
