@@ -1898,6 +1898,7 @@ margin-top: 15px;
 #main_formPerfil .container_form  .input .cpf{background-image: url(../img/svg/documentoIcone.svg);}
 #main_formPerfil .container_form  .input .turma{background-image: url(../img/svg/nameTag.svg);}
 #main_formPerfil .container_form  .input .codigo{background-image: url(../img/svg/Lock.svg);}
+#main_formPerfil .container_form  .input #codigo_acesso{background-image: url(../img/svg/nameTag.svg);}
 
 #main_formPerfil .container_form form  .bnts{
   display: flex;

@@ -49,7 +49,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     $colunaExcluir4 = 'codigo_recuperacao';
 
     //substituindo os valores de campos(campos dos formuarios) por uma função que ira excluir s variavies criadas acima, da busca sql
-    $campos = array_diff($campos, array($colunaExcluir,$colunaExcluir1, $colunaExcluir3, $colunaExcluir2, $colunaExcluir4));
+    $campos = array_diff($campos, array($colunaExcluir, $colunaExcluir1, $colunaExcluir3, $colunaExcluir2, $colunaExcluir4));
 
 
     //verifica se o formuario é do metodo post
@@ -77,7 +77,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
         // verifica se foi executado a consulta 
         if ($mysqli->query($sql)) {
             echo '<script>';
-            echo "alert('Perfil Atualizado')";
+            echo "alert('Atualizado')";
             echo '</script>';
         }
     }
@@ -140,58 +140,109 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                         </div>
                         <?php
                     }
-                    ?>
-                    <div class="bnts">
-                        <div class="inputs">
-                            <input type="submit" value="Salvar">
-                            <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()"
-                                style="display: none;">
-                        </div>
-                        <?php
-                            if(!$editarTurma){
-                                echo'<a id="mudarSenha" href="#">Mudar Senha</a>';
+                    if ($editarTurma) {
+
+                        //buscar tipos de máquinas disponíveis na turma
+                        $sqlTipos = "SELECT DISTINCT tipo_maquina.id, tipo_maquina.tipo FROM tipo_maquina
+                        INNER JOIN lista_sala_tipo_maquina ON lista_sala_tipo_maquina.id_tipo_maquina = tipo_maquina.id
+                        WHERE lista_sala_tipo_maquina.id_sala = ?";
+
+                        $tiposDaSalaId = [];
+                        $tiposDaSalaNome = [];
+                        $stmt = $mysqli->prepare($sqlTipos);
+                        if ($stmt) {
+                            $stmt->bind_param("i", $sala);
+                            if ($stmt->execute()) {
+                                $stmt->bind_result($tipoId, $tipoNome);
+                                while ($stmt->fetch()) {
+                                    $tiposDaSalaId[] = $tipoId;
+                                    $tiposDaSalaNome[] = $tipoNome;
+                                }
+                                $stmt->close();
                             }
-                               
-                            
+                        } else {
+                            echo $mysqli->error;
+                        }
+
+                        echo ' <div class="checkboxes">
+                       <div class="titulo">
+                         <p>Máquinas Disponíveis:</p>
+                       </div>';
+
+                        for ($i = 0; $i < count($tiposDaSalaId); $i++) {
+                            $tipoId = $tiposDaSalaId[$i];
+                            $tipoNome = $tiposDaSalaNome[$i];
+                            $sqlBuscaMaquinas = "SELECT * FROM maquina WHERE maquina.id_tipo_maquina = $tipoId";
+                            $conteudo = $mysqli->query($sqlBuscaMaquinas);
+                            while ($radio = mysqli_fetch_assoc($conteudo)) {
+                                echo
+                                    ' <label for="tipo_maquina" class="cyberpunk-checkbox-label">
+                                <input  class="cyberpunk-checkbox" type="checkbox" id="' . $radio['tipo'] . '" name="maquinas[]" value="' . $radio['tipo'] . '">  
+                                ' . $radio['tipo'] . '
+                            </label>';
+                            }
+                        }
+                        ;
                         ?>
+                </div>
+
+
+                <div class="bnts">
+                    <div class="inputs">
+                        <input type="submit" value="Salvar">
+                        <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()"
+                            style="display: none;">
                     </div>
+                    <?php
+                    if (!$editarTurma) {
+                        echo '<a id="mudarSenha" href="#">Mudar Senha</a>';
+                    }
+
+
+                    ?>
+                </div>
+
                 </form>
-            </div>
-        </main>
+                </div>
+            </main>
 
-    </body>
-    <script src="js/reveal.js"></script>
+        </body>
+        <script src="js/reveal.js"></script>
 
-    <script>
-        //script editar perfil
-        const edit_button = document.getElementById("imgEditIcon");
-        const cancel_button = document.getElementById("botaoCancelar");
-        const inputs = form_perfil.querySelectorAll("input");
-        function liberarEdicaoPerfil() {
-            const form_perfil = document.getElementById("form_perfil");
+        <script>
+            //script editar perfil
+            const edit_button = document.getElementById("imgEditIcon");
+            const cancel_button = document.getElementById("botaoCancelar");
+            const inputs = form_perfil.querySelectorAll("input");
+            function liberarEdicaoPerfil() {
+                const form_perfil = document.getElementById("form_perfil");
 
-            cancel_button.style.display = 'block';
-            inputs.forEach(function (input) {
-                input.removeAttribute('readonly');
-                if (input.placeholder == 'Nome' || input.placeholder == 'Turma') {
-                    input.focus();
-                }
-            });
-        }
+                cancel_button.style.display = 'block';
+                inputs.forEach(function (input) {
+                    input.removeAttribute('readonly');
+                    if (input.placeholder == 'Nome' || input.placeholder == 'Turma') {
+                        input.focus();
+                    }
+                    if (input.id = "codigo_acesso") {
+                        input.setAttribute(readonly, true)
+                    }
+                });
+            }
 
-        setTimeout(function () {
-            inputs.forEach(function (input) {
-                input.style.width = 'auto';
-            });
-        }, 100);
+            setTimeout(function () {
+                inputs.forEach(function (input) {
+                    input.style.width = 'auto';
+                });
+            }, 100);
 
-        function cancelarEdicaoPerfil() {
-            location.reload()
-        }
+            function cancelarEdicaoPerfil() {
+                location.reload()
+            }
 
-            ////
-    </script>
+                                    ////
+        </script>
 
-    </html>
-    <?php
+        </html>
+        <?php
+                    }
 }

@@ -42,22 +42,30 @@ if ($stmt) {
 } else {
     echo $mysqli->error;
 }
+echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $id . '">Editar turma (nao finalizado)</a>';
 //////////
 
-//buscar tipos de maquinas disponeis na turma
-$sqlTipos = "SELECT * FROM tipo_maquina INNER JOIN lista_sala_tipo_maquina ON lista_sala_tipo_maquina.id_tipo_maquina = tipo_maquina.id";
+//buscar tipos de máquinas disponíveis na turma
+$sqlTipos = "SELECT DISTINCT tipo_maquina.id, tipo_maquina.tipo FROM tipo_maquina
+             INNER JOIN lista_sala_tipo_maquina ON lista_sala_tipo_maquina.id_tipo_maquina = tipo_maquina.id
+             WHERE lista_sala_tipo_maquina.id_sala = ?";
 
 $tiposDaSalaId = [];
 $tiposDaSalaNome = [];
-$conteudoTipo = $mysqli->query($sqlTipos);
-while ($rowTipo = mysqli_fetch_assoc($conteudoTipo)) {
-    $addId = $rowTipo['id'];
-    $addTipo = $rowTipo['tipo'];
-    array_push($tiposDaSalaId, $addId);
-    array_push($tiposDaSalaNome, $addTipo);
+$stmt = $mysqli->prepare($sqlTipos);
+if ($stmt) {
+    $stmt->bind_param("i", $sala);
+    if ($stmt->execute()) {
+        $stmt->bind_result($tipoId, $tipoNome);
+        while ($stmt->fetch()) {
+            $tiposDaSalaId[] = $tipoId;
+            $tiposDaSalaNome[] = $tipoNome;
+        }
+        $stmt->close();
+    }
+} else {
+    echo $mysqli->error;
 }
-
-//$sqlBuscaMaquinas = "SELECT * FROM tipo_maquina RIGHT JOIN lista_sala_tipo_maquina ON tipo_maquina.id = lista_sala_tipo_maquina.id_tipo_maquina WHERE ";
 
 ?>
 <!DOCTYPE html>
@@ -90,11 +98,11 @@ while ($rowTipo = mysqli_fetch_assoc($conteudoTipo)) {
             </h2>
         </div>
         <div class="pesquisa">
-            <input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por um modelo ou ID" class="pesquisar" type="text" />
+            <input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por um modelo ou ID"
+                class="pesquisar" type="text" />
         </div>
         <div class="maquinas">
             <?php
-
             for ($i = 0; $i < count($tiposDaSalaId); $i++) {
                 $tipoId = $tiposDaSalaId[$i];
                 $tipoNome = $tiposDaSalaNome[$i];
@@ -144,18 +152,18 @@ while ($rowTipo = mysqli_fetch_assoc($conteudoTipo)) {
 </body>
 <script>
     //JS DA PESQUISA
-  document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const campoPesquisa = document.getElementById("pesquisa-campo");
         const turmas = document.querySelectorAll(".card-maquina");
 
-        campoPesquisa.addEventListener("input", function() {
+        campoPesquisa.addEventListener("input", function () {
             const termoPesquisa = campoPesquisa.value.trim().toLowerCase();
 
-            turmas.forEach(function(turma) {
+            turmas.forEach(function (turma) {
                 const maquinaNome = turma.querySelector("#modelo-maquina").textContent.toLowerCase();
                 const maquinaID = turma.querySelector("#ID-maquina").textContent.toLowerCase();
 
-                if (maquinaNome.includes(termoPesquisa) || maquinaID.includes(termoPesquisa)  ) {
+                if (maquinaNome.includes(termoPesquisa) || maquinaID.includes(termoPesquisa)) {
                     turma.style.opacity = "1";
 
 
@@ -166,4 +174,5 @@ while ($rowTipo = mysqli_fetch_assoc($conteudoTipo)) {
         });
     });
 </script>
+
 </html>
