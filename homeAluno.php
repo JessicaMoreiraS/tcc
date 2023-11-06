@@ -72,7 +72,7 @@ if (isset($_GET["salaSair"])) {
 			</a>
 		</div>
 		<div class="pesquisa">
-			<input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por uma turma" class="pesquisar" type="text" />
+			<input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por uma turma ou professor" class="pesquisar" type="text" />
 		</div>
 
 		<div class="aviso" style="display: none">
@@ -134,6 +134,26 @@ if (isset($_GET["salaSair"])) {
 <script src="js/reveal.js"></script>
 <script>
 
+//JS DA PESQUISA
+document.addEventListener("DOMContentLoaded", function() {
+        const campoPesquisa = document.getElementById("pesquisa-campo");
+        const turmas = document.querySelectorAll(".turma-card");
+
+        campoPesquisa.addEventListener("input", function() {
+            const termoPesquisa = campoPesquisa.value.trim().toLowerCase();
+
+            turmas.forEach(function(turma) {
+                const turmaNome = turma.querySelector("#first_p").textContent.toLowerCase();
+                const turmaProfessor = turma.querySelector("#second_p").textContent.toLowerCase();
+
+                if (turmaNome.includes(termoPesquisa) || turmaProfessor.includes(termoPesquisa)) {
+                    turma.style.opacity = "1";
+                } else {
+					turma.style.opacity = "0";
+                }
+            });
+        });
+    });
 </script>
 </html>
 <?php
