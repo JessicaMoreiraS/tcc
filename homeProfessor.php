@@ -77,7 +77,7 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
         </a>
       </div>
       <div class="pesquisa">
-        <input style="font-size: 16px" placeholder="Pesquise por uma turma" class="pesquisar" type="text" />
+        <input  id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por uma turma" class="pesquisar" type="text" />
       </div>
     </section>
     <div class="turmas">
@@ -86,7 +86,7 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
       $conteudo = $mysqli->query($sqlConteudoCard);
       if ($conteudo && $conteudo->num_rows > 0) {
         while ($row = mysqli_fetch_assoc($conteudo)) { ?>
-          <div class="card">
+          <div class="card turma-card">
             <div class="infos">
               <p id="first_p">
                 Turma:
@@ -202,6 +202,25 @@ ocultarBotao.addEventListener("click", function() {
 });
 ////////
 
+//JS DA PESQUISA
+  document.addEventListener("DOMContentLoaded", function() {
+        const campoPesquisa = document.getElementById("pesquisa-campo");
+        const turmas = document.querySelectorAll(".turma-card");
+
+        campoPesquisa.addEventListener("input", function() {
+            const termoPesquisa = campoPesquisa.value.trim().toLowerCase();
+
+            turmas.forEach(function(turma) {
+                const turmaNome = turma.querySelector("#first_p").textContent.toLowerCase();
+
+                if (turmaNome.includes(termoPesquisa)) {
+                    turma.style.display = "block";
+                } else {
+                    turma.style.display = "none";
+                }
+            });
+        });
+    });
 </script>
 <script src="js/reveal.js"></script>
 
