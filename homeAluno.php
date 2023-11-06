@@ -72,7 +72,7 @@ if (isset($_GET["salaSair"])) {
 			</a>
 		</div>
 		<div class="pesquisa">
-			<input style="font-size: 16px" placeholder="Pesquise por uma turma" class="pesquisar" type="text" />
+			<input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por uma turma" class="pesquisar" type="text" />
 		</div>
 
 		<div class="aviso" style="display: none">
@@ -95,7 +95,7 @@ if (isset($_GET["salaSair"])) {
 				while ($row = mysqli_fetch_assoc($conteudo)) { ?>
 
 
-					<div class="card">
+					<div class="card turma-card">
 						<div class="infos">
 							<p id="first_p">
 								<?php echo $row['turma']; ?>
@@ -132,7 +132,9 @@ if (isset($_GET["salaSair"])) {
 	</main>
 </body>
 <script src="js/reveal.js"></script>
+<script>
 
+</script>
 </html>
 <?php
 if (filter_input(INPUT_GET, 'e')) {
