@@ -90,7 +90,7 @@ while ($rowTipo = mysqli_fetch_assoc($conteudoTipo)) {
             </h2>
         </div>
         <div class="pesquisa">
-            <input style="font-size: 16px" placeholder="Pesquise por uma máquina" class="pesquisar" type="text" />
+            <input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por um modelo, ID ou Fabricante" class="pesquisar" type="text" />
         </div>
         <div class="maquinas">
             <?php
@@ -113,14 +113,14 @@ while ($rowTipo = mysqli_fetch_assoc($conteudoTipo)) {
 
                     ?>
                     <!--Card da maquina-->
-                    <div class="card">
+                    <div class="card card-maquina">
                         <div class="imgBx" style="--clr:#009688;">
                             <img title="<?php $tipoNome ?>" src="data:image/jpeg;base64,<?php echo $imagem_base64; ?>">
                         </div>
                         <div class="content">
-                            <h2>
+                            <h2 id="modelo-maquina">
                                 <?php echo $rowMaquina['modelo'] ?>
-                                <p>
+                                <p id="ID-maquina">
                                     <?php echo 'ID: ' . $rowMaquina['id'] ?>
                                 </p>
 
@@ -144,5 +144,28 @@ while ($rowTipo = mysqli_fetch_assoc($conteudoTipo)) {
         </div>
     </main>
 </body>
+<script>
+    //JS DA PESQUISA
+  document.addEventListener("DOMContentLoaded", function() {
+        const campoPesquisa = document.getElementById("pesquisa-campo");
+        const turmas = document.querySelectorAll(".card-maquina");
 
+        campoPesquisa.addEventListener("input", function() {
+            const termoPesquisa = campoPesquisa.value.trim().toLowerCase();
+
+            turmas.forEach(function(turma) {
+                const maquinaNome = turma.querySelector("#modelo-maquina").textContent.toLowerCase();
+                const maquinaID = turma.querySelector("#ID-maquina").textContent.toLowerCase();
+
+                if (maquinaNome.includes(termoPesquisa) || maquinaID.includes(termoPesquisa)  ) {
+                    turma.style.opacity = "1";
+
+
+                } else {
+                    turma.style.opacity = "0";
+                }
+            });
+        });
+    });
+</script>
 </html>
