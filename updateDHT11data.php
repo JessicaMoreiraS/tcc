@@ -41,13 +41,14 @@ if (!empty($_POST)) {
             $id_tipo_maquina = $maquina['id_tipo_maquina'];
         }//to do: tratar erro caso o id da maquina enviado não exista na base de dados
 
-        addNovosAtributos($id_tipo_maquina, $id_maquina, $id_esp , $date_time);
         
         //receber atributos para o tipo de maquina
         $sqlBuscarAtt= "SELECT * FROM lista_tipo_maquina_atributo WHERE id_tipo_maquina = $id_tipo_maquina";
         $atributoConteudo = $mysqli->query($sqlBuscarAtt);
         
         while ($atributo = mysqli_fetch_assoc($atributoConteudo)){
+            addNovosAtributos($id_tipo_maquina, $id_maquina, $id_esp , $date_time);
+            
             echo $atributo['id_atributos'];
             $id_atributo= $atributo['id_atributos'];
             $sqlDadosAtributo = "SELECT *FROM atributo_tipo WHERE id = $id_atributo";
@@ -81,7 +82,7 @@ function addNovosAtributos($idTipoMaquina, $idMaquina, $esp, $time){
     $sqlAtributosMaquina = "SELECT * FROM lista_tipo_maquina_atributo WHERE id_tipo_maquina = $idTipoMaquina";
     $preparaSqlAtributosMaquina = $mysqli->query($sqlAtributosMaquina);
     $atributoLinha;
-    
+
     $ultimoId;
     /*SELECT MAX(id) CODIGO FROM esp32*/
     $sqlUltimoId = "SELECT *from esp32 ORDER BY id DESC LIMIT 1";
@@ -100,7 +101,6 @@ function addNovosAtributos($idTipoMaquina, $idMaquina, $esp, $time){
             $atributoEsp = $linhaAtributoEsp['id_atributos'];
             $idLinhaEsp = $linhaAtributoEsp['id'];
             if($atributoEsp != $atributoLinha){
-                echo "aquiiiiiiiiiiiiiiii".$atributoEsp ;
                 if($idLinhaEsp == $ultimoId){
                     $sqlAddAtributo = "INSERT INTO esp32 (esp, id_maquina, id_atributos, valor, date_time) VALUES ('$esp', '$idMaquina', '$atributoLinha', '0', '$time')";
                     if ($mysqli->query($sqlAddAtributo)) {
