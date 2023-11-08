@@ -105,9 +105,17 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css" />
         <script src="https://unpkg.com/scrollreveal"></script>
-        <title>Perfil</title>
+        <title>
+            <?php  
+            if($editarTurma){
+                echo 'Editar Turma';
+            }else{
+                echo 'Editar Perfil';
+            }
+            ?>
+        </title>
     </head>
-
+    
     <body id="body_perfil">
         <header class="topo-inicial">
             <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
@@ -121,7 +129,13 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
             <div class="container_form">
                 <section>
                     <div>
-                        <img src="img/svg/user.svg" />
+                       <?php 
+                        if($editarTurma){
+                            echo '<img src="img/svg/class.svg" >';
+                        }else{
+                            echo '<img src="img/svg/user.svg" width="70">';
+                        }
+                       ?>
                     </div>
                     <div class="edit_Icon">
                         <img onclick="liberarEdicaoPerfil()" src="img/svg/Edit.svg" id="imgEditIcon" />
