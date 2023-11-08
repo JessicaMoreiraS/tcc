@@ -16,8 +16,8 @@ DHT dht11_sensor(DHTPIN, DHTTYPE);
 #define led_verde 18
 
 // Informações da rede WiFi
-const char* ssid = "Mi 9T Pro";
-const char* password = "e18ff26ed35ba";
+const char* ssid = "Galaxy A125CE6";//"Mi 9T Pro";
+const char* password = "pclb8148";//"e18ff26ed35ba";
 
 // Strings para armazenar dados a serem enviados ao servidor
 String postData = "";
@@ -179,7 +179,7 @@ void control_LEDs() {
     Serial.printf("Viscosidade caixa De Norton: %.2f %\n", send_viscosidade_caixaDeNorton);
     Serial.printf("Oleo avental Do Torno: %.2f %\n", send_oleo_aventalDoTorno);
     Serial.printf("Viscosidade avental Do Torno: %.2f %\n", send_viscosidade_aventalDoTorno);
-    Serial.printf("Vibracao: %f %\n", send_vibracao);
+    Serial.printf("Vibracao: %.2f %\n", send_vibracao);
     //to do: ver como vai medir o tempo
     Serial.printf("Tempo On: %.2f %\n", send_tempo_On);
     Serial.printf("Tempo Off: %.2f %\n", send_tempo_Off);
@@ -267,7 +267,7 @@ void loop() {
     Serial.println("---------------getdata.php");
    
    
-    http.begin("http://192.168.22.214/tcc/getdata.php");
+    http.begin("http://192.168.246.214/tcc/getdata.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
    
     httpCode = http.POST(postData);
@@ -320,7 +320,7 @@ void loop() {
     digitalWrite(ON_Board_LED, HIGH);
     Serial.println();
     Serial.println("---------------updateDHT11data.php");
-    http.begin("http://192.168.22.214/tcc/updateDHT11data.php");
+    http.begin("http://192.168.246.214/tcc/updateDHT11data.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviando os dados ao servidor
