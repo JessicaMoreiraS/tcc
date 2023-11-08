@@ -13,7 +13,7 @@ if ($stmt) {
     $stmt->bind_param("i", $sala);
     //verificando se o sql executou
     if ($stmt->execute()) {
-        //resganto o resultado
+        //resgantando o resultado
         $stmt->bind_result($nomeTurma);
         $stmt->fetch();
         $stmt->close();

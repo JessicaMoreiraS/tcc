@@ -95,7 +95,6 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
               </p>
             </div>
             <a href="salaProfessor.php?sala=<?php echo $row['id'] ?>">
-            
               <div class="rodape">
                 <i>
                   <img src="img/svg/seta.svg" alt="" />
