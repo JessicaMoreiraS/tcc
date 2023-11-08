@@ -62,7 +62,7 @@
         } 
     }
     function atributosChecklist($idMaquina){
-        $sql = "SELECT * FROM maquina INNER JOIN lista_tipo_maquina_atributo ON maquina.id_tipo_maquina = lista_tipo_maquina_atributo.id_tipo_maquina INNER JOIN atributo_tipo ON atributo_tipo.id = lista_tipo_maquina_atributo.id_atributo WHERE maquina.id = $idMaquina";
+        $sql = "SELECT * FROM maquina INNER JOIN lista_tipo_maquina_atributo ON maquina.id_tipo_maquina = lista_tipo_maquina_atributo.id_tipo_maquina INNER JOIN atributo_tipo ON atributo_tipo.id = lista_tipo_maquina_atributo.id_atributos WHERE maquina.id = $idMaquina";
         $result = buscarNoBanco($idMaquina, $sql);
         
         
@@ -169,12 +169,8 @@
         
             <section class="graficos"> 
 
-            <div>
-                <div class="card-grafico">
-                <div id="graficos"></div> 
-                </div>
-            </div>
-
+            
+            <div id="graficos"></div> 
             
             </section>
         </section>

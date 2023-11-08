@@ -1,12 +1,19 @@
 function graficoVelocimetro(valorGrafico, nomeDiv){
-    
-    
     var elementoPai = document.getElementById("graficos")
+    
+    var divCarGraficos = document.createElement("div");
+    divCarGraficos.className = "card-graficos";
+    var idCardGraficos = nomeDiv+"card";
+    divCarGraficos.id = idCardGraficos;
+    elementoPai.appendChild(divCarGraficos);
+
+
+    var paiDoGrafico = document.getElementById(idCardGraficos)
     var novaDiv = document.createElement("div");
     novaDiv.id = nomeDiv;
     novaDiv.className = "grafico";
     // console.log(nomeDiv);
-    elementoPai.appendChild(novaDiv);
+    paiDoGrafico.appendChild(novaDiv);
 
     am5.ready(function() {
     
@@ -80,6 +87,18 @@ function graficoVelocimetro(valorGrafico, nomeDiv){
 }
 
 function temometro(valor){
+    var elementoPai = document.getElementById("graficos")
+    
+    var divCarGraficos = document.createElement("div");
+    divCarGraficos.className = "card-graficos";
+    var idCardGraficos = "temometrocard";
+    divCarGraficos.id = idCardGraficos;
+    elementoPai.appendChild(divCarGraficos);
+
+
+    var paiDoGrafico = document.getElementById(idCardGraficos)
+    var novaDiv = document.createElement("div");
+
     console.log(valor)
     var elementoPai = document.getElementById("graficos");
     var porcentagem = (valor/200)*100;
@@ -88,6 +107,6 @@ function temometro(valor){
     var novaDiv = `<div id="temometro" onclick="mudarTemp()">
     <div id="valorTemometro" style="height:${porcentagem}px"></div>
     </div>`;
-    elementoPai.innerHTML += novaDiv;
+    paiDoGrafico.innerHTML += novaDiv;
 
 }
