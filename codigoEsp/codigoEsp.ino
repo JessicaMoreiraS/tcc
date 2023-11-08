@@ -5,15 +5,15 @@
 #include "DHT.h"
 
 // Definindo o pino do sensor DHT e seu tipo
-#define DHTPIN 4
+#define DHTPIN 18
 #define DHTTYPE DHT11
 DHT dht11_sensor(DHTPIN, DHTTYPE);
 
 // Definindo os pinos dos LEDs
 #define ON_Board_LED 2
-#define led_vermelho 16
-#define led_amarelo 17
-#define led_verde 18
+#define led_vermelho 17
+#define led_amarelo 16
+#define led_verde 4
 
 // Informações da rede WiFi
 const char* ssid = "Galaxy A125CE6";//"Mi 9T Pro";
@@ -105,13 +105,13 @@ void control_LEDs() {
   }*/
 
   // Controlando os LEDs com base nos resultados do checklist
-  if (checklist_ok) {
+  /*if (checklist_ok) {
     digitalWrite(led_verde, LOW);  // LED verde
     digitalWrite(led_vermelho, HIGH); // Desligar LED vermelho
   } else {
     digitalWrite(led_verde, HIGH); // Desligar LED verde
     digitalWrite(led_vermelho, LOW);  // LED vermelho
-  }
+  }*/
 
   Serial.println("---------------");
 }
