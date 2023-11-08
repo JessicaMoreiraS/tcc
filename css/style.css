@@ -1955,11 +1955,15 @@ margin-top: 15px;
 /*FIM CSS FORM EDITAR PERFIL*/
 
 /*CSS FORM EDITAR turma*/
-#checkboxesEditarTurma .cyberpunk-checkbox{
-  border: #0d394d 2px solid;
+#checkboxesFormEditarTurma{
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-#checkboxesEditarTurma .cyberpunk-checkbox:before{
-    background-color: #003f5b;
+#checkboxesFormEditarTurma .cyberpunk-checkbox{
+  border: var(--azulEscuro) 2px solid;
+}
+#checkboxesFormEditarTurma .cyberpunk-checkbox::before{
+  background-color: var(--azulPrincipal);
 }
  #checkboxesFormEditarTurma .cyberpunk-checkbox-label{
   display: flex;

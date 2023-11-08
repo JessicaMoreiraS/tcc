@@ -165,7 +165,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                 
                         echo '<div class="checkboxes" id="checkboxesFormEditarTurma">';
                         echo '<div class="titulo">
-                        <p>Máquinas  disponiveis:</p>
+                        <p>Máquinas  disponíveis:</p>
                       </div>';
                         while ($row = $stmt_todos_tipos->fetch_assoc()) {
                             $tipo = $row['tipo'];
