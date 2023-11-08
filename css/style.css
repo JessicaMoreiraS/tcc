@@ -1234,7 +1234,9 @@ margin-bottom: 20px;
     cursor: pointer;
     margin-bottom: 10px;
   }
-  
+  .cyberpunk-checkbox:disabled{
+    cursor: not-allowed;
+  }
   .cyberpunk-checkbox:before {
     content: "";
     background-color: #b6e4f0;
@@ -1259,6 +1261,9 @@ margin-bottom: 20px;
     cursor: pointer;
     user-select: none;
     display: flex;
+  }
+  .cyberpunk-checkbox-label:disabled{
+
   }
   
 
