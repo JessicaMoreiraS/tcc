@@ -1,11 +1,15 @@
 <?php
 //iniciando sessão
 session_start();
+
 $id = $_SESSION['idAcesso'];
-$sala = $_GET['sala'];
+
 
 //incluindo conexao cm o banc
 include('conexao.php');
+
+
+
 
 if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     $editarTurma = false;
@@ -73,9 +77,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
 
         // verifica se foi executado a consulta 
         if ($mysqli->query($sql)) {
-            echo '<script>';
-            echo "alert('Atualizado')";
-            echo '</script>';
+          
         }
     }
 
@@ -89,53 +91,56 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     //nome da coluna = chave , valor da coluna = dados
     $dados = mysqli_fetch_assoc($resultado);
 
-
+    if($editarTurma){
+        $urlUpdate = "update.php?option=$tabelaBuscar&editarTurma&id_atualizacao=$id_atualizacao";
+    }else{
+        $urlUpdate = "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao";
+    }
     ?>
-<!DOCTYPE html>
-<html lang="pt-br">
+    <!DOCTYPE html>
+    <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <title>Perfil</title>
+    </head>
 
-    <title>Perfil</title>
-</head>
+    <body id="body_perfil">
+        <header class="topo-inicial">
+            <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
 
-<body id="body_perfil">
-    <header class="topo-inicial">
-        <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
-
-        <div class="icons">
-            <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
-            <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
-        </div>
-    </header>
-    <main id="main_formPerfil">
-        <div class="container_form">
-            <section>
-                <div>
-                    <img src="img/svg/user.svg" />
-                </div>
-                <div class="edit_Icon">
-                    <img onclick="liberarEdicaoPerfil()" src="img/svg/Edit.svg" id="imgEditIcon" />
-                </div>
-            </section>
-            <form id="form_perfil" method="POST"
-                action="<?php echo "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao" ?>">
-                <?php
+            <div class="icons">
+                <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
+                <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
+            </div>
+        </header>
+        <main id="main_formPerfil">
+            <div class="container_form">
+                <section>
+                    <div>
+                        <img src="img/svg/user.svg" />
+                    </div>
+                    <div class="edit_Icon">
+                        <img onclick="liberarEdicaoPerfil()" src="img/svg/Edit.svg" id="imgEditIcon" />
+                    </div>
+                </section>
+                <form id="form_perfil" method="POST"
+                    action="<?php echo $urlUpdate ?>">
+                    <?php
 
                     //iteraçao pela array campos (array do fetch que armazena os dados da tabela)
                     foreach ($campos as $campo) {
                         // valor atual = dados do campo em especifico
                         $valorAtual = $dados[$campo];
                         ?>
-                <div class="input">
-                    <input class="<?php echo $campo ?>" required readonly type="text" id="<?php echo $campo; ?>"
-                        name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
-                </div>
-                <?php
+                        <div class="input">
+                            <input class="<?php echo $campo ?>" required readonly type="text" id="<?php echo $campo; ?>"
+                                name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
+                        </div>
+                        <?php
                     }
                     if ($editarTurma) {
                         $sql_tipos_na_sala = "SELECT tipo_maquina.id, tipo_maquina.tipo
@@ -158,80 +163,81 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                         $sql_todos_tipos = "SELECT id, tipo FROM tipo_maquina";
                         $stmt_todos_tipos = $mysqli->query($sql_todos_tipos);
                 
-                        echo '<form>';
+                        echo '<div class="checkboxes" id="checkboxesFormEditarTurma">';
+                        echo '<div class="titulo">
+                        <p>Máquinas  disponiveis:</p>
+                      </div>';
                         while ($row = $stmt_todos_tipos->fetch_assoc()) {
                             $tipo = $row['tipo'];
                             $check = in_array($tipo, $tipos_na_sala) ? 'checked' : '';
                 
                             echo '<label for="' . $tipo . '" class="cyberpunk-checkbox-label">';
-                            echo '<input disabled id="tipo" class="cyberpunk-checkbox" type="checkbox" id="' . $tipo . '" name="maquinas[]" value="' . $tipo . '" ' . $check . '>';
+                            echo '<input ' . $check . ' disabled  class="cyberpunk-checkbox" type="checkbox" id="' . $tipo . '" name="maquinas[]" value="' . $tipo . '" >';
                             echo $tipo;
                             echo '</label>';
                         }
-                
-                        echo '</form>';
-                    }          
+                        echo '</div>';
+                    } 
+                                            
                       
-                    ?>
-        </div>
+                        ?>
+                
 
 
-        <div class="bnts">
-            <div class="inputs">
-                <input type="submit" value="Salvar">
-                <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()"
-                    style="display: none;">
-            </div>
-            <?php
+                <div class="bnts">
+                    <div class="inputs">
+                        <input type="submit" value="Salvar">
+                        <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()"
+                            style="display: none;">
+                    </div>
+                    <?php
                     if (!$editarTurma) {
-                        echo '<a id="mudarSenha" href="#">Mudar Senha</a>';
+                        echo '<a id="mudarSenha" href="recuperacaoSenha.php">Mudar Senha</a>';
                     }
 
 
                     ?>
-        </div>
+                </div>
 
-        </form>
-        </div>
-    </main>
+                </form>
+                </div>
+            </main>
 
-</body>
-<script src="js/reveal.js"></script>
+        </body>
+        <script src="js/reveal.js"></script>
 
-<script>
-//script editar perfil
-const edit_button = document.getElementById("imgEditIcon");
-const cancel_button = document.getElementById("botaoCancelar");
-const inputs = form_perfil.querySelectorAll("input");
+        <script>
+            //script editar perfil
+            const edit_button = document.getElementById("imgEditIcon");
+            const cancel_button = document.getElementById("botaoCancelar");
+            const inputs = form_perfil.querySelectorAll("input");
+            function liberarEdicaoPerfil() {
+                const form_perfil = document.getElementById("form_perfil");
 
-function liberarEdicaoPerfil() {
-    const form_perfil = document.getElementById("form_perfil");
+                cancel_button.style.display = 'block';
+                inputs.forEach(function (input) {
+                    
+                    if (input.name == 'nome' || input.name == 'turma') {
+                        input.focus();
+                    }
+                    if (input.id !== "codigo_acesso") {
+                        input.removeAttribute('readonly');
+                    }
+                    if (input.type == "checkbox"){
+                        input.removeAttribute('disabled');
+                    }
+                });
+            }
 
-    cancel_button.style.display = 'block';
-    inputs.forEach(function(input) {
-        input.removeAttribute('readonly');
-        input.removeAttribute('disabled');
-        if (input.name == 'nome' || input.name  == 'turma') {
-            input.focus();
-        }
-        if (input.id == "codigo_acesso") {
-            input.setAttribute(readonly, true)
-        }
-     
-    });
-}
 
-setTimeout(function() {
-    inputs.forEach(function(input) {
-        input.style.width = 'auto';
-    });
-}, 100);
+            function cancelarEdicaoPerfil() {
+                location.reload()
+            }
 
-function cancelarEdicaoPerfil() {
-    location.reload()
-}
-</script>
+                                            ////
+        </script>
 
-</html>
-<?php
-        }
+        </html>
+        <?php
+                    }
+

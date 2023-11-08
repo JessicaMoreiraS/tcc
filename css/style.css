@@ -1208,7 +1208,7 @@ background-color: #003f5b;
     display: flex;
     flex-direction: column;
 }
-.form_cadastrarTurma .container .checkboxes .titulo, .form_cadastrarTurma label {
+.checkboxes .titulo{
 color: #b6e4f0;
 font-size: 17px;
 font-weight: 500;
@@ -1254,12 +1254,11 @@ margin-bottom: 20px;
   }
   
   .cyberpunk-checkbox-label {
-    font-size: 18px;
+    font-size: 15px;
     color: #fff;
     cursor: pointer;
     user-select: none;
     display: flex;
-    align-items: center;
   }
   
 
@@ -1961,6 +1960,13 @@ margin-top: 15px;
 }
 #checkboxesEditarTurma .cyberpunk-checkbox:before{
     background-color: #003f5b;
+}
+ #checkboxesFormEditarTurma .cyberpunk-checkbox-label{
+  display: flex;
+  color: #000000;
+}
+#checkboxesFormEditarTurma  .titulo p{
+  color: #000000;
 }
 /*FIM CSS FORM EDITAR turma*/
 
