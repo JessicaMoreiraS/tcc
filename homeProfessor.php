@@ -1,9 +1,16 @@
 <?php
 //inicisnd sessão 
 session_start();
-$paginasPermitemAcesso = "login.php";
-if (!strpos($_SERVER['HTTP_REFERER'], $paginasPermitemAcesso)) {
-  header('Location: index.html');
+$paginasPermitemAcesso = ["login.php","cadatro.php"];
+foreach ($paginasPermitemAcesso as $pagina) {
+  $len = count($paginasPermitemAcesso);
+  if (!strpos($_SERVER['HTTP_REFERER'], $pagina) && $pagina == $paginasPermitemAcesso[$len-1] || $_SESSION['tipo'] != 'professor') {
+    header('Location: index.html');
+  }else{
+    if(strpos($_SERVER['HTTP_REFERER'], $pagina)){
+      break;
+    }
+  }
 }
 
 //capturando o id do professor

@@ -106,6 +106,7 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
                                 //verificando a execucao
                                 if ($preparacaoSeguraSQL2->execute()) {
                                     // resultado de sucesso
+                                    header('Location: homeProfessor.php');
                                     exit;
                                 } else {
                                     // erroo

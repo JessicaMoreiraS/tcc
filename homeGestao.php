@@ -1,6 +1,16 @@
 <?php
 session_start();
 $paginasPermitemAcesso = ["login.php", "homeGestao.php", "cadastrarMaquina.php", "gestaoAlunos.php", "cadastrarProfessor.php"];
+foreach ($paginasPermitemAcesso as $pagina) {
+  $len = count($paginasPermitemAcesso);
+  if (!strpos($_SERVER['HTTP_REFERER'], $pagina) && $pagina == $paginasPermitemAcesso[$len-1] || $_SESSION['tipo'] != 'gestor') {
+    header('Location: index.html');
+  }else{
+    if(strpos($_SERVER['HTTP_REFERER'], $pagina)){
+      break;
+    }
+  }
+}
 $permitido = false;
 
 // for($i = 0; $i < count($paginasPermitemAcesso); $i++){

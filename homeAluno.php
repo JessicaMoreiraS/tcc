@@ -2,9 +2,18 @@
 
 <?php
 session_start();
-if (!strpos($_SERVER['HTTP_REFERER'], 'login.php') || $_SESSION['tipo'] != 'aluno') {
-	header('Location: index.html');
+$paginasPermitemAcesso = ["login.php"];
+foreach ($paginasPermitemAcesso as $pagina) {
+  $len = count($paginasPermitemAcesso);
+  if (!strpos($_SERVER['HTTP_REFERER'], $pagina) && $pagina == $paginasPermitemAcesso[$len-1] || $_SESSION['tipo'] != 'aluno') {
+    header('Location: index.html');
+  }else{
+    if(strpos($_SERVER['HTTP_REFERER'], $pagina)){
+      break;
+    }
+  }
 }
+
 
 $idAluno = $_SESSION['idAcesso'];
 
