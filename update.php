@@ -9,8 +9,6 @@ $id = $_SESSION['idAcesso'];
 include('conexao.php');
 
 
-
-
 if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     $editarTurma = false;
     $tabelaBuscar = $_GET['option'];
@@ -157,6 +155,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                         <?php
                     }
                     if ($editarTurma) {
+
                         $sql_tipos_na_sala = "SELECT tipo_maquina.id, tipo_maquina.tipo
                         FROM tipo_maquina
                         INNER JOIN lista_sala_tipo_maquina ON tipo_maquina.id = lista_sala_tipo_maquina.id_tipo_maquina
@@ -191,6 +190,9 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                             echo '</label>';
                         }
                         echo '</div>';
+
+                        
+                        
                     } 
                                             
                       
