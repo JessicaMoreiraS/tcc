@@ -85,7 +85,8 @@ if ($stmt) {
 
 <body>
     <header class="topo-inicial">
-        <a href="visualizar.php?id_sala_view=".<?php? echo >."&view=alunosSala">
+        <?php  echo '
+      <a href="visualizar.php?view=alunosSala&id_sala_view=' . $sala . '">' ?>
             <img src="" alt="botao para ver os alunos">
         </a>
         <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />

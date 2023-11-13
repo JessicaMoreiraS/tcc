@@ -76,8 +76,8 @@ if (filter_input(INPUT_GET, 'view')) {
         $tema = "Checklists de Segurança";
         $checklist = true;
         $query = "SELECT * FROM checklist INNER JOIN maquina ON checklist.id_maquina = maquina.id";
-        $camposBusca = ['data', 'id', 'modelo'];
-        $camposTema = ['data', 'Maquina', 'Modelo', 'Responsavel', 'Email'];
+        $camposBusca = ['date_time', 'id', 'modelo'];
+        $camposTema = ['Data', 'Maquina', 'Modelo', 'Responsavel', 'Email'];
     } else {
         header('Location: homeGestor.php');
     }
@@ -87,7 +87,7 @@ if (filter_input(INPUT_GET, 'view')) {
 function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tipo)
 {
     include("conexao.php");
-    $conteudo = $mysqli->query($query);
+        $conteudo = $mysqli->query($query);
     ?>
 
     <table class="table">
@@ -97,7 +97,6 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                 <?php for ($i = 0; $i < count($camposTema); $i++) { ?>
                     <th class="table__th">
                         <?php echo $camposTema[$i] ?>
-
                     </th>
                 <?php } ?>
             </thead>
@@ -116,7 +115,9 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                         echo '<tr class="table-row table-row--class table ">';
                     } elseif ($_GET['view'] == 'checklist') {
                         echo '<tr class="table-row table-row--checklist table ">';
-                    } else {
+                    } elseif ($_GET['view'] == 'alunosSala') {
+                        echo '<tr class="table-row table-row--student table ">';
+                    }else{
                         echo '<tr class="table-row table-row--gears table ">';
                     }
                     ?>
