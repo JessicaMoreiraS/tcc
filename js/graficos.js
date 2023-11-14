@@ -73,15 +73,17 @@ function graficoVelocimetro(valorGrafico, nomeDiv){
         chart.appear(1000, 100);
         
         console.log(valorGrafico)
-        setInterval(() => {
+        // setInterval(() => {
             axisDataItem.animate({
             key: 'value',
             to: valorGrafico,
             duration: 800,
             easing: am5.ease.out(am5.ease.cubic)
             });
-        }, 2000);
+        // }, 2000);
     
+        console.log(nomeDiv + "_axisDataItem")
+        window[nomeDiv + "_axisDataItem"] = axisDataItem;
     }); // end am5.ready()  
 
 }
@@ -110,3 +112,54 @@ function temometro(valor){
     paiDoGrafico.innerHTML += novaDiv;
 
 }
+// setInterval(() => {
+//     valor = Math.floor(Math.random() * 20);
+//     console.log(valor)
+//     grafico ="velocidade";
+//     atualizaVelocimetro(grafico, valor)
+// },5000)
+
+function cpuUsage(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var retorno = xhttp.responseText;
+            atualizaVelocimetro(retorno);
+            //document.getElementById("cpu_usage").innerHTML = xhttp.responseText;
+        }
+    };
+    xhttp.open("GET", "checklistReload.php", true);
+    xhttp.send();
+    //Repetir após 5 segundos
+    setTimeout(function(){ cpuUsage(); }, 5000);
+}
+
+function atualizaVelocimetro(nomeDiv, novoValor) {
+    // Recupere a referência para o objeto axisDataItem
+    console.log(nomeDiv);
+    console.log(novoValor);
+    var axisDataItem = window[nomeDiv + "_axisDataItem"];
+    
+    // Verifique se a referência existe
+    if (axisDataItem) {
+        // Atualize dinamicamente o valor do gráfico
+        axisDataItem.animate({
+            key: 'value',
+            to: novoValor,
+            duration: 800,
+            easing: am5.ease.out(am5.ease.cubic)
+        });
+    } else {
+        console.error("Referência para axisDataItem não encontrada.");
+    }
+}
+
+cpuUsage();
+
+// atualizarVelocimetro('nomeDaDiv', 50);
+
+
+
+
+
+
