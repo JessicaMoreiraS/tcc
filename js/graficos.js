@@ -116,7 +116,7 @@ function temometro(valor){
 //     valor = Math.floor(Math.random() * 20);
 //     console.log(valor)
 //     grafico ="velocidade";
-//     atualizaVelocimetro(grafico, valor)
+//     atualizaGrafico(grafico, valor)
 // },5000)
 
 function cpuUsage(){
@@ -124,7 +124,7 @@ function cpuUsage(){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var retorno = xhttp.responseText;
-            atualizaVelocimetro(retorno);
+            atualizaGrafico(retorno);
             //document.getElementById("cpu_usage").innerHTML = xhttp.responseText;
         }
     };
@@ -134,7 +134,7 @@ function cpuUsage(){
     setTimeout(function(){ cpuUsage(); }, 5000);
 }
 
-function atualizaVelocimetro(retorno) {
+function atualizaGrafico(retorno) {
     var arrRetorno = retorno.split(' ');
 
     arrRetorno.forEach(nomeEValor => {
@@ -146,21 +146,35 @@ function atualizaVelocimetro(retorno) {
         // Recupere a referência para o objeto axisDataItem
         console.log(nomeDiv);
         console.log(novoValor);
-        var axisDataItem = window[nomeDiv + "_axisDataItem"];
-        
-        // Verifique se a referência existe
-        if (axisDataItem) {
-            // Atualize dinamicamente o valor do gráfico
-            axisDataItem.animate({
-                key: 'value',
-                to: novoValor,
-                duration: 800,
-                easing: am5.ease.out(am5.ease.cubic)
-            });
-        } else {
-            console.error("Referência para axisDataItem não encontrada.");
+        if(nomeDiv == "velocidade" || nomeDiv == "vibracao"){
+            atualizaVelocimetro(nomeDiv, novoValor);
+        }else if(nomeDiv == "temperatura"){
+            atualizaTemometro(nomeDiv, novoValor);
         }
     });
+}
+
+function atualizaVelocimetro(nomeDiv, novoValor){
+    var axisDataItem = window[nomeDiv + "_axisDataItem"];
+        
+    // Verifique se a referência existe
+    if (axisDataItem) {
+        // Atualize dinamicamente o valor do gráfico
+        axisDataItem.animate({
+            key: 'value',
+            to: novoValor,
+            duration: 800,
+            easing: am5.ease.out(am5.ease.cubic)
+        });
+    } else {
+        console.error("Referência para axisDataItem não encontrada.");
+    }
+}
+
+function atualizaTemometro(nomeDiv, novoValor){
+    var porcentagem = (novoValor/200)*100;
+    var valorTemometro = document.getElementById("valorTemometro")
+    valorTemometro.style.height = porcentagem+"px";
 }
 
 cpuUsage();
