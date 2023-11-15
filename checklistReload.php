@@ -19,11 +19,8 @@
             $conteudo = "";
     
             while ($row = mysqli_fetch_assoc($result)) {
-                if($row['atributo'] == "temperatura"){
-                    $conteudo .= "temperatura-".$row['valor']." "; 
-                }
-                if($row['atributo'] == "velocidade" || $row['atributo'] == "vibracao"){
-                    $conteudo .= $row['atributo']."-".$row['valor']." ";
+                if($row['atributo'] == "velocidade" || $row['atributo'] == "temperatura" || $row['atributo'] == "vibracao"){
+                    $conteudo .= $row['atributo']."-".$row['valor']."-".$row['atributo_esp']."-".$row['valor_referencia']." ";
                 
                 }
             }

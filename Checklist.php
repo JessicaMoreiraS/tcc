@@ -61,6 +61,7 @@
                 </div>';
         } 
     }
+
     function atributosChecklist($idMaquina){
         $sql = "SELECT * FROM maquina INNER JOIN lista_tipo_maquina_atributo ON maquina.id_tipo_maquina = lista_tipo_maquina_atributo.id_tipo_maquina INNER JOIN atributo_tipo ON atributo_tipo.id = lista_tipo_maquina_atributo.id_atributos WHERE maquina.id = $idMaquina";
         $result = buscarNoBanco($idMaquina, $sql);
@@ -80,13 +81,13 @@
                 if($rowEsp['id_atributos'] == $idAtributo){
                     if($rowEsp['valor'] <= $valorReferencia){
                         echo '<div class="checkbox-wrapper-19">
-                                <input id="'.$name.'" type="checkbox" name="'.$name.'" checked="true">
-                                <label class="check-box" for="'.$name.'" style="padding-left:30px">'.$atributo.'</label>
+                                <input id="'.$name.'Check" type="checkbox" name="'.$name.'" checked="true">
+                                <label class="check-box" for="'.$name.'Check" style="padding-left:30px">'.$atributo.'</label>
                             </div>';
                     }else{
                         echo '<div class="checkbox-wrapper-19">
-                                <input id="'.$name.'" type="checkbox" name="'.$name.'" disabled class="boderRed">
-                                <label class="check-box" for="'.$name.'" style="padding-left:30px">'.$atributo.'</label>
+                                <input id="'.$name.'Check" type="checkbox" name="'.$name.'" disabled class="boderRed">
+                                <label class="check-box" for="'.$name.'Check" style="padding-left:30px">'.$atributo.'</label>
                             </div>';
                     }
                 }

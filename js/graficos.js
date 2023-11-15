@@ -145,9 +145,12 @@ function atualizaGrafico(retorno) {
         
         var nomeDiv = arrNomeValor[0];
         var novoValor = arrNomeValor[1];
+        var idCheckbox = arrNomeValor[2]+"Check";
+        var valorDeReferencia = arrNomeValor[3];
+        verificarCheckbox(idCheckbox, novoValor, valorDeReferencia)
         // Recupere a referência para o objeto axisDataItem
-        // console.log(nomeDiv);
-        // console.log(novoValor);
+        console.log(nomeDiv);
+        console.log(novoValor);
         if(nomeDiv == "velocidade" || nomeDiv == "vibracao"){
             atualizaVelocimetro(nomeDiv, novoValor);
         }else if(nomeDiv == "temperatura"){
@@ -177,6 +180,19 @@ function atualizaTemometro(nomeDiv, novoValor){
     var porcentagem = (novoValor/200)*100;
     var valorTemometro = document.getElementById("valorTemometro")
     valorTemometro.style.height = porcentagem+"px";
+}
+
+function verificarCheckbox(nome, valor, valorReferencia){
+    var fValor = parseFloat(valor);
+    var fValorReferencia = parseFloat(valorReferencia);
+    if(fValor >= fValorReferencia){
+        console.log(document.getElementById(nome).checked)
+        document.getElementById(nome).checked = false;
+        document.getElementById(nome).disabled = true;
+    }else{
+        document.getElementById(nome).disabled =  false;
+        document.getElementById(nome).checked = true;
+    }
 }
 
 cpuUsage();
