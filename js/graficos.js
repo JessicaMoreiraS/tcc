@@ -1,4 +1,5 @@
-function graficoVelocimetro(valorGrafico, nomeDiv){
+function graficoVelocimetro(valorGrafico, nomeDiv, idMaquina){
+    window['idMaquina'] = idMaquina;
     var elementoPai = document.getElementById("graficos")
     
     var divCarGraficos = document.createElement("div");
@@ -88,7 +89,8 @@ function graficoVelocimetro(valorGrafico, nomeDiv){
 
 }
 
-function temometro(valor){
+function temometro(valor, idMaquina){
+    window['idMaquina'] = idMaquina;
     var elementoPai = document.getElementById("graficos")
     
     var divCarGraficos = document.createElement("div");
@@ -112,30 +114,30 @@ function temometro(valor){
     paiDoGrafico.innerHTML += novaDiv;
 
 }
-// setInterval(() => {
-//     valor = Math.floor(Math.random() * 20);
-//     console.log(valor)
-//     grafico ="velocidade";
-//     atualizaGrafico(grafico, valor)
-// },5000)
+
 
 function cpuUsage(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var retorno = xhttp.responseText;
-            atualizaGrafico(retorno);
-            //document.getElementById("cpu_usage").innerHTML = xhttp.responseText;
-        }
-    };
-    xhttp.open("GET", "checklistReload.php?id=1", true);
-    xhttp.send();
+    var idMaquina = window['idMaquina'];
+    if(idMaquina != undefined){
+        
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var retorno = xhttp.responseText;
+                atualizaGrafico(retorno);
+                //document.getElementById("cpu_usage").innerHTML = xhttp.responseText;
+            }
+        };
+        xhttp.open("GET", `checklistReload.php?id_maquina=${idMaquina}`, true);
+        xhttp.send();
+    }
     //Repetir após 5 segundos
     setTimeout(function(){ cpuUsage(); }, 5000);
 }
 
 function atualizaGrafico(retorno) {
     var arrRetorno = retorno.split(' ');
+    console.log()
 
     arrRetorno.forEach(nomeEValor => {
         var arrNomeEValor = nomeEValor;
@@ -144,8 +146,8 @@ function atualizaGrafico(retorno) {
         var nomeDiv = arrNomeValor[0];
         var novoValor = arrNomeValor[1];
         // Recupere a referência para o objeto axisDataItem
-        console.log(nomeDiv);
-        console.log(novoValor);
+        // console.log(nomeDiv);
+        // console.log(novoValor);
         if(nomeDiv == "velocidade" || nomeDiv == "vibracao"){
             atualizaVelocimetro(nomeDiv, novoValor);
         }else if(nomeDiv == "temperatura"){

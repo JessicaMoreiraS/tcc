@@ -1,6 +1,6 @@
 <?php
-    if(isset($_GET['id'])){
-        $idDaMaquina = $_GET['id'];
+    if(isset($_GET['id_maquina'])){
+        $idDaMaquina = $_GET['id_maquina'];
 
         function buscarNoBanco($idMaquina, $sql){
             include('conexao.php');

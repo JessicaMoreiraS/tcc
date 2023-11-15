@@ -32,13 +32,13 @@
             
             if($row['atributo'] == "temperatura"){
                 echo '<script>';
-                echo 'temometro('.$row['valor'].');'; 
+                echo 'temometro('.$row['valor'].',"'.$idMaquina.'");'; 
                 echo '</script>';
             }
             if($row['atributo'] == "velocidade" || $row['atributo'] == "vibracao"){
                 echo '<script>';
                 // echo "console.log('".$info[0]."');";
-                echo 'graficoVelocimetro('.$row['valor'] .', "'.$row['atributo'].'");';
+                echo 'graficoVelocimetro('.$row['valor'] .', "'.$row['atributo'].'","'.$idMaquina.'");';
                 echo '</script>';
                 
             }
