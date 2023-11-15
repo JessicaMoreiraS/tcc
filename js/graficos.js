@@ -73,7 +73,7 @@ function graficoVelocimetro(valorGrafico, nomeDiv, idMaquina){
                 
         chart.appear(1000, 100);
         
-        console.log(valorGrafico)
+        // console.log(valorGrafico)
         // setInterval(() => {
             axisDataItem.animate({
             key: 'value',
@@ -83,7 +83,6 @@ function graficoVelocimetro(valorGrafico, nomeDiv, idMaquina){
             });
         // }, 2000);
     
-        console.log(nomeDiv + "_axisDataItem")
         window[nomeDiv + "_axisDataItem"] = axisDataItem;
     }); // end am5.ready()  
 
@@ -103,11 +102,11 @@ function temometro(valor, idMaquina){
     var paiDoGrafico = document.getElementById(idCardGraficos)
     var novaDiv = document.createElement("div");
 
-    console.log(valor)
+    // console.log(valor)
     var elementoPai = document.getElementById("graficos");
     var porcentagem = (valor/200)*100;
     
-    console.log(porcentagem);
+    // console.log(porcentagem);
     var novaDiv = `<div id="temometro" onclick="mudarTemp()">
     <div id="valorTemometro" style="height:${porcentagem}px"></div>
     </div>`;
@@ -137,7 +136,6 @@ function cpuUsage(){
 
 function atualizaGrafico(retorno) {
     var arrRetorno = retorno.split(' ');
-    console.log()
 
     arrRetorno.forEach(nomeEValor => {
         var arrNomeEValor = nomeEValor;
@@ -149,8 +147,8 @@ function atualizaGrafico(retorno) {
         var valorDeReferencia = arrNomeValor[3];
         verificarCheckbox(idCheckbox, novoValor, valorDeReferencia)
         // Recupere a referência para o objeto axisDataItem
-        console.log(nomeDiv);
-        console.log(novoValor);
+        // console.log(nomeDiv);
+        // console.log(novoValor);
         if(nomeDiv == "velocidade" || nomeDiv == "vibracao"){
             atualizaVelocimetro(nomeDiv, novoValor);
         }else if(nomeDiv == "temperatura"){
@@ -186,7 +184,6 @@ function verificarCheckbox(nome, valor, valorReferencia){
     var fValor = parseFloat(valor);
     var fValorReferencia = parseFloat(valorReferencia);
     if(fValor >= fValorReferencia){
-        console.log(document.getElementById(nome).checked)
         document.getElementById(nome).checked = false;
         document.getElementById(nome).disabled = true;
     }else{
