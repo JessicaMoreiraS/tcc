@@ -128,13 +128,16 @@ function cpuUsage(){
             //document.getElementById("cpu_usage").innerHTML = xhttp.responseText;
         }
     };
-    xhttp.open("GET", "checklistReload.php", true);
+    xhttp.open("GET", "checklistReload.php?id=1", true);
     xhttp.send();
     //Repetir após 5 segundos
     setTimeout(function(){ cpuUsage(); }, 5000);
 }
 
-function atualizaVelocimetro(nomeDiv, novoValor) {
+function atualizaVelocimetro(retorno) {
+    var arrRetorno = retorno.split('-');
+    var nomeDiv = arrRetorno[0];
+    var novoValor = arrRetorno[1]
     // Recupere a referência para o objeto axisDataItem
     console.log(nomeDiv);
     console.log(novoValor);
