@@ -135,26 +135,32 @@ function cpuUsage(){
 }
 
 function atualizaVelocimetro(retorno) {
-    var arrRetorno = retorno.split('-');
-    var nomeDiv = arrRetorno[0];
-    var novoValor = arrRetorno[1]
-    // Recupere a referência para o objeto axisDataItem
-    console.log(nomeDiv);
-    console.log(novoValor);
-    var axisDataItem = window[nomeDiv + "_axisDataItem"];
-    
-    // Verifique se a referência existe
-    if (axisDataItem) {
-        // Atualize dinamicamente o valor do gráfico
-        axisDataItem.animate({
-            key: 'value',
-            to: novoValor,
-            duration: 800,
-            easing: am5.ease.out(am5.ease.cubic)
-        });
-    } else {
-        console.error("Referência para axisDataItem não encontrada.");
-    }
+    var arrRetorno = retorno.split(' ');
+
+    arrRetorno.forEach(nomeEValor => {
+        var arrNomeEValor = nomeEValor;
+        var arrNomeValor = arrNomeEValor.split('-');
+        
+        var nomeDiv = arrNomeValor[0];
+        var novoValor = arrNomeValor[1];
+        // Recupere a referência para o objeto axisDataItem
+        console.log(nomeDiv);
+        console.log(novoValor);
+        var axisDataItem = window[nomeDiv + "_axisDataItem"];
+        
+        // Verifique se a referência existe
+        if (axisDataItem) {
+            // Atualize dinamicamente o valor do gráfico
+            axisDataItem.animate({
+                key: 'value',
+                to: novoValor,
+                duration: 800,
+                easing: am5.ease.out(am5.ease.cubic)
+            });
+        } else {
+            console.error("Referência para axisDataItem não encontrada.");
+        }
+    });
 }
 
 cpuUsage();
