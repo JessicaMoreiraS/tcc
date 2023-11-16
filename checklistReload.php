@@ -19,10 +19,10 @@
             $conteudo = "";
     
             while ($row = mysqli_fetch_assoc($result)) {
-                if($row['atributo'] == "velocidade" || $row['atributo'] == "temperatura" || $row['atributo'] == "vibracao"){
-                    $conteudo .= $row['atributo']."-".$row['valor']."-".$row['atributo_esp']."-".$row['valor_referencia']." ";
+                $conteudo .= $row['atributo']."-".$row['valor']."-".$row['atributo_esp']."-".$row['valor_referencia'].".";
+                // if($row['atributo'] == "velocidade" || $row['atributo'] == "temperatura" || $row['atributo'] == "vibracao"){
                 
-                }
+                // }
             }
             $conteudo = rtrim($conteudo, " ");
             echo $conteudo;

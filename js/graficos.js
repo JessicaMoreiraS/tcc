@@ -7,6 +7,10 @@ function graficoVelocimetro(valorGrafico, nomeDiv, idMaquina){
     var idCardGraficos = nomeDiv+"card";
     divCarGraficos.id = idCardGraficos;
     elementoPai.appendChild(divCarGraficos);
+    
+    var titulo = document.createElement("p");
+    titulo.innerHTML = nomeDiv;
+    elementoPai.appendChild(titulo);
 
 
     var paiDoGrafico = document.getElementById(idCardGraficos)
@@ -98,6 +102,10 @@ function temometro(valor, idMaquina){
     divCarGraficos.id = idCardGraficos;
     elementoPai.appendChild(divCarGraficos);
 
+    var titulo = document.createElement("p");
+    titulo.innerHTML = "termometro";
+    elementoPai.appendChild(titulo);
+
 
     var paiDoGrafico = document.getElementById(idCardGraficos)
     var novaDiv = document.createElement("div");
@@ -135,7 +143,7 @@ function cpuUsage(){
 }
 
 function atualizaGrafico(retorno) {
-    var arrRetorno = retorno.split(' ');
+    var arrRetorno = retorno.split('.');
 
     arrRetorno.forEach(nomeEValor => {
         var arrNomeEValor = nomeEValor;
@@ -145,6 +153,7 @@ function atualizaGrafico(retorno) {
         var novoValor = arrNomeValor[1];
         var idCheckbox = arrNomeValor[2]+"Check";
         var valorDeReferencia = arrNomeValor[3];
+
         verificarCheckbox(idCheckbox, novoValor, valorDeReferencia)
         // Recupere a referência para o objeto axisDataItem
         // console.log(nomeDiv);
@@ -181,14 +190,17 @@ function atualizaTemometro(nomeDiv, novoValor){
 }
 
 function verificarCheckbox(nome, valor, valorReferencia){
-    var fValor = parseFloat(valor);
-    var fValorReferencia = parseFloat(valorReferencia);
-    if(fValor >= fValorReferencia){
-        document.getElementById(nome).checked = false;
-        document.getElementById(nome).disabled = true;
-    }else{
-        document.getElementById(nome).disabled =  false;
-        document.getElementById(nome).checked = true;
+    if(nome != "" && nome != "undefinedCheck"){
+        //console.log(nome);
+        var fValor = parseFloat(valor);
+        var fValorReferencia = parseFloat(valorReferencia);
+        if(fValor >= fValorReferencia){
+            document.getElementById(nome).checked = false;
+            document.getElementById(nome).disabled = true;
+        }else{
+            document.getElementById(nome).disabled =  false;
+            document.getElementById(nome).checked = true;
+        }
     }
 }
 
