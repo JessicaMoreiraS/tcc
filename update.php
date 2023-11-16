@@ -51,47 +51,81 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
     $campos = array_diff($campos, array($colunaExcluir, $colunaExcluir1, $colunaExcluir3, $colunaExcluir2, $colunaExcluir4));
 
 
-    //verifica se o formuario é do metodo post
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        //sql da atualização de dados
-        //tabelaBuscar = tabela em questao
+        if ($editarTurma) {
+            $maquinasSelecionadas = isset($_POST['maquinas']) ? $_POST['maquinas'] : [];
+
+
+            $sql_maquinas_sala = "SELECT id_tipo_maquina FROM lista_sala_tipo_maquina WHERE id_sala = ?";
+            $stmt_maquinas_sala = $mysqli->prepare($sql_maquinas_sala);
+            $stmt_maquinas_sala->bind_param("i", $id_atualizacao);
+            $stmt_maquinas_sala->execute();
+            $stmt_maquinas_sala->bind_result($id_tipo_maquina);
+
+            $maquinasNoBanco = [];
+            while ($stmt_maquinas_sala->fetch()) {
+                $maquinasNoBanco[] = $id_tipo_maquina;
+            }
+
+            foreach ($maquinasNoBanco as $maquina) {
+                if (!in_array($maquina, $maquinasSelecionadas)) {
+                    $sql_remover_maquina = "DELETE FROM lista_sala_tipo_maquina WHERE id_sala = ? AND id_tipo_maquina = ?";
+                    $stmt_remover_maquina = $mysqli->prepare($sql_remover_maquina);
+                    $stmt_remover_maquina->bind_param("ii", $id_atualizacao, $maquina);
+                    $stmt_remover_maquina->execute();
+                }
+            }
+
+            foreach ($maquinasSelecionadas as $maquina) {
+                if (!in_array($maquina, $maquinasNoBanco)) {
+                    $sql_adicionar_maquina = "INSERT INTO lista_sala_tipo_maquina (id_sala, id_tipo_maquina) VALUES (?, ?)";
+                    $stmt_adicionar_maquina = $mysqli->prepare($sql_adicionar_maquina);
+                    $stmt_adicionar_maquina->bind_param("ii", $id_atualizacao, $maquina);
+                    $stmt_adicionar_maquina->execute();
+
+                }
+            }
+        }
+
+
         $sql = "UPDATE $tabelaBuscar SET ";
 
-        //for que itera(percorre as linhas), na array campos (todos os nomes das tabelas que é possivel atualizar)
+
         foreach ($campos as $campo) {
 
-            //array post (do formulario), esta sendo recebida por uma variavel
+
             $valor = $_POST[$campo];
 
-            //concatenar o campo (nome da tabela), com o valor atualizado, puxado do POST
+
             $sql .= "$campo = '$valor', ";
         }
 
 
-        //finaizaçao da consulta (informa o id)
-        //rtrim($sql, ', ') é uma funçaõ de remocao de caracteres, onde aqui esta removendo as virgulas na consulta (aplicadas anteriormente)
+
         $sql = rtrim($sql, ', ') . " WHERE id = $id_atualizacao";
 
-        // verifica se foi executado a consulta 
+
         if ($mysqli->query($sql)) {
-          
+
         }
+
+
+        header("Location:update.php?option=$tabelaBuscar&editarTurma&id_atualizacao=$id_atualizacao");
+        exit();
     }
 
 
-    //buscando as informaçoes das colunas do id referido
+
     $sql = "SELECT * FROM $tabelaBuscar WHERE id = $id_atualizacao";
-    //aplicando a execuçao do sql acima, em uma variavel
+
     $resultado = $mysqli->query($sql);
 
-    //buscando a linha do objeto
-    //nome da coluna = chave , valor da coluna = dados
     $dados = mysqli_fetch_assoc($resultado);
 
-    if($editarTurma){
+    if ($editarTurma) {
         $urlUpdate = "update.php?option=$tabelaBuscar&editarTurma&id_atualizacao=$id_atualizacao";
-    }else{
+    } else {
         $urlUpdate = "update.php?option=$tabelaBuscar&id_atualizacao=$id_atualizacao";
     }
     ?>
@@ -104,16 +138,16 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
         <link rel="stylesheet" href="css/style.css" />
         <script src="https://unpkg.com/scrollreveal"></script>
         <title>
-            <?php  
-            if($editarTurma){
+            <?php
+            if ($editarTurma) {
                 echo 'Editar Turma';
-            }else{
+            } else {
                 echo 'Editar Perfil';
             }
             ?>
         </title>
     </head>
-    
+
     <body id="body_perfil">
         <header class="topo-inicial">
             <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
@@ -127,25 +161,24 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
             <div class="container_form">
                 <section>
                     <div>
-                       <?php 
-                        if($editarTurma){
+                        <?php
+                        if ($editarTurma) {
                             echo '<img src="img/svg/class.svg" >';
-                        }else{
+                        } else {
                             echo '<img src="img/svg/user.svg" width="70">';
                         }
-                       ?>
+                        ?>
                     </div>
                     <div class="edit_Icon">
                         <img onclick="liberarEdicaoPerfil()" src="img/svg/Edit.svg" id="imgEditIcon" />
                     </div>
                 </section>
-                <form id="form_perfil" method="POST"
-                    action="<?php echo $urlUpdate ?>">
+                <form id="form_perfil" method="POST" action="<?php echo $urlUpdate ?>">
                     <?php
 
-                    //iteraçao pela array campos (array do fetch que armazena os dados da tabela)
+
                     foreach ($campos as $campo) {
-                        // valor atual = dados do campo em especifico
+
                         $valorAtual = $dados[$campo];
                         ?>
                         <div class="input">
@@ -160,100 +193,104 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                         FROM tipo_maquina
                         INNER JOIN lista_sala_tipo_maquina ON tipo_maquina.id = lista_sala_tipo_maquina.id_tipo_maquina
                         WHERE lista_sala_tipo_maquina.id_sala = ?";
-                
+
                         $stmt_tipos_na_sala = $mysqli->prepare($sql_tipos_na_sala);
-                        $stmt_tipos_na_sala->bind_param("i", $id);
+                        $stmt_tipos_na_sala->bind_param("i", $id_atualizacao);
                         $stmt_tipos_na_sala->execute();
                         $stmt_tipos_na_sala->bind_result($tipo_maquina_id, $tipo_maquina_nome);
-                
-                        // Armazena os tipos de maquinas da sala 
+
+
                         $tipos_na_sala = array();
                         while ($stmt_tipos_na_sala->fetch()) {
-                            $tipos_na_sala[] = $tipo_maquina_nome;
+                            $tipos_na_sala[] = $tipo_maquina_id;
                         }
-                
-                        // Consulta para obter todos os tipos de maquinas
+
+
                         $sql_todos_tipos = "SELECT id, tipo FROM tipo_maquina";
                         $stmt_todos_tipos = $mysqli->query($sql_todos_tipos);
-                
+
                         echo '<div class="checkboxes" id="checkboxesFormEditarTurma">';
-                        echo '<div class="titulo">
-                        <p>Máquinas  disponíveis:</p>
-                      </div>';
+                        echo '<div class="titulo"><p>Máquinas disponíveis:</p></div>';
+
                         while ($row = $stmt_todos_tipos->fetch_assoc()) {
                             $tipo = $row['tipo'];
-                            $check = in_array($tipo, $tipos_na_sala) ? 'checked' : '';
-                
+                            $Idtipo = $row['id'];
+                            $check = in_array($Idtipo, $tipos_na_sala) ? 'checked' : '';
+
                             echo '<label for="' . $tipo . '" class="cyberpunk-checkbox-label">';
-                            echo '<input ' . $check . ' disabled  class="cyberpunk-checkbox" type="checkbox" id="' . $tipo . '" name="maquinas[]" value="' . $tipo . '" >';
+                            echo '<input ' . $check . ' class="cyberpunk-checkbox" type="checkbox" id="' . $Idtipo . '" name="maquinas[]" value="' . $Idtipo . '" >';
+                            echo $Idtipo;
+                            echo '<span>';
                             echo $tipo;
+                            echo '</span>';
                             echo '</label>';
                         }
+
                         echo '</div>';
 
-                        
-                        
-                    } 
-                                            
-                      
-                        ?>
-                
 
 
-                <div class="bnts">
-                    <div class="inputs">
-                        <input type="submit" value="Salvar">
-                        <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()"
-                            style="display: none;">
-                    </div>
-                    <?php
-                    if (!$editarTurma) {
-                        echo '<a id="mudarSenha" href="recuperacaoSenha.php">Mudar Senha</a>';
                     }
 
 
                     ?>
-                </div>
+
+
+
+                    <div class="bnts">
+                        <div class="inputs">
+                            <input type="submit" value="Salvar">
+                            <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()"
+                                style="display: none;">
+                        </div>
+                        <?php
+                        if (!$editarTurma) {
+                            echo '<a id="mudarSenha" href="recuperacaoSenha.php">Mudar Senha</a>';
+                        }
+
+
+                        ?>
+                    </div>
 
                 </form>
-                </div>
-            </main>
+            </div>
+        </main>
 
-        </body>
-        <script src="js/reveal.js"></script>
+    </body>
+    <script src="js/reveal.js"></script>
 
-        <script>
-            //script editar perfil
-            const edit_button = document.getElementById("imgEditIcon");
-            const cancel_button = document.getElementById("botaoCancelar");
-            const inputs = form_perfil.querySelectorAll("input");
-            function liberarEdicaoPerfil() {
-                const form_perfil = document.getElementById("form_perfil");
+    <script>
+        //script editar perfil
+        const edit_button = document.getElementById("imgEditIcon");
+        const cancel_button = document.getElementById("botaoCancelar");
+        const inputs = form_perfil.querySelectorAll("input");
+        function liberarEdicaoPerfil() {
+            const form_perfil = document.getElementById("form_perfil");
 
-                cancel_button.style.display = 'block';
-                inputs.forEach(function (input) {
-                    
-                    if (input.name == 'nome' || input.name == 'turma') {
-                        input.focus();
-                    }
-                    if (input.id !== "codigo_acesso") {
-                        input.removeAttribute('readonly');
-                    }
-                    if (input.type == "checkbox"){
-                        input.removeAttribute('disabled');
-                    }
-                });
-            }
+            cancel_button.style.display = 'block';
+            inputs.forEach(function (input) {
+
+                if (input.name == 'nome' || input.name == 'turma') {
+                    input.focus();
+                }
+                if (input.id !== "codigo_acesso") {
+                    input.removeAttribute('readonly');
+                }
+                if (input.type == "checkbox") {
+                    input.removeAttribute('disabled');
+                }
+            });
+        }
 
 
-            function cancelarEdicaoPerfil() {
-                location.reload()
-            }
+        function cancelarEdicaoPerfil() {
+            location.reload()
+        }
 
-                                            ////
-        </script>
 
-        </html>
-        <?php
-                    }
+    </script>
+
+    </html>
+    <?php
+}
 
