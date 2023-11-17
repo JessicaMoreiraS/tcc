@@ -166,8 +166,8 @@ function enviaEmail($conteudo, $email, $nome){
     $mail->isSMTP();                                           
     $mail->Host       = 'smtp-mail.outlook.com';                    
     $mail->SMTPAuth   = true;                                   
-    $mail->Username   = 'profissionalmensagem@outlook.com';  //'thalita.lima4@senaisp.edu.br';//'profissionalmensagem@outlook.com';              
-    $mail->Password   = 'CONTA#acesso963';     //'Qazwsxqazwsx@1';//'CONTA#acesso963';                               
+    $mail->Username   = 'profissionalmensagem@outlook.com';  //'profissionalmensagem@outlook.com';              
+    $mail->Password   = 'CONTA#acesso963';     //'CONTA#acesso963';                               
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
     $mail->Port       = 587;                                    
 
@@ -175,10 +175,8 @@ function enviaEmail($conteudo, $email, $nome){
     
     //Recipients
     $mail->setFrom('profissionalmensagem@outlook.com', 'Jessica M');
-    //$mail->setFrom('thalita.lima4@senaisp.edu.br', 'Thali');
     $mail->addAddress($email, $nome); 
     $mail->addReplyTo('profissionalmensagem@outlook.com', 'Jessica M');
-    //$mail->addReplyTo('thalita.lima4@senaisp.edu.br', 'Thali');
 
     //Content
     $mail->isHTML(true);                                  
