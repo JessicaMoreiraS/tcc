@@ -70,7 +70,6 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
     <a href="direcionamentoLogin.php?email=<?php echo $email ?>&reenviarCodigo=true">Reenviar Código</a>
 
 
-
     <script src="js/script.js"></script>
     <?php
     if ($pSenhaIncorreta) {

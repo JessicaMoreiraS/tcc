@@ -26,7 +26,7 @@ function erroLogin(n) {
             Swal.fire("A conta não está apta para verificação");
             break;
         case 3:
-            Swal.fire("Erro ao cadastrar conta");
+            Swal.fire("Erro ao cadastrar");
             break;
         case 4:
             Swal.fire("Esse email já está cadastrado");
@@ -51,6 +51,9 @@ function erroLogin(n) {
             break;
         case 11:
             Swal.fire("Essa maquina já está cadastrada")
+            break;
+        case 12:
+            Swal.fire("Operação bem sucedida")
             break;
     }
 }

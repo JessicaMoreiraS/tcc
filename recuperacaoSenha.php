@@ -1,134 +1,164 @@
 <?php
-include("conexao.php");
+//envio do email com phpMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php';
+$form2=false;
+if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['email'])){
+    include('conexao.php');
+    $email = $_GET['email'];
+    $email = mysqli_real_escape_string($mysqli, $email); // Importante escapar o valor para evitar SQL injection
 
-// Criar a instância do MySQLi
-//$mysqli = new mysqli($host, $usuario, $senha, $database);
+    $tabela = identificaTipoUsuario($email);
+    // echo $tabela;
+    if($tabela != 'nao_encontrado'){
 
-// Verificar a conexão
-if ($mysqli->connect_error) {
-    die("Erro na conexão com o banco de dados: " . $mysqli->connect_error);
+        $codigoRec = substr(password_hash(time(), PASSWORD_DEFAULT), -7, -1);
+
+
+        $sqlUpRec = "UPDATE $tabela SET codigo_recuperacao='$codigoRec' WHERE email = '$email';";
+        
+
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+
+        try {
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                    
+            $mail->isSMTP();                                           
+            $mail->Host       = 'smtp-mail.outlook.com';                    
+            $mail->SMTPAuth   = true;                                   
+            $mail->Username   = 'profissionalmensagem@outlook.com';  //'profissionalmensagem@outlook.com';              
+            $mail->Password   = 'CONTA#acesso963';  //'CONTA#acesso963';                               
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+            $mail->Port       = 587;                                    
+
+            $mail->SMTPSecure = 'tls'; 
+            
+            //Recipients
+            $mail->setFrom('profissionalmensagem@outlook.com', 'Jessica M');
+            $mail->addAddress($email, 'Usuario'); 
+            $mail->addReplyTo('profissionalmensagem@outlook.com', 'Jessica M');
+
+            //Content
+            $mail->isHTML(true);                                  
+            $mail->Subject = 'Recuperacao de Senha';
+            $mail->Body    = ' <html>
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                    <title>Confirmação de email</title>
+                                </head>
+                                <body>
+                                    <h3>Recuperação de senha</h3>
+                                    <p>Seu código para recuperação de senha é: '.$codigoRec.'</p>
+                                    <p>Atenção: não compartilhe o código acima com ninguém</p>
+                                    <a href="recuperacaoSenha.php?emailRec='.$email.'">Acesse o site</a>
+                                </body>
+                            </html>';
+            $mail->AltBody = 'Confirme seu email';
+
+            if($mysqli->query($sqlUpRec)){
+                $mail->send();
+                $form2 = true;
+            }else{
+                $form2 = false;
+                echo "Erro na inserção: ";
+            }
+        } catch (Exception $e) {
+            $form2 = false;
+        }
+    }else{
+        header('Location: login.php?e=6');
+    }
+}
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['codigo']) && isset($_POST['senha']) && isset($_POST['email'])){
+    // echo '<script>console.log("aqui")</script>';
+    include('conexao.php');
+    $email = $_POST['email'];
+    $email = mysqli_real_escape_string($mysqli, $email); 
+
+    $tabela = identificaTipoUsuario($email);
+    
+    if($tabela != 'nao_encontrado'){
+        
+        
+        $sqlUser = "SELECT * FROM $tabela WHERE email = '$email'";
+        $preparaSqlUser = $mysqli->query($sqlUser);
+        $codigoUser;
+        $idUser;
+        while($busca = mysqli_fetch_assoc($preparaSqlUser)){
+            $codigoUser = $busca['codigo_recuperacao'];
+            $idUser = $busca['id'];
+        }
+        if($codigoUser == $_POST['codigo']){
+            $novaSenha = $_POST['senha'];
+            $novaSenha = mysqli_real_escape_string($mysqli, $novaSenha); 
+            $novaSenha = password_hash($novaSenha, PASSWORD_DEFAULT);
+            $sqlNovaSenha = "UPDATE $tabela SET senha = '$novaSenha', codigo_recuperacao='' WHERE id = $idUser";
+            if($mysqli->query($sqlNovaSenha)){
+                header('Location: login.php?e=12');
+            }else{
+                header('Location: login.php?e=3');
+            }
+        }else{
+            header('Location: login.php?e=7');
+        }
+    }else{
+        header('Location: login.php?e=6');
+    }
+
 }
 
-if (isset($_POST["codigo_recuperacao"]) && isset($_POST["nova_senha"]) && isset($_POST["confirmar_senha"])) {
-    $codigoRecuperacao = $mysqli->real_escape_string($_POST["codigo_recuperacao"]);
-    $novaSenha = $mysqli->real_escape_string($_POST["nova_senha"]);
-    $confirmarSenha = $mysqli->real_escape_string($_POST["confirmar_senha"]);
+function identificaTipoUsuario($email){
+    include('conexao.php');
+    $sqlAluno = "SELECT * FROM aluno WHERE email = '$email'";
+    $sqlProfessor = "SELECT * FROM professor WHERE email = '$email'";
+    $sqlGestor = "SELECT * FROM gestor WHERE email = '$email'";
 
-    // Verificar se as senhas coincidem
-    if ($novaSenha === $confirmarSenha) {
-        // Hash da nova senha
-        $senhaHash = password_hash($novaSenha, PASSWORD_BCRYPT);
+    $preparaAluno = $mysqli->query($sqlAluno);
+    $preparaProfessor = $mysqli->query($sqlProfessor);
+    $preparaGestor = $mysqli->query($sqlGestor);
 
-        // Atualizar a senha na tabela aluno
-        $sqlAtualizarSenha = "UPDATE aluno SET senha = '$senhaHash', codigo_recuperacao = NULL, redefinir_senha = 0 WHERE codigo_recuperacao = '$codigoRecuperacao'";
-
-        if ($mysqli->query($sqlAtualizarSenha)) {
-            // Resposta para o cliente (JSON)
-            echo json_encode(['success' => true]);
-            exit;
-        } else {
-            // Resposta para o cliente (JSON)
-            echo json_encode(['success' => false, 'error' => 'Erro ao atualizar a senha']);
-            exit;
-        }
-    } else {
-        // Resposta para o cliente (JSON)
-        echo json_encode(['success' => false, 'error' => 'As senhas não coincidem']);
-        exit;
+    if ($preparaAluno->num_rows > 0) {
+        return 'aluno';
+    }else if($preparaProfessor->num_rows > 0) {
+        return 'professor';
+    }else if($preparaGestor->num_rows > 0){
+        return 'gestor';
+    }else{
+        return 'nao_encontrado';
     }
-} /*else {
-    // Resposta para o cliente (JSON)
-    echo json_encode(['success' => false, 'error' => 'Parametros ausentes']);
-    exit;
-}*/
+}
 
-// Fechar a conexão
-$mysqli->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperação de senha</title>
-
-    <!-- Adicione o Bootstrap e o jQuery -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>Recuperação de Conta</title>
 </head>
 <body>
-    <div>
-        <form action="processa_recuperacao.php" method="POST">
-            <input type="text" placeholder="Código de recuperação" name="codigo_recuperacao" required>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#senhaModal">
-                Confirmar
-            </button>
+    <?php
+        if(!$form2){
+    ?>
+        <form method="GET">
+            <input type="mail" name="email">
+            <input type="submit" value="Enviar Código">
         </form>
-    </div>
+    <?php }else{ ?>
+        <form method="POST">
+            <input type="email" value="<?php echo $email?>" name= "email" hidden>
+            <input type="text" name="codigo" placeholder="Código">
+            <input type="text" name="senha" placeholder="Nova senha">
+            <input type="text" placeholder="Confirmar senha">
+            <input type="submit" value="Cadastrar Senha">
+        </form>
+    <?php } ?>
 
-    <!-- Modal para a nova senha -->
-    <div class="modal fade" id="senhaModal" tabindex="-1" role="dialog" aria-labelledby="senhaModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="senhaModalLabel">Nova Senha</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="password" placeholder="Nova senha" id="novaSenha" required>
-                    <input type="password" placeholder="Confirme a senha" id="confirmarSenha" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="enviarSenha">Enviar Senha</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Exemplo de código JavaScript para mostrar um pop-up e enviar a nova senha para o servidor
-        document.addEventListener('DOMContentLoaded', function () {
-            const enviarSenhaBtn = document.getElementById('enviarSenha');
-            const novaSenhaInput = document.getElementById('novaSenha');
-            const confirmarSenhaInput = document.getElementById('confirmarSenha');
-
-            enviarSenhaBtn.addEventListener('click', function () {
-                // Verifica se as senhas coincidem
-                if (novaSenhaInput.value === confirmarSenhaInput.value) {
-                    // Envia nova senha para o servidor
-                    fetch('processa_recuperacao.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `codigo_recuperacao=${codigoInput.value}&nova_senha=${novaSenhaInput.value}&confirmar_senha=${confirmarSenhaInput.value}`,
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Lidar com a resposta do servidor
-                        if (data.success) {
-                            alert('Senha atualizada com sucesso. Você pode fazer login com a nova senha.');
-                            // Redirecionar para a página de login
-                            window.location.href = 'login.php';
-                        } else {
-                            alert(`Ocorreu um erro ao atualizar a senha. ${data.error}`);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erro na requisição:', error);
-                        alert('Ocorreu um erro na requisição. Tente novamente.');
-                    });
-                } else {
-                    alert('As senhas não coincidem.');
-                }
-            });
-        });
-    </script>
+    <!-- to do: verificar se as duas senhas sao iguais -->
 </body>
 </html>
