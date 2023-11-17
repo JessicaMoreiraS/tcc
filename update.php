@@ -170,8 +170,8 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                         }
                         ?>
                     </div>
-                    <div class="edit_Icon">
-                        <img onclick="liberarEdicaoPerfil()" src="img/svg/Edit.svg" id="imgEditIcon" />
+                    <div class="edit_Icon" onclick="liberarEdicaoPerfil()">
+                        <img  src="img/svg/Edit.svg" id="imgEditIcon" />
                     </div>
                 </section>
                 <form id="form_perfil" method="POST" action="<?php echo $urlUpdate ?>">
@@ -187,7 +187,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                                 name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
                                 <?php 
                                     if($campo == "codigo_acesso"){
-                                        echo '<p  style="display: none;" id="p_update">O código de acesso não pode ser alterado.</p>';
+                                        echo '<p  id="p_update">O código de acesso não pode ser alterado.</p>';
                                     }
                                 ?>
                         </div>
@@ -278,7 +278,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
             const form_perfil = document.getElementById("form_perfil");
 
             cancel_button.style.display = 'block';
-            p.style.display = 'block';
+           
             save_button.removeAttribute('disabled');
             inputs.forEach(function (input) {
 

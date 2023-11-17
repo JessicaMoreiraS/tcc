@@ -42,7 +42,10 @@ if ($stmt) {
 } else {
     echo $mysqli->error;
 }
-echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">Editar turma (nao finalizado)</a>';
+echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">Editar turma</a>';
+echo '<br>';
+
+
 echo '<a href="delete.php?option=sala&id_delecao= '.$sala.'" >Deletar Turma</a>';
 //////////
 
@@ -97,6 +100,7 @@ if ($stmt) {
         </div>
     </header>
     <main class="corpo-inicial" id="main_maquinasDaTurmas">
+        <button onclick="teste()">deletar turma</button>
         <div class="bem-vindo">
             <h2>Máquinas disponíveis em
                 <?php echo $nomeTurma ?>
@@ -156,6 +160,30 @@ if ($stmt) {
     </main>
 </body>
 <script>
+
+    //swa.fire - sweet alert
+
+   function teste(){
+    Swal.fire({
+  title: "<strong>Deseja realmente excluir?</u></strong>",
+  icon: "info",
+  html: `
+    Se sim,
+    <a href="delete.php?option=sala&id_delecao= '.$sala.'">clique aqui</a>,
+  `,
+  showCloseButton: true,
+  showCancelButton: false,
+  focusConfirm: false,
+  confirmButtonAriaLabel: "Thumbs up, great!",
+  cancelButtonText: `
+    <i class="fa fa-thumbs-down"></i>
+  `,
+  cancelButtonAriaLabel: "Thumbs down"
+});
+   }
+
+    //
+
     //JS DA PESQUISA
     document.addEventListener("DOMContentLoaded", function () {
         const campoPesquisa = document.getElementById("pesquisa-campo");
@@ -179,5 +207,7 @@ if ($stmt) {
         });
     });
 </script>
+ <!-- sweetalert2 -->
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>
