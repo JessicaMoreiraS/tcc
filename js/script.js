@@ -58,15 +58,17 @@ function erroLogin(n) {
 //SCRIPTS DO HOME PROFESSOR//
 
 //front-end do botao de criar turma
-var from_criar_sala = document.getElementById("section_form");
-var mostrarBotao = document.getElementById("criar_turma");
-var ocultarBotao = document.getElementById("cancelar_button");
-mostrarBotao.addEventListener("click", function() {
-    from_criar_sala.style.display = "block"; 
-});
-ocultarBotao.addEventListener("click", function() {
-    from_criar_sala.style.display = "none"; 
-});
+if(window.location.href.indexOf("homeProfessor") != -1){
+    var from_criar_sala = document.getElementById("section_form");
+    var mostrarBotao = document.getElementById("criar_turma");
+    var ocultarBotao = document.getElementById("cancelar_button");
+    mostrarBotao.addEventListener("click", function() {
+        from_criar_sala.style.display = "block"; 
+    });
+    ocultarBotao.addEventListener("click", function() {
+        from_criar_sala.style.display = "none"; 
+    });
+}
 ////////
 
 //TRECHO DO CODIGO QUE LIBERA A CRIAÇÃO DE SALA, HOME PROFESSOR

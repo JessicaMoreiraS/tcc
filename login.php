@@ -230,6 +230,7 @@ async function caixaSenhaGestao() {
 }
         </script>
     <script src="js/reveal.js"></script>
+    <script src="js/script.js"></script>
    
     <!-- sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -2,7 +2,7 @@
 
 <?php
 session_start();
-$paginasPermitemAcesso = ["login.php"];
+$paginasPermitemAcesso = ["login.php", "confirmarEmail.php", "direcionamento.php", "confirmarEmail.php"];
 foreach ($paginasPermitemAcesso as $pagina) {
   $len = count($paginasPermitemAcesso);
   if (!strpos($_SERVER['HTTP_REFERER'], $pagina) && $pagina == $paginasPermitemAcesso[$len-1] || $_SESSION['tipo'] != 'aluno') {

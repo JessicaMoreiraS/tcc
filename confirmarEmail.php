@@ -9,10 +9,13 @@ if(isset($_GET["emailconf"])){
 if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
     $codigoInserido = $_GET["codigo"];
 
-    $sqlBuscaConta = "SELECT * FROM conta_pendente_aluno WHERE email = '$email'";
+    echo "<script>console.log(aqui)</script>";
 
-    if ($busca = $mysqli->query($sqlBuscaConta)) {
-        $codigoConf = $busca['cod_confirmacao'];
+    $sqlBuscaConta = "SELECT * FROM conta_pendente_aluno WHERE email = '$email'";
+    $preparaSqlBuscaConta = $mysqli->query($sqlBuscaConta);
+
+    if ($busca = mysqli_fetch_assoc($preparaSqlBuscaConta)) {
+        $codigoConf = $busca['cod_confimacao'];
 
         if ($codigoInserido == $codigoConf) {
             // Código correto, prosseguir com o cadastro na tabela de alunos

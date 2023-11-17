@@ -106,6 +106,27 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && !filter_input(INPUT_GET, 'sg') && isse
     }
 } 
 
+//redireciona aluno apos confirmacao de email;
+if(isset($_GET['email']) && isset($_GET['senha'])){
+    include('conexao.php');
+    $emailAcesso = $_GET['email'];
+    $senhaAcesso = $_GET['senha'];
+    $sqlBuscaAcesso = "SELECT * FROM aluno WHERE email = '$emailAcesso'";
+    $preparaBuscaAcesso = $mysqli->query($sqlBuscaAcesso);
+
+    if ($buscaAcesso = mysqli_fetch_assoc($preparaBuscaAcesso)) {
+        if($senhaAcesso == $buscaAcesso['senha']){
+            session_start();
+            $_SESSION['idAcesso'] = $buscaAcesso['id'];
+            $_SESSION['tipo'] = 'aluno';
+            header('Location: homeAluno.php');
+        }else{
+            //erro ao comparar senhas
+        }
+
+    }else{echo "nao";}
+}
+
 
 function buscarEmailSenha($conn, $tabela, $email, $senha){
     $sqlBuscaConta = "SELECT * FROM $tabela WHERE email = '$email'";
@@ -145,8 +166,8 @@ function enviaEmail($conteudo, $email, $nome){
     $mail->isSMTP();                                           
     $mail->Host       = 'smtp-mail.outlook.com';                    
     $mail->SMTPAuth   = true;                                   
-    $mail->Username   = 'profissionalmensagem@outlook.com';              
-    $mail->Password   = 'CONTA#acesso963';                               
+    $mail->Username   = 'profissionalmensagem@outlook.com';  //'thalita.lima4@senaisp.edu.br';//'profissionalmensagem@outlook.com';              
+    $mail->Password   = 'CONTA#acesso963';     //'Qazwsxqazwsx@1';//'CONTA#acesso963';                               
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
     $mail->Port       = 587;                                    
 
@@ -154,12 +175,14 @@ function enviaEmail($conteudo, $email, $nome){
     
     //Recipients
     $mail->setFrom('profissionalmensagem@outlook.com', 'Jessica M');
+    //$mail->setFrom('thalita.lima4@senaisp.edu.br', 'Thali');
     $mail->addAddress($email, $nome); 
     $mail->addReplyTo('profissionalmensagem@outlook.com', 'Jessica M');
+    //$mail->addReplyTo('thalita.lima4@senaisp.edu.br', 'Thali');
 
     //Content
     $mail->isHTML(true);                                  
-    $mail->Subject = 'Email via Portifolio';
+    $mail->Subject = 'Confirmação de Cadastro';
     $mail->Body    = ' <html>
                         <head>
                             <meta charset="UTF-8">
