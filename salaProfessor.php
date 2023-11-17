@@ -42,7 +42,7 @@ if ($stmt) {
 } else {
     echo $mysqli->error;
 }
-echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $id . '">Editar turma (nao finalizado)</a>';
+echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">Editar turma (nao finalizado)</a>';
 echo '<a href="delete.php?option=sala&id_delecao= '.$sala.'" >Deletar Turma</a>';
 //////////
 
