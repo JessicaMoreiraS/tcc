@@ -42,7 +42,8 @@ if ($stmt) {
 } else {
     echo $mysqli->error;
 }
-echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">Editar turma (nao finalizado)</a>';
+echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">Editar turma</a>';
+echo '<br>';
 echo '<a href="delete.php?option=sala&id_delecao= '.$sala.'" >Deletar Turma</a>';
 //////////
 
@@ -179,5 +180,7 @@ if ($stmt) {
         });
     });
 </script>
+ <!-- sweetalert2 -->
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>
