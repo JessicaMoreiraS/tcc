@@ -1,7 +1,7 @@
 <?php
 //inicisnd sessão 
 session_start();
-$paginasPermitemAcesso = ["login.php","cadatro.php"];
+$paginasPermitemAcesso = ["login.php","cadatro.php","salaProfessor.php"];
 foreach ($paginasPermitemAcesso as $pagina) {
   $len = count($paginasPermitemAcesso);
   if (!strpos($_SERVER['HTTP_REFERER'], $pagina) && $pagina == $paginasPermitemAcesso[$len-1] || $_SESSION['tipo'] != 'professor') {

@@ -19,7 +19,11 @@ if (isset($_GET["option"])) {
             $sqlDelete = "DELETE FROM $opcao WHERE id = $id";
 
             if ($mysqli->query($sqlDelete)) {
-                header('Location: visualizar.php?view=' . $opcao);
+                if($option == 'sala'){
+                    header('Location: homeProfessor.php');
+                }else{
+                    header('Location: visualizar.php?view=' . $opcao);
+                }
             } else {
                 header('Location: visualizar.php?e=9&view=' . $opcao);
             }
