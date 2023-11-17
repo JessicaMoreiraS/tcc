@@ -53,9 +53,9 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
 </head>
 <body>
     <div>
-        <form action="confirmarEmail.php?emailconf=<?php echo $email?>" method="GET">
-            <input type="email" value="<?php echo $email?>" name= "emailconf">
-            <input type="text" length="6" placeholder="Código de confirmação" name="codigo" required>
+        <form action="" method="GET">
+            <input type="email" value="<?php echo $email?>" name= "emailconf" hidden>
+            <input type="text" maxlength="6" placeholder="Código de confirmação" name="codigo" required>
             <input type="submit" value="Confirmar" name="confirmar">
         </form>
     </div>
