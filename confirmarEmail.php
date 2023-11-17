@@ -1,7 +1,7 @@
 <?php
 include("conexao.php");
 $pSenhaIncorreta = false;
-$email;
+$email="";
 if(isset($_GET["emailconf"])){
     $email=$_GET["emailconf"];
 }
@@ -51,6 +51,7 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
 <body>
     <div>
         <form action="confirmarEmail.php?emailconf=<?php echo $email?>" method="GET">
+            <input type="email" value="<?php echo $email?>" name= "emailconf">
             <input type="text" length="6" placeholder="Código de confirmação" name="codigo" required>
             <input type="submit" value="Confirmar" name="confirmar">
         </form>
@@ -58,7 +59,7 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
 
     <?php
     if (isset($email)) { ?>
-        <form action="confirmarEmail.php?email=<?php echo $email; ?>" method='POST'>
+        <form action="confirmarEmail.php?emailconf=<?php echo $email; ?>" method='POST'>
             <input type="submit" value="Reenviar Email" name='enviar'>
         </form>
     <?php } ?>

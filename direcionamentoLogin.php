@@ -69,7 +69,7 @@ if(isset($_POST['criarConta'])){
         }
 
         $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
-        $codConfirmacao = substr(password_hash(time(), PASSWORD_DEFAULT),6);
+        $codConfirmacao = substr(password_hash(time(), PASSWORD_DEFAULT), -7, -1);
         
         
         $sqlCriaContaPendente = "INSERT INTO conta_pendente_aluno (`nome`, `email`, `senha`, `cod_confimacao`) VALUES ('$nome', '$email', '$senhaCriptografada', '$codConfirmacao')"; 
@@ -77,7 +77,7 @@ if(isset($_POST['criarConta'])){
         $conteudo='Seu código de confirmação é: <b>'.$codConfirmacao.'</b>';
 
         if($mysqli->query($sqlCriaContaPendente) && enviaEmail($conteudo, $email, $nome)){
-            header('Location: "confirmarEmail.php?emailconf='.$email); 
+            header('Location: confirmarEmail.php?emailconf='.$email); 
         }else{
             header('Location: login.php?e=3');
         }
