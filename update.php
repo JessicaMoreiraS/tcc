@@ -157,6 +157,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                 <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
             </div>
         </header>
+       
         <main id="main_formPerfil">
             <div class="container_form">
                 <section>
@@ -184,6 +185,11 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                         <div class="input">
                             <input class="<?php echo $campo ?>" required readonly type="text" id="<?php echo $campo; ?>"
                                 name="<?php echo $campo; ?>" value="<?php echo $valorAtual; ?>"><br>
+                                <?php 
+                                    if($campo == "codigo_acesso"){
+                                        echo '<p  style="display: none;" id="p_update">O código de acesso não pode ser alterado.</p>';
+                                    }
+                                ?>
                         </div>
                         <?php
                     }
@@ -218,7 +224,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                             $check = in_array($Idtipo, $tipos_na_sala) ? 'checked' : '';
 
                             echo '<label for="' . $tipo . '" class="cyberpunk-checkbox-label">';
-                            echo '<input ' . $check . ' class="cyberpunk-checkbox" type="checkbox" id="' . $Idtipo . '" name="maquinas[]" value="' . $Idtipo . '" >';
+                            echo '<input disabled ' . $check . ' class="cyberpunk-checkbox" type="checkbox" id="' . $Idtipo . '" name="maquinas[]" value="' . $Idtipo . '" >';
                             echo $Idtipo;
                             echo '<span>';
                             echo $tipo;
@@ -239,7 +245,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
 
                     <div class="bnts">
                         <div class="inputs">
-                            <input type="submit" value="Salvar">
+                            <input  disabled  type="submit" value="Salvar" id="botaoSalvar">
                             <input type="button" value="Cancelar" id="botaoCancelar" onclick=" cancelarEdicaoPerfil()"
                                 style="display: none;">
                         </div>
@@ -263,11 +269,17 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
         //script editar perfil
         const edit_button = document.getElementById("imgEditIcon");
         const cancel_button = document.getElementById("botaoCancelar");
+        const save_button = document.getElementById("botaoSalvar");
         const inputs = form_perfil.querySelectorAll("input");
+
+        const p = document.getElementById("p_update");
+
         function liberarEdicaoPerfil() {
             const form_perfil = document.getElementById("form_perfil");
 
             cancel_button.style.display = 'block';
+            p.style.display = 'block';
+            save_button.removeAttribute('disabled');
             inputs.forEach(function (input) {
 
                 if (input.name == 'nome' || input.name == 'turma') {

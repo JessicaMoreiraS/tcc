@@ -1935,6 +1935,14 @@ margin-top: 15px;
   background-color: var(--background-main);
   transform: scale(0.9);
 }
+#main_formPerfil .container_form form  .bnts input:disabled{
+  background-color: #4d4d4d;
+  cursor: not-allowed;
+}
+#main_formPerfil .container_form form  .bnts input:disabled:hover{
+  transform: none;
+  color: white;
+}
 #main_formPerfil .container_form form  .bnts  a{
   display: flex;
   justify-content: center;
