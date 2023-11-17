@@ -180,7 +180,7 @@ function enviaEmail($conteudo, $email, $nome){
 
     //Content
     $mail->isHTML(true);                                  
-    $mail->Subject = 'Confirmação de Cadastro';
+    $mail->Subject = 'Confirmacao de Cadastro';
     $mail->Body    = ' <html>
                         <head>
                             <meta charset="UTF-8">

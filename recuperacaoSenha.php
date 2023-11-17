@@ -2,7 +2,7 @@
 include("conexao.php");
 
 // Criar a instância do MySQLi
-$mysqli = new mysqli($host, $usuario, $senha, $database);
+//$mysqli = new mysqli($host, $usuario, $senha, $database);
 
 // Verificar a conexão
 if ($mysqli->connect_error) {
@@ -36,11 +36,11 @@ if (isset($_POST["codigo_recuperacao"]) && isset($_POST["nova_senha"]) && isset(
         echo json_encode(['success' => false, 'error' => 'As senhas não coincidem']);
         exit;
     }
-} else {
+} /*else {
     // Resposta para o cliente (JSON)
-    echo json_encode(['success' => false, 'error' => 'Parâmetros ausentes']);
+    echo json_encode(['success' => false, 'error' => 'Parametros ausentes']);
     exit;
-}
+}*/
 
 // Fechar a conexão
 $mysqli->close();
