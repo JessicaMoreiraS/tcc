@@ -32,7 +32,7 @@
             
             if($row['atributo'] == "temperatura"){
                 echo '<script>';
-                echo 'temometro('.$row['valor'].',"'.$idMaquina.'");'; 
+                echo 'temometro('.$row['valor'].',"'.$idMaquina.'",'.$row['valor_referencia'].');'; 
                 echo '</script>';
             }
             if($row['atributo'] == "velocidade" || $row['atributo'] == "vibracao"){
@@ -108,6 +108,8 @@
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>Checklist Form</title>
     <style>
         .grafico {
@@ -139,23 +141,28 @@
             background-color: #ff5733;
             transition: height 0.5s ease;
         }
-
+        
         .rotulos {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 5px;
-            font-size: 12px;
+            flex-direction: column; /* Ajusta a direção para coluna */
+            align-items: center; /* Centraliza os rótulos verticalmente */
+            /* justify-content: space-around; */
+            justify-content: space-evenly;
+            margin-top: 5px;
+            height: 100%;
+            margin-top: 0;
         }
+
         .rotulos span {
-            position: relative;
-            width: 1px;
-            height: 8px;
+            height: 3px;
             background-color: #333;
+            margin-top: 2px; /* Ajusta a margem entre os rótulos */
+            z-index: 100;
+        }
+        .valorTemp{
+            display: inline-block;
+            font-size:18px;
+            font-weight: bold;
         }
 
     </style>
@@ -197,10 +204,8 @@
 
         
             <section class="graficos"> 
-
-            
-            <div id="graficos"></div> 
-            
+                <div id="graficos"></div> 
+                <div id="graficoCirculo"><div>
             </section>
         </section>
 

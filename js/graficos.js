@@ -92,7 +92,7 @@ function graficoVelocimetro(valorGrafico, nomeDiv, idMaquina){
 
 }
 
-function temometro(valor, idMaquina){
+function temometro(valor, idMaquina, valorDeReferencia){
     window['idMaquina'] = idMaquina;
     var elementoPai = document.getElementById("graficos")
     
@@ -108,23 +108,55 @@ function temometro(valor, idMaquina){
 
 
     var paiDoGrafico = document.getElementById(idCardGraficos)
-    var novaDiv = document.createElement("div");
+    paiDoGrafico.style = "display:flex; flex-direction:row; align-items: center; justify-content: space-around;"
+    // var novaDiv = document.createElement("div");
 
     // console.log(valor)
     var elementoPai = document.getElementById("graficos");
-    var porcentagem = (valor/200)*100;
+    // var porcentagem = (valor/200)*100;
+    var porcentagem = (valor*100)/valorDeReferencia;
     
     // console.log(porcentagem);
     var novaDiv = `<div id="temometro">
-    <div id="valorTemometro" style="height:${porcentagem}px"></div>
+    <div id="valorTemometro" style="height:${porcentagem}%"></div>
     <div class="rotulos">
-        <span>25</span>
-        <span>50</span>
-        <span>75</span>
+        <span>75%</span>
+        <span>50%</span>
+        <span>25%</span>
     </div>
+    </div>
+    <div class="valorTemp">
+        <p id="valorTemp">${valor}°C</p>
     </div>`;
 
     paiDoGrafico.innerHTML += novaDiv;
+}
+
+function fluido(valorGrafico, nomeDiv, idMaquina){
+    // Configurações do gráfico
+    var raio = 100;
+    var dados = [25, 50, 75, 100];
+
+    // Criação do gráfico
+    var svg = d3.select("#graficoCirculo")
+        .append("svg")
+        .attr("width", raio * 2)
+        .attr("height", raio * 2)
+        .append("g")
+        .attr("transform", "translate(" + raio + "," + raio + ")");
+
+    // Criação do círculo
+    var circulo = svg.selectAll("circle")
+        .data(dados)
+        .enter()
+        .append("circle")
+        .attr("r", function(d) { return d; })
+        .attr("fill-opacity", 0.5);
+
+    // Adiciona efeito de transição para o fluido
+    circulo.transition()
+        .duration(1000)
+        .attr("fill-opacity", 1);
 }
 
 
@@ -166,7 +198,7 @@ function atualizaGrafico(retorno) {
         if(nomeDiv == "velocidade" || nomeDiv == "vibracao"){
             atualizaVelocimetro(nomeDiv, novoValor);
         }else if(nomeDiv == "temperatura"){
-            atualizaTemometro(nomeDiv, novoValor);
+            atualizaTemometro(nomeDiv, novoValor, valorDeReferencia);
         }
     });
 }
@@ -188,10 +220,11 @@ function atualizaVelocimetro(nomeDiv, novoValor){
     }
 }
 
-function atualizaTemometro(nomeDiv, novoValor){
-    var porcentagem = (novoValor/200)*100;
+function atualizaTemometro(nomeDiv, novoValor, valorDeReferencia){
+    var porcentagem = (novoValor*100)/valorDeReferencia;
     var valorTemometro = document.getElementById("valorTemometro")
-    valorTemometro.style.height = porcentagem+"px";
+    document.getElementById("valorTemp").innerHTML = novoValor+"°C";
+    valorTemometro.style.height = porcentagem+"%";
 }
 
 function verificarCheckbox(nome, valor, valorReferencia){
