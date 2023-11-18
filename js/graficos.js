@@ -103,7 +103,7 @@ function temometro(valor, idMaquina, valorDeReferencia){
     elementoPai.appendChild(divCarGraficos);
 
     var titulo = document.createElement("p");
-    titulo.innerHTML = "termometro";
+    titulo.innerHTML = "Temperatura";
     elementoPai.appendChild(titulo);
 
 
