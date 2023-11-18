@@ -115,18 +115,47 @@
         height: 200px;
         }
         #temometro{
-            background-color: rgb(194, 194, 194);
+            /*background-color: rgb(194, 194, 194);
             width: 50px;
             height: 200px;
             border-radius: 50px;
             display: flex;
             justify-content: flex-end;
-            align-items: flex-end;
+            align-items: flex-end;*/
+            position: relative;
+            width: 50px;
+            height: 200px;
+            background-color: #eee;
+            border-radius: 20px;
+            overflow: hidden;
         }
         #valorTemometro{
-            background-color: red;
+            /*background-color: red;
             width: 100%;
-            border-radius: 0px 0px 50px 50px;
+            border-radius: 0px 0px 50px 50px;*/
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #ff5733;
+            transition: height 0.5s ease;
+        }
+
+        .rotulos {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+        .rotulos span {
+            position: relative;
+            width: 1px;
+            height: 8px;
+            background-color: #333;
         }
 
     </style>

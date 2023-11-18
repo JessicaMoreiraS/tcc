@@ -115,11 +115,16 @@ function temometro(valor, idMaquina){
     var porcentagem = (valor/200)*100;
     
     // console.log(porcentagem);
-    var novaDiv = `<div id="temometro" onclick="mudarTemp()">
+    var novaDiv = `<div id="temometro">
     <div id="valorTemometro" style="height:${porcentagem}px"></div>
+    <div class="rotulos">
+        <span>25</span>
+        <span>50</span>
+        <span>75</span>
+    </div>
     </div>`;
-    paiDoGrafico.innerHTML += novaDiv;
 
+    paiDoGrafico.innerHTML += novaDiv;
 }
 
 
