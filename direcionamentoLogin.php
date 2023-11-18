@@ -63,9 +63,11 @@ if(isset($_POST['criarConta'])){
             //senhas não coincidem
             header('Location: login.php?e=10');
         }
+
        
-        if(buscarEmail('aluno', $email)){
+        if(buscarEmail('aluno', $email) || buscarEmail('professor', $email) || buscarEmail('gestor', $email)){
             header('Location: login.php?e=4');
+            return;
         }
 
         $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);

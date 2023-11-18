@@ -18,13 +18,13 @@ $codigoConf = mt_rand(100000, 999999); // Gera um código de confirmação de se
 //     // Erro na comunicação com o banco
 //     header('Location: cadastro.php?e=7');
 // }
-
+session_start();
 // Cadastrar SALA (recenbo o formulario)
 if (filter_input(INPUT_POST, 'cadastrarSala')) {
     // Valores dos inputs aplicados em variáveis
     $nomeSala = filter_input(INPUT_POST, 'nomeSala');
     // $codigoSala = filter_input(INPUT_POST, 'codigoSala');
-    $idProfessor = filter_input(INPUT_POST, 'idProfessor');
+    $idProfessor = $_SESSION['idAcesso'];
 
 
     //funcao que gera um novo codigo de acesso
