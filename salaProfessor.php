@@ -46,9 +46,6 @@ echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">
 echo '<br>';
 
 
-echo '<a href="delete.php?option=sala&id_delecao= '.$sala.'" >Deletar Turma</a>';
-//////////
-
 //buscar tipos de máquinas disponíveis na turma
 $sqlTipos = "SELECT DISTINCT tipo_maquina.id, tipo_maquina.tipo FROM tipo_maquina
              INNER JOIN lista_sala_tipo_maquina ON lista_sala_tipo_maquina.id_tipo_maquina = tipo_maquina.id
@@ -82,6 +79,7 @@ if ($stmt) {
     <title>Máquinas de
         <?php echo $nomeTurma ?>
     </title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaQuery.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
@@ -89,9 +87,9 @@ if ($stmt) {
 
 <body>
     <header class="topo-inicial">
-        <?php  echo '
+        <?php echo '
       <a href="visualizar.php?view=alunosSala&id_sala_view=' . $sala . '">' ?>
-            <img src="" alt="botao para ver os alunos">
+        <img src="" alt="botao para ver os alunos">
         </a>
         <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
         <div class="icons">
@@ -100,7 +98,32 @@ if ($stmt) {
         </div>
     </header>
     <main class="corpo-inicial" id="main_maquinasDaTurmas">
-        <button onclick="teste()">deletar turma</button>
+
+
+
+
+        <button onclick=" 
+            Swal.fire({
+                title: '<strong>Deseja realmente excluir?</u></strong>',
+                icon: 'question',
+                html: `
+                  Se sim,
+                  <a href='\delete.php?option=sala&id_delecao= <?php echo $sala; ?>'>clique aqui</a>
+                `,
+                showCloseButton: true,
+                showCancelButton: false,
+                showConfirmButton: false,
+                focusConfirm: false,
+                cancelButtonAriaLabel: 'Thumbs down'
+              });
+              
+              ">deletar turma(botao ira para o menu)
+        </button>
+
+
+
+
+
         <div class="bem-vindo">
             <h2>Máquinas disponíveis em
                 <?php echo $nomeTurma ?>
@@ -161,26 +184,7 @@ if ($stmt) {
 </body>
 <script>
 
-    //swa.fire - sweet alert
-
-   function teste(){
-    Swal.fire({
-  title: "<strong>Deseja realmente excluir?</u></strong>",
-  icon: "info",
-  html: `
-    Se sim,
-    <a href="delete.php?option=sala&id_delecao= '.$sala.'">clique aqui</a>,
-  `,
-  showCloseButton: true,
-  showCancelButton: false,
-  focusConfirm: false,
-  confirmButtonAriaLabel: "Thumbs up, great!",
-  cancelButtonText: `
-    <i class="fa fa-thumbs-down"></i>
-  `,
-  cancelButtonAriaLabel: "Thumbs down"
-});
-   }
+    /
 
     //
 
@@ -207,7 +211,7 @@ if ($stmt) {
         });
     });
 </script>
- <!-- sweetalert2 -->
- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 </html>
