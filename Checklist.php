@@ -7,11 +7,6 @@
     include('conexao.php');
     
 
-    $idDaMaquina;
-    if($_GET['id_maquina']){
-        $idDaMaquina = $_GET['id_maquina'];
-    }
-
     function buscarNoBanco($idMaquina, $sql){
         include('conexao.php');
         $result = mysqli_query($mysqli, $sql);
@@ -21,6 +16,25 @@
         }
         return $result;
     }
+    
+    $idDaMaquina;
+    $fabricante ="";
+    $imagem = "";
+    $tipo = "";
+    if($_GET['id_maquina']){
+        $idDaMaquina = $_GET['id_maquina'];
+
+        $sqlDadosMaquina = "SELECT * FROM maquina INNER JOIN tipo_maquina ON maquina.id = tipo_maquina.id WHERE maquina.id=$idDaMaquina";
+        $result = buscarNoBanco($idDaMaquina, $sqlDadosMaquina);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $fabricante= $row['fabricante'];
+            $imagem= $row['imagem'];
+            $tipo= $row['tipo'];
+            $imagem = base64_encode($imagem);
+        }
+    }
+
+    
 
     function buscarInfosMaquina($idMaquina){
         $sql = "SELECT * FROM esp32 INNER JOIN atributo_tipo ON esp32.id_atributos = atributo_tipo.id WHERE id_maquina = $idMaquina";
@@ -71,6 +85,7 @@
             $atributo = $row['atributo'];
             $name = $row['atributo_esp'];
             $idAtributo = $row['id'];
+
             $valorReferencia = $row['valor_referencia'];
             
             $sqlDadosEsp = "SELECT * FROM esp32 WHERE esp32.id_maquina = $idMaquina";
@@ -176,19 +191,20 @@
         <section class="informacoes_maquina">
             
             <div class="nome_maquina">
-                <h2>Torno Mecanico</h2>
+                <h2><?php echo $tipo ?></h2>
             </div>
 
             <div class="container-infoMaq">
 
             <div class="img">
-                <img src="img/torno.png" width="300" alt="">
-                <figcaption>Fabricante: Lorem ipsum dolor sit amet</figcaption><br>
+                <!-- <img src="img/torno.png" width="300" alt=""> -->
+                <img src="data:image/jpeg;base64,<?php echo $imagem ?>" width="300" alt="">
+                <figcaption>Fabricante: <?php echo $GLOBALS['fabricante']; ?></figcaption><br>
             </div>
 
             <div class="subInfo">
                 <div class="id">
-                    <h3>ID:0000000</h3>
+                    <h3>ID:<?php echo $idDaMaquina; ?></h3>
                     </div>
                 
                     <div class="btns">
