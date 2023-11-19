@@ -571,6 +571,9 @@ footer {
 .swal2-popup {
   background-color: var(--azulPrincipal);
 }
+.swal2-html-container a{
+  color: #01b9d1;
+}
 div:where(.swal2-container) .swal2-html-container{
   color: white;
 }

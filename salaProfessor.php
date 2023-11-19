@@ -46,9 +46,6 @@ echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">
 echo '<br>';
 
 
-echo '<a href="delete.php?option=sala&id_delecao= ' . $sala . '" >Deletar Turma</a>';
-//////////
-
 //buscar tipos de máquinas disponíveis na turma
 $sqlTipos = "SELECT DISTINCT tipo_maquina.id, tipo_maquina.tipo FROM tipo_maquina
              INNER JOIN lista_sala_tipo_maquina ON lista_sala_tipo_maquina.id_tipo_maquina = tipo_maquina.id
@@ -101,18 +98,17 @@ if ($stmt) {
         </div>
     </header>
     <main class="corpo-inicial" id="main_maquinasDaTurmas">
-        
 
-        
 
-            <button onclick="
-            
+
+
+        <button onclick=" 
             Swal.fire({
                 title: '<strong>Deseja realmente excluir?</u></strong>',
                 icon: 'question',
                 html: `
                   Se sim,
-                  <a href='\delete.php?option=sala&id_delecao= <?php echo $sala; ?>'>clique aqui</a>,
+                  <a href='\delete.php?option=sala&id_delecao= <?php echo $sala; ?>'>clique aqui</a>
                 `,
                 showCloseButton: true,
                 showCancelButton: false,
@@ -121,11 +117,12 @@ if ($stmt) {
                 cancelButtonAriaLabel: 'Thumbs down'
               });
               
-              ">deletar turma(botao ira para o menu)</button>
-             
-            
+              ">deletar turma(botao ira para o menu)
+        </button>
 
-    
+
+
+
 
         <div class="bem-vindo">
             <h2>Máquinas disponíveis em
@@ -214,7 +211,7 @@ if ($stmt) {
         });
     });
 </script>
-        
-       
+
+
 
 </html>
