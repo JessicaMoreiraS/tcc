@@ -228,12 +228,15 @@
         
         <section class="checklist" id="checklist">
             <h2>Checklist</h2>
-            <form action="processaChecklist.php?id_maquina=<?php echo $idDaMaquina; ?>">
-
+            <form action="processaChecklist.php?id_maquina=<?php echo $idDaMaquina; ?>" method="POST">
+                <input type="text" value="<?php echo $idDaMaquina; ?>" name="id_maquina" hidden>
                 <?php
                 itensChecklist($idDaMaquina);
                 atributosChecklist($idDaMaquina);
                 ?>
+
+                <input type="submit" value="Enviar">
+                <!-- to do: verificar se todos os checkbox estao ok para habilitar o botao de envio -->
             </form>
 
     </section>
