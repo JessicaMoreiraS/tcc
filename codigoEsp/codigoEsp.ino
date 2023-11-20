@@ -16,8 +16,8 @@ DHT dht11_sensor(DHTPIN, DHTTYPE);
 #define led_verde 4
 
 // Informações da rede WiFi
-const char* ssid = "Mi 9T Pro";//"Galaxy A125CE6";//"Mi 9T Pro";
-const char* password = "e18ff26ed35ba";//"pclb8148";//"e18ff26ed35ba";
+const char* ssid = "moreira-2GHz";//"Galaxy A125CE6";//"Mi 9T Pro";
+const char* password = "limoroso";//"pclb8148";//"e18ff26ed35ba";
 
 // Strings para armazenar dados a serem enviados ao servidor
 String postData = "";
@@ -267,7 +267,8 @@ void loop() {
     Serial.println("---------------getdata.php");
    
    
-    http.begin("http://192.168.183.214/tcc/getdata.php");
+    // http.begin("http://192.168.0.109:80/tcc/getdata.php");
+    http.begin("https://workprojectgrup.000webhostapp.com/tcc/getdata.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
    
     httpCode = http.POST(postData);
@@ -320,7 +321,8 @@ void loop() {
     digitalWrite(ON_Board_LED, HIGH);
     Serial.println();
     Serial.println("---------------updateDHT11data.php");
-    http.begin("http://192.168.183.214/tcc/updateDHT11data.php");
+    // http.begin("http://192.168.0.109:80/tcc/updateDHT11data.php");
+    http.begin("https://workprojectgrup.000webhostapp.com/tcc/updateDHT11data.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviando os dados ao servidor

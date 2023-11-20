@@ -35,6 +35,7 @@
     }
 
     
+    
 
     function buscarInfosMaquina($idMaquina){
         $sql = "SELECT * FROM esp32 INNER JOIN atributo_tipo ON esp32.id_atributos = atributo_tipo.id WHERE id_maquina = $idMaquina";
@@ -47,6 +48,12 @@
             if($row['atributo'] == "temperatura"){
                 echo '<script>';
                 echo 'temometro('.$row['valor'].',"'.$idMaquina.'",'.$row['valor_referencia'].');'; 
+                echo '</script>';
+            }
+            if(strpos($row['atributo'], 'óleo') !== false || strpos($row['atributo'], 'oleo') !== false){
+                echo '<script>';
+                //echo 'function graficoFluidos(valorGrafico, nomeDiv, idMaquina){ console.log("entrou"); var elementoPai = document.getElementById("graficoCirculo"); var containetCirculo = `<div class="containerCirculo"><div class="wrapper"><svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path class="wave1" fill="#800000" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>   <path class="wave2" fill="#800000" fill-opacity="1" d="M0,288L60,288C120,288,240,288,360,256C480,224,600,160,720,138.7C840,117,960,139,1080,176C1200,213,1320,267,1380,293.3L1440,320L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></fill=> </svg></div><div class="preenchimentoCirculo" height:"${valorGrafico}%"></div></div>`; elementoPai.innerHTML=containetCirculo; } graficoFluidos(50,"graficoCirculo",1)';
+                echo 'graficoFluidos(50,"graficoCirculo",1)';
                 echo '</script>';
             }
             if($row['atributo'] == "velocidade" || $row['atributo'] == "vibracao"){
@@ -123,7 +130,7 @@
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>Checklist Form</title>
     <style>
@@ -179,6 +186,57 @@
             font-size:18px;
             font-weight: bold;
         }
+
+        .containerCirculo{
+            position: relative;
+            overflow: hidden;
+
+            width: 200px;
+            height:200px;
+            background-color: #eee;
+            border-radius: 100px;
+        }
+        .preenchimentoCirculo{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #800000;
+            transition: height 0.5s ease;
+            height: 50%;
+        }
+        
+        .wrapper {
+            position: relative;
+            bottom:0;
+            background-color: red;
+            /* margin-top:28%; */
+        }
+        
+        .waves{
+            position: absolute;
+            left:0;
+            right:0;
+        }
+        .wave1{
+            animation: moveWave1 3s ease-in-out infinite alternate;
+        }
+        .wave2{
+            animation: moveWave2 3s ease-in-out infinite alternate;
+            opacity: 90%;
+        }
+  
+  
+    
+    @keyframes moveWave1{
+        from{
+            transform: translateX(-30%);
+        }
+    }
+    @keyframes moveWave2{
+        from{
+            transform: translateX(20%);
+        }
+    }
 
     </style>
 </head>
@@ -273,5 +331,22 @@
 
         <input type="submit" value="Enviar Checklist">
     </form> -->
+
+    <script>
+        function fluidos(valorGrafico, nomeDiv, idMaquina){
+            console.log("entrou")
+            var elementoPai = document.getElementById("graficoCirculo");
+            var containetCirculo = createElement('div');
+            containetCirculo.className="containerCirculo";
+
+            var preenchimentoCirculo = createElement("div");
+            preenchimentoCirculo.className = "preenchimentoCirculo";
+            preenchimentoCirculo.style = `height:${valorGrafico}%`;
+
+            containetCirculo.appendChild(preenchimentoCirculo);
+            elementoPai.appendChild(containetCirculo);
+        }
+    </script>
 </body>
 </html>
+

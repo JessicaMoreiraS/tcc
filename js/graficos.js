@@ -132,32 +132,22 @@ function temometro(valor, idMaquina, valorDeReferencia){
     paiDoGrafico.innerHTML += novaDiv;
 }
 
-function fluido(valorGrafico, nomeDiv, idMaquina){
-    // Configurações do gráfico
-    var raio = 100;
-    var dados = [25, 50, 75, 100];
-
-    // Criação do gráfico
-    var svg = d3.select("#graficoCirculo")
-        .append("svg")
-        .attr("width", raio * 2)
-        .attr("height", raio * 2)
-        .append("g")
-        .attr("transform", "translate(" + raio + "," + raio + ")");
-
-    // Criação do círculo
-    var circulo = svg.selectAll("circle")
-        .data(dados)
-        .enter()
-        .append("circle")
-        .attr("r", function(d) { return d; })
-        .attr("fill-opacity", 0.5);
-
-    // Adiciona efeito de transição para o fluido
-    circulo.transition()
-        .duration(1000)
-        .attr("fill-opacity", 1);
-}
+function graficoFluidos(valorGrafico, nomeDiv, idMaquina, valorReferencia){ 
+    porcentagemValorGrafico = (valorGrafico*100)/valorReferencia;
+    var topoFluido = 100-22-porcentagemValorGrafico;
+    console.log("entrou"); 
+    var elementoPai = document.getElementById("graficoCirculo"); 
+    var containetCirculo = `<div class="containerCirculo" id="${nomeDiv}">
+                                <div class="wrapper" style="margin-top:${topoFluido}%;">
+                                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                                        <path class="wave1" fill="#800000" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                                        <path class="wave2" fill="#800000" fill-opacity="1" d="M0,288L60,288C120,288,240,288,360,256C480,224,600,160,720,138.7C840,117,960,139,1080,176C1200,213,1320,267,1380,293.3L1440,320L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                                    </svg>
+                                </div>
+                                <div class="preenchimentoCirculo" height:"${porcentagemValorGrafico}%"></div>
+                            </div>`; 
+    elementoPai.innerHTML=containetCirculo; 
+}  
 
 
 function cpuUsage(){
