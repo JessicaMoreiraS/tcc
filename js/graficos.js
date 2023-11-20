@@ -133,8 +133,11 @@ function temometro(valor, idMaquina, valorDeReferencia){
 }
 
 function graficoFluidos(valorGrafico, nomeDiv, idMaquina, valorReferencia){ 
-    porcentagemValorGrafico = (valorGrafico*100)/valorReferencia;
+    var iValorGrafico=parseFloat(valorGrafico);
+    var iValorReferencia=parseFloat(valorReferencia);
+    porcentagemValorGrafico = (iValorGrafico*100)/iValorReferencia;
     var topoFluido = 100-22-porcentagemValorGrafico;
+    console.log(porcentagemValorGrafico);
     console.log("entrou"); 
     var elementoPai = document.getElementById("graficoCirculo"); 
     var containetCirculo = `<div class="containerCirculo" id="${nomeDiv}">
