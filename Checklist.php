@@ -53,7 +53,7 @@
             if(strpos($row['atributo'], 'óleo') !== false || strpos($row['atributo'], 'oleo') !== false){
                 echo '<script>';
                 //echo 'function graficoFluidos(valorGrafico, nomeDiv, idMaquina){ console.log("entrou"); var elementoPai = document.getElementById("graficoCirculo"); var containetCirculo = `<div class="containerCirculo"><div class="wrapper"><svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path class="wave1" fill="#800000" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>   <path class="wave2" fill="#800000" fill-opacity="1" d="M0,288L60,288C120,288,240,288,360,256C480,224,600,160,720,138.7C840,117,960,139,1080,176C1200,213,1320,267,1380,293.3L1440,320L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></fill=> </svg></div><div class="preenchimentoCirculo" height:"${valorGrafico}%"></div></div>`; elementoPai.innerHTML=containetCirculo; } graficoFluidos(50,"graficoCirculo",1)';
-                echo 'graficoFluidos('.$row['valor'].',"'.$row['atributo_esp'].'",'.$idMaquina.', '.$row['valor_referencia'].')';
+                echo 'graficoFluidos('.$row['valor'].',"'.$row['atributo_esp'].'","'.$row['atributo'].'",'.$idMaquina.', '.$row['valor_referencia'].')';
                 echo '</script>';
             }
             if($row['atributo'] == "velocidade" || $row['atributo'] == "vibracao"){
@@ -202,13 +202,14 @@
             width: 100%;
             background-color: #800000;
             transition: height 0.5s ease;
-            height: 50%;
+            /*height: 50%;*/
         }
         
         .wrapper {
             position: relative;
             bottom:0;
             background-color: red;
+            transition: margin-top 0.5s ease;
             /* margin-top:28%; */
         }
         

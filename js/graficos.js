@@ -132,22 +132,34 @@ function temometro(valor, idMaquina, valorDeReferencia){
     paiDoGrafico.innerHTML += novaDiv;
 }
 
-function graficoFluidos(valorGrafico, nomeDiv, idMaquina, valorReferencia){ 
+function graficoFluidos(valorGrafico, nomeDiv, tema, idMaquina, valorReferencia){ 
     var iValorGrafico=parseFloat(valorGrafico);
     var iValorReferencia=parseFloat(valorReferencia);
     porcentagemValorGrafico = (iValorGrafico*100)/iValorReferencia;
-    var topoFluido = 100-22-porcentagemValorGrafico;
-    console.log(porcentagemValorGrafico);
-    console.log("entrou"); 
-    var elementoPai = document.getElementById("graficoCirculo"); 
-    var containetCirculo = `<div class="containerCirculo" id="${nomeDiv}">
-                                <div class="wrapper" style="margin-top:${topoFluido}%;">
+    var topoFluido = (100-22)-porcentagemValorGrafico;
+
+    var elementoPaiDosGraficos = document.getElementById("graficos")
+    var divCarGraficos = document.createElement("div");
+    divCarGraficos.className = "card-graficos";
+    var idCardGraficos = nomeDiv+"card";
+    divCarGraficos.id = idCardGraficos;
+    elementoPaiDosGraficos.appendChild(divCarGraficos);
+
+    var titulo = document.createElement("p");
+    titulo.innerHTML = tema;
+    elementoPaiDosGraficos.appendChild(titulo);
+
+    var elementoPai = document.getElementById(idCardGraficos); 
+
+
+    var containetCirculo = `<div class="containerCirculo">
+                                <div class="wrapper" id="${nomeDiv}Wrapper" style="margin-top:${topoFluido}%;">
                                     <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                                         <path class="wave1" fill="#800000" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
                                         <path class="wave2" fill="#800000" fill-opacity="1" d="M0,288L60,288C120,288,240,288,360,256C480,224,600,160,720,138.7C840,117,960,139,1080,176C1200,213,1320,267,1380,293.3L1440,320L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
                                     </svg>
                                 </div>
-                                <div class="preenchimentoCirculo" height:"${porcentagemValorGrafico}%"></div>
+                                <div class="preenchimentoCirculo" id="${nomeDiv}" style="height:${porcentagemValorGrafico}%"></div>
                             </div>`; 
     elementoPai.innerHTML=containetCirculo; 
 }  
@@ -181,6 +193,7 @@ function atualizaGrafico(retorno) {
         
         var nomeDiv = arrNomeValor[0];
         var novoValor = arrNomeValor[1];
+        var nomeDivEsp = arrNomeValor[2];
         var idCheckbox = arrNomeValor[2]+"Check";
         var valorDeReferencia = arrNomeValor[3];
 
@@ -189,9 +202,13 @@ function atualizaGrafico(retorno) {
         // console.log(nomeDiv);
         // console.log(novoValor);
         if(nomeDiv == "velocidade" || nomeDiv == "vibracao"){
-            atualizaVelocimetro(nomeDiv, novoValor);
+            atualizaVelocimetro(nomeDivEsp, novoValor);
         }else if(nomeDiv == "temperatura"){
-            atualizaTemometro(nomeDiv, novoValor, valorDeReferencia);
+            atualizaTemometro(nomeDivEsp, novoValor, valorDeReferencia);
+        }else if(nomeDivEsp != undefined){
+            if(nomeDivEsp.indexOf('oleo') != -1){
+                AtualizaFluido(nomeDivEsp, novoValor, valorDeReferencia)
+            }
         }
     });
 }
@@ -218,6 +235,15 @@ function atualizaTemometro(nomeDiv, novoValor, valorDeReferencia){
     var valorTemometro = document.getElementById("valorTemometro")
     document.getElementById("valorTemp").innerHTML = novoValor+"°C";
     valorTemometro.style.height = porcentagem+"%";
+}
+
+function AtualizaFluido(nomeDiv, novoValor, valorDeReferencia){
+    var preenchimento= document.getElementById(nomeDiv);
+    var ondas = document.getElementById(nomeDiv+"Wrapper");
+    var porcentagem = (novoValor*100)/valorDeReferencia;
+    preenchimento.style.height = porcentagem+"%";
+    var topoOndas = (100-22)-porcentagem;
+    ondas.style = `margin-top:${topoOndas}%`;
 }
 
 function verificarCheckbox(nome, valor, valorReferencia){
