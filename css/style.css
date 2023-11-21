@@ -458,11 +458,11 @@ footer {
   transition: 0.3s;
 }
 
-.input_entrar input:disabled,  #submitCadastrarGestor:disabled {
+.input_entrar input:disabled,  #submitCadastrarGestor:disabled, #submitCadastrarSala:disabled {
   background-color: #666666;
 }
 
-.input_entrar input:disabled:hover,  #submitCadastrarGestor:disabled:hover  {
+.input_entrar input:disabled:hover,  #submitCadastrarGestor:disabled:hover, #submitCadastrarSala:disabled:hover  {
   background-color: #666666;
   cursor: not-allowed;
   transform: none;

@@ -43,8 +43,8 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
     integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/mediaQuery.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/mediaQuery.css" />
   <script src="https://unpkg.com/scrollreveal"></script>
   <title>
     <?php echo $professorNome ?>- Inicial
@@ -158,7 +158,7 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
             ?>
           </div>
           <div class="bnts">
-            <input name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar" >
+            <input disabled name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar" >
             <button id="cancelar_button">cancelar</button>
 
           </div>
@@ -207,6 +207,17 @@ ocultarBotao.addEventListener("click", function() {
     from_criar_sala.style.display = "none"; 
 });
 ////////
+
+//JS PARA HABILITAR O BOTAO DE CRIAR A SALA NO FORMULARIO CRIAR SALA
+  const checkboxes =  form_cria_sala.querySelectorAll("input");
+  const habilitarCriarSala = false;
+  const CriarSalaButton = document.getElementById("submitCadastrarSala");
+
+  checkboxes.foreach(function (input) {
+    if(checkboxes.checked || !checkboxes.value == " "){
+      CriarSalaButton.removeAttribute('disabled')
+    }
+  });
 
 //JS DA PESQUISA
   document.addEventListener("DOMContentLoaded", function() {
