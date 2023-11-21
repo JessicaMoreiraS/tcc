@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS `aluno` (
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `codigo_recuperacao` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `codigo_recuperacao` varchar(7) CHARACTER SET utf8mb4  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `aluno`
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `atributo_tipo` (
   `atributo_esp` varchar(255) NOT NULL,
   `valor_referencia` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `atributo_tipo`
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `checklist` (
   `id_maquina` varchar(255) NOT NULL,
   `date_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `checklist`
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `conta_pendente_aluno` (
   `senha` varchar(255) NOT NULL,
   `cod_confimacao` varchar(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `gestor` (
   `senha` varchar(255) NOT NULL,
   `codigo_recuperacao` varchar(7) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `gestor`
@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `item_checklist` (
   `item` varchar(50) NOT NULL,
   `name_item` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `item_checklist`
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `lista_aluno_sala` (
   `id_aluno` int NOT NULL,
   `id_sala` int NOT NULL,
   PRIMARY KEY (`id_lista`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_aluno_sala`
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `lista_sala_tipo_maquina` (
   `id_sala` int NOT NULL,
   `id_tipo_maquina` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_sala_tipo_maquina`
@@ -250,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `lista_tipo_maquina_atributo` (
   `id_tipo_maquina` int NOT NULL,
   `id_atributos` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_tipo_maquina_atributo`
@@ -279,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `lista_tipo_maquina_item_checklist` (
   `id_tipo_maquina` int NOT NULL,
   `id_item_checklist` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_tipo_maquina_item_checklist`
@@ -302,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `lista_tipo_maquina_peca` (
   `id_tipo_maquina` int NOT NULL,
   `id_peca` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -321,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `maquina` (
   `led_amarelo` varchar(50) NOT NULL,
   `led_vermelho` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `maquina`
@@ -342,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `peca_tipo` (
   `codigo` varchar(50) NOT NULL,
   `peca` int NOT NULL,
   `tempo_de_troca` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -359,7 +359,7 @@ CREATE TABLE IF NOT EXISTS `professor` (
   `senha` varchar(255) NOT NULL,
   `codigo_recuperacao` varchar(7) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `professor`
@@ -382,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `sala` (
   `id_professor` int NOT NULL,
   `codigo_acesso` varchar(8) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `sala`
@@ -402,7 +402,7 @@ DROP TABLE IF EXISTS `tipo_maquina`;
 CREATE TABLE IF NOT EXISTS `tipo_maquina` (
   `id` int NOT NULL,
   `tipo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `tipo_maquina`
