@@ -1274,6 +1274,8 @@ margin-bottom: 20px;
    display: flex;
    justify-content: center;
    gap: 20px;
+   margin-top: 10px;
+   padding: 13px;
 }
 .form_cadastrarTurma .container  .bnts button,.form_cadastrarTurma .container  .bnts input {
   cursor: pointer;
@@ -1917,7 +1919,7 @@ margin-top: 15px;
   justify-content: space-around;
   align-items: center;
 }
-#main_formPerfil .container_form form  .bnts input{
+#main_formPerfil .container_form form  .bnts input, #submitCadastrarSala{
   display: flex;
   justify-content: center;
   color: var(--cinza);
@@ -1957,12 +1959,12 @@ margin-top: 15px;
 #main_formPerfil .container_form form  .bnts  a:hover{
   color: #01b9d1;
 }
-#main_formPerfil #botaoCancelar{
+#main_formPerfil #botaoCancelar, #cancelar_button{
   background-color: rgb(202, 60, 60);
   margin-top: 10px;
   transition: .5s ease;
 }
-#main_formPerfil  #botaoCancelar:hover{
+#main_formPerfil  #botaoCancelar:hover, #cancelar_button:hover{
   color:  rgb(202, 60, 60);
   background-color: var(--background-main);
   transform: scale(0.9);
