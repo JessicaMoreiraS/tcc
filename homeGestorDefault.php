@@ -17,9 +17,11 @@ function excluirGestor($idGestor)
 
     // Executar a query
     if ($stmt->execute()) {
-        echo "Gestor excluído com sucesso!";
+        header('Location: homeGestorDefault.php?e=12');
+        //echo "Gestor excluído com sucesso!";
     } else {
-        echo "Erro ao excluir gestor: " . $stmt->error;
+        header('Location: homeGestorDefault.php?e=9');
+        //echo "Erro ao excluir gestor: " . $stmt->error;
     }
 
     $stmt->close();
@@ -54,9 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cadastrarGestor'])) {
     $stmt->bind_param('ssss', $nome, $cpf, $email, $senhaHash);
 
     if ($stmt->execute()) {
-        echo "Gestor cadastrado com sucesso!";
+        header('Location: homeGestorDefault.php?e=12');
+        // echo "Gestor cadastrado com sucesso!";
     } else {
-        echo "Erro ao cadastrar gestor: " . $stmt->error;
+        header('Location: homeGestorDefault.php?e=3');
+        // echo "Erro ao cadastrar gestor: " . $stmt->error;
     }
 
     $stmt->close();
@@ -101,6 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/mediaQuery.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link rel="stylesheet" href="css/style.css" />
     <style>
@@ -342,6 +349,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
         ///////////////////////////
     </script>
     <script src="js/reveal.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
+<?php
+    if (filter_input(INPUT_GET, 'e')) {
+        $mensagem_erro = filter_input(INPUT_GET, 'e');
+        echo '<script>erroLogin('.$mensagem_erro.')</script>';
+        // echo '<script>location.reload()</script>';
+    }
+?>

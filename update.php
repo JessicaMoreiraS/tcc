@@ -134,6 +134,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
 
     <head>
         <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css" />
         <script src="https://unpkg.com/scrollreveal"></script>

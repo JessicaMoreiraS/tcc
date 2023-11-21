@@ -60,6 +60,7 @@ if (isset($_GET['id_sala'])) {
 
     <head>
         <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Alunos</title>
     </head>
