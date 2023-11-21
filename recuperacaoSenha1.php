@@ -51,6 +51,7 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>s
     <title>Recuperação de senha</title>
 
     <!-- Adicione o Bootstrap e o jQuery -->
@@ -130,5 +131,13 @@ $mysqli->close();
             });
         });
     </script>
+<script src="js/script.js"></script>
 </body>
 </html>
+
+<?php
+    if (filter_input(INPUT_GET, 'e')) {
+        $mensagem_erro = filter_input(INPUT_GET, 'e');
+        echo '<script>erroLogin('.$mensagem_erro.')</script>';
+    }
+?>

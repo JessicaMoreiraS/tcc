@@ -183,7 +183,14 @@ $idGestor = $_SESSION['idAcesso'];
             </div>
         </section>
     </main>
+    <script src="js/script.js"></script>
 </body>
 <script src="js/reveal.js"></script>
 
 </html>
+<?php
+    if (filter_input(INPUT_GET, 'e')) {
+        $mensagem_erro = filter_input(INPUT_GET, 'e');
+        echo '<script>erroLogin('.$mensagem_erro.')</script>';
+    }
+?>

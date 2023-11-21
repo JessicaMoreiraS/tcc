@@ -49,3 +49,9 @@ if(isset($_POST['tipo'])){
     <script src="js/script.js"></script>
 </body>
 </html>
+<?php
+    if (filter_input(INPUT_GET, 'e')) {
+        $mensagem_erro = filter_input(INPUT_GET, 'e');
+        echo '<script>erroLogin('.$mensagem_erro.')</script>';
+    }
+?>

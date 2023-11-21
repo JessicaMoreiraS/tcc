@@ -120,5 +120,13 @@ session_start();
 </body>
 <script src="js/mascaraCPF.js"></script>
 <script src="js/reveal.js"></script>
+<script src="js/script.js"></script>
 
 </html>
+
+<?php
+    if (filter_input(INPUT_GET, 'e')) {
+        $mensagem_erro = filter_input(INPUT_GET, 'e');
+        echo '<script>erroLogin('.$mensagem_erro.')</script>';
+    }
+?>

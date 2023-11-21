@@ -79,3 +79,9 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
     ?>
 </body>
 </html>
+<?php
+    if (filter_input(INPUT_GET, 'e')) {
+        $mensagem_erro = filter_input(INPUT_GET, 'e');
+        echo '<script>erroLogin('.$mensagem_erro.')</script>';
+    }
+?>
