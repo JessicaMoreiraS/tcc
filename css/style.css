@@ -1171,6 +1171,7 @@ background-color: #003f5b;
 }
  .form_cadastrarTurma .container .logo {
    margin-bottom: 25px;
+   margin-top: 10px;
 }
  .form_cadastrarTurma .container .input_nome, .input_modal{
     display: flex;
@@ -1282,7 +1283,7 @@ margin-bottom: 20px;
   cursor: pointer;
 }
  .form_cadastrarTurma .container .header{
-   margin-top: -20px;
+   margin-top: 20px;
 }
 
 
