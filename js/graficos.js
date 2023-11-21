@@ -218,17 +218,39 @@ function atualizaVelocimetro(nomeDiv, novoValor){
         
     // Verifique se a referência existe
     if (axisDataItem) {
-        // Atualize dinamicamente o valor do gráfico
-        axisDataItem.animate({
-            key: 'value',
-            to: novoValor,
-            duration: 800,
-            easing: am5.ease.out(am5.ease.cubic)
-        });
+
+        var valorAtual = axisDataItem.get("value");
+        var i = valorAtual
+        if(valorAtual< novoValor){
+            while(i< novoValor){
+                i++;
+                axisDataItem.animate({
+                    key: "value",
+                    // from: i,
+                    to: i,
+                    duration: 500,
+                    easing: am5.ease.out(am5.ease.cubic)
+                });
+            }
+        }else if(valorAtual> novoValor){
+            while(i> novoValor){
+                i--;
+                axisDataItem.animate({
+                    key: "value",
+                    // from: i,
+                    to: i,
+                    duration: 500,
+                    easing: am5.ease.out(am5.ease.cubic)
+                });
+            }
+        }
+
     } else {
         console.error("Referência para axisDataItem não encontrada.");
     }
 }
+
+
 
 function atualizaTemometro(nomeDiv, novoValor, valorDeReferencia){
     var porcentagem = (novoValor*100)/valorDeReferencia;
