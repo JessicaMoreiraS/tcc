@@ -22,29 +22,9 @@ if ($stmt) {
     echo $mysqli->error;
 }
 
-//buscar o codigo acesso da turma
-$sql = 'SELECT codigo_acesso FROM sala WHERE id = ?';
-//stmt do sql
-$stmt = $mysqli->prepare($sql);
-
-if ($stmt) {
-    //aplicando o id da sala ao  parametro da consulta
-    $stmt->bind_param("i", $sala);
-    //verificando se o sql executou
-    if ($stmt->execute()) {
-        //resganto o resultado
-        $stmt->bind_result($codigoTurma);
-        if ($stmt->fetch()) {
-            echo 'Código de acesso da turma: ' . $codigoTurma;
-        }
-        $stmt->close();
-    }
-} else {
-    echo $mysqli->error;
-}
-echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">Editar turma</a>';
+echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">Configurações da Turma(link vai para o menu)</a>';
 echo '<br>';
-
+echo '<a href="visualizar.php?view=alunosSala&id_sala_view=' . $sala . '">alunos da turma(vai para o menu)</a>';
 
 //buscar tipos de máquinas disponíveis na turma
 $sqlTipos = "SELECT DISTINCT tipo_maquina.id, tipo_maquina.tipo FROM tipo_maquina
@@ -87,10 +67,6 @@ if ($stmt) {
 
 <body>
     <header class="topo-inicial">
-        <?php echo '
-      <a href="visualizar.php?view=alunosSala&id_sala_view=' . $sala . '">' ?>
-        <img src="" alt="botao para ver os alunos">
-        </a>
         <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
         <div class="icons">
             <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
@@ -98,10 +74,6 @@ if ($stmt) {
         </div>
     </header>
     <main class="corpo-inicial" id="main_maquinasDaTurmas">
-
-
-
-
         <button onclick=" 
             Swal.fire({
                 title: '<strong>Deseja realmente excluir?</u></strong>',
@@ -130,9 +102,8 @@ if ($stmt) {
             </h2>
         </div>
         <div class="pesquisa">
-            <input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por um modelo ou ID"
-                class="pesquisar" type="text" />
-        </div>
+        <input  id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por uma turma" class="pesquisar" type="text" />
+      </div>
         <div class="maquinas">
             <?php
             for ($i = 0; $i < count($tiposDaSalaId); $i++) {
