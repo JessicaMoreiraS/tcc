@@ -228,7 +228,7 @@ function atualizaVelocimetro(nomeDiv, novoValor){
                     key: "value",
                     // from: i,
                     to: i,
-                    duration: 500,
+                    duration: 800,
                     easing: am5.ease.out(am5.ease.cubic)
                 });
             }
@@ -239,7 +239,7 @@ function atualizaVelocimetro(nomeDiv, novoValor){
                     key: "value",
                     // from: i,
                     to: i,
-                    duration: 500,
+                    duration: 800,
                     easing: am5.ease.out(am5.ease.cubic)
                 });
             }
