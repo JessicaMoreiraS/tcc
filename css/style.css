@@ -1159,7 +1159,7 @@ background-color: #003f5b;
     background-color: var(--azulPrincipal);
     padding: 1vw;
     border-radius: 20px;
-    width: 30vw;
+    width: 40vw;
     
 }
  .form_cadastrarTurma .container .logo, .form_cadastrarTurma .container .icone{
@@ -1269,10 +1269,6 @@ margin-bottom: 20px;
     user-select: none;
     display: flex;
   }
-  .cyberpunk-checkbox-label:disabled{
-
-  }
-  
 
 .form_cadastrarTurma .container  .bnts {
    display: flex;

@@ -243,3 +243,12 @@ footer .icones{
   /* MEDIA DAS TABELAS */
 
 
+  /* HOME PROFESSOR MEDIA */
+  @media screen and (max-width: 761px){
+    .form_cadastrarTurma .container, .w3-modal-content{
+        width: 77vw;
+    }
+  }
+  /* FIM HOME PROFESSOR MEDIA */
+
+
