@@ -50,16 +50,35 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" />
     <title>Confirmação de email</title>
 </head>
 <body>
-    <div>
+<header class="topo-index">
+      <a href="inicialAluno.html"
+        ><img width="140" src="img/logo-senai-branco.png" alt=""
+      /></a>
+    </header>
+    <main  class="conteudoConfirmarEmail">
+   
         <form action="" method="GET">
-            <input type="email" value="<?php echo $email?>" name= "emailconf" hidden>
+        <div class="areaCodTurmaNova">
+          <h2>Confirmação de Email</h2>
+          <label for=""
+            >Para que possamos validar seu email, insira o código gerado pelo
+            sistema e enviado em seu email cadastrado.</label
+          >
+          <input type="email" value="<?php echo $email?>" name= "emailconf" hidden>
             <input type="text" maxlength="6" placeholder="Código de confirmação" name="codigo" required>
-            <input type="submit" value="Confirmar" name="confirmar">
+        </div>
+            <div class="verificacaoEmail">
+                <div class="botoesTurmaNova">
+                <input type="submit" value="Confirmar" name="confirmar">
+                </div>
+            </div>
+            
         </form>
-    </div>
+    
 
     <?php
     if (isset($email)) { ?>
@@ -77,6 +96,7 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
         echo '<script>erroLogin(8)</script>';
     }
     ?>
+    </main>
 </body>
 </html>
 <?php
