@@ -51,24 +51,60 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>s
+    
+    <link rel="stylesheet" href="css/style.css" />
     <title>Recuperação de senha</title>
 
     <!-- Adicione o Bootstrap e o jQuery -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
-    <div>
+<body id="body_recuperacaoSenha">
+<header class="topo-index">
+      <a href="inicialAluno.html"
+        ><img width="140" src="img/logo-senai-branco.png"
+      /></a>
+</header>
+    <main class="conteudoConfirmarSenha">
+ 
         <form action="processa_recuperacao.php" method="POST">
-            <input type="text" placeholder="Código de recuperação" name="codigo_recuperacao" required>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#senhaModal">
+        <div class="areaCod">
+          <h2>Recuperação Senha</h2>
+          <label
+            >Para que possamos validar seu usuário, insira o código gerado pelo
+            aplicativo e enviado em seu email cadastrado</label
+          >
+          <input
+            type="text"
+            placeholder="Insira o código aqui"
+            name="codigo_recuperacao"
+            id="codigo_recuperacao"
+            required
+          />
+        </div>
+        <div class="verificacaoSenha">
+          <div class="botoesSenha">
+          <button id="Btn_confirmar" type="button" class="btn btn-primary" data-toggle="modal" data-target="#senhaModal">
                 Confirmar
             </button>
+          </div>
+        </div>
+            
         </form>
-    </div>
+   
 
     <!-- Modal para a nova senha -->
     <div class="modal fade" id="senhaModal" tabindex="-1" role="dialog" aria-labelledby="senhaModalLabel" aria-hidden="true">
@@ -85,12 +121,13 @@ $mysqli->close();
                     <input type="password" placeholder="Confirme a senha" id="confirmarSenha" required>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="enviarSenha">Enviar Senha</button>
+                    <button id="botaoCancelarRecuperacaoSenha" type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="enviarSenha">Salvar</button>
                 </div>
             </div>
         </div>
     </div>
+    </main>
 
     <script>
         // Exemplo de código JavaScript para mostrar um pop-up e enviar a nova senha para o servidor
