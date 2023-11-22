@@ -224,3 +224,31 @@ sr.reveal('.form_modal',{
   origin: 'bottom'
 });
 ///FIM CADASTRAR PROFessor
+
+///CONFIRMAR EMAIL && RECUPERACAO SENHA
+sr.reveal('.conteudoConfirmarEmail h2',{ 
+  duration: 1000,
+  distance: '80px',
+  origin: 'left'
+});
+sr.reveal('.conteudoConfirmarEmail label',{ 
+  duration: 1000,
+  distance: '80px',
+  origin: 'left',
+  delay: 500,
+  opacity:0
+});
+sr.reveal('.conteudoConfirmarEmail .verificacaoEmail ',{ 
+  duration: 1000,
+  distance: '80px',
+  origin: 'left',
+  delay: 500,
+  opacity:0
+});
+sr.reveal('.conteudoConfirmarEmail input ,.conteudoConfirmarEmail a, .conteudoConfirmarEmail p',{ 
+  duration: 1000,
+ opacity:0,
+ delay: 600
+});
+
+///FIM CONFIRMAR EMAIL && RECUPERACAO SENHA

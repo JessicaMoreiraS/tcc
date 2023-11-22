@@ -683,7 +683,6 @@ div:where(.swal2-container) .swal2-html-container{
 .areaCodTurmaNova input, .areaCod  input {
   width: 96%;
   height: 50px;
-  margin-top: 15px;
   padding-left: 5px;
   border-radius: 15px;
   color: rgba(0, 0, 0, 0.781);
@@ -694,7 +693,7 @@ div:where(.swal2-container) .swal2-html-container{
   font-size: 17px;
   border: none;
   box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
-  margin: 5px;
+
 }
 
 .reenviar {
