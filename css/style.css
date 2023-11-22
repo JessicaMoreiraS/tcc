@@ -448,7 +448,7 @@ footer {
   color: rgb(214, 75, 75);
 }
 
-.input_entrar input, #gestor_default_main .bnts input, #submitCadastrarGestor, #submitConfirmarExclusao,#submitCadastrarProfessor,.botoesSenha #Btn_confirmar, #enviarSenha {
+.input_entrar input, #gestor_default_main .bnts input, #submitCadastrarGestor, #submitConfirmarExclusao,#submitCadastrarProfessor,.botoesSenha #Btn_confirmar, #enviarSenha, .botoesTurmaNova input {
   padding: 13px 40px 13px 40px;
   color: #fff;
   border-radius: 15px;
@@ -462,14 +462,22 @@ footer {
   background-color: #666666;
 }
 
-.input_entrar input:disabled:hover,  #submitCadastrarGestor:disabled:hover, #submitCadastrarSala:disabled:hover,  .verificacaoSenha button:hover  {
+.input_entrar input:disabled:hover,  #submitCadastrarGestor:disabled:hover, #submitCadastrarSala:disabled:hover {
   background-color: #666666;
   cursor: not-allowed;
   transform: none;
 }
 
 .input_entrar input:hover,
-#form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover,  #submitCadastrarGestor:hover, #submitConfirmarExclusao:hover, #submitCadastrarProfessor:hover, .botoesSenha #Btn_confirmar:hover, #enviarSenha:hover {
+#form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover,  #submitCadastrarGestor:hover, #submitConfirmarExclusao:hover, #submitCadastrarProfessor:hover, .botoesSenha #Btn_confirmar:hover, #enviarSenha:hover, .botoesTurmaNova input:hover {
+  width: 200px;
+  height: 40px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  border-radius: 15px;
+  background: #01567d;
+  color: #fff;
+
   background-color: #036998;
   transform: scale(0.9, 0.9);
 }
@@ -881,7 +889,7 @@ background-color: #003f5b;
   align-items: center;
 }
 
-.botoesTurmaNova input {
+/* .botoesTurmaNova input {
   width: 200px;
   height: 40px;
   margin-bottom: 15px;
@@ -889,14 +897,14 @@ background-color: #003f5b;
   border-radius: 15px;
   background: #01567d;
   color: #fff;
-}
+} */
 
-.botoesTurmaNova input:hover {
+/* .botoesTurmaNova input:hover {
   background-color: #036998;
   transform: scale(0.9, 0.9);
   cursor: pointer;
   transition: 1s ease-in-out;
-}
+} */
 
 /*Fim da página Turma nova*/
 

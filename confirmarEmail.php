@@ -87,7 +87,11 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
         </form>
     <?php } ?>
     
-    <a href="direcionamentoLogin.php?email=<?php echo $email ?>&reenviarCodigo=true">Reenviar Código</a>
+    <div class="reenviar">
+        <p>não foi enviado? Clique em <a href="direcionamentoLogin.php?email=<?php echo $email ?>&reenviarCodigo=true">Reenviar Código</a></p>
+    </div> 
+
+    
 
 
     <script src="js/script.js"></script>
