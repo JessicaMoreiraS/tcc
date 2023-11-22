@@ -64,7 +64,7 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
         <form action="" method="GET">
         <div class="areaCodTurmaNova">
           <h2>Confirmação de Email</h2>
-          <label for=""
+          <label 
             >Para que possamos validar seu email, insira o código gerado pelo
             sistema e enviado em seu email cadastrado.</label
           >
@@ -80,16 +80,11 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
         </form>
     
 
-    <?php
-    if (isset($email)) { ?>
-        <form action="confirmarEmail.php?emailconf=<?php echo $email; ?>" method='POST'>
-            <input type="submit" value="Reenviar Email" name='enviar'>
-        </form>
-    <?php } ?>
+  
     
-    <div class="reenviar">
+   
         <p>não foi enviado? Clique em <a href="direcionamentoLogin.php?email=<?php echo $email ?>&reenviarCodigo=true">Reenviar Código</a></p>
-    </div> 
+   
 
     
 
