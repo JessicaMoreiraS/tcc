@@ -219,6 +219,7 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
     <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaQuery.css" />
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
 </head>
 
 <body id="body_tables">

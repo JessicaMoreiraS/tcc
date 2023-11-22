@@ -141,8 +141,8 @@
 
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-
-    <title>Checklist Form</title>
+<link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    <title>Checklist</title>
     <style>
         .grafico {
         width: 100%;

@@ -63,6 +63,7 @@ if ($stmt) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaQuery.css" />
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 

@@ -51,6 +51,7 @@ if (isset($_GET["salaSair"])) {
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/mediaQuery.css" />
 	<script src="https://unpkg.com/scrollreveal"></script>
+	<link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
 </head>
 
 <body id="body_homeAluno">

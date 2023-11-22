@@ -137,6 +137,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
         <script src="https://unpkg.com/scrollreveal"></script>
         <title>
             <?php
@@ -290,7 +291,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                     input.removeAttribute('readonly');
                 }
                 if (input.type == "checkbox") {
-                    input.removeAttribute('disabled');
+                    input.removeAttribute('disabled','enabled');
                 }
             });
         }

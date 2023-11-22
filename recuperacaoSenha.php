@@ -140,6 +140,7 @@ function identificaTipoUsuario($email){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <title>Recuperação de Conta</title>
 </head>
 <body>

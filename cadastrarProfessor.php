@@ -14,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaQuery.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <title>Cadastrar Professor</title>
 </head>
 

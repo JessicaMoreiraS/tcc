@@ -118,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
             padding: 0;
         }
     </style>
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <title>Home - Gestor Default</title>
 </head>
 

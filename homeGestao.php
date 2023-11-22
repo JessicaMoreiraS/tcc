@@ -37,8 +37,9 @@ $idGestor = $_SESSION['idAcesso'];
     <link rel="stylesheet" href="css/mediaQuery.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <title>Home - Gestão</title>
+    <title>Inicial - Gestão</title>
 </head>
 
 <body id="body_homeGestao">
