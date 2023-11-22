@@ -85,7 +85,7 @@ $mysqli->close();
           <h2>Recuperação Senha</h2>
           <label
             >Para que possamos validar seu usuário, insira o código gerado pelo
-            aplicativo e enviado em seu email cadastrado</label
+            sistema e enviado em seu email cadastrado</label
           >
           <input
             type="text"
