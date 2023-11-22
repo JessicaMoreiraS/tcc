@@ -434,7 +434,7 @@ footer {
    justify-content: center;
    margin-top: 20px;
 }
-#infosAcess a:hover,  #cadastrarProfLink:hover {
+#infosAcess a:hover,  #cadastrarProfLink:hover, .conteudoConfirmarEmail a:hover {
   text-decoration: underline;
 }
 
@@ -2100,3 +2100,11 @@ background-color: #ee7d7d;
   font-size: 15px;
 }
 /* FIM CSS  RECUPERACAO SENHA*/
+
+
+/* CSS  CONFIRMAR EMAIL*/
+.botoesTurmaNova input{
+  margin-bottom: 20px;
+}
+
+/* FIM CSS   CONFIRMAR EMAIL*/

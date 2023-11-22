@@ -83,7 +83,7 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
   
     
    
-        <p>não foi enviado? Clique em <a href="direcionamentoLogin.php?email=<?php echo $email ?>&reenviarCodigo=true">Reenviar Código</a></p>
+        <p>Não foi enviado? Clique em <a href="direcionamentoLogin.php?email=<?php echo $email ?>&reenviarCodigo=true">Reenviar Código</a></p>
    
 
     
