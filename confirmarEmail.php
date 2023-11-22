@@ -69,7 +69,7 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
             sistema e enviado em seu email cadastrado.</label
           >
           <input type="email" value="<?php echo $email?>" name= "emailconf" hidden>
-            <input type="text" maxlength="6" placeholder="Código de confirmação" name="codigo" required>
+            <input type="text" maxlength="6"  placeholder="Insira o código aqui" name="codigo" required>
         </div>
             <div class="verificacaoEmail">
                 <div class="botoesTurmaNova">

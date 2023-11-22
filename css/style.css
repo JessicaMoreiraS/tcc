@@ -470,14 +470,6 @@ footer {
 
 .input_entrar input:hover,
 #form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover,  #submitCadastrarGestor:hover, #submitConfirmarExclusao:hover, #submitCadastrarProfessor:hover, .botoesSenha #Btn_confirmar:hover, #enviarSenha:hover, .botoesTurmaNova input:hover {
-  width: 200px;
-  height: 40px;
-  margin-bottom: 15px;
-  font-size: 18px;
-  border-radius: 15px;
-  background: #01567d;
-  color: #fff;
-
   background-color: #036998;
   transform: scale(0.9, 0.9);
 }
