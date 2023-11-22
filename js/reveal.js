@@ -226,26 +226,26 @@ sr.reveal('.form_modal',{
 ///FIM CADASTRAR PROFessor
 
 ///CONFIRMAR EMAIL && RECUPERACAO SENHA
-sr.reveal('.conteudoConfirmarEmail h2',{ 
+sr.reveal('.conteudoConfirmarEmail h2, .conteudoConfirmarSenha h2',{ 
   duration: 1000,
   distance: '80px',
   origin: 'left'
 });
-sr.reveal('.conteudoConfirmarEmail label',{ 
+sr.reveal('.conteudoConfirmarEmail label, .conteudoConfirmarSenha label',{ 
   duration: 1000,
   distance: '80px',
   origin: 'left',
   delay: 500,
   opacity:0
 });
-sr.reveal('.conteudoConfirmarEmail .verificacaoEmail ',{ 
+sr.reveal('.conteudoConfirmarEmail .verificacaoEmail, .conteudoConfirmarSenha .verificacaoSenha  ',{ 
   duration: 1000,
   distance: '80px',
   origin: 'left',
   delay: 500,
   opacity:0
 });
-sr.reveal('.conteudoConfirmarEmail input ,.conteudoConfirmarEmail a, .conteudoConfirmarEmail p',{ 
+sr.reveal('.conteudoConfirmarEmail input ,.conteudoConfirmarEmail a, .conteudoConfirmarEmail p, .conteudoConfirmarSenha input,.conteudoConfirmarSenha a ',{ 
   duration: 1000,
  opacity:0,
  delay: 600
