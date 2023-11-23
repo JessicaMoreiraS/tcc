@@ -5,14 +5,17 @@ if(isset($_POST['idmaquina']) && isset($_POST['modelo']) && isset($_POST['fabric
     $id_tipo_maquina = $_POST['id_tipo_maquina'];
     $modelo = $_POST['modelo'];
     $fabricante = $_POST['fabricante'];
-    $imagem =isset($_POST['imagem']);
+    $imagem ="";
+    if(isset($_POST['imagem'])){
+        $imagem =$_POST['imagem'];
+    }
 
     $existencia = existenciaMaquina($id_maquina);
 
     if(!$existencia){
         $sqlInsertMaquina = "INSERT INTO maquina (id, id_tipo_maquina, modelo, fabricante, imagem, led_verde, led_amarelo, led_vermelho) VALUES ('$id_maquina', '$id_tipo_maquina', '$modelo', '$fabricante', '$imagem', 'OFF', 'OFF', 'ON')";
-        if ($mysqli->query($sqlInsertMaquina)) {
-            header('location: cadastrarMaquina2.php?c_maquina=true');
+        if ($mysqli->query($sqlInsertMaquina)){
+            header('location: cadastrarMaquina2.php?e=12');
         } else {
             //header('location: cadastrarMaquina2.php?e=12');
             echo "Erro na atualização: ". $mysqli->error; //teste
@@ -32,6 +35,7 @@ function existenciaMaquina($idMaquina){
         return false;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +54,7 @@ function existenciaMaquina($idMaquina){
         <input type="text" name="fabricante" placeholder="Fabricante">
 
         <select name="id_tipo_maquina" id="">
-            <option value="">Escolha a categoria</option>
+            <!-- <option value="">Escolha a categoria</option> -->
             <?php
                 $sqlTipos = "SELECT * FROM tipo_maquina";
                 $preparaSqlTipos = $mysqli->query($sqlTipos);
@@ -67,6 +71,7 @@ function existenciaMaquina($idMaquina){
         <input type="submit" name="Cadastrar">
 
     </form>
+
     <script src="js/script.js"></script>
 </body>
 </html>
