@@ -59,21 +59,82 @@ function criarInput($quantidade, $tipo){
     if($tipo == "novoPeca"){
         for($i=1; $i<=$quantidade; $i++){
             echo '<div>';
-            echo '<input type="text" name="nome'.$i.'" placeholder="Nome da peça">';
+            echo '<input type="text" name="nomePeca'.$i.'" placeholder="Nome da peça">';
             echo '<input type="text" name="codigo'.$i.'" placeholder="Código da peça">';
-            echo '<input type="text" name="tempoTroca'.$i.'" placeholder="Tempo de troca da peça">';
+            echo '<input type="time" name="tempoTroca'.$i.'" placeholder="Tempo de troca da peça">';
             echo '</div>';
         }
     }
     if($tipo == "novoItem"){
         for($i=1; $i<=$quantidade; $i++){
             echo '<div>';
-            echo '<input type="text" name="nome'.$i.'" placeholder="Item para checklist manual">';
+            echo '<input type="text" name="nomeItem'.$i.'" placeholder="Item para checklist manual">';
             echo '</div>';
         }
     }
 }
 
+$arrayNovoAtributosNome = array();
+$arrayNovoAtributosVR = array();
+$arrayNovoPecaNome = array();
+$arrayNovoPecaCod = array();
+$arrayNovoPecaTempoTroca = array();
+$arrayNovoItemNome = array();
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])){
+    $novaCategoria = $_POST['categoria'];
+
+    for($x=0;$x<$contadorAtributo; $x++){
+        if(isset($_POST['atributo'.$x]) && isset($_POST['valorReferencia'.$x])){
+            $arrayNovoAtributosNome[]=$_POST['atributo'.$x];
+            $arrayNovoAtributosVR[]=$_POST['valorReferencia'.$x];
+        }
+    }
+    for($x=0;$x<$contadorPeca; $x++){
+        if(isset($_POST['nome'.$x]) && isset($_POST['codigo'.$x]) && isset($_POST['tempoTroca'.$x])){
+            $arrayNovoPecaNome[]=$_POST['nomePeca'.$x];
+            $arrayNovoPecaCod[]=$_POST['codigo'.$x];
+            $arrayNovoPecaTempoTroca[]=$_POST['tempoTroca'.$x];
+        }
+    }
+    for($x=0;$x<$contadorItem; $x++){
+        if(isset($_POST['nome'.$x])){
+            $arrayNovoItemNome[]=$_POST['nomeItem'.$x];
+        }
+    }
+
+    for($x=0; $x<count($arrayNovoAtributosNome); $x++){
+        $atributo = $arrayNovoAtributosNome[$x];
+        // $atributoEsp  = str_replace(‘ ‘, ”, $atributo);
+        // $atributoEsp  = preg_replace(‘/\s+/’, ”, $atributo);
+        $atributoEsp = $atributo;
+        $vr = $arrayNovoAtributosVR[$x];
+        $sqlInsereAtributo="INSERT INTO atributo_tipo (atributo, atributo_esp, valor_referencia) VALUE ('$atributo', '$atributoEsp', $vr)";
+        $mysqli->query($sqlInsereAtributo);
+    }
+    for($x=0; $x<count($arrayNovoPecaNome); $x++){
+        $peca = $arrayNovoPecaNome[$x];
+        $codigo = $arrayNovoPecaCod[$x];
+        $tempoTroca = $arrayNovoPecaTempoTroca[$x];
+        $sqlInserePeca = "INSERT INTO atributo_tipo (codigo, peca, tempoTroca) VALUES ('$codigo', '$pea', '$tempoTroca')";
+        $mysqli->query($sqlInserePeca);
+    }
+    for($x=0; $x<count($arrayNovoItemNome); $x++){
+        $item= $arrayNovoItemNome[$x];
+        // $nameItem = str_replace(‘ ‘, ”, $item);
+        // $nameItem = preg_replace(‘/\s+/’, ”, $item);
+        $nameItem = $item;
+        $sqlInsereItem = "INSERT INTO item_checklist (item, name_item) VALUES ('$item', '$nameItem')";
+        $mysqli->query($sqlInsereItem);
+    }
+
+    //to do: buscar esses atributos, pecas e itens e, juntos dos itens checkbox, adicionar na lista linkada com o tipo_maquina
+
+}
+
+/*
+function tirarAcentos($string){
+    return preg_replace(array(“/(á|à|ã|â|ä)/”,”/(Á|À|Ã|Â|Ä)/”,”/(é|è|ê|ë)/”,”/(É|È|Ê|Ë)/”,”/(í|ì|î|ï)/”,”/(Í|Ì|Î|Ï)/”,”/(ó|ò|õ|ô|ö)/”,”/(Ó|Ò|Õ|Ô|Ö)/”,”/(ú|ù|û|ü)/”,”/(Ú|Ù|Û|Ü)/”,”/(ñ)/”,”/(Ñ)/”),explode(” “,”a A e E i I o O u U n N”),$string);
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +147,7 @@ function criarInput($quantidade, $tipo){
     <title>Cadastrar Categoria de Máquina</title>
 </head>
 <body>
-    <form action="">
+    <form action="" method="POST">
         <input type="text" placeholder="Categoria" name="categoria">
 
         <?php
@@ -107,6 +168,7 @@ function criarInput($quantidade, $tipo){
         }
         echo '<div class="novoItem">'.criarInput($contadorItem, 'novoItem').'</div>';
         ?>
+        <input type="submit" value="Salvar">
     </form>
 
 
