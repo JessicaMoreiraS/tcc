@@ -218,11 +218,11 @@ sr.reveal('.maquinas .card h2',{
 ///
 
 ///CADASTRAR PROFessor
-sr.reveal('.form_modal',{ 
-  duration: 1000,
-  distance: '40px',
-  origin: 'bottom'
-});
+// sr.reveal('.form_modal',{ 
+//   duration: 1000,
+//   distance: '40px',
+//   origin: 'bottom'
+// });
 ///FIM CADASTRAR PROFessor
 
 ///CONFIRMAR EMAIL && RECUPERACAO SENHA
@@ -245,7 +245,7 @@ sr.reveal('.conteudoConfirmarEmail .verificacaoEmail, .conteudoConfirmarSenha .v
   delay: 500,
   opacity:0
 });
-sr.reveal('.conteudoConfirmarEmail input ,.conteudoConfirmarEmail a, .conteudoConfirmarEmail p, .conteudoConfirmarSenha input,.conteudoConfirmarSenha a ',{ 
+sr.reveal('.conteudoConfirmarEmail input ,.conteudoConfirmarEmail a, .conteudoConfirmarEmail p, .conteudoConfirmarSenha a ',{ 
   duration: 1000,
  opacity:0,
  delay: 600
