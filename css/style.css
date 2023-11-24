@@ -8,6 +8,9 @@
   overflow-x: hidden;
   font-family: "Lexend Deca", sans-serif;
 }
+#body_tables *{
+  overflow-x: visible;
+}
 
 :root {
   --azulPrincipal: #01567d;
@@ -1310,12 +1313,14 @@ margin-bottom: 20px;
 
 /* CSS DAS TABELAS */
 
+
 #html_tables,#body_tables{
   display:table;
   height:100%;
   width:100%;
   color: #252a3b;
   background-color: #f8f8f8;
+
 }
 #body_tables{
   background-image: url(../img/svg/bg_tabelaAlunos.svg);
@@ -1479,30 +1484,7 @@ margin-bottom: 20px;
   color: #9eabb4;
 }
 
-.status:before{
-   content: '';
-  margin-bottom: 0;
-  width: 9px;
-  height: 9px;
-  display: inline-block;
-  margin-right: 7px;
-  border-radius: 50%; 
-}
 
-.status--red:before{
-  background-color: #e36767;
-}
-
-.status--red{
-  color: #e36767;
-}
-
-.status--grey{
-  color: #9eabb4;
-}
-.status--grey:before{
-  background-color: #9eabb4;
-}
 
 .table__select-row {
     appearence: none;
@@ -1518,9 +1500,7 @@ margin-bottom: 20px;
   cursor: pointer;
 }
 
-.table__select-row:hover{
-  border-color:#01b9d1;
-}
+
 
 
 
