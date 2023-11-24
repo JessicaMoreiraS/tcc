@@ -144,7 +144,7 @@ if (filter_input(INPUT_POST, 'cadastrarProfessor')) {
     $cpf = filter_input(INPUT_POST, 'cpf');
     $primeiraSenhaCriptografada = password_hash($cpf, PASSWORD_DEFAULT);
 
-    $sqlCriarContaProfessor = "INSERT INTO professor (nome, cpf, email, senha, redefinir_senha) VALUES ('$nome', '$cpf', '$email', '$primeiraSenhaCriptografada', 0)";
+    $sqlCriarContaProfessor = "INSERT INTO professor (nome, cpf, email, senha) VALUES ('$nome', '$cpf', '$email', '$primeiraSenhaCriptografada')";
 
     if ($mysqli->query($sqlCriarContaProfessor)) {
         echo 'professor cadastrado';

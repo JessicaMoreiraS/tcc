@@ -43,7 +43,8 @@ session_start();
                     </div>
                     <form action="cadastro.php" method="POST">
                         <h2>Cadastrar Professor</h2>
-                        <input name="idProfessor" type="text" value="1" hidden />
+                        <!-- <input name="idProfessor" type="text" value="1" hidden /> -->
+                        <input name="redefinir_senha" type="text" value="0" hidden />
                         <div class="input_modal">
                             <input id="nome" type="text" name="nome" placeholder="Nome" required />
                         </div>
