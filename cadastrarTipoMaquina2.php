@@ -33,46 +33,8 @@ while ($dadosItens = mysqli_fetch_assoc($preparaSqlItens)){
 if(isset($_POST['categoria'])){
     
 }
-if(isset($_GET['contadorAtributo']) && isset($_GET['contadorPeca']) && isset($_GET['contadorItem'])){
-    $contadorAtributo=$_GET['contadorAtributo'];
-    $contadorPeca=$_GET['contadorPeca'];
-    $contadorItem=$_GET['contadorItem'];
-}else{
-    $contadorAtributo=0;
-    $contadorPeca=0;
-    $contadorItem=0;
-}
-if(isset($_GET['incrementa'])){
-    $variavel = $_GET['incrementa'];
-    $$variavel++;
-}
 
-function criarInput($quantidade, $tipo){
-    if($tipo == "novoAtributo"){
-        for($i=1; $i<=$quantidade; $i++){
-            echo '<div>';
-            echo '<input type="text" name="atributo'.$i.'" placeholder="Atributo">';
-            echo '<input type="text" name="valorReferencia'.$i.'" placeholder="Valor de referencia Maxima">';
-            echo '</div>';
-        }
-    }
-    if($tipo == "novoPeca"){
-        for($i=1; $i<=$quantidade; $i++){
-            echo '<div>';
-            echo '<input type="text" name="nomePeca'.$i.'" placeholder="Nome da peça">';
-            echo '<input type="text" name="codigo'.$i.'" placeholder="Código da peça">';
-            echo '<input type="time" name="tempoTroca'.$i.'" placeholder="Tempo de troca da peça">';
-            echo '</div>';
-        }
-    }
-    if($tipo == "novoItem"){
-        for($i=1; $i<=$quantidade; $i++){
-            echo '<div>';
-            echo '<input type="text" name="nomeItem'.$i.'" placeholder="Item para checklist manual">';
-            echo '</div>';
-        }
-    }
-}
+
 
 $arrayNovoAtributosNome = array();
 $arrayNovoAtributosVR = array();
@@ -80,25 +42,40 @@ $arrayNovoPecaNome = array();
 $arrayNovoPecaCod = array();
 $arrayNovoPecaTempoTroca = array();
 $arrayNovoItemNome = array();
+
+$idAtributoAdd = array();
+$idPecaAdd = array();
+$idItemAdd = array();
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])){
     $novaCategoria = $_POST['categoria'];
+    $sqlInsereCategoria = "INSERT INTO tipo_maquina(tipo) VALUES('$novaCategoria')";
+    $executaCategoria = $mysqli->query($sqlInsereCategoria);
+    $idNovoTipo = mysqli_insert_id($mysqli);
 
-    for($x=0;$x<$contadorAtributo; $x++){
-        if(isset($_POST['atributo'.$x]) && isset($_POST['valorReferencia'.$x])){
+
+    for($x=1;$x<50; $x++){
+        if(isset($_POST['atributo'.$x]) && isset($_POST['vReferencia'.$x])){
+            echo "aquii";
             $arrayNovoAtributosNome[]=$_POST['atributo'.$x];
-            $arrayNovoAtributosVR[]=$_POST['valorReferencia'.$x];
+            $arrayNovoAtributosVR[]=$_POST['vReferencia'.$x];
+        }else{
+            break;
         }
     }
-    for($x=0;$x<$contadorPeca; $x++){
+    for($x=1;$x<50; $x++){
         if(isset($_POST['nome'.$x]) && isset($_POST['codigo'.$x]) && isset($_POST['tempoTroca'.$x])){
-            $arrayNovoPecaNome[]=$_POST['nomePeca'.$x];
+            $arrayNovoPecaNome[]=$_POST['peca'.$x];
             $arrayNovoPecaCod[]=$_POST['codigo'.$x];
             $arrayNovoPecaTempoTroca[]=$_POST['tempoTroca'.$x];
+        }else{
+            break;
         }
     }
-    for($x=0;$x<$contadorItem; $x++){
+    for($x=1;$x<50; $x++){
         if(isset($_POST['nome'.$x])){
-            $arrayNovoItemNome[]=$_POST['nomeItem'.$x];
+            $arrayNovoItemNome[]=$_POST['item'.$x];
+        }else{
+            break;
         }
     }
 
@@ -110,13 +87,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])){
         $vr = $arrayNovoAtributosVR[$x];
         $sqlInsereAtributo="INSERT INTO atributo_tipo (atributo, atributo_esp, valor_referencia) VALUE ('$atributo', '$atributoEsp', $vr)";
         $mysqli->query($sqlInsereAtributo);
+        $idAtributoAdd[] = mysqli_insert_id($mysqli);
     }
     for($x=0; $x<count($arrayNovoPecaNome); $x++){
         $peca = $arrayNovoPecaNome[$x];
         $codigo = $arrayNovoPecaCod[$x];
         $tempoTroca = $arrayNovoPecaTempoTroca[$x];
-        $sqlInserePeca = "INSERT INTO atributo_tipo (codigo, peca, tempoTroca) VALUES ('$codigo', '$pea', '$tempoTroca')";
+        $sqlInserePeca = "INSERT INTO peca_tipo (codigo, peca, tempoTroca) VALUES ('$codigo', '$pea', '$tempoTroca')";
         $mysqli->query($sqlInserePeca);
+        $idPecaAdd[] = mysqli_insert_id($mysqli);
     }
     for($x=0; $x<count($arrayNovoItemNome); $x++){
         $item= $arrayNovoItemNome[$x];
@@ -125,10 +104,49 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])){
         $nameItem = $item;
         $sqlInsereItem = "INSERT INTO item_checklist (item, name_item) VALUES ('$item', '$nameItem')";
         $mysqli->query($sqlInsereItem);
+        $idItemAdd[] = mysqli_insert_id($mysqli);
+    }
+    //to do: buscar esses atributos, pecas e itens e, juntos dos itens checkbox, adicionar na lista linkada com o tipo_maquina
+    $sqlContarAtributo = "SELECT * FROM atributo_tipo";
+    $sqlContarPeca = "SELECT * FROM peca_tipo";
+    $sqlContarItem = "SELECT * FROM item_checklist";
+
+    $executaSqlContarAtributo = $mysqli->query($sqlContarAtributo);
+    $executaSqlContarPeca = $mysqli->query($sqlContarPeca);
+    $executaSqlContarItem = $mysqli->query($sqlContarItem);
+    
+    $linhasAtributo =  mysqli_num_rows($executaSqlContarAtributo);
+    $linhasPeca =  mysqli_num_rows($executaSqlContarPeca);
+    $linhasItem =  mysqli_num_rows($executaSqlContarItem);
+
+    for($x=1; $x<$linhasAtributo; $x++){
+        if(isset($_POST['atributo-'.$x]) && $_POST['atributo-'.$x] == "on"){
+            $idAtributoAdd[] = $x;
+        }
+    }
+    for($x=1; $x<$linhasPeca; $x++){
+        if(isset($_POST['peca-'.$x]) && $_POST['peca-'.$x] == "on"){
+            $idPecaAddAdd[] = $x;
+        }
+    }
+    for($x=1; $x<$linhasItem; $x++){
+        if(isset($_POST['item-'.$x]) && $_POST['item-'.$x] == "on"){
+            $idItemAddAdd[] = $x;
+        }
     }
 
-    //to do: buscar esses atributos, pecas e itens e, juntos dos itens checkbox, adicionar na lista linkada com o tipo_maquina
-
+    foreach($idAtributoAdd as $idAtributo){
+        $sqlListaAtributoTipo = "INSERT INTO lista_tipo_maquina_atributo (id_tipo_maquina, id_atributos) VALUES ($idNovoTipo, $idAtributo)";
+        $mysqli->query($sqlListaAtributoTipo);
+    }
+    foreach($idPecaAdd as $idPeca){
+        $sqlListaPecaTipo = "INSERT INTO lista_tipo_maquina_peca (id_tipo_maquina, id_atributos) VALUES ($idNovoTipo, $idPeca)";
+        $mysqli->query($sqlListaPecaTipo);
+    }
+    foreach($idItemAdd as $idItem){
+        $sqlListaItemTipo = "INSERT INTO lista_tipo_maquina_item_checklist (id_tipo_maquina, id_atributos) VALUES ($idNovoTipo, $idItem)";
+        $mysqli->query($sqlListaItemTipo);
+    }
 }
 
 /*
@@ -154,33 +172,26 @@ function tirarAcentos($string){
         echo $arrayNomeAtributos[0];
         echo "<p>Atributos para medição pelo Microcontrolador</p>";
         for($i=0; $i<count($arrayIdAtributos); $i++){
-            echo '<input type="checkbox" name="'.$arrayNomeAtributos[$i].'-'.$arrayIdAtributos[$i].'"><label>'.$arrayNomeAtributos[$i].'</label>';
+            echo '<input type="checkbox" name="atributo-'.$arrayIdAtributos[$i].'"><label>'.$arrayNomeAtributos[$i].'</label>';
         }
-        echo '<div class="novoAtributo">'.criarInput($contadorAtributo, 'novoAtributo').'</div>';
+        echo '<div id="novoAtributo"></div>';
         echo "<p>Peças</p>";
         for($i=0; $i<count($arrayIdPecas); $i++){
-            echo '<input type="checkbox" name="'.$arrayNomePecas[$i].'-'.$arrayIdPecas[$i].'"><label>'.$arrayCodPecas[$i]."-".$arrayNomePecas[$i].'</label>';
+            echo '<input type="checkbox" name="peca-'.$arrayIdPecas[$i].'"><label>'.$arrayCodPecas[$i]."-".$arrayNomePecas[$i].'</label>';
         }
-        echo '<div class="novoPeca">'.criarInput($contadorPeca, 'novoPeca').'</div>';
+        echo '<div id="novoPeca"></div>';
         echo "<p>Itens Para o Checklist</p>";
         for($i=0; $i<count($arrayIdItens); $i++){
-            echo '<input type="checkbox" name="'.$arrayNomeItens[$i].'-'.$arrayIdItens[$i].'"><label>'.$arrayNomeItens[$i].'</label>';
+            echo '<input type="checkbox" name="item-'.$arrayIdItens[$i].'"><label>'.$arrayNomeItens[$i].'</label>';
         }
-        echo '<div class="novoItem">'.criarInput($contadorItem, 'novoItem').'</div>';
+        echo '<div id="novoItem"></div>';
         ?>
         <input type="submit" value="Salvar">
     </form>
 
-
-    <?php echo '<a href="cadastrarTipoMaquina2.php?contadorAtributo='.$contadorAtributo.'&contadorPeca='.$contadorPeca.'&contadorItem='.$contadorItem.'&incrementa=contadorAtributo">';?>
-        <button>Novo Atributo paraEsp</button>
-    </a>
-    <?php echo '<a href="cadastrarTipoMaquina2.php?contadorAtributo='.$contadorAtributo.'&contadorPeca='.$contadorPeca.'&contadorItem='.$contadorItem.'&incrementa=contadorPeca">';?>
-            <button>Nova Peça</button>
-        </a>
-    <?php echo '<a href="cadastrarTipoMaquina2.php?contadorAtributo='.$contadorAtributo.'&contadorPeca='.$contadorPeca.'&contadorItem='.$contadorItem.'&incrementa=contadorItem">';?>
-        <button>Novo Item pra Checklist</button>
-    </a>
+    <button onclick="criarInputs('Atributo')">Novo Atributo paraEsp</button>
+    <button onclick="criarInputs('Peca')">Nova Peça</button>
+    <button onclick="criarInputs('Item')">Novo Item pra Checklist</button>
 
 
     <script src="js/script.js"></script>
