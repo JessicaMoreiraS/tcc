@@ -120,5 +120,35 @@ function cancelarEdicaoPerfil(){
 
 ////
 
+/*Cadastrar Novo Tipo de Maquina */
+var contadorAtributo = 0;
+var contadorPeca = 0;
+var contadorItem = 0;
 
+function criarInputs(tipo){
+    var div = document.getElementById(`novo${tipo}`);
+    var conteudo;
+    if(tipo=="Atributo"){
+        contadorAtributo++;
+        conteudo = `<div>
+                        <input type="text" name="atributo${contadorAtributo}" placeholder="Atributo">
+                        <input type="text" name="vReferencia${contadorAtributo}" placeholder="Valor de referência">
+                    </div>`
+    }
+    if(tipo=="Peca"){
+        contadorPeca++;
+        conteudo = `<div>
+                        <input type="text" name="peca${contadorPeca}" placeholder="Nome da peça">
+                        <input type="text" name="codigo${contadorPeca}" placeholder="Código da peça">
+                        <input type="time" name="tempoTroca${contadorPeca}" placeholder="Tempo de troca">
+                    </div>`
+    }
+    if(tipo=="Item"){
+        contadorItem++;
+        conteudo = `<div>
+                        <input type="text" name="item${contadorItem}" placeholder="Item para checklist manual">
+                    </div>`
+    }
+    div.innerHTML+=conteudo;
+}
 
