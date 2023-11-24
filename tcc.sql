@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 18-Nov-2023 às 20:37
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.0.26
+-- Host: 127.0.0.1
+-- Tempo de geração: 24-Nov-2023 às 14:44
+-- Versão do servidor: 10.4.25-MariaDB
+-- versão do PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,22 +27,22 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `aluno`
 --
 
-DROP TABLE IF EXISTS `aluno`;
-CREATE TABLE IF NOT EXISTS `aluno` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `aluno` (
+  `id` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `codigo_recuperacao` varchar(7) CHARACTER SET utf8mb4  NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `codigo_recuperacao` varchar(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `aluno`
 --
 
 INSERT INTO `aluno` (`id`, `nome`, `email`, `senha`, `codigo_recuperacao`) VALUES
-(1, 'Aluno Teste', 'teste@aluno.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', '');
+(1, 'Aluno Teste', 'teste@aluno.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', ''),
+(6, '', '', '', '462276'),
+(7, '', '', '', '992318');
 
 -- --------------------------------------------------------
 
@@ -50,13 +50,11 @@ INSERT INTO `aluno` (`id`, `nome`, `email`, `senha`, `codigo_recuperacao`) VALUE
 -- Estrutura da tabela `atributo_tipo`
 --
 
-DROP TABLE IF EXISTS `atributo_tipo`;
-CREATE TABLE IF NOT EXISTS `atributo_tipo` (
-  `id` int NOT NULL,
+CREATE TABLE `atributo_tipo` (
+  `id` int(11) NOT NULL,
   `atributo` varchar(255) NOT NULL,
   `atributo_esp` varchar(255) NOT NULL,
-  `valor_referencia` float NOT NULL,
-  PRIMARY KEY (`id`)
+  `valor_referencia` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -80,15 +78,13 @@ INSERT INTO `atributo_tipo` (`id`, `atributo`, `atributo_esp`, `valor_referencia
 -- Estrutura da tabela `checklist`
 --
 
-DROP TABLE IF EXISTS `checklist`;
-CREATE TABLE IF NOT EXISTS `checklist` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_aluno` int DEFAULT NULL,
-  `id_professor` int DEFAULT NULL,
+CREATE TABLE `checklist` (
+  `id` int(11) NOT NULL,
+  `id_aluno` int(11) DEFAULT NULL,
+  `id_professor` int(11) DEFAULT NULL,
   `id_maquina` varchar(255) NOT NULL,
-  `date_time` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `date_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `checklist`
@@ -104,15 +100,13 @@ INSERT INTO `checklist` (`id`, `id_aluno`, `id_professor`, `id_maquina`, `date_t
 -- Estrutura da tabela `conta_pendente_aluno`
 --
 
-DROP TABLE IF EXISTS `conta_pendente_aluno`;
-CREATE TABLE IF NOT EXISTS `conta_pendente_aluno` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `conta_pendente_aluno` (
+  `id` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `cod_confimacao` varchar(6) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+  `cod_confimacao` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -120,16 +114,14 @@ CREATE TABLE IF NOT EXISTS `conta_pendente_aluno` (
 -- Estrutura da tabela `esp32`
 --
 
-DROP TABLE IF EXISTS `esp32`;
-CREATE TABLE IF NOT EXISTS `esp32` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `esp32` (
+  `id` int(11) NOT NULL,
   `esp` varchar(50) NOT NULL,
   `id_maquina` varchar(50) NOT NULL,
-  `id_atributos` int NOT NULL,
+  `id_atributos` int(11) NOT NULL,
   `valor` float NOT NULL,
-  `date_time` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+  `date_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `esp32`
@@ -146,15 +138,13 @@ INSERT INTO `esp32` (`id`, `esp`, `id_maquina`, `id_atributos`, `valor`, `date_t
 -- Estrutura da tabela `gestor`
 --
 
-DROP TABLE IF EXISTS `gestor`;
-CREATE TABLE IF NOT EXISTS `gestor` (
-  `id` int NOT NULL,
-  `cpf` int NOT NULL,
+CREATE TABLE `gestor` (
+  `id` int(11) NOT NULL,
+  `cpf` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `codigo_recuperacao` varchar(7) NOT NULL,
-  PRIMARY KEY (`id`)
+  `codigo_recuperacao` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -170,12 +160,10 @@ INSERT INTO `gestor` (`id`, `cpf`, `nome`, `email`, `senha`, `codigo_recuperacao
 -- Estrutura da tabela `item_checklist`
 --
 
-DROP TABLE IF EXISTS `item_checklist`;
-CREATE TABLE IF NOT EXISTS `item_checklist` (
-  `id` int NOT NULL,
+CREATE TABLE `item_checklist` (
+  `id` int(11) NOT NULL,
   `item` varchar(50) NOT NULL,
-  `name_item` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
+  `name_item` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -193,12 +181,10 @@ INSERT INTO `item_checklist` (`id`, `item`, `name_item`) VALUES
 -- Estrutura da tabela `lista_aluno_sala`
 --
 
-DROP TABLE IF EXISTS `lista_aluno_sala`;
-CREATE TABLE IF NOT EXISTS `lista_aluno_sala` (
-  `id_lista` int NOT NULL,
-  `id_aluno` int NOT NULL,
-  `id_sala` int NOT NULL,
-  PRIMARY KEY (`id_lista`)
+CREATE TABLE `lista_aluno_sala` (
+  `id_lista` int(11) NOT NULL,
+  `id_aluno` int(11) NOT NULL,
+  `id_sala` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -216,13 +202,11 @@ INSERT INTO `lista_aluno_sala` (`id_lista`, `id_aluno`, `id_sala`) VALUES
 -- Estrutura da tabela `lista_sala_tipo_maquina`
 --
 
-DROP TABLE IF EXISTS `lista_sala_tipo_maquina`;
-CREATE TABLE IF NOT EXISTS `lista_sala_tipo_maquina` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_sala` int NOT NULL,
-  `id_tipo_maquina` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `lista_sala_tipo_maquina` (
+  `id` int(11) NOT NULL,
+  `id_sala` int(11) NOT NULL,
+  `id_tipo_maquina` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_sala_tipo_maquina`
@@ -244,12 +228,10 @@ INSERT INTO `lista_sala_tipo_maquina` (`id`, `id_sala`, `id_tipo_maquina`) VALUE
 -- Estrutura da tabela `lista_tipo_maquina_atributo`
 --
 
-DROP TABLE IF EXISTS `lista_tipo_maquina_atributo`;
-CREATE TABLE IF NOT EXISTS `lista_tipo_maquina_atributo` (
-  `id` int NOT NULL,
-  `id_tipo_maquina` int NOT NULL,
-  `id_atributos` int NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `lista_tipo_maquina_atributo` (
+  `id` int(11) NOT NULL,
+  `id_tipo_maquina` int(11) NOT NULL,
+  `id_atributos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -273,12 +255,10 @@ INSERT INTO `lista_tipo_maquina_atributo` (`id`, `id_tipo_maquina`, `id_atributo
 -- Estrutura da tabela `lista_tipo_maquina_item_checklist`
 --
 
-DROP TABLE IF EXISTS `lista_tipo_maquina_item_checklist`;
-CREATE TABLE IF NOT EXISTS `lista_tipo_maquina_item_checklist` (
-  `id` int NOT NULL,
-  `id_tipo_maquina` int NOT NULL,
-  `id_item_checklist` int NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `lista_tipo_maquina_item_checklist` (
+  `id` int(11) NOT NULL,
+  `id_tipo_maquina` int(11) NOT NULL,
+  `id_item_checklist` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -296,12 +276,10 @@ INSERT INTO `lista_tipo_maquina_item_checklist` (`id`, `id_tipo_maquina`, `id_it
 -- Estrutura da tabela `lista_tipo_maquina_peca`
 --
 
-DROP TABLE IF EXISTS `lista_tipo_maquina_peca`;
-CREATE TABLE IF NOT EXISTS `lista_tipo_maquina_peca` (
-  `id` int NOT NULL,
-  `id_tipo_maquina` int NOT NULL,
-  `id_peca` int NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `lista_tipo_maquina_peca` (
+  `id` int(11) NOT NULL,
+  `id_tipo_maquina` int(11) NOT NULL,
+  `id_peca` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -310,17 +288,15 @@ CREATE TABLE IF NOT EXISTS `lista_tipo_maquina_peca` (
 -- Estrutura da tabela `maquina`
 --
 
-DROP TABLE IF EXISTS `maquina`;
-CREATE TABLE IF NOT EXISTS `maquina` (
+CREATE TABLE `maquina` (
   `id` varchar(50) NOT NULL,
-  `id_tipo_maquina` int NOT NULL,
+  `id_tipo_maquina` int(11) NOT NULL,
   `modelo` varchar(50) NOT NULL,
   `fabricante` varchar(50) NOT NULL,
   `imagem` longblob NOT NULL,
   `led_verde` varchar(50) NOT NULL,
   `led_amarelo` varchar(50) NOT NULL,
-  `led_vermelho` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
+  `led_vermelho` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -336,11 +312,10 @@ INSERT INTO `maquina` (`id`, `id_tipo_maquina`, `modelo`, `fabricante`, `imagem`
 -- Estrutura da tabela `peca_tipo`
 --
 
-DROP TABLE IF EXISTS `peca_tipo`;
-CREATE TABLE IF NOT EXISTS `peca_tipo` (
-  `id` int NOT NULL,
+CREATE TABLE `peca_tipo` (
+  `id` int(11) NOT NULL,
   `codigo` varchar(50) NOT NULL,
-  `peca` int NOT NULL,
+  `peca` int(11) NOT NULL,
   `tempo_de_troca` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -350,24 +325,25 @@ CREATE TABLE IF NOT EXISTS `peca_tipo` (
 -- Estrutura da tabela `professor`
 --
 
-DROP TABLE IF EXISTS `professor`;
-CREATE TABLE IF NOT EXISTS `professor` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `professor` (
+  `id` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
-  `cpf` int NOT NULL,
+  `cpf` varchar(17) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `codigo_recuperacao` varchar(7) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `codigo_recuperacao` varchar(7) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `professor`
 --
 
 INSERT INTO `professor` (`id`, `nome`, `cpf`, `email`, `senha`, `codigo_recuperacao`) VALUES
-(1, 'Carlinho', 123456, 'carlinhos@professor.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', ''),
-(3, 'Jessica', 123123, 'jessicamoreirars09@gmail.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', '');
+(1, 'Carlinho', '123456', 'carlinhos@professor.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', ''),
+(3, 'Jessica', '123123', 'jessicamoreirars09@gmail.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', ''),
+(4, 'dd f', '777777', 'rr@d', '$2y$10$6x4Rsf2hgPdo7NhjcdNhZOZwE8TtKYK19LvmXlf6dvERUQIR1eE7S', NULL),
+(5, 'teste', '1', 'g@3', '', NULL),
+(6, 'dd f', '999999', 'hhh@d', '$2y$10$Th.nHHr9TqLPJq9m1fpHKuXG7i6DlcY8ZXSNbtx/AGhO/pvdfZjki', NULL);
 
 -- --------------------------------------------------------
 
@@ -375,14 +351,12 @@ INSERT INTO `professor` (`id`, `nome`, `cpf`, `email`, `senha`, `codigo_recupera
 -- Estrutura da tabela `sala`
 --
 
-DROP TABLE IF EXISTS `sala`;
-CREATE TABLE IF NOT EXISTS `sala` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sala` (
+  `id` int(11) NOT NULL,
   `turma` varchar(50) NOT NULL,
-  `id_professor` int NOT NULL,
-  `codigo_acesso` varchar(8) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+  `id_professor` int(11) NOT NULL,
+  `codigo_acesso` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `sala`
@@ -398,9 +372,8 @@ INSERT INTO `sala` (`id`, `turma`, `id_professor`, `codigo_acesso`) VALUES
 -- Estrutura da tabela `tipo_maquina`
 --
 
-DROP TABLE IF EXISTS `tipo_maquina`;
-CREATE TABLE IF NOT EXISTS `tipo_maquina` (
-  `id` int NOT NULL,
+CREATE TABLE `tipo_maquina` (
+  `id` int(11) NOT NULL,
   `tipo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -411,6 +384,146 @@ CREATE TABLE IF NOT EXISTS `tipo_maquina` (
 INSERT INTO `tipo_maquina` (`id`, `tipo`) VALUES
 (1, 'torno'),
 (2, 'fresadora');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `aluno`
+--
+ALTER TABLE `aluno`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `atributo_tipo`
+--
+ALTER TABLE `atributo_tipo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `checklist`
+--
+ALTER TABLE `checklist`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `conta_pendente_aluno`
+--
+ALTER TABLE `conta_pendente_aluno`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `esp32`
+--
+ALTER TABLE `esp32`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `gestor`
+--
+ALTER TABLE `gestor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `item_checklist`
+--
+ALTER TABLE `item_checklist`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `lista_aluno_sala`
+--
+ALTER TABLE `lista_aluno_sala`
+  ADD PRIMARY KEY (`id_lista`);
+
+--
+-- Índices para tabela `lista_sala_tipo_maquina`
+--
+ALTER TABLE `lista_sala_tipo_maquina`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `lista_tipo_maquina_atributo`
+--
+ALTER TABLE `lista_tipo_maquina_atributo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `lista_tipo_maquina_item_checklist`
+--
+ALTER TABLE `lista_tipo_maquina_item_checklist`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `lista_tipo_maquina_peca`
+--
+ALTER TABLE `lista_tipo_maquina_peca`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `maquina`
+--
+ALTER TABLE `maquina`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `professor`
+--
+ALTER TABLE `professor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `sala`
+--
+ALTER TABLE `sala`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `aluno`
+--
+ALTER TABLE `aluno`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `checklist`
+--
+ALTER TABLE `checklist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `conta_pendente_aluno`
+--
+ALTER TABLE `conta_pendente_aluno`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `esp32`
+--
+ALTER TABLE `esp32`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `lista_sala_tipo_maquina`
+--
+ALTER TABLE `lista_sala_tipo_maquina`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de tabela `professor`
+--
+ALTER TABLE `professor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de tabela `sala`
+--
+ALTER TABLE `sala`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
