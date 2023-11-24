@@ -7,7 +7,7 @@
 // Definindo o pino do sensor DHT e seu tipo
 #define DHTPIN 18
 #define DHTTYPE DHT11
-DHT dht11_sensor(DHTPIN, DHTTYPE);
+// DHT dht11_sensor(DHTPIN, DHTTYPE);
 
 // Definindo os pinos dos LEDs
 #define ON_Board_LED 2

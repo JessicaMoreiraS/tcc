@@ -8,6 +8,7 @@ $sqlItens = "SELECT * FROM item_checklist";
 $preparaSqlItens = $mysqli->query($sqlItens);
 
 $arrayIdAtributos = array();
+$arrayNomeAtributosEsp = array();
 $arrayNomeAtributos = array();
 $arrayIdPecas = array();
 $arrayCodPecas = array();
@@ -16,7 +17,8 @@ $arrayIdItens = array();
 $arrayNomeItens = array();
 while ($dadosAtributo = mysqli_fetch_assoc($preparaSqlAtributos)){
     $arrayIdAtributos[] = $dadosAtributo['id'];
-    $arrayNomeAtributos[] = $dadosAtributo['atributo_esp'];
+    $arrayNomeAtributosEsp[] = $dadosAtributo['atributo_esp'];
+    $arrayNomeAtributos[] = $dadosAtributo['atributo'];
 }
 
 while ($dadosPecas = mysqli_fetch_assoc($preparaSqlPecas)){
@@ -161,6 +163,7 @@ function tirarAcentos($string){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Categoria de Máquina</title>
 </head>
@@ -169,7 +172,6 @@ function tirarAcentos($string){
         <input type="text" placeholder="Categoria" name="categoria">
 
         <?php
-        echo $arrayNomeAtributos[0];
         echo "<p>Atributos para medição pelo Microcontrolador</p>";
         for($i=0; $i<count($arrayIdAtributos); $i++){
             echo '<input type="checkbox" name="atributo-'.$arrayIdAtributos[$i].'"><label>'.$arrayNomeAtributos[$i].'</label>';
