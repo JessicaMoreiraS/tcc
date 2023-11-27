@@ -2210,6 +2210,10 @@ background-color: #ee7d7d;
 transform: scale(0.9);
 transition: 1s ease-in-out;
 }
+.inputs-cadastrar-maquina .input_modal{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 
 .opcional{
   color: #8ba6b8;
@@ -2259,6 +2263,7 @@ transition: 1s ease-in-out;
 .input-file {
   display: none;
 }
+
 
 
 /* FIM CSS  INPUT DE ADD IMG*/

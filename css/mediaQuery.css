@@ -251,4 +251,14 @@ footer .icones{
   }
   /* FIM HOME PROFESSOR MEDIA */
 
+  /*MEDIA CADASTRAR MAQUINA*/
+@media screen and (max-width: 600px){
+    .box{
+       padding: 10px;
+    }
+    
+    }
+    
+    /*MEDIA CADASTRAR MAQUINA*/
+
 

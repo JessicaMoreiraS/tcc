@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
 
         <div class="icons">
-            <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
+          
             <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
         </div>
     </header>
@@ -95,9 +95,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
             <div class="inputs-cadastrar-maquina">
-                <input type="text" name="id_maquina"  placeholder="ID"  required>
-                <input type="text" name="modelo" placeholder="Modelo" required>
-                <input type="text" name="fabricante" placeholder="Fabricante" required>
+                <div class="input_modal">
+                    <input type="text" name="id_maquina"  placeholder="ID"  required>
+                </div>
+              
+                <div class="input_modal">
+                    <input type="text" name="modelo" placeholder="Modelo" required>
+                </div>
+                <div class="input_modal">   
+                    <input type="text" name="fabricante" placeholder="Fabricante" required>
+                </div>     
             </div>
 
             <section id="section_input_img">
