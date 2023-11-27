@@ -2082,3 +2082,183 @@ background-color: #ee7d7d;
 }
 
 /* FIM CSS   CONFIRMAR EMAIL*/
+
+
+/* CSS CADASTRAR MAQUINA*/
+.form-cadastrarMaq {
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}
+
+.cadMaq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--azulPrincipal);
+
+  width: 60%;
+  padding: 20px;
+  border-radius: 50px;
+}
+
+.categoria {
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+
+}
+
+.body-cadastrarMaquina * {
+  overflow-y: hidden;
+}
+
+.box select {
+  background-color: #1761A6;
+  color: white;
+  padding: 5px;
+  width: 240px;
+  border: none;
+  font-size: 18px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+
+.box:hover::before {
+  color: rgb(241, 235, 235);
+  background-color:#1761A6;
+  height: 100%;
+  
+}
+
+
+.addCategoria {
+  margin-top: 2%;
+  color: white;
+  display: flex;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+}
+.addCategoria div{
+  background-color: #01567d;
+  display: flex;
+  justify-content: space-between;
+  padding: 7px;
+  border-radius: 10px;
+}
+.addCategoria i{
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.addCategoria form input{
+  color: white;
+  background-color: #01567d;
+  cursor: pointer;
+}
+.addCategoria form input:hover{
+ 
+}
+
+
+.imagem-cadastrar{
+  max-width: 100%;
+}
+
+.input-file{
+  display:none;
+}
+
+.inputs-cadastrar-maquina{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.inputs-cadastrar-maquina input{
+  width: 350px;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+
+.cadastrar-maquina{
+  margin-top: 20px;
+ 
+}
+
+.cadastrar-maquina input{
+  width: 220px;
+  padding: 7px;
+  border-radius: 10px;
+  background-color: #1761A6;
+  color: white;
+  font-size: 18px;
+ cursor: pointer;
+}
+
+.cadastrar-maquina input:hover{
+transform: scale(0.9);
+transition: 1s ease-in-out;
+}
+
+.opcional{
+  color: #8ba6b8;
+}
+
+/* FIM CSS CADASTRAR MAQUINA*/
+
+/*  CSS INPUT DE ADD IMG*/
+#section_input_img{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+#div_img_input {
+  border-radius: 15px;
+  background: #046693;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.12);
+  color: #fff;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  transition: .3s ease;
+  overflow-y: hidden;
+}
+
+.input-personalizado {
+  cursor: pointer;
+}
+
+.form-upload {
+  display: block;
+  margin: 0 auto;
+  padding: 15px;
+  text-align: center;
+  width: 350px;
+}
+#div_img_input:hover{
+  background-color: #0392d4;
+  transform: scale(0.9,0.9);
+}
+
+.imagem {
+  max-width: 100%;
+  height: auto;
+}
+
+.input-file {
+  display: none;
+}
+
+
+/* FIM CSS  INPUT DE ADD IMG*/

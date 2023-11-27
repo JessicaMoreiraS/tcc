@@ -30,7 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
-            $mensagem = "Máquina cadastrada com sucesso!";
+            $mensagem = "
+            <center>
+                <h4 style= 'margin-top: 26px'>Máquina cadastrada com sucesso!</h4>
+            </center>    
+            ";
         } else {
             $mensagem = "Erro ao cadastrar a máquina. Verifique se todos os campos estão preenchidos corretamente.";
             $mensagem .= " Erro MySQL: " . $stmt->error;
@@ -49,36 +53,97 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
-    <title>Criar Máquina</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mediaQuery.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Cadastrar Máquinas</title>
 </head>
-<body>
-    <h2>Criar Máquina</h2>
+
+<body  class="body-cadastrarMaquina">
+<header class="topo-inicial">
+        <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
+
+        <div class="icons">
+            <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
+            <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
+        </div>
+    </header>
+
+    <main>
 
     <?php echo $mensagem; ?>
+    <div class="form-cadastrarMaq">
+        <form class="cadMaq" action="" method="post" enctype="multipart/form-data">
+        <i class="fa fa-cogs" style="font-size:70px;color:rgb(255, 255, 255)"></i>
 
-    <form action="" method="post" enctype="multipart/form-data">
-        ID da Máquina:
-        <input type="text" name="id_maquina" required><br>
-        Tipo de Máquina:
-        <select name="tipo_maquina">
-            <?php
-                // Recuperar tipos de máquinas para exibir no formulário
-                $result = $mysqli->query("SELECT id, tipo FROM tipo_maquina");
-                $tipos_maquinas = $result->fetch_all(MYSQLI_ASSOC);
 
-                foreach ($tipos_maquinas as $tipo_maquina) {
-                    echo '<option value="' . $tipo_maquina['id'] . '">' . $tipo_maquina['tipo'] . '</option>';
-                }
-            ?>
-        </select><br>
-        Modelo: <input type="text" name="modelo" required><br>
-        Fabricante: <input type="text" name="fabricante" required><br>
-        Imagem: <input type="file" name="imagem"><br>
-        <input type="submit" value="Cadastrar">
-    </form>
-    <form action="cadastrarNovaMaquina.php" method="get">
-        <input type="submit" value="Cadastrar nova máquina">
-    </form>
+            <p class="categoria">Categoria da máquina:</p>
+
+            <div class="teste">
+                <div class="box">
+                    <select name="tipo_maquina">
+                        <?php
+                            // Recuperar tipos de máquinas para exibir no formulário
+                            $result = $mysqli->query("SELECT id, tipo FROM tipo_maquina");
+                            $tipos_maquinas = $result->fetch_all(MYSQLI_ASSOC);
+
+                            foreach ($tipos_maquinas as $tipo_maquina) {
+                                echo '<option value="' . $tipo_maquina['id'] . '">' . $tipo_maquina['tipo'] . '</option>';
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="inputs-cadastrar-maquina">
+                <input type="text" name="id_maquina"  placeholder="ID"  required>
+                <input type="text" name="modelo" placeholder="Modelo" required>
+                <input type="text" name="fabricante" placeholder="Fabricante" required>
+            </div>
+
+            <section id="section_input_img">
+                        <div id="div_img_input">
+                            <div class="form-upload">
+                                <label class="input-personalizado">
+                                    <span class="botao-selecionar">Selecione uma imagem</span>
+                                    <img class="imagem" />
+                                    <input type="file" name="imagem" class="input-file" accept="image/*">
+                                </label>
+                            
+                            </div>
+                        </div>
+            </section>
+                    <div class="opcional">
+                        <p>(Opcional)</p>
+                    </div>
+                    <div class="cadastrar-maquina">  
+                        <input type="submit" value="Cadastrar">
+                    </div>   
+                
+        </form>
+    </div>   
+
+    <div class="addCategoria">
+       <div>
+        <i class="fa fa-plus-circle" style="font-size:20px"></i> 
+            <form action="cadastrarNovaMaquina.php" method="get">
+                <input type="submit" value="Cadastrar nova Categoria">
+            </form>
+       </div>
+    </div>
+    </main>
+    <script>
+        const $ = document.querySelector.bind(document);
+
+        const previewImg = $('.imagem');
+        const fileChooser = $('.input-file');
+    
+        fileChooser.onchange = e => {
+            const fileToUpload = e.target.files.item(0);
+            const reader = new FileReader();
+            reader.onload = e => previewImg.src = e.target.result;
+            reader.readAsDataURL(fileToUpload);
+        };
+    </script>
     <script src="js/script.js"></script>
 </body>
 </html>
