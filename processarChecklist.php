@@ -1,6 +1,6 @@
 <?php
 session_start();
-/*$servername = "servidor_mysql";
+$servername = "servidor_mysql";
 $username = "usuario_mysql";
 $password = "senha_mysql";
 $dbname = "banco_de_dados";
@@ -11,7 +11,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Verifique a conexão
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
-}*/
+}
+date_default_timezone_set('America/Sao_Paulo');
 $idDaMaquina;
 if($_POST['id_maquina']){
     $idDaMaquina = $_POST['id_maquina'];
