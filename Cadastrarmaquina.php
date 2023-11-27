@@ -54,8 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/mediaQuery.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/mediaQuery.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
     <title>Cadastrar Máquinas</title>
 </head>
 
