@@ -472,7 +472,7 @@ footer {
 }
 
 .input_entrar input:hover,
-#form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover,  #submitCadastrarGestor:hover, #submitConfirmarExclusao:hover, #submitCadastrarProfessor:hover, .botoesSenha #Btn_confirmar:hover, #enviarSenha:hover, .botoesTurmaNova input:hover {
+#form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover,  #submitCadastrarGestor:hover, #submitConfirmarExclusao:hover, #submitCadastrarProfessor:hover, .botoesSenha #Btn_confirmar:hover, #enviarSenha:hover, .botoesTurmaNova input:hover, .addCategoria  .conteudo:hover,.addCategoria  .conteudo:hover input {
   background-color: #036998;
   transform: scale(0.9, 0.9);
 }
@@ -1155,7 +1155,7 @@ background-color: #003f5b;
   
 }
 
- .form_cadastrarTurma{
+.form_cadastrarTurma{
     display: flex;
     justify-content: center;
    
@@ -1285,7 +1285,7 @@ margin-bottom: 20px;
 }
 
 
- .form_cadastrarTurma .container  .bnts input:hover, .form_cadastrarTurma .container  .bnts button:hover {
+ .form_cadastrarTurma .container  .bnts input:hover, .form_cadastrarTurma .container  .bnts button:hover, .cadastrar-maquina input:hover  {
   color: var(--azulEscuro);
   background-color: var(--background-main);
   transform: scale(0.9);
@@ -1896,7 +1896,7 @@ margin-top: 15px;
   justify-content: space-around;
   align-items: center;
 }
-#main_formPerfil .container_form form  .bnts input, #submitCadastrarSala{
+#main_formPerfil .container_form form  .bnts input, #submitCadastrarSala, .cadastrar-maquina input{
   display: flex;
   justify-content: center;
   color: var(--cinza);
@@ -2145,6 +2145,7 @@ background-color: #ee7d7d;
   gap: 10px;
   display: flex;
   justify-content: center;
+  
 }
 .addCategoria div{
   background-color: #01567d;
@@ -2152,6 +2153,9 @@ background-color: #ee7d7d;
   justify-content: space-between;
   padding: 7px;
   border-radius: 10px;
+  transition: .3s ease;
+  font-size: 18px;
+ 
 }
 .addCategoria i{
   display: flex;
@@ -2161,13 +2165,11 @@ background-color: #ee7d7d;
 
 .addCategoria form input{
   color: white;
-  background-color: #01567d;
   cursor: pointer;
+  background-color: #01567d;
+  transition: .3s ease;
+  height: auto;
 }
-.addCategoria form input:hover{
- 
-}
-
 
 .imagem-cadastrar{
   max-width: 100%;
@@ -2204,11 +2206,12 @@ background-color: #ee7d7d;
   color: white;
   font-size: 18px;
  cursor: pointer;
+ height: auto;
 }
 
 .cadastrar-maquina input:hover{
 transform: scale(0.9);
-transition: 1s ease-in-out;
+transition: .3s ease;
 }
 .inputs-cadastrar-maquina .input_modal{
   margin-top: 0px;

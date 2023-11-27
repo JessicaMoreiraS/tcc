@@ -17,14 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Verificar se o tipo de máquina já existe
     $stmt = $mysqli->prepare("SELECT id FROM tipo_maquina WHERE id = ?");
-    $stmt->bind_param("i", $id_tipo_maquina);
+    $stmt->bind_param("s", $id_tipo_maquina);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
         // Tipo de máquina existe
         $stmt = $mysqli->prepare("INSERT INTO maquina (id, id_tipo_maquina, modelo, fabricante, imagem) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("iissb", $id_maquina, $id_tipo_maquina, $modelo, $fabricante, $imagem);
+        $stmt->bind_param("sissb", $id_maquina, $id_tipo_maquina, $modelo, $fabricante, $imagem);
         $stmt->send_long_data(4, $imagem);  // Para dados BLOB (imagem)
 
         $stmt->execute();
@@ -130,12 +130,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>   
 
     <div class="addCategoria">
-       <div>
+       <div class="conteudo">
+       
         <i class="fa fa-plus-circle" style="font-size:20px"></i> 
             <form action="cadastrarNovaMaquina.php" method="get">
                 <input type="submit" value="Cadastrar nova Categoria">
             </form>
        </div>
+       
     </div>
     </main>
     <script>
