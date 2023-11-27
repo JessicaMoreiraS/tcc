@@ -3,6 +3,7 @@
 require 'database.php';
 include("conexao.php");
 $array = array();
+date_default_timezone_set('America/Sao_Paulo');
 
 function carregaArrayAtributos($id_maquina){
     include("conexao.php");

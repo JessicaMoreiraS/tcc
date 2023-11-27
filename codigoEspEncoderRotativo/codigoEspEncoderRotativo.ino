@@ -7,13 +7,35 @@
 // Definindo o pino do sensor DHT e seu tipo
 #define DHTPIN 18
 #define DHTTYPE DHT11
-DHT dht11_sensor(DHTPIN, DHTTYPE);
+// DHT dht11_sensor(DHTPIN, DHTTYPE);
 
 // Definindo os pinos dos LEDs
 #define ON_Board_LED 2
 #define led_vermelho 17
 #define led_amarelo 16
 #define led_verde 4
+
+//Encoder Rotativo - mapeamento
+#define A2 13
+#define A3 12
+#define ENC_PORT PINB
+
+#include <RotaryEncoder.h>
+int digito[8][3] = {
+ { LOW, LOW, LOW }, // 0
+ { LOW, LOW, HIGH }, // 1
+ { LOW, HIGH, LOW }, // 2
+ { LOW, HIGH, HIGH }, // 3
+ { HIGH, LOW, LOW }, // 4
+ { HIGH, LOW, HIGH }, // 5
+ { HIGH, HIGH, LOW }, // 6
+ { HIGH, HIGH, HIGH } // 7
+};
+
+RotaryEncoder encoder(A2, A3);
+
+// FIM ENCODER ROTATIVO
+
 
 // Informações da rede WiFi
 const char* ssid = "Mi 9T Pro";//"Galaxy A125CE6";//"Mi 9T Pro";
@@ -34,6 +56,7 @@ float send_viscosidade_caixaDeNorton;
 float send_oleo_aventalDoTorno;
 float send_viscosidade_aventalDoTorno;
 float send_vibracao;
+int iTemperatura = 50;
 
 
 float send_tempo_On;
@@ -131,7 +154,8 @@ void control_LEDs() {
   
     // Ler temperatura em Celsius (o padrão)
     // send_Temp = 24;//dht11_sensor.readTemperature();
-    send_temperatura = rand() % 101;
+    //send_temperatura = rand() % 101;
+    send_temperatura = iTemperatura;
     send_velocidade = rand() % 101;
     send_oleo_caixaDeVelocidade = rand() % 101;
     send_viscosidade_caixaDeVelocidade = rand() % 101;
@@ -246,9 +270,21 @@ void setup() {
   // Inicializando o sensor DHT
   dht11_sensor.begin();
   delay(2000);
+
+
+  //ENCODER ROTATIVO em void setup
+    // Habilitar a Interrupção 1 (Pin Change) para as entradas analógicas.
+    // PCICR |= (1 << PCIE1);
+
+    // Habilita a interrupção para os pinos analógicos 2 e 3.
+    // PCMSK1 |= (1 << PCINT10) | (1 << PCINT11); 
+  //FIM ENCODER ROTATIVO
 }
 
 void loop() {
+
+  
+
   // Verificando se está conectado à rede WiFi
   if(WiFi.status() == WL_CONNECTED) {
     
@@ -267,8 +303,8 @@ void loop() {
     Serial.println("---------------getdata.php");
    
    
-    // http.begin("http://192.168.110.214/tcc/getdata.php");
-    http.begin("https://192.168.237.214/tcc/getdata.php");
+    // http.begin("http://192.168.102.214/tcc/getdata.php");
+    http.begin("https://workprojectgrup.000webhostapp.com/tcc/getdata.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
    
     httpCode = http.POST(postData);
@@ -321,8 +357,8 @@ void loop() {
     digitalWrite(ON_Board_LED, HIGH);
     Serial.println();
     Serial.println("---------------updateDHT11data.php");
-    // http.begin("http://192.168.110.214/tcc/updateDHT11data.php");
-    http.begin("https://192.168.237.214/tcc/updateDHT11data.php");
+    // http.begin("http://192.168.102.214/tcc/updateDHT11data.php");
+    http.begin("https://workprojectgrup.000webhostapp.com/tcc/updateDHT11data.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviando os dados ao servidor
@@ -340,5 +376,45 @@ void loop() {
 
     //5 segundos
     delay(5000);
+
+
   }
+    //ENCODER ROTATIVO em void loop
+    /*nao sei se isso ta funcionando, mas é melhor nao apagar*/
+      static int pos = 0;
+      int novaPos = encoder.getPosition();
+      if (pos != novaPos) {
+        Serial.println(novaPos);
+        pos = novaPos;
+      }
+
+      read_encoder();
+    //FIM ENCODER ROTATIVO
 }
+
+
+// Rotina do Serviço de Interrupção 1 (Pin Change)
+// Esta rotina apenas é chamada quando ocorre uma mudança de sinal nos pinos A2 e A3
+/*void ISR(PCINT1_vect) {
+ encoder.tick();
+}*/
+
+void read_encoder(){
+    Serial.print("Pino 13:");
+    Serial.println(digitalRead(13));
+    Serial.print("Pino 12:");
+    Serial.println(digitalRead(12));
+    Serial.println(digitalRead(12));
+  if(digitalRead(13)){
+    iTemperatura--;
+  }
+  if(digitalRead(12)){
+    iTemperatura++;
+  }
+  if(iTemperatura>100 || iTemperatura<0){
+    iTemperatura=0;
+  }
+  Serial.print("iTemperatura: ");
+  Serial.println(iTemperatura);
+}
+
