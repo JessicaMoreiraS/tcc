@@ -169,12 +169,12 @@ function tirarAcentos($string){
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
-    <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    <link rel="stylesheet" href="css/style.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
     <title>Cadastrar Categoria de Máquina</title>
 </head>
@@ -199,6 +199,7 @@ function tirarAcentos($string){
     </header>
 
     <main id="main_cadastrarCategoriaMaquina">
+       
 
     <div class="w3-modal-content w3-animate-top">
         <div class="form_modal">
@@ -213,8 +214,7 @@ function tirarAcentos($string){
                     </div>
                 </div>
                 </div>
-                <form action="" method="POST">
-                    <!-- <input type="text" placeholder="Categoria" name="categoria"> -->
+                <form  method="POST">
                     <div class="input_modal">
                         <input required type="text" placeholder="Nome da Categoria" name="categoria">
                     </div>
@@ -291,12 +291,12 @@ function tirarAcentos($string){
     <button onclick="criarInputs('Peca')">Nova Peça</button>
     <button onclick="criarInputs('Item')">Novo Item pra Checklist</button>
 
-
-    <script src="js/script.js"></script>
+    </main>
 </body>
 </html>
 <script src="js/reveal.js"></script>
-  <script>
+<script src="js/script.js"></script>
+  <!-- <script>
     const $ = document.querySelector.bind(document);
 
     const previewImg = $(".imagem");
@@ -308,7 +308,7 @@ function tirarAcentos($string){
       reader.onload = (e) => (previewImg.src = e.target.result);
       reader.readAsDataURL(fileToUpload);
     };
-  </script>
+  </script> -->
 <?php
     if (filter_input(INPUT_GET, 'e')) {
         $mensagem_erro = filter_input(INPUT_GET, 'e');
