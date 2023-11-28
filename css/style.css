@@ -486,18 +486,21 @@ footer {
 .input_entrar input:disabled,
 #submitCadastrarGestor:disabled,
 #submitCadastrarSala:disabled,
-.verificacaoSenha button,
-.botoesSenha #Btn_confirmar:disabled {
+.verificacaoSenha button:disabled,
+.botoesSenha #Btn_confirmar:disabled,
+#containerSubmit #submitTipo:disabled {
   background-color: #666666;
 }
 
 .input_entrar input:disabled:hover,
 #submitCadastrarGestor:disabled:hover,
-#submitCadastrarSala:disabled:hover
+#submitCadastrarSala:disabled:hover,
+#containerSubmit #submitTipo:disabled:hover 
 {
   background-color: #666666;
   cursor: not-allowed;
   transform: none;
+  color: #fff;
 }
 
 .input_entrar input:hover,
@@ -1366,7 +1369,8 @@ background-color: #003f5b;
 
 .form_cadastrarTurma .container .bnts input:hover,
 .form_cadastrarTurma .container .bnts button:hover,
-.cadastrar-maquina input:hover {
+.cadastrar-maquina input:hover, 
+#main_cadastrarCategoriaMaquina #submitTipo:hover {
   color: var(--azulEscuro);
   background-color: var(--background-main);
   transform: scale(0.9);
@@ -2042,7 +2046,9 @@ background-color: #003f5b;
 
 #main_formPerfil .container_form form .bnts input,
 #submitCadastrarSala,
-.cadastrar-maquina input {
+.cadastrar-maquina input,
+#main_cadastrarCategoriaMaquina #submitTipo
+{
   display: flex;
   justify-content: center;
   color: var(--cinza);
@@ -2384,7 +2390,8 @@ background-color: #003f5b;
 
 }
 
-.cadastrar-maquina input {
+.cadastrar-maquina input, 
+#main_cadastrarCategoriaMaquina #submitTipo {
   width: 220px;
   padding: 7px;
   border-radius: 10px;
@@ -2395,10 +2402,6 @@ background-color: #003f5b;
   height: auto;
 }
 
-.cadastrar-maquina input:hover {
-  transform: scale(0.9);
-  transition: .3s ease;
-}
 
 .inputs-cadastrar-maquina .input_modal {
   margin-top: 0px;
@@ -2460,7 +2463,7 @@ background-color: #003f5b;
 
 
 /*  CSS CADASTRAR  TIPO DE MAQUINA*/
-#main_cadastrarCategoriaMaquina {
+#main_cadastrarCategoriaMaquina  {
   display: flex;
   justify-content: center;
 }
@@ -2497,14 +2500,11 @@ background-color: #003f5b;
 }
 
 #main_cadastrarCategoriaMaquina .checkboxes_section {
-  /* flex-wrap: wrap;
-  display: flex;
-  justify-content: space-evenly; */
   margin-top: 5vmin;
 }
 
-#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .cyberpunk-checkbox-label {
-  margin-top: 15px;
+#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .input_modal input {
+  margin: -40px;
 }
 
 #main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .titulo {
@@ -2542,10 +2542,10 @@ background-color: #003f5b;
   font-weight: 500;
 }
 
-#main_cadastrarCategoriaMaquina .bnts {
+.bnts div{
   display: flex;
   justify-content: center;
-  margin-top: 26px;
+  gap: 10px;
 }
 
 #main_cadastrarCategoriaMaquina .w3-modal-content {
@@ -2582,20 +2582,28 @@ background-color: #003f5b;
   background-image: url(../img/svg/reference.svg);
 }
 
-#novoAtributo .containerNovoAtt,
-#novoItem .containerNovoItem,
-#novoPeca .containerNovaPeca {
+#novoPeca .containerNovaPeca, #novoItem .containerNovoItem, #novoAtributo .containerNovoAtt  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#novoAtributo .containerNovoAtt div,
+#novoItem .containerNovoItem div,
+#novoPeca .containerNovaPeca div {
   margin-bottom: 5px;
   background-color: #003f5b;
   padding: 3%;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  border-radius: 10px;
+  
+  width: 90%;
+  border-radius: 14px;
 }
 
 #novoAtributo .containerNovoAtt div {
   width: 90%;
 }
-
+#main_cadastrarCategoriaMaquina #containerSubmit{
+  display: flex;
+  justify-content: center;
+}
 /* FIM CSS CADASTRAR TIPO DE MAQUINA*/

@@ -190,8 +190,9 @@ function tirarAcentos($string){
     <main id="main_cadastrarCategoriaMaquina">
 
 
-        <div class="w3-modal-content w3-animate-top">
+        <div class="w3-modal-content">
             <div class="form_modal">
+
                 <div class="container">
                     <div class="header">
                         <div>
@@ -200,7 +201,7 @@ function tirarAcentos($string){
                             </div>
                         </div>
                     </div>
-                    <form method="POST">
+                    <form method="POST" id="form_tipo">
                         <div class="input_modal">
                             <input required type="text" placeholder="Nome da Categoria" name="categoria">
                         </div>
@@ -210,7 +211,7 @@ function tirarAcentos($string){
                             <?php
                             echo "<div class='checkboxes'>";
 
-                            echo "<div class='titulo'>
+                            echo "<div class='titulo' id='divAtt'>
                                 <p>Atributos para medição pelo Microcontrolador</p>
                                 <i
                                 class='fa fa-info-circle'
@@ -233,8 +234,8 @@ function tirarAcentos($string){
                             echo "<div class='checkboxes'>";
 
 
-                            echo "<div class='titulo'>
-                                <p>Itens para o CheckList</p>
+                            echo "<div class='titulo' >
+                                <p id='divItem'>Itens para o CheckList</p>
                                 <i
                                 class='fa fa-info-circle'
                                 title='Estes itens farão fazer parte desta categoria de máquina. E poderão ser verificadas no momento do checklist.'
@@ -262,7 +263,7 @@ function tirarAcentos($string){
                                 title='Peças que serão padrão desta Categoria.'
                                 ></i>
                     </div>";
-                            echo '<div class="container-checkboxes">';
+                            echo '<div class="container-checkboxes" id="divPecas">';
                             for ($i = 0; $i < count($arrayIdPecas); $i++) {
                                 echo '<label class="cyberpunk-checkbox-label"><input type="checkbox" class="cyberpunk-checkbox" name="peca-' . $arrayIdPecas[$i] . '">' . $arrayCodPecas[$i] . "-" . $arrayNomePecas[$i] . '</label>';
                             }
@@ -272,12 +273,14 @@ function tirarAcentos($string){
 
                             ?>
                         </section>
-                        <input type="submit" value="Salvar">
+                        <div id="containerSubmit">
+                            <input id="submitTipo" type="submit" value="Cadastrar">
+                        </div>
                     </form>
 
                 </div>
             </div>
-            <div clas="bnts">
+            <div class="bnts">
                 <div>
                     <button onclick="criarInputs('Atributo')">Add Atributo</button>
                     <button onclick="criarInputs('Peca')">Add Peça</button>
@@ -288,25 +291,14 @@ function tirarAcentos($string){
 
 
 
+
     </main>
 </body>
 
 </html>
 <script src="js/reveal.js"></script>
 <script src="js/script.js"></script>
-<!-- <script>
-    const $ = document.querySelector.bind(document);
 
-    const previewImg = $(".imagem");
-    const fileChooser = $(".input-file");
-
-    fileChooser.onchange = (e) => {
-      const fileToUpload = e.target.files.item(0);
-      const reader = new FileReader();
-      reader.onload = (e) => (previewImg.src = e.target.result);
-      reader.readAsDataURL(fileToUpload);
-    };
-  </script> -->
 <?php
 if (filter_input(INPUT_GET, 'e')) {
     $mensagem_erro = filter_input(INPUT_GET, 'e');

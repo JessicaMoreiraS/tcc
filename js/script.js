@@ -143,7 +143,7 @@ function criarInputs(tipo) {
                     
                 </div>  
                     `
-        location.href = "#novoAtributo";
+        location.href = "#divAtt";
 
     }
     if (tipo == "Peca" && contadorPeca < 5) {
@@ -165,7 +165,7 @@ function criarInputs(tipo) {
                     </div>
                 </div>        
                     `
-        location.href = "#novoPeca";
+        location.href = "#divPecas";
     }
     if (tipo == "Item" && contadorItem < 5) {
         contadorItem++;
@@ -178,7 +178,7 @@ function criarInputs(tipo) {
                 </div>
             </div> 
                     `
-        location.href = "#novoItem";
+        location.href = "#divItem";
     }
 
     div.innerHTML += conteudo;
