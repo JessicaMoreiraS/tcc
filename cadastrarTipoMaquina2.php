@@ -65,16 +65,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])){
         }
     }
     for($x=1;$x<50; $x++){
-        if(isset($_POST['nome'.$x]) && isset($_POST['codigo'.$x]) && isset($_POST['tempoTroca'.$x])){
+        if(isset($_POST['peca'.$x]) && isset($_POST['codigo'.$x]) && isset($_POST['tempoTroca'.$x])){
             $arrayNovoPecaNome[]=$_POST['peca'.$x];
+            
             $arrayNovoPecaCod[]=$_POST['codigo'.$x];
             $arrayNovoPecaTempoTroca[]=$_POST['tempoTroca'.$x];
         }else{
             break;
         }
     }
+
     for($x=1;$x<50; $x++){
-        if(isset($_POST['nome'.$x])){
+        if(isset($_POST['item'.$x])){
             $arrayNovoItemNome[]=$_POST['item'.$x];
         }else{
             break;
@@ -87,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])){
         // $atributoEsp  = preg_replace(‘/\s+/’, ”, $atributo);
         $atributoEsp = $atributo;
         $vr = $arrayNovoAtributosVR[$x];
-        $sqlInsereAtributo="INSERT INTO atributo_tipo (atributo, atributo_esp, valor_referencia) VALUE ('$atributo', '$atributoEsp', $vr)";
+        $sqlInsereAtributo="INSERT INTO atributo_tipo (atributo, atributo_esp, valor_referencia) VALUES ('$atributo', '$atributoEsp', '$vr')";
         $mysqli->query($sqlInsereAtributo);
         $idAtributoAdd[] = mysqli_insert_id($mysqli);
     }
@@ -228,7 +230,7 @@ function tirarAcentos($string){
                                 class='fa fa-info-circle'
                                 title='Esses itens irão fazer parte desta categoria de máquina. E poderão ser verificadas no momento do checklist.'
                                 ></i>
-                                </div>";
+                            </div>";
                             
                             echo '<div class="container-checkboxes">';
                             
@@ -238,28 +240,45 @@ function tirarAcentos($string){
                             echo ' </div>';
                         echo "</div>";
 
-                        echo "<br>";
+                    echo "<div class='checkboxes'>"; 
 
-                        echo '<div class="container-checkboxes">';
                             echo '<div id="novoAtributo"></div>';
 
-                        echo "<div class='titulo'>
-                                    <p>Peças</p>
-                                    <i
-                                    class='fa fa-info-circle'
-                                    title='Esses itens irão fazer parte desta categoria de máquina. E poderão ser verificadas no momento do checklist.'
-                                    ></i>
-                                    </div>";
-                            for($i=0; $i<count($arrayIdPecas); $i++){
-                                echo '<input type="checkbox" name="peca-'.$arrayIdPecas[$i].'"><label>'.$arrayCodPecas[$i]."-".$arrayNomePecas[$i].'</label>';
-                            }
-                            echo '<div id="novoPeca"></div>';
-                            echo "<p>Itens Para o Checklist</p>";
-                            for($i=0; $i<count($arrayIdItens); $i++){
-                                echo '<input type="checkbox" name="item-'.$arrayIdItens[$i].'"><label>'.$arrayNomeItens[$i].'</label>';
-                            }
-                            echo '<div id="novoItem"></div>';
-                        echo "</div>";
+                            echo "<div class='titulo'>
+                                        <p>Peças</p>
+                                        <i
+                                        class='fa fa-info-circle'
+                                        title='Esses itens irão fazer parte desta categoria de máquina. E poderão ser verificadas no momento do checklist.'
+                                        ></i>
+                            </div>";
+                                echo '<div class="container-checkboxes">';        
+                                    for($i=0; $i<count($arrayIdPecas); $i++){
+                                        echo '<label class="cyberpunk-checkbox-label"><input type="checkbox" class="cyberpunk-checkbox" name="peca-'.$arrayIdPecas[$i].'">'.$arrayCodPecas[$i]."-".$arrayNomePecas[$i].'</label>';
+                                    }
+                                echo "</div>";    
+                    echo "</div>";
+                    
+                    
+                    echo "<div class='checkboxes'>";
+                                    echo '<div id="novoPeca"></div>';
+                                   
+                            echo "<div class='titulo'>
+                                <p>Itens para o CheckList</p>
+                                <i
+                                class='fa fa-info-circle'
+                                title='Esses itens irão fazer parte desta categoria de máquina. E poderão ser verificadas no momento do checklist.'
+                                ></i>
+                            </div>";
+                        echo '<div class="container-checkboxes">';                
+                                    for($i=0; $i<count($arrayIdItens); $i++){
+                                        echo '<label class="cyberpunk-checkbox-label"><input type="checkbox"  class="cyberpunk-checkbox" name="item-'.$arrayIdItens[$i].'">'.$arrayNomeItens[$i].'</label>';
+                                    }
+                                    echo '<div id="novoItem"></div>';
+                        echo "</div>";                
+                    echo "</div>";                
+                                
+                        
+                   
                         ?>
                     </section>
                     <input type="submit" value="Salvar">
