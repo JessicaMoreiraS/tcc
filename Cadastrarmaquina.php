@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        <div class="conteudo">
        
         <i class="fa fa-plus-circle" style="font-size:20px"></i> 
-            <form action="cadastrarNovaMaquina.php" method="get">
+            <form action="cadastrarTipoMaquina.php" method="get">
                 <input type="submit" value="Cadastrar nova Categoria">
             </form>
        </div>

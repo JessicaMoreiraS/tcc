@@ -2270,7 +2270,10 @@ transition: .3s ease;
 
 
 /*  CSS CADASTRAR  TIPO DE MAQUINA*/
-
+#main_cadastrarCategoriaMaquina{
+  display: flex;
+  justify-content: center;
+}
 #body_cadastrarCategoriaMaquina .logo-inicial{
   padding: 0;
 }
@@ -2329,6 +2332,15 @@ transition: .3s ease;
   display: flex;
   justify-content: center;
   margin-top: 26px;
+}
+#main_cadastrarCategoriaMaquina  .w3-modal-content{
+  width: 52vw;
+}
+#main_cadastrarCategoriaMaquina .inputNomePeca{
+  background-image: url("../img/svg/Gears.svg");
+  background-repeat: no-repeat;
+  background-position: 100% center;
+  padding: 9px;
 }
 /* FIM CSS CADASTRAR TIPO DE MAQUINA*/
 

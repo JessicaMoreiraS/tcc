@@ -127,28 +127,37 @@ var contadorItem = 0;
 
 function criarInputs(tipo){
     var div = document.getElementById(`novo${tipo}`);
-    var conteudo;
-    if(tipo=="Atributo"){
+    var conteudo="";
+    if(tipo=="Atributo" && contadorAtributo<5){
         contadorAtributo++;
         conteudo = `<div>
                         <input type="text" name="atributo${contadorAtributo}" placeholder="Atributo">
                         <input type="text" name="vReferencia${contadorAtributo}" placeholder="Valor de referência">
                     </div>`
     }
-    if(tipo=="Peca"){
+    if(tipo=="Peca" && contadorPeca<5){
         contadorPeca++;
         conteudo = `<div>
-                        <input type="text" name="peca${contadorPeca}" placeholder="Nome da peça">
-                        <input type="text" name="codigo${contadorPeca}" placeholder="Código da peça">
-                        <input type="time" name="tempoTroca${contadorPeca}" placeholder="Tempo de troca">
+                        <div class="input_modal">
+                            <input class="inputNomePeca" type="text" name="peca${contadorPeca}" placeholder="Nome da peça" >
+                        </div> 
+                          
+                        <div class="input_modal">
+                             <input  class="inputCodPeca" type="text" name="codigo${contadorPeca}" placeholder="Código da peça">
+                        </div>
+                          
+                        <div class="input_modal">
+                            <input  class="inputTrocaPeca" type="number" name="tempoTroca${contadorPeca}" placeholder="Tempo de troca em horas" min="1">
+                        </div>    
                     </div>`
     }
-    if(tipo=="Item"){
+    if(tipo=="Item" &&  contadorItem<5){
         contadorItem++;
         conteudo = `<div>
                         <input type="text" name="item${contadorItem}" placeholder="Item para checklist manual">
                     </div>`
     }
+
     div.innerHTML+=conteudo;
 }
 
