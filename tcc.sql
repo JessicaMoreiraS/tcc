@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24-Nov-2023 às 14:50
+-- Tempo de geração: 28-Nov-2023 às 14:28
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -213,12 +213,7 @@ CREATE TABLE `lista_sala_tipo_maquina` (
 INSERT INTO `lista_sala_tipo_maquina` (`id`, `id_sala`, `id_tipo_maquina`) VALUES
 (1, 1, 1),
 (2, 1, 1),
-(3, 4, 1),
-(4, 5, 1),
-(5, 6, 2),
-(6, 8, 1),
-(7, 9, 1),
-(8, 10, 1);
+(3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -372,7 +367,7 @@ CREATE TABLE `sala` (
 
 INSERT INTO `sala` (`id`, `turma`, `id_professor`, `codigo_acesso`) VALUES
 (1, 'M3P', 1, 'abcdefgh'),
-(9, 'M4P', 3, 'vwRiAhQe');
+(2, 'M4P', 3, 'vwRiAhQe');
 
 -- --------------------------------------------------------
 
@@ -391,10 +386,7 @@ CREATE TABLE `tipo_maquina` (
 
 INSERT INTO `tipo_maquina` (`id`, `tipo`) VALUES
 (1, 'torno'),
-(2, 'fresadora'),
-(8, 'Teste'),
-(9, 'Teste'),
-(10, 'Teste');
+(2, 'fresadora');
 
 --
 -- Índices para tabelas despejadas
@@ -549,6 +541,18 @@ ALTER TABLE `lista_tipo_maquina_atributo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT de tabela `lista_tipo_maquina_item_checklist`
+--
+ALTER TABLE `lista_tipo_maquina_item_checklist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `lista_tipo_maquina_peca`
+--
+ALTER TABLE `lista_tipo_maquina_peca`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de tabela `peca_tipo`
 --
 ALTER TABLE `peca_tipo`
@@ -570,7 +574,7 @@ ALTER TABLE `sala`
 -- AUTO_INCREMENT de tabela `tipo_maquina`
 --
 ALTER TABLE `tipo_maquina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
