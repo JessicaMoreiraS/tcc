@@ -2268,3 +2268,67 @@ transition: .3s ease;
 }
 /* FIM CSS  INPUT DE ADD IMG*/
 
+
+/*  CSS CADASTRAR  TIPO DE MAQUINA*/
+
+#body_cadastrarCategoriaMaquina .logo-inicial{
+  padding: 0;
+}
+#main_cadastrarCategoriaMaquina .form_modal *{
+  overflow-y: hidden;
+}
+#main_cadastrarCategoriaMaquina .form_modal .container .header{
+  margin: 20px 0px -20px 0px;
+
+}
+#main_cadastrarCategoriaMaquina{
+  padding: 5%;
+}
+#main_cadastrarCategoriaMaquina .checkboxes_section {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  margin-top:  3vmin;
+}
+
+
+#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .titulo {
+  display: flex;
+}
+
+#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .titulo p {
+  color: #051a24b2;
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+
+#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .container-checkboxes div {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 11px;
+  transition: .3s ease;
+}
+
+#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .container-checkboxes div:hover {
+  transform: scale(0.9, 0.9);
+}
+
+#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .container-checkboxes div img {
+  margin-right: 4px;
+}
+
+#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .container-checkboxes div span {
+  color: #D2FBFF;
+  font-size: 13px;
+  font-weight: 500;
+}
+#main_cadastrarCategoriaMaquina .bnts{
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+/* FIM CSS CADASTRAR TIPO DE MAQUINA*/
+

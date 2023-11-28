@@ -199,6 +199,7 @@ function tirarAcentos($string){
     </header>
 
     <main id="main_cadastrarCategoriaMaquina">
+       
 
     <div class="w3-modal-content w3-animate-top">
         <div class="form_modal">
@@ -213,8 +214,7 @@ function tirarAcentos($string){
                     </div>
                 </div>
                 </div>
-                <form action="" method="POST">
-                    <!-- <input type="text" placeholder="Categoria" name="categoria"> -->
+                <form  method="POST">
                     <div class="input_modal">
                         <input required type="text" placeholder="Nome da Categoria" name="categoria">
                     </div>
@@ -291,11 +291,11 @@ function tirarAcentos($string){
     <button onclick="criarInputs('Peca')">Nova Peça</button>
     <button onclick="criarInputs('Item')">Novo Item pra Checklist</button>
 
-
-    <script src="js/script.js"></script>
+    </main>
 </body>
 </html>
 <script src="js/reveal.js"></script>
+<script src="js/script.js"></script>
   <script>
     const $ = document.querySelector.bind(document);
 
