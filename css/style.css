@@ -2282,19 +2282,20 @@ transition: .3s ease;
 }
 #main_cadastrarCategoriaMaquina .form_modal .container .header{
   margin: 20px 0px -20px 0px;
-
 }
 #main_cadastrarCategoriaMaquina{
-  padding: 5%;
+  padding: 2%;
 }
 #main_cadastrarCategoriaMaquina .checkboxes_section {
   flex-wrap: wrap;
   display: flex;
   justify-content: space-around;
-  margin-top:  10vmin;
+  margin-top:  5vmin;
 }
 
-
+#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .cyberpunk-checkbox-label{
+  margin-top: 15px;
+}
 #main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .titulo {
   display: flex;
 }
@@ -2336,11 +2337,31 @@ transition: .3s ease;
 #main_cadastrarCategoriaMaquina  .w3-modal-content{
   width: 52vw;
 }
-#main_cadastrarCategoriaMaquina .inputNomePeca{
+#main_cadastrarCategoriaMaquina .inputNomePeca, .inputCodPeca, .inputTrocaPeca,.inputItem,.inputVReferencia,.inputAtt{
   background-image: url("../img/svg/Gears.svg");
   background-repeat: no-repeat;
-  background-position: 100% center;
+  background-size: 1.6rem;
+  background-position: 90% center;
   padding: 9px;
+  width: 100%;
 }
+#main_cadastrarCategoriaMaquina .inputCodPeca{background-image: url(../img/svg/nameTag.svg);}
+#main_cadastrarCategoriaMaquina .inputTrocaPeca{background-image: url(../img/svg/Time.svg);}
+#main_cadastrarCategoriaMaquina .inputItem{background-image: url(../img/svg/checklist.svg);}
+#main_cadastrarCategoriaMaquina .inputVReferencia{background-image: url(../img/svg/reference.svg);}
+
+#novoAtributo .containerNovoAtt, #novoItem .containerNovoItem,#novoPeca  .containerNovaPeca{
+  margin-bottom: 5px;
+  background-color: #003f5b;
+  padding: 3%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-radius: 10px;
+}
+#novoAtributo .containerNovoAtt div{
+  width: 90%;
+}
+
 /* FIM CSS CADASTRAR TIPO DE MAQUINA*/
 
