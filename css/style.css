@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap");
 
-*{
+* {
   margin: 0;
   border: none;
   text-decoration: none;
@@ -8,7 +8,8 @@
   overflow-x: hidden;
   font-family: "Lexend Deca", sans-serif;
 }
-#body_tables *{
+
+#body_tables * {
   overflow-x: visible;
 }
 
@@ -64,7 +65,7 @@ body {
   background-color: var(--background-main);
 }
 
-#a_sairSala{
+#a_sairSala {
   display: flex;
   align-items: center;
   margin-top: 25px;
@@ -72,11 +73,14 @@ body {
   color: #e64545;
   transition: .3s;
 }
-#a_sairSala:hover, #a_sairSala img:hover{
+
+#a_sairSala:hover,
+#a_sairSala img:hover {
   color: #970a0a;
-  transform: scale(0.9,0.9);
+  transform: scale(0.9, 0.9);
 }
-#a_sairSala img{
+
+#a_sairSala img {
   margin-right: 10px;
   transition: .3s;
 }
@@ -87,10 +91,12 @@ body {
   color: #666666;
   margin-bottom: 19px;
 }
-.bem-vindo{
+
+.bem-vindo {
   display: flex;
   flex-direction: column;
 }
+
 .corpo-inicial .bem-vindo a {
   display: flex;
   justify-content: center;
@@ -175,7 +181,8 @@ body {
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
 }
 
-.corpo-inicial .turmas .card  .rodape img:hover, #a_sairSala:hover {
+.corpo-inicial .turmas .card .rodape img:hover,
+#a_sairSala:hover {
   transform: translateY(-5px);
   transition: 0.3s ease-in-out;
 }
@@ -392,7 +399,8 @@ footer {
 }
 
 #infosAcess input,
-#infosCreate input , #main_formPerfil .container_form  .input input{
+#infosCreate input,
+#main_formPerfil .container_form .input input {
   background: #f4f4f4;
   display: flex;
   width: 80%;
@@ -411,7 +419,8 @@ footer {
 
 #infosAcess input:focus,
 #infosCreate input:focus,
-#form_verificacao #codigoVerificacao:focus,  #main_formPerfil .container_form  .input input:focus {
+#form_verificacao #codigoVerificacao:focus,
+#main_formPerfil .container_form .input input:focus {
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.01),
     0px 0px 8px rgba(0, 0, 0, 0.2);
 }
@@ -430,14 +439,18 @@ footer {
   margin-top: -20px;
   transition: 0.9s;
 }
-#cadastrarProfLink{
+
+#cadastrarProfLink {
   transition: 0.9s;
-   color: #01567d;
-   display: flex;
-   justify-content: center;
-   margin-top: 20px;
+  color: #01567d;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
-#infosAcess a:hover,  #cadastrarProfLink:hover, .conteudoConfirmarEmail a:hover {
+
+#infosAcess a:hover,
+#cadastrarProfLink:hover,
+.conteudoConfirmarEmail a:hover {
   text-decoration: underline;
 }
 
@@ -451,7 +464,16 @@ footer {
   color: rgb(214, 75, 75);
 }
 
-.input_entrar input, #gestor_default_main .bnts input, #submitCadastrarGestor, #submitConfirmarExclusao,#submitCadastrarProfessor,.botoesSenha #Btn_confirmar, #enviarSenha, .botoesTurmaNova input {
+.input_entrar input,
+#gestor_default_main .bnts input,
+#submitCadastrarGestor,
+#submitConfirmarExclusao,
+#submitCadastrarProfessor,
+.botoesSenha #Btn_confirmar,
+#enviarSenha,
+.botoesTurmaNova input,
+#main_cadastrarCategoriaMaquina button
+{
   padding: 13px 40px 13px 40px;
   color: #fff;
   border-radius: 15px;
@@ -461,18 +483,36 @@ footer {
   transition: 0.3s;
 }
 
-.input_entrar input:disabled,  #submitCadastrarGestor:disabled, #submitCadastrarSala:disabled, .verificacaoSenha button, .botoesSenha #Btn_confirmar:disabled{
+.input_entrar input:disabled,
+#submitCadastrarGestor:disabled,
+#submitCadastrarSala:disabled,
+.verificacaoSenha button,
+.botoesSenha #Btn_confirmar:disabled {
   background-color: #666666;
 }
 
-.input_entrar input:disabled:hover,  #submitCadastrarGestor:disabled:hover, #submitCadastrarSala:disabled:hover {
+.input_entrar input:disabled:hover,
+#submitCadastrarGestor:disabled:hover,
+#submitCadastrarSala:disabled:hover
+{
   background-color: #666666;
   cursor: not-allowed;
   transform: none;
 }
 
 .input_entrar input:hover,
-#form_verificacao #botao_verificar:hover,#gestor_default_main .bnts input:hover,  #submitCadastrarGestor:hover, #submitConfirmarExclusao:hover, #submitCadastrarProfessor:hover, .botoesSenha #Btn_confirmar:hover, #enviarSenha:hover, .botoesTurmaNova input:hover, .addCategoria  .conteudo:hover,.addCategoria  .conteudo:hover input {
+#form_verificacao #botao_verificar:hover,
+#gestor_default_main .bnts input:hover,
+#submitCadastrarGestor:hover,
+#submitConfirmarExclusao:hover,
+#submitCadastrarProfessor:hover,
+.botoesSenha #Btn_confirmar:hover,
+#enviarSenha:hover,
+.botoesTurmaNova input:hover,
+.addCategoria .conteudo:hover,
+.addCategoria .conteudo:hover input,
+#main_cadastrarCategoriaMaquina button:hover
+{
   background-color: #036998;
   transform: scale(0.9, 0.9);
 }
@@ -574,10 +614,12 @@ footer {
 .swal2-popup {
   background-color: var(--azulPrincipal);
 }
-.swal2-html-container a{
+
+.swal2-html-container a {
   color: #01b9d1;
 }
-div:where(.swal2-container) .swal2-html-container{
+
+div:where(.swal2-container) .swal2-html-container {
   color: white;
 }
 
@@ -595,10 +637,12 @@ div:where(.swal2-container) .swal2-html-container{
   background-color: #003f5b;
   color: #fff;
 }
-.swal2-title  {
+
+.swal2-title {
   background-color: var(--azulPrincipal);
 }
-.swal2-input-label{
+
+.swal2-input-label {
   color: white;
 }
 
@@ -669,12 +713,14 @@ div:where(.swal2-container) .swal2-html-container{
 
 /*  CSS da pagina de CONFIRMAR EMAIL */
 
-.areaCodTurmaNova, .areaCod  {
+.areaCodTurmaNova,
+.areaCod {
   display: flex;
   flex-direction: column;
 }
 
-.areaCodTurmaNova label, .areaCod  label {
+.areaCodTurmaNova label,
+.areaCod label {
   color: rgb(53, 53, 53);
   font-size: 1.1rem;
   font-style: normal;
@@ -683,7 +729,8 @@ div:where(.swal2-container) .swal2-html-container{
   max-width: 400px;
 }
 
-.areaCodTurmaNova input, .areaCod  input {
+.areaCodTurmaNova input,
+.areaCod input {
   width: 96%;
   height: 50px;
   padding-left: 5px;
@@ -706,7 +753,7 @@ div:where(.swal2-container) .swal2-html-container{
   background-color: #d4d4d4bd;
   cursor: pointer;
   transition: 0.3s ease;
-  
+
 
 }
 
@@ -720,20 +767,23 @@ div:where(.swal2-container) .swal2-html-container{
     0px 0px 8px rgba(0, 0, 0, 0.2);
 }
 
-.verificacaoEmail, .verificacaoSenha {
+.verificacaoEmail,
+.verificacaoSenha {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
-.conteudoConfirmarEmail, .conteudoConfirmarSenha{
+.conteudoConfirmarEmail,
+.conteudoConfirmarSenha {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10%;
-  
+
 }
+
 /* #main_confirmarEmail {
   padding: 10%;
 display: flex;
@@ -838,7 +888,8 @@ background-color: #003f5b;
   font-size: 24px;
   margin-bottom: 0.5rem;
   font-weight: bold;
-  line-height: 1.2;;
+  line-height: 1.2;
+  ;
 }
 
 .areaCod label {
@@ -849,7 +900,8 @@ background-color: #003f5b;
   line-height: normal;
 }
 
-.areaCod input, #senhaModal input {
+.areaCod input,
+#senhaModal input {
   width: 90%;
   height: 50px;
   margin-top: 15px;
@@ -871,12 +923,14 @@ background-color: #003f5b;
   color: #4d4d4d;
 }
 
-.areaCod input:focus, #senhaModal input:focus {
+.areaCod input:focus,
+#senhaModal input:focus {
   box-shadow: inset 4px 0px 4px rgba(0, 0, 0, 0.01),
     0px 0px 8px rgba(0, 0, 0, 0.2);
 }
 
-.botoesTurmaNova, .botoesSenha {
+.botoesTurmaNova,
+.botoesSenha {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -1065,7 +1119,8 @@ background-color: #003f5b;
   padding: 10px;
   border-radius: 10px;
 }
-#main_homeProfessor .btnCriarSala a i{
+
+#main_homeProfessor .btnCriarSala a i {
   margin-right: 10px;
 }
 
@@ -1091,7 +1146,7 @@ background-color: #003f5b;
 }
 
 #main_homeProfessor .turmas .card:hover {
-  transform: translateY(-20px)!important;
+  transform: translateY(-20px) !important;
   box-shadow: none;
 }
 
@@ -1128,18 +1183,18 @@ background-color: #003f5b;
   align-items: center;
 }
 
- .turmas .card .rodape img{
+.turmas .card .rodape img {
   display: flex;
   margin: 23px 0px 20px 27px;
   font-size: 24px;
   color: #f4f4f4;
 }
 
- .turmas .card .rodape i:hover {
-  transform: scale(0.9,0.9);
+.turmas .card .rodape i:hover {
+  transform: scale(0.9, 0.9);
 }
 
- .bem-vindo {
+.bem-vindo {
   display: flex;
   justify-content: center;
 }
@@ -1152,39 +1207,49 @@ background-color: #003f5b;
 
 #main_homeProfessor h2 b {
   border-radius: 10px;
-  
+
 }
 
-.form_cadastrarTurma{
-    display: flex;
-    justify-content: center;
-   
+.form_cadastrarTurma {
+  display: flex;
+  justify-content: center;
+
 }
-.form_cadastrarTurma .container,.w3-modal-content {
-    background-color: var(--azulPrincipal);
-    padding: 1vw;
-    border-radius: 20px;
-    width: 40vw;
-    
+
+.form_cadastrarTurma .container,
+.w3-modal-content {
+  background-color: var(--azulPrincipal);
+  padding: 1vw;
+  border-radius: 20px;
+  width: 40vw;
+
 }
- .form_cadastrarTurma .container .logo, .form_cadastrarTurma .container .icone{
-    display: flex;
-    justify-content: center;
+
+.form_cadastrarTurma .container .logo,
+.form_cadastrarTurma .container .icone {
+  display: flex;
+  justify-content: center;
 }
-.form_cadastrarTurma .container .icone img{
-    width: 60px;
+
+.form_cadastrarTurma .container .icone img {
+  width: 60px;
 }
- .form_cadastrarTurma .container .logo {
-   margin-bottom: 25px;
-   margin-top: 10px;
+
+.form_cadastrarTurma .container .logo {
+  margin-bottom: 25px;
+  margin-top: 10px;
 }
- .form_cadastrarTurma .container .input_nome, .input_modal{
-    display: flex;
-    justify-content: center;
-    margin: 40px 0px 25px 0px;
-    width: 100%;
+
+.form_cadastrarTurma .container .input_nome,
+.input_modal {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0px 25px 0px;
+  width: 100%;
 }
-.form_cadastrarTurma .container .input_nome input, .input_modal input {
+
+.form_cadastrarTurma .container .input_nome input,
+.input_modal input {
   width: 100%;
   padding: 12px;
   border-radius: 12px;
@@ -1193,105 +1258,122 @@ background-color: #003f5b;
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   box-shadow: 0px 0px 20px -18px;
 }
-.form_cadastrarTurma .container .input_nome input{
+
+.form_cadastrarTurma .container .input_nome input {
   width: 100%;
 }
 
-.form_cadastrarTurma .container .input_nome input:active, .input_modal input:active{
+.form_cadastrarTurma .container .input_nome input:active,
+.input_modal input:active {
   transform: scale(0.95);
 }
-.form_cadastrarTurma .container .input_nome input:focus, .input_modal input:focus{
+
+.form_cadastrarTurma .container .input_nome input:focus,
+.input_modal input:focus {
   border: 2px solid grey;
 }
-.form_cadastrarTurma .container  .input_codigo{
+
+.form_cadastrarTurma .container .input_codigo {
   display: flex;
   justify-content: center;
 }
- .form_cadastrarTurma .container .input_nome input:focus{
+
+.form_cadastrarTurma .container .input_nome input:focus {
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.01),
-  0px 0px 8px rgba(0, 0, 0, 0.2);
+    0px 0px 8px rgba(0, 0, 0, 0.2);
 }
-.form_cadastrarTurma .container .checkboxes{
-    display: flex;
-    flex-direction: column;
+
+.form_cadastrarTurma .container .checkboxes {
+  display: flex;
+  flex-direction: column;
 }
-.checkboxes .titulo{
-color: #b6e4f0;
-font-size: 17px;
-font-weight: 500;
-display: flex;
-justify-content: center;
-width: 100%;
-margin-bottom: 20px;
+
+.checkboxes .titulo {
+  color: #b6e4f0;
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
 }
- .container-checkboxes{
-  margin: 27px 40px ;
+
+.container-checkboxes {
+  margin: 27px 40px;
 }
 
 .cyberpunk-checkbox {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #b6e4f0;
-    border-radius: 5px;
-    background-color: transparent;
-    display: inline-block;
-    position: relative;
-    margin-right: 10px;
-    cursor: pointer;
-    margin-bottom: 10px;
-  }
-  .cyberpunk-checkbox:disabled{
-    cursor: not-allowed;
-  }
-  .cyberpunk-checkbox:before {
-    content: "";
-    background-color: #b6e4f0;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 10px;
-    height: 10px;
-    border-radius: 3px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .cyberpunk-checkbox:checked:before {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  
-  .cyberpunk-checkbox-label {
-    font-size: 15px;
-    color: #fff;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-  }
-
-.form_cadastrarTurma .container  .bnts {
-   display: flex;
-   justify-content: center;
-   gap: 20px;
-   margin-top: 10px;
-   padding: 13px;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b6e4f0;
+  border-radius: 5px;
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
-.form_cadastrarTurma .container  .bnts button,.form_cadastrarTurma .container  .bnts input {
+
+.cyberpunk-checkbox:disabled {
+  cursor: not-allowed;
+}
+
+.cyberpunk-checkbox:before {
+  content: "";
+  background-color: #b6e4f0;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cyberpunk-checkbox:checked:before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cyberpunk-checkbox-label {
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+}
+
+.form_cadastrarTurma .container .bnts {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+  padding: 13px;
+}
+
+.form_cadastrarTurma .container .bnts button,
+.form_cadastrarTurma .container .bnts input {
   cursor: pointer;
 }
- .form_cadastrarTurma .container .header{
-   margin-top: 20px;
+
+.form_cadastrarTurma .container .header {
+  margin-top: 20px;
 }
 
 
- .form_cadastrarTurma .container  .bnts input:hover, .form_cadastrarTurma .container  .bnts button:hover, .cadastrar-maquina input:hover  {
+.form_cadastrarTurma .container .bnts input:hover,
+.form_cadastrarTurma .container .bnts button:hover,
+.cadastrar-maquina input:hover {
   color: var(--azulEscuro);
   background-color: var(--background-main);
   transform: scale(0.9);
 }
 
- .form_cadastrarTurma .container  .bnts input, .form_cadastrarTurma .container  .bnts button{
+.form_cadastrarTurma .container .bnts input,
+.form_cadastrarTurma .container .bnts button {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -1314,26 +1396,29 @@ margin-bottom: 20px;
 /* CSS DAS TABELAS */
 
 
-#html_tables,#body_tables{
-  display:table;
-  height:100%;
-  width:100%;
+#html_tables,
+#body_tables {
+  display: table;
+  height: 100%;
+  width: 100%;
   color: #252a3b;
   background-color: #f8f8f8;
 
 }
-#body_tables{
+
+#body_tables {
   background-image: url(../img/svg/bg_tabelaAlunos.svg);
   background-repeat: no-repeat;
   background-position-y: 100%;
   background-position-x: 50%;
 }
 
-.table-container{
+.table-container {
   display: flex;
   justify-content: center;
 }
-.row__title{
+
+.row__title {
   color: #53646f;
   margin: 0;
   display: flex;
@@ -1343,160 +1428,175 @@ margin-bottom: 20px;
   font-weight: 700;
 
 }
-.row__title b{
+
+.row__title b {
   color: var(--azulPrincipal);
   margin-right: 10px;
 }
-.row--top-40{
+
+.row--top-40 {
   margin-top: 40px;
 }
 
-.row--top-20{
+.row--top-20 {
   margin-top: 20px;
 }
+
 .table__th {
-    color: #9eabb4;
-    font-weight: 500;
-    font-size: 12px;
-    text-transform: uppercase;
-   cursor: pointer;
-    border:0 !important;
+  color: #9eabb4;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 0 !important;
   padding: 15px 8px !important;
 }
 
 .table-row {
-    border-bottom: 1px solid #e4e9ea;
+  border-bottom: 1px solid #e4e9ea;
   background-color: #fff;
 }
+
 .table__th:hover {
-    color: #01b9d1;
+  color: #01b9d1;
 }
 
 .table--select-all {
-    width: 18px;
-    height: 18px;
-    padding: 0 !important;
-    border-radius: 50%;
-    border: 2px solid #becad2;
-}
-.table-row__td {
-    padding: 12px 8px !important;
-    vertical-align: middle !important;
-    color: #53646f;
-    font-size: 13px;
-    font-weight: 400;
-  position:relative;
-    line-height: 18px !important;
-  border:0 !important;
+  width: 18px;
+  height: 18px;
+  padding: 0 !important;
+  border-radius: 50%;
+  border: 2px solid #becad2;
 }
 
-.table-row__img{
-   width: 36px;
-    height: 36px;
-    display: inline-block;
-    border-radius: 50%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-   vertical-align: middle;
+.table-row__td {
+  padding: 12px 8px !important;
+  vertical-align: middle !important;
+  color: #53646f;
+  font-size: 13px;
+  font-weight: 400;
+  position: relative;
+  line-height: 18px !important;
+  border: 0 !important;
+}
+
+.table-row__img {
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  vertical-align: middle;
 }
 
 .table-row--student .table-row__img {
-    background-image: url('../img/svg/Student.svg');
+  background-image: url('../img/svg/Student.svg');
 }
+
 .table-row--teacher .table-row__img {
-    background-image: url('../img/svg/professor.svg');
+  background-image: url('../img/svg/professor.svg');
 }
+
 .table-row--class .table-row__img {
-    background-image: url('../img/svg/class.svg');
+  background-image: url('../img/svg/class.svg');
 }
+
 .table-row--checklist .table-row__img {
-    background-image: url('../img/svg/checklist.svg');
+  background-image: url('../img/svg/checklist.svg');
 }
+
 .table-row--gears .table-row__img {
-    background-image: url('../img/svg/Gears.svg');
+  background-image: url('../img/svg/Gears.svg');
 }
+
 .table-row--gestor .table-row__img {
-    background-image: url('../img/svg/gestor.svg');
+  background-image: url('../img/svg/gestor.svg');
 }
 
 .table-row__info {
-    display: inline-block;
-    padding-left: 12px;
+  display: inline-block;
+  padding-left: 12px;
   vertical-align: middle;
 }
 
 .table-row__id {
-    color: #53646f;
-    font-size: 14px;
-    font-weight: 400;
+  color: #53646f;
+  font-size: 14px;
+  font-weight: 400;
   line-height: 18px;
-    margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .table-row__small {
-    color: #9eabb4;
-    font-weight: 300;
-    font-size: 12px;
+  color: #9eabb4;
+  font-weight: 300;
+  font-size: 12px;
 }
 
 .table-row__p {
-    color: #53646f;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 18px;
-    margin-bottom: 0px;
+  color: #53646f;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-bottom: 0px;
 }
+
 .table-row__p-status {
-    margin-bottom: 0;
-    font-size: 13px;
-    vertical-align: middle;
-    display: inline-block;
+  margin-bottom: 0;
+  font-size: 13px;
+  vertical-align: middle;
+  display: inline-block;
   color: #9eabb4;
 }
-.table-row__status{
-    margin-bottom: 0;
-    font-size: 13px;
-    vertical-align: middle;
-    display: inline-block;
+
+.table-row__status {
+  margin-bottom: 0;
+  font-size: 13px;
+  vertical-align: middle;
+  display: inline-block;
   color: #9eabb4;
 }
-.table_delete{
+
+.table_delete {
   cursor: pointer;
   transition: .3s ease;
   display: flex;
   justify-content: center;
 }
-.table-row__td a{
- 
+
+.table-row__td a {
+
   display: flex;
   justify-content: center;
 }
-.table_delete:hover{
+
+.table_delete:hover {
   transform: scale(0.9, 0.9);
 }
 
-.table-row__progress{
-    margin-bottom: 0;
-    font-size: 13px;
-    vertical-align: middle;
-    display: inline-block;
+.table-row__progress {
+  margin-bottom: 0;
+  font-size: 13px;
+  vertical-align: middle;
+  display: inline-block;
   color: #9eabb4;
 }
 
 
 
 .table__select-row {
-    appearence: none;
-    -moz-appearance: none;
-    -o-appearance: none;
-    -webkit-appearance: none;
-    width: 17px;
-    height: 17px;
-    margin: 0 0 0 5px !important;
-    vertical-align: middle;
-    border: 2px solid #beccd7;
-    border-radius: 50%;
+  appearence: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  margin: 0 0 0 5px !important;
+  vertical-align: middle;
+  border: 2px solid #beccd7;
+  border-radius: 50%;
   cursor: pointer;
 }
 
@@ -1505,42 +1605,44 @@ margin-bottom: 20px;
 
 
 .table-row--overdue {
-    width: 3px;
-    background-color: #e36767;
-    display: inline-block;
-    position: absolute;
-    height: calc(100% - 24px);
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
+  width: 3px;
+  background-color: #e36767;
+  display: inline-block;
+  position: absolute;
+  height: calc(100% - 24px);
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 }
 
 .table-row__edit {
-    width: 46px;
-    padding: 8px 17px;
-    display: inline-block;
-    background-color: #daf3f8;
-    border-radius: 18px;
-    vertical-align: middle;
-    margin-right: 10px;
+  width: 46px;
+  padding: 8px 17px;
+  display: inline-block;
+  background-color: #daf3f8;
+  border-radius: 18px;
+  vertical-align: middle;
+  margin-right: 10px;
   cursor: pointer;
 }
 
 .table-row__bin {
-    width: 16px;
-    display: inline-block;
-    vertical-align: middle;
+  width: 16px;
+  display: inline-block;
+  vertical-align: middle;
   cursor: pointer;
 }
 
 .table-row--red {
-    background-color: #fff2f2;
-} 
-.excluirDaTurma_btn{
+  background-color: #fff2f2;
+}
+
+.excluirDaTurma_btn {
   color: rgb(202, 16, 16);
   text-decoration: underline;
   cursor: pointer;
 }
+
 .custom-select {
   display: block;
   width: 100%;
@@ -1551,17 +1653,20 @@ margin-bottom: 20px;
   border-radius: 4px;
   background-color: #fff;
 }
-.custom-select .link_option{
+
+.custom-select .link_option {
   color: #003f5b;
   text-decoration: underline;
   cursor: auto;
 }
-#removerAluno_da_sala{
+
+#removerAluno_da_sala {
   color: #e05252;
   padding: 3px;
   font-size: 13px;
 }
-#removerAluno_da_sala:hover{
+
+#removerAluno_da_sala:hover {
   color: #f80404;
   background-color: rgba(229, 230, 231, 0.2);
 }
@@ -1570,42 +1675,43 @@ margin-bottom: 20px;
 
 /*CSS VISUALIZAR MAQUINA*/
 
-#visualizarMaquinas *{
+#visualizarMaquinas * {
   overflow-x: visible;
 }
 
-.container-infoMaq{
+.container-infoMaq {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12%;
   margin-top: 20px;
- 
+
 
 }
 
-.subInfo .id h3, .nome_maquina{
+.subInfo .id h3,
+.nome_maquina {
   color: #01567d;
   font-size: large;
 }
 
-.btns .btn{
+.btns .btn {
   width: 130px;
   background-color: var(--azulPrincipal);
   text-align: center;
   margin-top: 5px;
   border-radius: 7px;
- 
+
 
 }
 
 
-.btns .btn a{
-color: white;
- 
+.btns .btn a {
+  color: white;
+
 }
 
-.nome_maquina{
+.nome_maquina {
   display: flex;
   justify-content: center;
   margin-top: 50px;
@@ -1615,43 +1721,44 @@ color: white;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
- margin: 0 100px 0 100px;
- max-width: 100%;
+  margin: 0 100px 0 100px;
+  max-width: 100%;
 }
 
 .graficos .card-graficos {
   background-color: white;
-  width:400px;
+  width: 400px;
   border-radius: 10px;
-  box-shadow:     8px 8px 16px #cecece,
-  -8px -8px 16px #f2f2f2;
+  box-shadow: 8px 8px 16px #cecece,
+    -8px -8px 16px #f2f2f2;
   padding: 10px;
   margin: 10px;
 }
 
 #chartdiv {
   width: 100%;
-  height: 200px; 
+  height: 200px;
 }
-.tituloCheck{
+
+.tituloCheck {
   margin-top: 50px;
   color: #003f5b;
   text-align: center;
 }
 
-.infoCheck{
- text-align: center;
- color: #003f5b;
- font-weight: 600;
- font-size: 18px;
+.infoCheck {
+  text-align: center;
+  color: #003f5b;
+  font-weight: 600;
+  font-size: 18px;
 }
 
-.container-check{
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin-top: 15px;
+.container-check {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
 
 
 }
@@ -1684,13 +1791,13 @@ margin-top: 15px;
   transition: all 0.3s;
 }
 
-.material-checkbox input[type="checkbox"]:checked ~ .checkmark {
+.material-checkbox input[type="checkbox"]:checked~.checkmark {
   background-color: var(--background-main);
   border-color: #5ef059;
- 
+
 }
 
-.material-checkbox input[type="checkbox"]:checked ~ .checkmark:after {
+.material-checkbox input[type="checkbox"]:checked~.checkmark:after {
   content: "";
   position: absolute;
   top: 2px;
@@ -1702,25 +1809,25 @@ margin-top: 15px;
   transform: rotate(45deg);
 }
 
-.material-checkbox input[type="checkbox"]:focus ~ .checkmark {
+.material-checkbox input[type="checkbox"]:focus~.checkmark {
   box-shadow: 0 0 0 2px #67f714b2;
 }
 
-.material-checkbox:hover input[type="checkbox"] ~ .checkmark {
+.material-checkbox:hover input[type="checkbox"]~.checkmark {
   border-color: #000000;
 }
 
-.material-checkbox input[type="checkbox"]:disabled ~ .checkmark {
+.material-checkbox input[type="checkbox"]:disabled~.checkmark {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.material-checkbox input[type="checkbox"]:disabled ~ .checkmark:hover {
+.material-checkbox input[type="checkbox"]:disabled~.checkmark:hover {
   border-color: #1ed418;
 }
 
 
-#botao-desabilitado{
+#botao-desabilitado {
   border-color: #ff0101;
 }
 
@@ -1728,10 +1835,11 @@ margin-top: 15px;
 /*FIM CSS VISUALIZAR MAQUINA*/
 
 /*CSS MAQUINAS DA TURMA*/
-#main_maquinasDaTurmas *{
+#main_maquinasDaTurmas * {
   overflow-x: visible;
 }
-#main_maquinasDaTurmas .maquinas{
+
+#main_maquinasDaTurmas .maquinas {
   position: relative;
   display: flex;
   justify-content: center;
@@ -1740,7 +1848,8 @@ margin-top: 15px;
   flex-wrap: wrap;
   padding: 100px 50px;
 }
-#main_maquinasDaTurmas .maquinas .card{
+
+#main_maquinasDaTurmas .maquinas .card {
   position: relative;
   display: flex;
   justify-content: center;
@@ -1755,11 +1864,13 @@ margin-top: 15px;
   cursor: pointer;
   margin: 5px;
 }
-#main_maquinasDaTurmas .maquinas .card:hover{
+
+#main_maquinasDaTurmas .maquinas .card:hover {
   height: 350px;
   box-shadow: none;
 }
-#main_maquinasDaTurmas .maquinas .card .imgBx{
+
+#main_maquinasDaTurmas .maquinas .card .imgBx {
   position: absolute;
   width: 300px;
   height: 200px;
@@ -1768,50 +1879,59 @@ margin-top: 15px;
   transition: 0.5s;
   z-index: 1;
 }
-#main_maquinasDaTurmas .maquinas .card:hover .imgBx{
+
+#main_maquinasDaTurmas .maquinas .card:hover .imgBx {
   top: -100px;
-  scale:0.75;
+  scale: 0.75;
 }
-#main_maquinasDaTurmas .maquinas .card .imgBx img{
+
+#main_maquinasDaTurmas .maquinas .card .imgBx img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   object-fit: cover;
 }
-#main_maquinasDaTurmas .maquinas .card .content{
+
+#main_maquinasDaTurmas .maquinas .card .content {
   top: 290px;
   position: absolute;
   width: 100%;
-  padding:0px 30px;
+  padding: 0px 30px;
   text-align: center;
-  height:75px;
+  height: 75px;
   overflow: hidden;
   transition: 0.5s ease;
 }
-#main_maquinasDaTurmas .maquinas .card .content div{
+
+#main_maquinasDaTurmas .maquinas .card .content div {
   display: flex;
   justify-content: center;
 }
-#main_maquinasDaTurmas .maquinas .card .content h2{
- color: #003f5b;
- font-size: 1.9rem;
- background-color: #fff;
- font-weight: 600;
- transition: .2s;
+
+#main_maquinasDaTurmas .maquinas .card .content h2 {
+  color: #003f5b;
+  font-size: 1.9rem;
+  background-color: #fff;
+  font-weight: 600;
+  transition: .2s;
 }
-#main_maquinasDaTurmas .maquinas .card:hover .content{
+
+#main_maquinasDaTurmas .maquinas .card:hover .content {
   height: 250px;
   top: 170px;
 }
-#main_maquinasDaTurmas .maquinas .card .content h2:hover{
+
+#main_maquinasDaTurmas .maquinas .card .content h2:hover {
   color: #01b9d1;
 }
-#main_maquinasDaTurmas .maquinas .card .content p{
+
+#main_maquinasDaTurmas .maquinas .card .content p {
   color: var(--azulEscuro);
- padding: 2px;
+  padding: 2px;
 }
-#main_maquinasDaTurmas .maquinas .card .content a{
+
+#main_maquinasDaTurmas .maquinas .card .content a {
   display: flex;
   justify-content: center;
   color: var(--background-main);
@@ -1824,36 +1944,42 @@ margin-top: 15px;
   width: 40%;
   margin-top: 15px;
 }
-#main_maquinasDaTurmas .maquinas .card:hover .content a:hover{
+
+#main_maquinasDaTurmas .maquinas .card:hover .content a:hover {
   color: var(--background-main);
   background-color: #0392d4;
   transform: scale(0.9);
 }
+
 /*FIM CSS MAQUINAS DA TURMA*/
 
 
 /* CSS FORM EDITAR PERFIL*/
-#body_perfil{
+#body_perfil {
   background-image: url(../img/svg/bg_perfil.svg);
   background-repeat: no-repeat;
   background-position: top;
- background-position-y: 14%;
+  background-position-y: 14%;
 }
-#main_formPerfil{
+
+#main_formPerfil {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
-#main_formPerfil .container_form{
- width: 280px;
-} 
-#main_formPerfil .container_form section{
+
+#main_formPerfil .container_form {
+  width: 280px;
+}
+
+#main_formPerfil .container_form section {
   background-color: rgb(240, 238, 238);
   display: flex;
   justify-content: center;
   border-radius: 15px;
 }
-#main_formPerfil .container_form section .edit_Icon{
+
+#main_formPerfil .container_form section .edit_Icon {
   display: flex;
   margin-bottom: 160px;
   margin-left: 226px;
@@ -1863,40 +1989,60 @@ margin-top: 15px;
   transition: .3s ease;
 }
 
-#main_formPerfil .container_form section .edit_Icon:hover{
- transform:  scale(0.8);
+#main_formPerfil .container_form section .edit_Icon:hover {
+  transform: scale(0.8);
 }
-#main_formPerfil .container_form form{
+
+#main_formPerfil .container_form form {
   margin-top: 40px;
 }
 
-#main_formPerfil .container_form  .input {
+#main_formPerfil .container_form .input {
   margin-bottom: 50px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 36px;
   align-items: center;
 }
 
-#main_formPerfil .container_form  .input input{
+#main_formPerfil .container_form .input input {
   margin: 2px;
 }
-#main_formPerfil .container_form  .input .nome{background-image: url(../img/Person.png);}
-#main_formPerfil .container_form  .input .cpf{background-image: url(../img/svg/documentoIcone.svg);}
-#main_formPerfil .container_form  .input .turma{background-image: url(../img/svg/nameTag.svg);}
-#main_formPerfil .container_form  .input .codigo{background-image: url(../img/svg/Lock.svg);}
-#main_formPerfil .container_form  .input #codigo_acesso{background-image: url(../img/svg/nameTag.svg);}
 
-#main_formPerfil .container_form form  .bnts{
+#main_formPerfil .container_form .input .nome {
+  background-image: url(../img/Person.png);
+}
+
+#main_formPerfil .container_form .input .cpf {
+  background-image: url(../img/svg/documentoIcone.svg);
+}
+
+#main_formPerfil .container_form .input .turma {
+  background-image: url(../img/svg/nameTag.svg);
+}
+
+#main_formPerfil .container_form .input .codigo {
+  background-image: url(../img/svg/Lock.svg);
+}
+
+#main_formPerfil .container_form .input #codigo_acesso {
+  background-image: url(../img/svg/nameTag.svg);
+}
+
+#main_formPerfil .container_form form .bnts {
   display: flex;
   flex-direction: column;
 }
-#main_formPerfil .container_form form  .bnts .inputs{
+
+#main_formPerfil .container_form form .bnts .inputs {
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-#main_formPerfil .container_form form  .bnts input, #submitCadastrarSala, .cadastrar-maquina input{
+
+#main_formPerfil .container_form form .bnts input,
+#submitCadastrarSala,
+.cadastrar-maquina input {
   display: flex;
   justify-content: center;
   color: var(--cinza);
@@ -1912,20 +2058,24 @@ margin-top: 15px;
   height: 100%;
   margin: 10px 0px 0px 10px;
 }
-#main_formPerfil .container_form form  .bnts input:hover{
+
+#main_formPerfil .container_form form .bnts input:hover {
   color: var(--azulEscuro);
   background-color: var(--background-main);
   transform: scale(0.9);
 }
-#main_formPerfil .container_form form  .bnts input:disabled{
+
+#main_formPerfil .container_form form .bnts input:disabled {
   background-color: #4d4d4d;
   cursor: not-allowed;
 }
-#main_formPerfil .container_form form  .bnts input:disabled:hover{
+
+#main_formPerfil .container_form form .bnts input:disabled:hover {
   transform: none;
   color: white;
 }
-#main_formPerfil .container_form form  .bnts  a{
+
+#main_formPerfil .container_form form .bnts a {
   display: flex;
   justify-content: center;
   margin-top: 34px;
@@ -1933,16 +2083,23 @@ margin-top: 15px;
   text-decoration: underline;
   transition: .2s ease;
 }
-#main_formPerfil .container_form form  .bnts  a:hover{
+
+#main_formPerfil .container_form form .bnts a:hover {
   color: #01b9d1;
 }
-#main_formPerfil #botaoCancelar, #cancelar_button,#botaoCancelarRecuperacaoSenha{
+
+#main_formPerfil #botaoCancelar,
+#cancelar_button,
+#botaoCancelarRecuperacaoSenha {
   background-color: rgb(202, 60, 60);
   margin-top: 10px;
   transition: .5s ease;
 }
-#main_formPerfil  #botaoCancelar:hover, #cancelar_button:hover, #botaoCancelarRecuperacaoSenha:hover{
-  color:  rgb(202, 60, 60);
+
+#main_formPerfil #botaoCancelar:hover,
+#cancelar_button:hover,
+#botaoCancelarRecuperacaoSenha:hover {
+  color: rgb(202, 60, 60);
   background-color: var(--background-main);
   transform: scale(0.9);
 }
@@ -1950,58 +2107,70 @@ margin-top: 15px;
 /*FIM CSS FORM EDITAR PERFIL*/
 
 /*CSS FORM EDITAR turma*/
-#checkboxesFormEditarTurma{
+#checkboxesFormEditarTurma {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-#checkboxesFormEditarTurma .cyberpunk-checkbox{
+
+#checkboxesFormEditarTurma .cyberpunk-checkbox {
   border: var(--azulEscuro) 2px solid;
 }
-#checkboxesFormEditarTurma .cyberpunk-checkbox::before{
+
+#checkboxesFormEditarTurma .cyberpunk-checkbox::before {
   background-color: var(--azulPrincipal);
 }
- #checkboxesFormEditarTurma .cyberpunk-checkbox-label{
+
+#checkboxesFormEditarTurma .cyberpunk-checkbox-label {
   display: flex;
   color: #000000;
 }
-#checkboxesFormEditarTurma  .titulo p{
+
+#checkboxesFormEditarTurma .titulo p {
   color: #000000;
 }
+
 /*FIM CSS FORM EDITAR turma*/
 
 
 /* CSS GESTOR DEAFULT*/
 
 /* - modal - */
-.w3-display-topright{
+.w3-display-topright {
   color: white;
   font-size: 30px;
-  transition: .3s ease ;
+  transition: .3s ease;
 }
-.w3-display-topright:hover{
-  transform: scale(0.9,0.9);
-  background-color:transparent;
+
+.w3-display-topright:hover {
+  transform: scale(0.9, 0.9);
+  background-color: transparent;
 }
- #submitCadastrarGestor{
+
+#submitCadastrarGestor {
   font-size: 17px;
   margin-top: 10px;
 }
-#submitConfirmarExclusao{
+
+#submitConfirmarExclusao {
   background-color: #e64545;
   font-size: 17px;
 }
-#submitConfirmarExclusao:hover{
-background-color: #ee7d7d;
+
+#submitConfirmarExclusao:hover {
+  background-color: #ee7d7d;
 }
+
 #gestor_default_main .bnts {
   display: flex;
   justify-content: center;
   margin-top: 88px;
   gap: 5px;
 }
+
 #gestor_default_main .bnts #submitCadastrarSala {
   width: 50%;
 }
+
 #gestor_default_main .bnts input {
   font-size: 15px;
   padding: 10px;
@@ -2011,73 +2180,88 @@ background-color: #ee7d7d;
 #gestor_default_main .w3-button {
   color: white;
 }
+
 .form_modal .header {
   display: flex;
   justify-content: center;
 }
+
 .form_modal form {
   padding: 2vw;
 }
+
 .form_modal .container .header {
   padding: 10px;
 }
+
 .form_modal .container .header .logo {
   padding: 20px;
 }
+
 .form_modal .container .header .icone {
   display: flex;
   justify-content: center;
   padding: 20px;
 }
+
 .form_modal .p_modal {
   color: #bfe8fbb2;
   font-size: 16px;
   display: flex;
   justify-content: center;
 }
+
 .form_modal #exclusaoGestor_p {
- margin-top: 10px;
+  margin-top: 10px;
 }
-#verificacaoCPF_p{
+
+#verificacaoCPF_p {
   color: #0392d4;
 }
+
 /* ----- */
 
 /* FIM CSS GESTOR DEAFULT*/
 
 /* CSS CADASTRAR prof*/
 
-#main_cadastrarProfessor{
+#main_cadastrarProfessor {
   display: flex;
   justify-content: center;
   padding-top: 100px;
 }
-#main_cadastrarProfessor h2{
+
+#main_cadastrarProfessor h2 {
   color: #fff;
   display: flex;
   justify-content: center;
 }
+
 /* FIM CSS CADASTRAR prof*/
 
 /*  CSS  RECUPERACAO SENHA*/
-#body_recuperacaoSenha .modal-header button{
+#body_recuperacaoSenha .modal-header button {
   background-color: rgb(211, 209, 209);
   border-radius: 3px;
   color: #e36767;
 }
-#botaoCancelarRecuperacaoSenha{
+
+#botaoCancelarRecuperacaoSenha {
   margin-top: 0px;
 }
-#enviarSenha,#botaoCancelarRecuperacaoSenha{
+
+#enviarSenha,
+#botaoCancelarRecuperacaoSenha {
   padding: 10px;
   border-radius: 15px;
   font-size: 15px;
 }
+
 /* FIM CSS  RECUPERACAO SENHA*/
 
 
 /* CSS  CONFIRMAR EMAIL*/
-.botoesTurmaNova input{
+.botoesTurmaNova input {
   margin-bottom: 20px;
 }
 
@@ -2132,9 +2316,9 @@ background-color: #ee7d7d;
 
 .box:hover::before {
   color: rgb(241, 235, 235);
-  background-color:#1761A6;
+  background-color: #1761A6;
   height: 100%;
-  
+
 }
 
 
@@ -2145,9 +2329,10 @@ background-color: #ee7d7d;
   gap: 10px;
   display: flex;
   justify-content: center;
-  
+
 }
-.addCategoria div{
+
+.addCategoria div {
   background-color: #01567d;
   display: flex;
   justify-content: space-between;
@@ -2155,15 +2340,16 @@ background-color: #ee7d7d;
   border-radius: 10px;
   transition: .3s ease;
   font-size: 18px;
- 
+
 }
-.addCategoria i{
+
+.addCategoria i {
   display: flex;
   align-items: center;
   margin-right: 8px;
 }
 
-.addCategoria form input{
+.addCategoria form input {
   color: white;
   cursor: pointer;
   background-color: #01567d;
@@ -2171,21 +2357,21 @@ background-color: #ee7d7d;
   height: auto;
 }
 
-.imagem-cadastrar{
+.imagem-cadastrar {
   max-width: 100%;
 }
 
-.input-file{
-  display:none;
+.input-file {
+  display: none;
 }
 
-.inputs-cadastrar-maquina{
+.inputs-cadastrar-maquina {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
 }
 
-.inputs-cadastrar-maquina input{
+.inputs-cadastrar-maquina input {
   width: 350px;
   padding: 10px;
   margin: 5px;
@@ -2193,43 +2379,45 @@ background-color: #ee7d7d;
 }
 
 
-.cadastrar-maquina{
+.cadastrar-maquina {
   margin-top: 20px;
- 
+
 }
 
-.cadastrar-maquina input{
+.cadastrar-maquina input {
   width: 220px;
   padding: 7px;
   border-radius: 10px;
   background-color: #1761A6;
   color: white;
   font-size: 18px;
- cursor: pointer;
- height: auto;
+  cursor: pointer;
+  height: auto;
 }
 
-.cadastrar-maquina input:hover{
-transform: scale(0.9);
-transition: .3s ease;
+.cadastrar-maquina input:hover {
+  transform: scale(0.9);
+  transition: .3s ease;
 }
-.inputs-cadastrar-maquina .input_modal{
+
+.inputs-cadastrar-maquina .input_modal {
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
-.opcional{
+.opcional {
   color: #8ba6b8;
 }
 
 /* FIM CSS CADASTRAR MAQUINA*/
 
 /*  CSS INPUT DE ADD IMG*/
-#section_input_img{
+#section_input_img {
   display: flex;
   justify-content: center;
   margin-top: 30px;
 }
+
 #div_img_input {
   border-radius: 15px;
   background: #046693;
@@ -2253,9 +2441,10 @@ transition: .3s ease;
   text-align: center;
   width: 350px;
 }
-#div_img_input:hover{
+
+#div_img_input:hover {
   background-color: #0392d4;
-  transform: scale(0.9,0.9);
+  transform: scale(0.9, 0.9);
 }
 
 .imagem {
@@ -2266,38 +2455,61 @@ transition: .3s ease;
 .input-file {
   display: none;
 }
+
 /* FIM CSS  INPUT DE ADD IMG*/
 
 
 /*  CSS CADASTRAR  TIPO DE MAQUINA*/
-#main_cadastrarCategoriaMaquina{
+#main_cadastrarCategoriaMaquina {
   display: flex;
   justify-content: center;
 }
-#body_cadastrarCategoriaMaquina .logo-inicial{
+
+#body_cadastrarCategoriaMaquina .logo-inicial {
   padding: 0;
 }
-#main_cadastrarCategoriaMaquina .form_modal *{
+
+#main_cadastrarCategoriaMaquina .form_modal * {
   overflow-y: hidden;
 }
-#main_cadastrarCategoriaMaquina .form_modal .container .header{
+
+#main_cadastrarCategoriaMaquina .form_modal .container .header {
   margin: 20px 0px -20px 0px;
 }
-#main_cadastrarCategoriaMaquina{
+
+#main_cadastrarCategoriaMaquina {
   padding: 2%;
 }
-#main_cadastrarCategoriaMaquina .checkboxes_section {
-  flex-wrap: wrap;
+#main_cadastrarCategoriaMaquina button {
+  padding: 8px 10px 8px 10px;
+  color: #fff;
+  border-radius: 15px;
+  font-size: 14px;
+  background-color: var(--azulEscuro);
+  cursor: pointer;
+  transition: 0.3s;
+  align-items: center;
+}
+#main_cadastrarCategoriaMaquina  .bnts div{
   display: flex;
-  justify-content: space-around;
-  margin-top:  5vmin;
+  justify-content: center;
+  align-items: center;
 }
 
-#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .cyberpunk-checkbox-label{
+#main_cadastrarCategoriaMaquina .checkboxes_section {
+  /* flex-wrap: wrap;
+  display: flex;
+  justify-content: space-evenly; */
+  margin-top: 5vmin;
+}
+
+#main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .cyberpunk-checkbox-label {
   margin-top: 15px;
 }
+
 #main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .titulo {
   display: flex;
+  justify-content: flex-start;
 }
 
 #main_cadastrarCategoriaMaquina .checkboxes_section .checkboxes .titulo p {
@@ -2329,15 +2541,23 @@ transition: .3s ease;
   font-size: 13px;
   font-weight: 500;
 }
-#main_cadastrarCategoriaMaquina .bnts{
+
+#main_cadastrarCategoriaMaquina .bnts {
   display: flex;
   justify-content: center;
   margin-top: 26px;
 }
-#main_cadastrarCategoriaMaquina  .w3-modal-content{
+
+#main_cadastrarCategoriaMaquina .w3-modal-content {
   width: 52vw;
 }
-#main_cadastrarCategoriaMaquina .inputNomePeca, .inputCodPeca, .inputTrocaPeca,.inputItem,.inputVReferencia,.inputAtt{
+
+#main_cadastrarCategoriaMaquina .inputNomePeca,
+.inputCodPeca,
+.inputTrocaPeca,
+.inputItem,
+.inputVReferencia,
+.inputAtt {
   background-image: url("../img/svg/Gears.svg");
   background-repeat: no-repeat;
   background-size: 1.6rem;
@@ -2345,12 +2565,26 @@ transition: .3s ease;
   padding: 9px;
   width: 100%;
 }
-#main_cadastrarCategoriaMaquina .inputCodPeca{background-image: url(../img/svg/nameTag.svg);}
-#main_cadastrarCategoriaMaquina .inputTrocaPeca{background-image: url(../img/svg/Time.svg);}
-#main_cadastrarCategoriaMaquina .inputItem{background-image: url(../img/svg/checklist.svg);}
-#main_cadastrarCategoriaMaquina .inputVReferencia{background-image: url(../img/svg/reference.svg);}
 
-#novoAtributo .containerNovoAtt, #novoItem .containerNovoItem,#novoPeca  .containerNovaPeca{
+#main_cadastrarCategoriaMaquina .inputCodPeca {
+  background-image: url(../img/svg/nameTag.svg);
+}
+
+#main_cadastrarCategoriaMaquina .inputTrocaPeca {
+  background-image: url(../img/svg/Time.svg);
+}
+
+#main_cadastrarCategoriaMaquina .inputItem {
+  background-image: url(../img/svg/checklist.svg);
+}
+
+#main_cadastrarCategoriaMaquina .inputVReferencia {
+  background-image: url(../img/svg/reference.svg);
+}
+
+#novoAtributo .containerNovoAtt,
+#novoItem .containerNovoItem,
+#novoPeca .containerNovaPeca {
   margin-bottom: 5px;
   background-color: #003f5b;
   padding: 3%;
@@ -2359,9 +2593,9 @@ transition: .3s ease;
   width: 100%;
   border-radius: 10px;
 }
-#novoAtributo .containerNovoAtt div{
+
+#novoAtributo .containerNovoAtt div {
   width: 90%;
 }
 
 /* FIM CSS CADASTRAR TIPO DE MAQUINA*/
-
