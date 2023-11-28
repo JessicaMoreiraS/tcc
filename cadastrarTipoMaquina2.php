@@ -95,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])){
         $peca = $arrayNovoPecaNome[$x];
         $codigo = $arrayNovoPecaCod[$x];
         $tempoTroca = $arrayNovoPecaTempoTroca[$x];
-        $sqlInserePeca = "INSERT INTO peca_tipo (codigo, peca, tempoTroca) VALUES ('$codigo', '$pea', '$tempoTroca')";
+        $sqlInserePeca = "INSERT INTO peca_tipo (codigo, peca, tempo_de_troca) VALUES ('$codigo', '$peca', '$tempoTroca')";
         $mysqli->query($sqlInserePeca);
         $idPecaAdd[] = mysqli_insert_id($mysqli);
     }
@@ -121,19 +121,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])){
     $linhasPeca =  mysqli_num_rows($executaSqlContarPeca);
     $linhasItem =  mysqli_num_rows($executaSqlContarItem);
 
-    for($x=1; $x<$linhasAtributo; $x++){
+    for($x=1; $x<=$linhasAtributo; $x++){
         if(isset($_POST['atributo-'.$x]) && $_POST['atributo-'.$x] == "on"){
             $idAtributoAdd[] = $x;
         }
     }
-    for($x=1; $x<$linhasPeca; $x++){
+    for($x=1; $x<=$linhasPeca; $x++){
         if(isset($_POST['peca-'.$x]) && $_POST['peca-'.$x] == "on"){
-            $idPecaAddAdd[] = $x;
+            $idPecaAdd[] = $x;
         }
     }
-    for($x=1; $x<$linhasItem; $x++){
+    for($x=1; $x<=$linhasItem; $x++){
         if(isset($_POST['item-'.$x]) && $_POST['item-'.$x] == "on"){
-            $idItemAddAdd[] = $x;
+            $idItemAdd[] = $x;
         }
     }
 
@@ -142,13 +142,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])){
         $mysqli->query($sqlListaAtributoTipo);
     }
     foreach($idPecaAdd as $idPeca){
-        $sqlListaPecaTipo = "INSERT INTO lista_tipo_maquina_peca (id_tipo_maquina, id_atributos) VALUES ($idNovoTipo, $idPeca)";
+        $sqlListaPecaTipo = "INSERT INTO lista_tipo_maquina_peca (id_tipo_maquina, id_peca) VALUES ($idNovoTipo, $idPeca)";
+       
         $mysqli->query($sqlListaPecaTipo);
     }
     foreach($idItemAdd as $idItem){
-        $sqlListaItemTipo = "INSERT INTO lista_tipo_maquina_item_checklist (id_tipo_maquina, id_atributos) VALUES ($idNovoTipo, $idItem)";
+        $sqlListaItemTipo = "INSERT INTO lista_tipo_maquina_item_checklist (id_tipo_maquina, id_item_checklist) VALUES ($idNovoTipo, $idItem)";
         $mysqli->query($sqlListaItemTipo);
     }
+    
 }
 
 /*
@@ -165,31 +167,106 @@ function tirarAcentos($string){
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://unpkg.com/scrollreveal"></script>
     <title>Cadastrar Categoria de Máquina</title>
 </head>
-<body>
-    <form action="" method="POST">
-        <input type="text" placeholder="Categoria" name="categoria">
+<body id="body_cadastrarCategoriaMaquina">
 
-        <?php
-        echo "<p>Atributos para medição pelo Microcontrolador</p>";
-        for($i=0; $i<count($arrayIdAtributos); $i++){
-            echo '<input type="checkbox" name="atributo-'.$arrayIdAtributos[$i].'"><label>'.$arrayNomeAtributos[$i].'</label>';
-        }
-        echo '<div id="novoAtributo"></div>';
-        echo "<p>Peças</p>";
-        for($i=0; $i<count($arrayIdPecas); $i++){
-            echo '<input type="checkbox" name="peca-'.$arrayIdPecas[$i].'"><label>'.$arrayCodPecas[$i]."-".$arrayNomePecas[$i].'</label>';
-        }
-        echo '<div id="novoPeca"></div>';
-        echo "<p>Itens Para o Checklist</p>";
-        for($i=0; $i<count($arrayIdItens); $i++){
-            echo '<input type="checkbox" name="item-'.$arrayIdItens[$i].'"><label>'.$arrayNomeItens[$i].'</label>';
-        }
-        echo '<div id="novoItem"></div>';
-        ?>
-        <input type="submit" value="Salvar">
-    </form>
+<header class="topo-inicial">
+      <img
+        width="140"
+        class="logo-inicial"
+        src="img/logo-senai-branco.png"
+        alt=""
+      />
+
+      <div class="icons">
+        <input
+          type="checkbox"
+          role="button"
+          aria-label="Display the menu"
+          class="menu"
+        />
+      </div>
+    </header>
+
+    <main id="main_cadastrarCategoriaMaquina">
+
+    <div class="w3-modal-content w3-animate-top">
+        <div class="form_modal">
+            <div class="container">
+                <div class="header">
+                <div>
+                    <div class="icone">
+                    <i
+                        class="fa fa-cogs fa-5x"
+                        style="font-size: 70px; color: rgb(255, 255, 255)"
+                    ></i>
+                    </div>
+                </div>
+                </div>
+                <form action="" method="POST">
+                    <!-- <input type="text" placeholder="Categoria" name="categoria"> -->
+                    <div class="input_modal">
+                        <input required type="text" placeholder="Nome da Categoria" name="categoria">
+                    </div>
+  
+                    <section class="checkboxes_section">
+                       
+                        <?php
+                        echo "<div class='checkboxes'>";
+                    
+                            echo "<div class='titulo'>
+                                <p>Atributos para medição pelo Microcontrolador</p>
+                                <i
+                                class='fa fa-info-circle'
+                                title='Esses itens irão fazer parte desta categoria de máquina. E poderão ser verificadas no momento do checklist.'
+                                ></i>
+                                </div>";
+                            
+                            echo '<div class="container-checkboxes">';
+                            
+                                for($i=0; $i<count($arrayIdAtributos); $i++){
+                                    echo '<label  class="cyberpunk-checkbox-label"><input type="checkbox"  class="cyberpunk-checkbox" name="atributo-'.$arrayIdAtributos[$i].'">'.$arrayNomeAtributos[$i].'</label>';
+                                }
+                            echo ' </div>';
+                        echo "</div>";
+
+                        echo "<br>";
+
+                        echo '<div class="container-checkboxes">';
+                            echo '<div id="novoAtributo"></div>';
+
+                        echo "<div class='titulo'>
+                                    <p>Peças</p>
+                                    <i
+                                    class='fa fa-info-circle'
+                                    title='Esses itens irão fazer parte desta categoria de máquina. E poderão ser verificadas no momento do checklist.'
+                                    ></i>
+                                    </div>";
+                            for($i=0; $i<count($arrayIdPecas); $i++){
+                                echo '<input type="checkbox" name="peca-'.$arrayIdPecas[$i].'"><label>'.$arrayCodPecas[$i]."-".$arrayNomePecas[$i].'</label>';
+                            }
+                            echo '<div id="novoPeca"></div>';
+                            echo "<p>Itens Para o Checklist</p>";
+                            for($i=0; $i<count($arrayIdItens); $i++){
+                                echo '<input type="checkbox" name="item-'.$arrayIdItens[$i].'"><label>'.$arrayNomeItens[$i].'</label>';
+                            }
+                            echo '<div id="novoItem"></div>';
+                        echo "</div>";
+                        ?>
+                    </section>
+                    <input type="submit" value="Salvar">
+                </form>
+            </div>
+        </div>    
+    </div>
 
     <button onclick="criarInputs('Atributo')">Novo Atributo paraEsp</button>
     <button onclick="criarInputs('Peca')">Nova Peça</button>
@@ -199,6 +276,20 @@ function tirarAcentos($string){
     <script src="js/script.js"></script>
 </body>
 </html>
+<script src="js/reveal.js"></script>
+  <script>
+    const $ = document.querySelector.bind(document);
+
+    const previewImg = $(".imagem");
+    const fileChooser = $(".input-file");
+
+    fileChooser.onchange = (e) => {
+      const fileToUpload = e.target.files.item(0);
+      const reader = new FileReader();
+      reader.onload = (e) => (previewImg.src = e.target.result);
+      reader.readAsDataURL(fileToUpload);
+    };
+  </script>
 <?php
     if (filter_input(INPUT_GET, 'e')) {
         $mensagem_erro = filter_input(INPUT_GET, 'e');
