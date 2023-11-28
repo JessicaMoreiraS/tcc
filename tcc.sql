@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28-Nov-2023 às 14:28
+-- Tempo de geração: 28-Nov-2023 às 15:12
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -315,7 +315,7 @@ CREATE TABLE `peca_tipo` (
   `id` int(11) NOT NULL,
   `codigo` varchar(50) NOT NULL,
   `peca` varchar(50) NOT NULL,
-  `tempo_de_troca` time NOT NULL
+  `tempo_de_troca` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -323,7 +323,7 @@ CREATE TABLE `peca_tipo` (
 --
 
 INSERT INTO `peca_tipo` (`id`, `codigo`, `peca`, `tempo_de_troca`) VALUES
-(1, 'tste', 'teste', '83:53:47');
+(1, 'tste', 'teste', 800000);
 
 -- --------------------------------------------------------
 
