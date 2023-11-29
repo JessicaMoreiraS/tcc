@@ -131,8 +131,9 @@ function criarInputs(tipo) {
     if (tipo == "Atributo" && contadorAtributo < 5) {
         contadorAtributo++;
         conteudo = `
-                <div class="containerNovoAtt">
+                <div class="containerNovoAtt" id="campoAtributo${contadorAtributo}">
                     <div>
+                        <div onclick="deletaNovoCampo('campoAtributo${contadorAtributo}')">X</div>
                             <div class="input_modal">
                                 <input class="inputAtt" type="text" name="atributo${contadorAtributo}" placeholder="Atributo">
                             </div>
@@ -149,8 +150,9 @@ function criarInputs(tipo) {
     if (tipo == "Peca" && contadorPeca < 5) {
         contadorPeca++;
         conteudo = `    
-                <div class="containerNovaPeca">
-                    <div>
+                <div class="containerNovaPeca" id="campoPeca${contadorPeca}">
+                <div>
+                    <div onclick="deletaNovoCampo('campoPeca${contadorPeca}')">X</div>
                         <div class="input_modal">
                             <input class="inputNomePeca" type="text" name="peca${contadorPeca}" placeholder="Nome da peça" >
                         </div> 
@@ -170,8 +172,9 @@ function criarInputs(tipo) {
     if (tipo == "Item" && contadorItem < 5) {
         contadorItem++;
         conteudo = `
-            <div  class="containerNovoItem">
+            <div  class="containerNovoItem" id="campoItem${contadorItem}">
                 <div>
+                    <div onclick="deletaNovoCampo('campoItem${contadorItem}')">X</div>
                     <div class="input_modal">
                         <input type="text"  class="inputItem" name="item${contadorItem}" placeholder="Item">
                     </div>
@@ -182,5 +185,10 @@ function criarInputs(tipo) {
     }
 
     div.innerHTML += conteudo;
+}
+function deletaNovoCampo(id){
+    event.preventDefault;
+    var div = document.getElementById(id)
+    div.parentNode.removeChild(div);
 }
 
