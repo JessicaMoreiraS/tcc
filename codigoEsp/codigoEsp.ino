@@ -268,7 +268,7 @@ void loop() {
    
    
     // http.begin("http://192.168.110.214/tcc/getdata.php");
-    http.begin("https://192.168.237.214/tcc/getdata.php");
+    http.begin("https://192.168.41.214/tcc/getdata.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
    
     httpCode = http.POST(postData);
@@ -322,7 +322,7 @@ void loop() {
     Serial.println();
     Serial.println("---------------updateDHT11data.php");
     // http.begin("http://192.168.110.214/tcc/updateDHT11data.php");
-    http.begin("https://192.168.237.214/tcc/updateDHT11data.php");
+    http.begin("https://192.168.41.214/tcc/updateDHT11data.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviando os dados ao servidor

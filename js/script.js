@@ -187,7 +187,6 @@ function criarInputs(tipo) {
     div.innerHTML += conteudo;
 }
 function deletaNovoCampo(id){
-    event.preventDefault;
     var div = document.getElementById(id)
     div.parentNode.removeChild(div);
 }
