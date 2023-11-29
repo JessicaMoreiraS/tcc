@@ -21,6 +21,8 @@
     $fabricante ="";
     $imagem = "";
     $tipo = "";
+    $ledVermelho="";
+    $ledVerde="";
     if($_GET['id_maquina']){
         $idDaMaquina = $_GET['id_maquina'];
 
@@ -30,6 +32,8 @@
             $fabricante= $row['fabricante'];
             $imagem= $row['imagem'];
             $tipo= $row['tipo'];
+            $ledVermelho=$row['led_vermelho'];
+            $ledVerde=$row['led_verde'];
             $imagem = base64_encode($imagem);
         }
     }
@@ -274,9 +278,17 @@
             <div class="subInfo">
                 <div class="id">
                     <h3>ID:<?php echo $idDaMaquina; ?></h3>
-                    </div>
+                </div>
+
+                <?php
+                if($ledVerde == "ON"){
+                    echo '<div class="boxLedCheck">Status da máquina:<div class="boxLedCheck2"><div class="ledVerdeOn"></div><div class="ledOff"></div></div></div>';
+                }else if($ledVermelho == "ON"){
+                    echo '<div class="boxLedCheck">Status da máquina:<div class="boxLedCheck2"><div class="ledOff"></div><div class="ledVermelhoOn"></div></div></div>';
+                }
+                ?>
                 
-                    <div class="btns">
+                <div class="btns">
                     <div class="btn">
                         <a href="">Manual</a>
                     </div>

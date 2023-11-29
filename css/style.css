@@ -1682,6 +1682,37 @@ background-color: #003f5b;
 #visualizarMaquinas * {
   overflow-x: visible;
 }
+.boxLedCheck{
+  display: flex;
+  flex-direction: column;
+}
+.boxLedCheck2{
+  width: 75px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ledVermelhoOn{
+  width: 25px;
+  height: 25px;
+  background-color: rgb(226, 96, 96);
+  border-radius: 100px;
+  margin: 2%;
+}
+.ledVerdeOn{
+  width: 25px;
+  height: 25px;
+  background-color: rgb(98, 199, 98);
+  border-radius: 100px;
+  margin: 2%;
+}
+.ledOff{
+  width: 25px;
+  height: 25px;
+  background-color: grey;
+  border-radius: 100px;
+  margin: 2%;
+}
 
 .container-infoMaq {
   display: flex;

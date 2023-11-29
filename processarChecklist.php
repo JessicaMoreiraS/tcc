@@ -68,7 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($stmt, "iss", $idResponsavel, $idDaMaquina, $dataHora);
     
             if(mysqli_stmt_execute($stmt) && $mysqli->query($sqlLuzVerde)){
-                echo "Inserção bem-sucedida!";
+                // echo "Inserção bem-sucedida!";
+                header('Location: Checklist.php?id_maquina='$idDaMaquina);
             }else{
                 echo "Erro na inserção: ".mysqli_error($conexao);
             }

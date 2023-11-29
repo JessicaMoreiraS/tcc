@@ -56,7 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo $dataHora;
         if($mysqli->query($sqlCheck) && $mysqli->query($sqlLuzVerde)){
-            echo "Inserção bem-sucedida!";
+            // echo "Inserção bem-sucedida!";
+            header('Location: Checklist.php?id_maquina='.$idDaMaquina);
             return;
         }else{
             echo "Erro na inserção: ".mysqli_error($mysqli);
@@ -67,7 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //nao chickou todos os itens da checklist
         $sqlLuzVermelha = "UPDATE maquina SET led_verde='OFF', led_amarelo='OFF', led_vermelho='ON' WHERE id = $idDaMaquina";
         if($mysqli->query($sqlLuzVermelha)){
-            echo "Inserção bem-sucedida!";
+            header('Location: Checklist.php?id_maquina='.$idDaMaquina);
+            // echo "Inserção bem-sucedida!";
         }else{
             echo "Erro na inserção: ".mysqli_error($conexao);
         }
