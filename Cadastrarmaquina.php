@@ -13,6 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_tipo_maquina = $_POST["tipo_maquina"];
     $modelo = $_POST["modelo"];
     $fabricante = $_POST["fabricante"];
+    $ledOff="OFF";
+    $ledOn="ON";
     $imagem = $_FILES["imagem"]["tmp_name"] ? file_get_contents($_FILES["imagem"]["tmp_name"]) : null;
 
     // Verificar se o tipo de máquina já existe
@@ -23,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->num_rows > 0) {
         // Tipo de máquina existe
-        $stmt = $mysqli->prepare("INSERT INTO maquina (id, id_tipo_maquina, modelo, fabricante, imagem) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sissb", $id_maquina, $id_tipo_maquina, $modelo, $fabricante, $imagem);
+        $stmt = $mysqli->prepare("INSERT INTO maquina (id, id_tipo_maquina, modelo, fabricante, imagem, led_verde, led_amarelo, led_vermelho) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sissbsss", $id_maquina, $id_tipo_maquina, $modelo, $fabricante, $imagem, $ledOff, $ledOff, $ledOn);
         $stmt->send_long_data(4, $imagem);  // Para dados BLOB (imagem)
 
         $stmt->execute();
@@ -43,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
     } else {
         // Tipo de máquina não existe, redirecionar para cadastrar novo tipo
-        header("Location: cadastrarNovaMaquina.php");
+        header("Location: cadastrarmaquina.php");
         exit();
     }
 }

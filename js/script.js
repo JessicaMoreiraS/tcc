@@ -158,11 +158,11 @@ function criarInputs(tipo) {
                         </div> 
                           
                         <div class="input_modal">
-                             <input  class="inputCodPeca" type="text" name="codigo${contadorPeca}" placeholder="Código da peça">
+                            <input  class="inputCodPeca" type="text" name="codigo${contadorPeca}" placeholder="Código da peça">
                         </div>
                           
                         <div class="input_modal">
-                                <input  class="inputTrocaPeca" type="number"  placeholder="Tempo de troca em Horas" name="tempoTroca${contadorPeca}" min="1">
+                            <input  class="inputTrocaPeca" type="number"  placeholder="Tempo de troca em Horas" name="tempoTroca${contadorPeca}" min="1">
                         </div>
                     </div>
                 </div>        

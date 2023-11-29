@@ -1,5 +1,11 @@
 <?php
 include('conexao.php');
+
+// Verificar a conexão
+if ($mysqli->connect_error) {
+    die("Falha na conexão: " . $mysqli->connect_error);
+}
+
 $sqlAtributos = "SELECT * FROM atributo_tipo";
 $preparaSqlAtributos = $mysqli->query($sqlAtributos);
 $sqlPecas = "SELECT * FROM peca_tipo";
@@ -50,9 +56,14 @@ $idPecaAdd = array();
 $idItemAdd = array();
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])) {
     $novaCategoria = $_POST['categoria'];
-    $sqlInsereCategoria = "INSERT INTO tipo_maquina(tipo) VALUES('$novaCategoria')";
-    $executaCategoria = $mysqli->query($sqlInsereCategoria);
-    $idNovoTipo = mysqli_insert_id($mysqli);
+    $imagem = $_FILES["imagem"]["tmp_name"] ? file_get_contents($_FILES["imagem"]["tmp_name"]) : null;
+
+    $stmt = $mysqli->prepare("INSERT INTO tipo_maquina(tipo, imagem_padrao) VALUES(?, ?)");
+    $stmt->bind_param("sb", $novaCategoria, $imagem);
+    $stmt->send_long_data(1, $imagem);  // Para dados BLOB (imagem)
+    $stmt->execute();
+
+    $idNovoTipo = $mysqli->insert_id;
 
 
     for ($x = 1; $x < 50; $x++) {
@@ -201,7 +212,7 @@ function tirarAcentos($string){
                             </div>
                         </div>
                     </div>
-                    <form method="POST" id="form_tipo">
+                    <form method="POST" id="form_tipo" enctype="multipart/form-data">
                         <div class="input_modal">
                             <input required type="text" placeholder="Nome da Categoria" name="categoria">
                         </div>
@@ -273,6 +284,18 @@ function tirarAcentos($string){
 
                             ?>
                         </section>
+                        <section id="section_input_img">
+                            <div id="div_img_input">
+                                <div class="form-upload">
+                                    <label class="input-personalizado">
+                                        <span class="botao-selecionar">Selecione uma imagem</span>
+                                        <img class="imagem" />
+                                        <input type="file" name="imagem" class="input-file" accept="image/*" required>
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+
                         <div id="containerSubmit">
                             <input id="submitTipo" type="submit" value="Cadastrar">
                         </div>
@@ -296,6 +319,19 @@ function tirarAcentos($string){
 </body>
 
 </html>
+<script>
+        const $ = document.querySelector.bind(document);
+
+        const previewImg = $('.imagem');
+        const fileChooser = $('.input-file');
+    
+        fileChooser.onchange = e => {
+            const fileToUpload = e.target.files.item(0);
+            const reader = new FileReader();
+            reader.onload = e => previewImg.src = e.target.result;
+            reader.readAsDataURL(fileToUpload);
+        };
+    </script>
 <script src="js/reveal.js"></script>
 <script src="js/script.js"></script>
 

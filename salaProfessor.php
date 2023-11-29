@@ -120,6 +120,12 @@ if ($stmt) {
 
                     //utilizando a funcao string base64 do php para coverter a imagem, e aplicar ela no html
                     $imagem = $rowMaquina['imagem'];
+                    if($imagem==null){
+                        $sqlBuscaImgPadrao= "SELECT imagem_padrao FROM tipo_maquina WHERE id = $tipoId";
+                        $resultadoImgPadrao = $mysqli->query($sqlBuscaImgPadrao);
+                        $rowImgPadrao = $resultadoImgPadrao->fetch_assoc();
+                        $imagem = $rowImgPadrao['imagem_padrao'];
+                    }
                     $imagem_base64 = base64_encode($imagem);
 
                     ?>

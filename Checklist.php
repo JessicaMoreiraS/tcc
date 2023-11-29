@@ -21,6 +21,7 @@
     $fabricante ="";
     $imagem = "";
     $tipo = "";
+    $idTipo = "";
     $ledVermelho="";
     $ledVerde="";
     if($_GET['id_maquina']){
@@ -32,10 +33,21 @@
             $fabricante= $row['fabricante'];
             $imagem= $row['imagem'];
             $tipo= $row['tipo'];
+            $tipo = str_replace("Mecanico", "Mecânico", $tipo);
+            $tipo = str_replace("mecanico", "Mecânico", $tipo);
+            $tipo = ucfirst($tipo);
+            $idTipo=$row['id_tipo_maquina'];
             $ledVermelho=$row['led_vermelho'];
             $ledVerde=$row['led_verde'];
-            $imagem = base64_encode($imagem);
         }
+
+        if($imagem==null || $imagem==""){
+            $sqlBuscaImgPadrao= "SELECT imagem_padrao FROM tipo_maquina WHERE id = $idTipo";
+            $resultadoImgPadrao = $mysqli->query($sqlBuscaImgPadrao);
+            $rowImgPadrao = $resultadoImgPadrao->fetch_assoc();
+            $imagem = $rowImgPadrao['imagem_padrao'];
+        }
+        $imagem = base64_encode($imagem);
     }
 
     
