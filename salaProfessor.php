@@ -22,9 +22,9 @@ if ($stmt) {
     echo $mysqli->error;
 }
 
-echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">Configurações da Turma(link vai para o menu)</a>';
-echo '<br>';
-echo '<a href="visualizar.php?view=alunosSala&id_sala_view=' . $sala . '">alunos da turma(vai para o menu)</a>';
+// echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">Configurações da Turma(link vai para o menu)</a>';
+// echo '<br>';
+// echo '<a href="visualizar.php?view=alunosSala&id_sala_view=' . $sala . '">alunos da turma(vai para o menu)</a>';
 
 //buscar tipos de máquinas disponíveis na turma
 $sqlTipos = "SELECT DISTINCT tipo_maquina.id, tipo_maquina.tipo FROM tipo_maquina
@@ -64,6 +64,7 @@ if ($stmt) {
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaQuery.css" />
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 
@@ -71,10 +72,28 @@ if ($stmt) {
     <header class="topo-inicial">
         <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
         <div class="icons">
-            <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
-            <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
+            <input id="menuh" type="checkbox" role="button" aria-label="Display the menu" class="menu" />
         </div>
-    </header>
+</header>
+<section class="local-menu">
+
+
+<div id="menu">
+  <ul>
+    <div class="icone-texto">
+    <li><a target="_blank" href="https://drive.google.com/drive/folders/13PZ04RBnXA7RsN4lV2t9E1EVdSJNtgpO"><i class="fa fa-book" style="font-size:24px;color:rgb(255, 255, 255);"></i> Manuais</a></li>
+  </div>
+  <div class="icone-texto">
+    <li><i class="fa fa-users" style="font-size:24px;color:rgb(255, 255, 255);"></i><?php echo '<a href="visualizar.php?view=alunosSala&id_sala_view=' . $sala . '">Alunos da Turma</a>'; ?></li>
+  </div>
+  <div class="icone-texto">
+    <li><i class="fa fa-users" style="font-size:24px;color:rgb(255, 255, 255);"></i><?php echo '<a href="update.php?option=sala&editarTurma&id_atualizacao=' . $sala . '">Configurações da Turma</a>'; ?></li>
+  </div>
+  </ul>
+
+</div>
+</section>
+
     <main class="corpo-inicial" id="main_maquinasDaTurmas">
         <button onclick=" 
             Swal.fire({
@@ -162,8 +181,16 @@ if ($stmt) {
     </main>
 </body>
 <script>
+var menuButton = document.getElementById("menuh");
+var menu = document.getElementById("menu");
 
-    /
+menuButton.addEventListener("click", function() {
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "block";
+  }
+});
 
     //
 
@@ -193,6 +220,9 @@ if ($stmt) {
 <script src="js/script.js"></script>
 </html>
 <?php
+
+ 
+
     if (filter_input(INPUT_GET, 'e')) {
         $mensagem_erro = filter_input(INPUT_GET, 'e');
         echo '<script>erroLogin('.$mensagem_erro.')</script>';
