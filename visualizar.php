@@ -153,10 +153,13 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                             <?php }
                             if ($tipo) {
                                 $quantidade = 0;
-                                $queryContarMaquinas = "SELECT * FROM tipo_maquina INNER JOIN maquina ON tipo_maquina.id = maquina.id_tipo_maquina";
+                                $idVez = $row['id'];
+                                $queryContarMaquinas = "SELECT COUNT(id_tipo_maquina) AS quantidade FROM maquina WHERE id_tipo_maquina = $idVez";
+
                                 $conteudoContagem = $mysqli->query($queryContarMaquinas);
                                 while ($rowResponsavel = mysqli_fetch_assoc($conteudoContagem)) {
-                                    $quantidade = $quantidade + 1;
+                                    // $quantidade = $quantidade + 1;
+                                    $quantidade = $rowResponsavel['quantidade'];
                                 }
                                 echo " <td class='table-row__td'>
                             <div>
