@@ -714,6 +714,60 @@ div:where(.swal2-container) .swal2-html-container {
   outline-offset: 5px;
 }
 
+
+
+
+/* Adiciona estilo ao menu */
+#menu {
+  display: none;
+  background-color: var(--azulPrincipal);
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+ 
+}
+
+#menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#menu li {
+  padding: 15px;
+  text-align: center;
+}
+
+#menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+#menu li:hover {
+background-color: var(--azulEscuro);
+cursor: pointer;
+transition: 0.5s ease-in;
+}
+
+/* Adiciona classe 'open' ao menu para alterar a altura durante a animação */
+#menu.open {
+  display: block;
+  height: 150px; /* Ajuste conforme necessário */
+}
+.icone-texto i{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+
+
+/* ///////////////// */
+
 /*  CSS da pagina de CONFIRMAR EMAIL */
 
 .areaCodTurmaNova,
@@ -1732,7 +1786,7 @@ background-color: #003f5b;
   font-size: large;
 }
 
-.btns .btn, .btns .btn input  {
+#visualizarMaquinas .btns .btn, #visualizarMaquinas .btns .btn input  {
   width: 130px;
   background-color: var(--azulPrincipal);
   text-align: center;
@@ -1741,7 +1795,7 @@ background-color: #003f5b;
   align-items: center;
 }
 
-.btns .btn a, .btns .btn input {
+#visualizarMaquinas .btns .btn a,  .btns .btn input {
   color: white;
 }
 

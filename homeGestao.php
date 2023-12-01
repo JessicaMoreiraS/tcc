@@ -50,7 +50,7 @@ $idGestor = $_SESSION['idAcesso'];
         <div class="icons">
             <?php
             echo '
-      <a href="update.php?option=sala&id_atualizacao=' . $idGestor . '">
+      <a href="update.php?option=gestor&id_atualizacao=' . $idGestor . '">
          <i
            class="fa fa-user-circle"
            style="color: rgb(255, 255, 255); cursor: pointer"
@@ -58,9 +58,10 @@ $idGestor = $_SESSION['idAcesso'];
       </a>';
 
             ?>
-            <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
         </div>
     </header>
+
+
 
     <main id="main_homeGestao">
         <div class="titulo">
