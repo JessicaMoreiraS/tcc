@@ -92,10 +92,12 @@
             $info = $row['item'];
             $name = $row['name_item'];
 
-            echo '<div class="checkbox-wrapper-19">
-                    <input id="'.$name.'" type="checkbox" name="'.$name.'">
-                    <label class="check-box" for="'.$name.'" style="padding-left:30px">'.$info.'</label>
-                </div>';
+            echo '
+            <label class="material-checkbox">
+                <input id="'.$name.'" type="checkbox" name="'.$name.'">
+                <span class="checkmark"></span>
+                '.$info.'
+            </label>';
         } 
     }
 
@@ -118,15 +120,20 @@
 
                 if($rowEsp['id_atributos'] == $idAtributo){
                     if($rowEsp['valor'] <= $valorReferencia){
-                        echo '<div class="checkbox-wrapper-19">
-                                <input id="'.$name.'Check" type="checkbox" name="'.$name.'" checked="true">
-                                <label class="check-box" for="'.$name.'Check" style="padding-left:30px">'.$atributo.'</label>
-                            </div>';
+                        echo '
+                                <label class="material-checkbox">
+                                    <input id="'.$name.'Check" type="checkbox" name="'.$name.'" checked="true">
+                                    <span class="checkmark"></span>
+                                    '.$atributo.'
+                                </label>    
+                            ';
                     }else{
-                        echo '<div class="checkbox-wrapper-19">
-                                <input id="'.$name.'Check" type="checkbox" name="'.$name.'" disabled class="boderRed">
-                                <label class="check-box" for="'.$name.'Check" style="padding-left:30px">'.$atributo.'</label>
-                            </div>';
+                        echo '
+                        <label class="material-checkbox">
+                            <input id="'.$name.'Check" type="checkbox" name="'.$name.'">
+                            <span class="checkmark botao-desabilitado" ></span>
+                            '.$atributo.'
+                        </label>';
                     }
                 }
             }
@@ -319,20 +326,31 @@
         </section>
 
         
-        <section class="checklist" id="checklist">
-            <h2>Checklist</h2>
-            <form action="processaChecklist.php?id_maquina=<?php echo $idDaMaquina; ?>" method="POST">
-                <input type="text" value="<?php echo $idDaMaquina; ?>" name="id_maquina" hidden>
-                <?php
-                itensChecklist($idDaMaquina);
-                atributosChecklist($idDaMaquina);
-                ?>
+       
+            <h2 class="tituloCheck">Checklist</h2>
+            <p class="infoCheck">Realize o checklist da sua máquina</p>
 
-                <input type="submit" value="Enviar">
-                <!-- to do: verificar se todos os checkbox estao ok para habilitar o botao de envio -->
-            </form>
+            <div class="checklist" id="checklist">
+                <div class="container-check">
+                    <div class="testando">
+                        <form action="processaChecklist.php?id_maquina=<?php echo $idDaMaquina; ?>" method="POST">
+                                <input type="text" value="<?php echo $idDaMaquina; ?>" name="id_maquina" hidden>
+                                <?php
+                                itensChecklist($idDaMaquina);
+                                atributosChecklist($idDaMaquina);
+                                ?>
+                                <div class="btns" >
+                                    <div class="btn">
+                                        <input type="submit" value="Enviar">
+                                    </div>
+                                </div>  
+                                <!-- to do: verificar se todos os checkbox estao ok para habilitar o botao de envio -->
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-    </section>
+   
 </main>
 
 <script src="js/graficos.js"></script>

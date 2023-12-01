@@ -1677,11 +1677,12 @@ background-color: #003f5b;
 
 /* FIM CSS DAS TABELAS */
 
-/*CSS VISUALIZAR MAQUINA*/
+/*CSS  CHECKLIST*/
 
 #visualizarMaquinas * {
   overflow-x: visible;
 }
+
 .boxLedCheck{
   display: flex;
   flex-direction: column;
@@ -1714,6 +1715,7 @@ background-color: #003f5b;
   margin: 2%;
 }
 
+
 .container-infoMaq {
   display: flex;
   justify-content: center;
@@ -1730,20 +1732,17 @@ background-color: #003f5b;
   font-size: large;
 }
 
-.btns .btn {
+.btns .btn, .btns .btn input  {
   width: 130px;
   background-color: var(--azulPrincipal);
   text-align: center;
   margin-top: 5px;
   border-radius: 7px;
-
-
+  align-items: center;
 }
 
-
-.btns .btn a {
+.btns .btn a, .btns .btn input {
   color: white;
-
 }
 
 .nome_maquina {
@@ -1760,7 +1759,7 @@ background-color: #003f5b;
   max-width: 100%;
 }
 
-.graficos .card-graficos {
+.graficos .card-grafico {
   background-color: white;
   width: 400px;
   border-radius: 10px;
@@ -1862,12 +1861,17 @@ background-color: #003f5b;
 }
 
 
-#botao-desabilitado {
+.botao-desabilitado.botao-desabilitado {
   border-color: #ff0101;
 }
 
+.testando{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
-/*FIM CSS VISUALIZAR MAQUINA*/
+/*FIM CSS CHECKLIST*/
 
 /*CSS MAQUINAS DA TURMA*/
 #main_maquinasDaTurmas * {
