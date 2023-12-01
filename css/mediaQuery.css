@@ -235,7 +235,10 @@ footer .icones{
     }
     .row__title{
         font-size: 1.5rem;
+        display: flex;
+        flex-direction: column;
     }
+   
   }
   
   @media screen and (max-width: 480px){
