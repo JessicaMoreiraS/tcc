@@ -136,30 +136,69 @@ function identificaTipoUsuario($email){
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Recuperação de senha</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
-    <title>Recuperação de Conta</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
+    <header class="topo-index">
+        <a href="inicialAluno.html"
+            ><img width="140" src="img/logo-senai-branco.png"/>
+        </a>
+    </header>
+
+    <main class="conteudoConfirmarSenha">
     <?php
         if(!$form2){
     ?>
         <form method="GET">
-            <input type="mail" name="email">
-            <input type="submit" value="Enviar Código">
+            <div class="areaCod">
+                <h2>Recuperação Senha</h2>
+                <label>Insira seu email</label>
+                <input type="mail" name="email" placeholder="Insira seu email">
+            </div>
+            <div class="verificacaoSenha">
+                <div class="botoesSenha">
+                    <input type="submit" value="Enviar Código" id="Btn_confirmar" class="btn btn-primary" data-toggle="modal" data-target="#senhaModal">
+                </div>
+            </div>
         </form>
     <?php }else{ ?>
         <form method="POST">
-            <input type="email" value="<?php echo $email?>" name= "email" hidden>
-            <input type="text" name="codigo" placeholder="Código">
-            <input type="text" name="senha" placeholder="Nova senha">
-            <input type="text" placeholder="Confirmar senha">
-            <input type="submit" value="Cadastrar Senha">
+            <div class="areaCod">
+                <h2>Redefinir Senha</h2>
+                <label>Para que possamos validar seu usuário, insira o código gerado pelo sistema e enviado em seu email</label>
+
+                <input type="email" value="<?php echo $email?>" name= "email" hidden>
+                <input type="text" name="codigo" placeholder="Insira o código aqui" id="codigo_recuperacao">
+                <input type="text" name="senha" placeholder="Nova senha">
+                <input type="text" placeholder="Confirmar senha">
+            </div>
+
+            <div class="verificacaoSenha">
+                <div class="botoesSenha">
+                    <input type="submit" value="Cadastrar Senha" id="Btn_confirmar" class="btn btn-primary" data-toggle="modal" data-target="#senhaModal">
+                </div>
+            </div>
         </form>
     <?php } ?>
+    </main>
 
     <!-- to do: verificar se as duas senhas sao iguais -->
     <script src="js/script.js"></script>
