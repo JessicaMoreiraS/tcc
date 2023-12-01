@@ -183,7 +183,7 @@ footer .icones{
       display: inline-block;
       border: 0;
       background-color: #fff;
-      width: calc(33.3% - 13px);
+      width: 30vw;
       margin-right: 10px;
       margin-bottom: 10px;
     }
@@ -231,7 +231,7 @@ footer .icones{
   
   @media screen and (max-width: 680px){
     .table-row {
-      width: calc(50% - 13px);
+        width: 30vw;
     }
   }
   

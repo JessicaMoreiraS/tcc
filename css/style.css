@@ -1795,7 +1795,7 @@ background-color: #003f5b;
   align-items: center;
 }
 
-#visualizarMaquinas .btns .btn a, #visualizarMaquinas .btns .btn input {
+#visualizarMaquinas .btns .btn a,  .btns .btn input {
   color: white;
 }
 
