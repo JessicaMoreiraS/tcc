@@ -133,7 +133,7 @@ function criarInputs(tipo) {
         conteudo = `
                 <div class="containerNovoAtt" id="campoAtributo${contadorAtributo}">
                     <div>
-                        <div onclick="deletaNovoCampo('campoAtributo${contadorAtributo}')">X</div>
+                        <div onclick="deletaNovoCampo('campoAtributo${contadorAtributo}')" class="fecharADD">X</div>
                             <div class="input_modal">
                                 <input class="inputAtt" type="text" name="atributo${contadorAtributo}" placeholder="Atributo">
                             </div>
@@ -152,7 +152,7 @@ function criarInputs(tipo) {
         conteudo = `    
                 <div class="containerNovaPeca" id="campoPeca${contadorPeca}">
                 <div>
-                    <div onclick="deletaNovoCampo('campoPeca${contadorPeca}')">X</div>
+                    <div onclick="deletaNovoCampo('campoPeca${contadorPeca}')" class="fecharADD">X</div>
                         <div class="input_modal">
                             <input class="inputNomePeca" type="text" name="peca${contadorPeca}" placeholder="Nome da peça" >
                         </div> 
@@ -174,7 +174,7 @@ function criarInputs(tipo) {
         conteudo = `
             <div  class="containerNovoItem" id="campoItem${contadorItem}">
                 <div>
-                    <div onclick="deletaNovoCampo('campoItem${contadorItem}')">X</div>
+                    <div onclick="deletaNovoCampo('campoItem${contadorItem}')"  class="fecharADD">X</div>
                     <div class="input_modal">
                         <input type="text"  class="inputItem" name="item${contadorItem}" placeholder="Item">
                     </div>

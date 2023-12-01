@@ -23,25 +23,25 @@ if ($stmt) {
 }
 
 //buscar o codigo acesso da turma
-$sql = 'SELECT codigo_acesso FROM sala WHERE id = ?';
+//$sql = 'SELECT codigo_acesso FROM sala WHERE id = ?';
 //stmt do sql
-$stmt = $mysqli->prepare($sql);
+// $stmt = $mysqli->prepare($sql);
 
-if ($stmt) {
-    //aplicando o id da sala ao  parametro da consulta
-    $stmt->bind_param("i", $sala);
-    //verificando se o sql executou
-    if ($stmt->execute()) {
-        //resganto o resultado
-        $stmt->bind_result($codigoTurma);
-        if ($stmt->fetch()) {
-            echo 'Código de acesso da turma: ' . $codigoTurma;
-        }
-        $stmt->close();
-    }
-} else {
-    echo $mysqli->error;
-}
+// if ($stmt) {
+//     //aplicando o id da sala ao  parametro da consulta
+//     $stmt->bind_param("i", $sala);
+//     //verificando se o sql executou
+//     if ($stmt->execute()) {
+//         //resganto o resultado
+//         $stmt->bind_result($codigoTurma);
+//         if ($stmt->fetch()) {
+//             echo 'Código de acesso da turma: ' . $codigoTurma;
+//         }
+//         $stmt->close();
+//     }
+// } else {
+//     echo $mysqli->error;
+// }
 //////////
 
 //buscar tipos de máquinas disponíveis na turma

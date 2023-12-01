@@ -2696,3 +2696,10 @@ background-color: #003f5b;
   justify-content: center;
 }
 /* FIM CSS CADASTRAR TIPO DE MAQUINA*/
+
+.fecharADD{
+  color: #fff;
+  cursor: pointer;
+  width: 5px;
+  
+}

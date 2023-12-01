@@ -71,6 +71,29 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
       <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
     </div>
   </header>
+
+  <section class="local-menu">
+
+
+<div id="menu">
+  <ul>
+    <div class="icone-texto">
+    <li><i class="fa fa-cogs" style="font-size:24px;color:rgb(255, 255, 255);"></i><a href="#">Máquinas</a></li>
+    </div>
+    <div class="icone-texto">
+    <li><a target="_blank" href="https://drive.google.com/drive/folders/13PZ04RBnXA7RsN4lV2t9E1EVdSJNtgpO"><i class="fa fa-book" style="font-size:24px;color:rgb(255, 255, 255);"></i> Manuais</a></li>
+  </div>
+  <div class="icone-texto">
+    <li><i class="fa fa-users" style="font-size:24px;color:rgb(255, 255, 255);"></i><a href="#">Pessoas</a></li>
+  </div>
+  <div class="icone-texto">
+    <li><i class="fa fa-users" style="font-size:24px;color:rgb(255, 255, 255);"></i><a href="#">Configurações da Turma</a></li>
+  </div>
+  </ul>
+
+</div>
+</section>
+
   <main id="main_homeProfessor">
     <section>
       <div class="bem-vindo">
@@ -242,7 +265,19 @@ ocultarBotao.addEventListener("click", function() {
 </script>
 <script src="js/reveal.js"></script>
 <script src="js/script.js"></script>
+<script>
 
+  var menuButton = document.getElementById("menuh");
+  var menu = document.getElementById("menu");
+  
+  menuButton.addEventListener("click", function() {
+    if (menu.style.display === "block") {
+      menu.style.display = "none";
+    } else {
+      menu.style.display = "block";
+    }
+  }); 
+  </script> 
 </html>
 
 <?php
