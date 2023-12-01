@@ -233,6 +233,9 @@ footer .icones{
     .table-row {
         width: 30vw;
     }
+    .row__title{
+        font-size: 1.5rem;
+    }
   }
   
   @media screen and (max-width: 480px){
