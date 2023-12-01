@@ -1807,13 +1807,19 @@ background-color: #003f5b;
 
 .graficos {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 100px 0 100px;
   max-width: 100%;
 }
+#graficos{
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* width: 100%; */
+}
 
-.graficos .card-grafico {
+.graficos .card-graficos {
   background-color: white;
   width: 400px;
   border-radius: 10px;

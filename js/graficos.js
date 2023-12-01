@@ -10,7 +10,8 @@ function graficoVelocimetro(valorGrafico, nomeDiv, idMaquina){
     
     var titulo = document.createElement("p");
     titulo.innerHTML = nomeDiv;
-    elementoPai.appendChild(titulo);
+    document.getElementById(idCardGraficos).appendChild(titulo)
+    // elementoPai.appendChild(titulo);
 
 
     var paiDoGrafico = document.getElementById(idCardGraficos)
@@ -104,7 +105,7 @@ function temometro(valor, idMaquina, valorDeReferencia){
 
     var titulo = document.createElement("p");
     titulo.innerHTML = "Temperatura";
-    elementoPai.appendChild(titulo);
+    document.getElementById(idCardGraficos).appendChild(titulo);
 
 
     var paiDoGrafico = document.getElementById(idCardGraficos)
@@ -147,7 +148,7 @@ function graficoFluidos(valorGrafico, nomeDiv, tema, idMaquina, valorReferencia)
 
     var titulo = document.createElement("p");
     titulo.innerHTML = tema;
-    elementoPaiDosGraficos.appendChild(titulo);
+    document.getElementById(idCardGraficos).appendChild(titulo);
 
     var elementoPai = document.getElementById(idCardGraficos); 
 
@@ -161,8 +162,30 @@ function graficoFluidos(valorGrafico, nomeDiv, tema, idMaquina, valorReferencia)
                                 </div>
                                 <div class="preenchimentoCirculo" id="${nomeDiv}" style="height:${porcentagemValorGrafico}%"></div>
                             </div>`; 
-    elementoPai.innerHTML=containetCirculo; 
+    var dadosConteudo=`<div>
+                            <p>Nível de óleo em: ${parseInt(porcentagemValorGrafico)}%</p>
+                        </div>`;
+    
+    elementoPai.innerHTML+=containetCirculo; 
+    elementoPai.innerHTML+=dadosConteudo; 
 }  
+
+
+function graficoViscodidadeFluidos(valorGrafico, nomeDiv, tema, idMaquina, valorReferencia){
+    var iValorGrafico = parseFloat(valorGrafico)
+    var iValorReferencia = parseFloat(valorReferencia)
+    var valorViscosidade = (iValorGrafico*100)/iValorReferencia;
+    var dadosConteudo=`<div id=${nomeDiv}>
+                            <p>Nível de viscosidade óleo em: ${parseInt(valorViscosidade)}%</p>
+                        </div>`;
+    
+    var arrNomeEVisco = nomeDiv;
+    var arrNomeVisco = arrNomeEVisco.split('_');
+    var posicaoNome = arrNomeVisco.length-1;
+    var nomeCard = "oleo_"+arrNomeVisco[posicaoNome]+"card";
+    
+    document.getElementById(nomeCard).innerHTML += dadosConteudo;
+}
 
 
 function cpuUsage(){
@@ -208,6 +231,8 @@ function atualizaGrafico(retorno) {
         }else if(nomeDivEsp != undefined){
             if(nomeDivEsp.indexOf('oleo') != -1){
                 AtualizaFluido(nomeDivEsp, novoValor, valorDeReferencia)
+            }else if(nomeDivEsp.indexOf('viscosidade') != -1){
+                atualizaViscodidadeFluidos(nomeDivEsp, novoValor, valorDeReferencia)
             }
         }
     });
@@ -266,6 +291,15 @@ function AtualizaFluido(nomeDiv, novoValor, valorDeReferencia){
     preenchimento.style.height = porcentagem+"%";
     var topoOndas = (100-22)-porcentagem;
     ondas.style = `margin-top:${topoOndas}%`;
+}
+function atualizaViscodidadeFluidos(nomeDiv, novoValor, valorDeReferencia){
+    var iValorGrafico = parseFloat(novoValor)
+    var iValorReferencia = parseFloat(valorDeReferencia)
+    var valorViscosidade = (iValorGrafico*100)/iValorReferencia;
+    var dadosConteudo=`<p>Nível de viscosidade óleo em: ${parseInt(valorViscosidade)}%</p>`;
+
+    var divVisco = document.getElementById(nomeDiv)
+    divVisco.innerHTML = dadosConteudo;
 }
 
 function verificarCheckbox(nome, valor, valorReferencia){
