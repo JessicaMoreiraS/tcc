@@ -164,6 +164,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['categoria'])) {
         $mysqli->query($sqlListaItemTipo);
     }
 
+
+    header('location: cadastrarTipoMaquina.php?e=12');
+
 }
 
 /*
@@ -186,11 +189,21 @@ function tirarAcentos($string){
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
     <title>Cadastrar Categoria de Máquina</title>
+    <style>
+        .setaVoltar{
+            width: 50px;
+            align-self: center;
+            justify-self: start;
+        }
+    </style>
 </head>
 
 <body id="body_cadastrarCategoriaMaquina">
 
     <header class="topo-inicial">
+        <a href="visualizar.php?view=tipo" class="setaVoltar">
+            <img src="img/svg/setaVoltar.svg" alt="voltar">
+        </a>
         <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
 
         <div class="icons">

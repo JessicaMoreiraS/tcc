@@ -9,7 +9,7 @@ include('conexao.php');
 
 if (isset($_GET["option"])) {
     $option = $_GET["option"];
-    $listaOption = ["professor", "maquina", "tipo","aluno","sala"];
+    $listaOption = ["professor", "maquina", "tipo_maquina","aluno","sala"];
     for ($i = 0; $i < count($listaOption); $i++) {
         if ($option == $listaOption[$i]) {
             $opcao = $listaOption[$i];

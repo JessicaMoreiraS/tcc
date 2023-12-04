@@ -60,10 +60,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/mediaQuery.css">
     <script src="https://unpkg.com/scrollreveal"></script>
     <title>Cadastrar Máquinas</title>
+    <style>
+         .setaVoltar{
+            width: 50px;
+            align-self: center;
+            justify-self: start;
+        }
+    </style>
 </head>
 
 <body  class="body-cadastrarMaquina">
-<header class="topo-inicial">
+    <header class="topo-inicial">
+        <a href="visualizar.php?view=maquina" class="setaVoltar">
+            <img src="img/svg/setaVoltar.svg" alt="voltar">
+        </a>
         <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
 
         <div class="icons">

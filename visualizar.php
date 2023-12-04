@@ -25,6 +25,7 @@ if (filter_input(INPUT_GET, 'view')) {
         $camposBusca = ['tipo'];
         $camposTema = ['Categoria', 'Quantidade'];
         $tipo = true;
+        $linkCadastro = "cadastrarTipoMaquina.php";
 
     } else if ($_GET['view'] == 'aluno') {
         $tema = "Alunos";
@@ -78,8 +79,16 @@ if (filter_input(INPUT_GET, 'view')) {
         $query = "SELECT * FROM checklist INNER JOIN maquina ON checklist.id_maquina = maquina.id";
         $camposBusca = ['date_time', 'id', 'modelo'];
         $camposTema = ['Data', 'Maquina', 'Modelo', 'Responsavel', 'Email'];
-    } else {
-        header('Location: homeGestor.php');
+    } else if($_GET['view'] == 'tipo_maquina'){
+        $_GET['view'] == 'tipo'; //nao sei se isso é permitido, atribuir valor ao $_GET
+        $tema = "Categorias de Máquinas";
+        $query = "SELECT * FROM tipo_maquina";
+        $camposBusca = ['tipo'];
+        $camposTema = ['Categoria', 'Quantidade'];
+        $tipo = true;
+        $linkCadastro = "cadastrarTipoMaquina.php";
+    }else{
+        header('Location: homeGestao.php');
     }
 
 }
@@ -189,7 +198,12 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
                     //to do:
                     if ($_GET['view'] == 'alunosSala') {
                         echo '<td><a id="removerAluno_da_sala" href="delete.php?acao=deletarAlunoDaSala&id_delecao=' . $row['id'] . '">Remover da Sala</a>';
-                    } else {
+                    } else if($_GET['view'] == 'tipo'){
+                        echo '<td class="table-row__td">
+                        <a href="delete.php?option=tipo_maquina&id_delecao=' . $row['id'] . '">
+                            <img class="table_delete" src="img/svg/Delete.svg" title="Excluir"/>
+                        </a>';
+                    }else{
                         echo '<td class="table-row__td">
                             <a href="delete.php?option=' . $_GET['view'] . '&id_delecao=' . $row['id'] . '">
                                 <img class="table_delete" src="img/svg/Delete.svg" title="Excluir"/>
