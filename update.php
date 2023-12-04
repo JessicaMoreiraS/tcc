@@ -148,10 +148,26 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
             }
             ?>
         </title>
+        <style>
+            .setaVoltar{
+                width: 50px;
+                align-self: center;
+                justify-self: start;
+            }
+        </style>
     </head>
 
     <body id="body_perfil">
         <header class="topo-inicial">
+            <?php
+            if ($_SERVER['HTTP_REFERER']){
+                echo '<a href='.$_SERVER['HTTP_REFERER'].' class="setaVoltar">';
+            }else{
+                echo '<a href="login.php" class="setaVoltar">';
+            }
+            ?>
+                <img src="img/svg/setaVoltar.svg" alt="voltar">
+            </a>
             <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
 
             <div class="icons">
