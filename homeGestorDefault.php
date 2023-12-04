@@ -117,6 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
             margin: 0;
             padding: 0;
         }
+        .gerGestores{
+            margin-left:10px; /*soluca: almentar o esácamento do span*/
+        }
     </style>
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <title>Home - Gestor Default</title>
@@ -131,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
         <div class="container">
             <div class="row row--top-40">
                 <div class="col-md-12">
-                    <h2 class="row__title">Gerenciamento de <span>GESTORES</span></h2>
+                    <h2 class="row__title">Gerenciamento de <span class="gerGestores">GESTORES</span></h2>
                 </div>
             </div>
             <div class="row row--top-20">
@@ -307,21 +310,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
         inputSenha.addEventListener("input", validarCadastro);
         inputConfirmarSenha.addEventListener("input", validarCadastro);
         inputNomeCompleto.addEventListener("input", validarCadastro);
+        var cpfValido = false;  //solucai: seta como false fora da funcao para que o true nao seja substituido
 
         //verifca se as senhas conferem e se nao esta digitando apenas um nome
         function validarCadastro() {
             const inputCPF = document.getElementById("cpf");
             const verificacaoCPF_p = document.getElementById("verificacaoCPF_p");
             var comprimentoCPF = inputCPF.value.length;
-            var cpfValido = false;
 
             inputCPF.addEventListener("input", function () {
                  comprimentoCPF = inputCPF.value.length;
                 verificacaoCPF_p.style.display = comprimentoCPF < 11 ? "block" : "none";
                 if(comprimentoCPF == 14){
-                    botaoCriarConta.removeAttribute("disabled");
+                    cpfValido = true;
+                    // botaoCriarConta.removeAttribute("disabled");
                 }else{
-                    botaoCriarConta.setAttribute("disabled","true");
+                    cpfValido = false;
+                    // botaoCriarConta.setAttribute("disabled","true");
                 }
               
             });
@@ -339,9 +344,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
 
 
             if (
-                inputSenha.value === inputConfirmarSenha.value &&
+                inputSenha.value === inputConfirmarSenha.value && inputSenha.value != null &&
                 palavrasinputNomeCompleto > 1 && cpfValido
             ) {
+                console.log("aqui")
                 botaoCriarConta.removeAttribute("disabled");
             } else {
                 botaoCriarConta.setAttribute("disabled", "true");
