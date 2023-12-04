@@ -223,10 +223,21 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaQuery.css" />
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    <style>
+        .setaVoltar{
+            width: 50px;
+            align-self: center;
+            justify-self: start;
+        }
+    </style>
 </head>
 
 <body id="body_tables">
     <header class="topo-index" id="header_homeGestao">
+        <a href="homeGestao.php" class="setaVoltar">
+            <img src="img/svg/setaVoltar.svg" alt="voltar">
+        </a>
+
         <img src="img/logo-senai-branco.png" />
     </header>
 

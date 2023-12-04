@@ -1,6 +1,6 @@
 <?php
 session_start();
-$paginasPermitemAcesso = ["login.php", "homeGestao.php", "cadastrarMaquina.php", "gestaoAlunos.php", "cadastrarProfessor.php"];
+$paginasPermitemAcesso = ["login.php", "homeGestao.php", "cadastrarMaquina.php", "gestaoAlunos.php", "cadastrarProfessor.php", "visualizar.php"];
 foreach ($paginasPermitemAcesso as $pagina) {
   $len = count($paginasPermitemAcesso);
   if (!strpos($_SERVER['HTTP_REFERER'], $pagina) && $pagina == $paginasPermitemAcesso[$len-1] || $_SESSION['tipo'] != 'gestor') {
@@ -40,11 +40,21 @@ $idGestor = $_SESSION['idAcesso'];
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <script src="https://unpkg.com/scrollreveal"></script>
     <title>Inicial - Gestão</title>
+    <style>
+        .setaVoltar{
+            width: 50px;
+            align-self: center;
+            justify-self: start;
+        }
+    </style>
 </head>
 
 <body id="body_homeGestao">
 
     <header class="topo-inicial">
+        <a href="login.php" class="setaVoltar">
+            <img src="img/svg/setaVoltar.svg" alt="voltar">
+        </a>
         <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
 
         <div class="icons">

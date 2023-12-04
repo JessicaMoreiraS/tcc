@@ -147,8 +147,10 @@ if (filter_input(INPUT_POST, 'cadastrarProfessor')) {
     $sqlCriarContaProfessor = "INSERT INTO professor (nome, cpf, email, senha) VALUES ('$nome', '$cpf', '$email', '$primeiraSenhaCriptografada')";
 
     if ($mysqli->query($sqlCriarContaProfessor)) {
-        echo 'professor cadastrado';
+        header("location: visualizar.php?view=professor&e=12");
+        //echo 'professor cadastrado';
     } else {
+        header("location: visualizar.php?view=professor&e=3");
         echo 'erro em cadastrar professor'->mysql_error;
     }
 }

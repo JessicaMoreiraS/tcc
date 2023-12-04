@@ -120,6 +120,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
         .gerGestores{
             margin-left:10px; /*soluca: almentar o esácamento do span*/
         }
+        .setaVoltar{
+            width: 50px;
+            align-self: center;
+            justify-self: start;
+        }
+        .setaVoltar img{
+            width:100%;
+        }
+        .topo-index {
+            display:flex;
+            flex-direction: row;
+            align-items: center;
+            justify-items: start;
+        }
     </style>
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <title>Home - Gestor Default</title>
@@ -127,7 +141,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
 
 <body id="body_tables">
     <header class="topo-index" id="header_homeGestao">
-        <img src="img/logo-senai-branco.png" alt="" />
+        <a href="login.php" class="setaVoltar">
+            <img src="img/svg/setaVoltar.svg" alt="voltar">
+        </a>
+        <img src="img/logo-senai-branco.png" alt="" class="logoCenter"/>
     </header>
     <main id="gestor_default_main">
 
