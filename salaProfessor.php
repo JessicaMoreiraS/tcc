@@ -66,10 +66,20 @@ if ($stmt) {
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        .setaVoltar{
+            width: 50px;
+            align-self: center;
+            justify-self: start;
+        }
+    </style>
 </head>
 
 <body>
     <header class="topo-inicial">
+        <a href="homeProfessor.php" class="setaVoltar">
+            <img src="img/svg/setaVoltar.svg" alt="voltar">
+        </a>
         <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
         <div class="icons">
             <input id="menuh" type="checkbox" role="button" aria-label="Display the menu" class="menu" />

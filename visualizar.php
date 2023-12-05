@@ -243,12 +243,44 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
             align-self: center;
             justify-self: start;
         }
+        .topo-index {
+            display:flex;
+            flex-direction: row;
+            align-items: center;
+            justify-items: start;
+        }
     </style>
 </head>
 
 <body id="body_tables">
     <header class="topo-index" id="header_homeGestao">
-        <a href="homeGestao.php" class="setaVoltar">
+        <?php
+        if ($_SERVER['HTTP_REFERER']){
+            if(!strpos($_SERVER['HTTP_REFERER'], "visualizar.php") && !strpos($_SERVER['HTTP_REFERER'], "delete.php") && !strpos($_SERVER['HTTP_REFERER'], "cadastr")){
+                echo '<a href='.$_SERVER['HTTP_REFERER'].' class="setaVoltar">';
+            }else{
+                if($_SESSION['tipo']){
+                    switch($_SESSION['tipo']){
+                        case 'aluno':
+                            echo '<a href="homeAluno.php" class="setaVoltar">';
+                            break;
+                        case 'professor':
+                            echo '<a href="homeProfessor.php" class="setaVoltar">';
+                            break;
+                        case 'gestor':
+                            echo '<a href="homeGestao.php" class="setaVoltar">';
+                            break;
+                        case 'defalt':
+                            echo '<a href="homeGestaoDefault.php" class="setaVoltar">';
+                            break;
+                    }
+                }
+            }
+        }else{
+            echo '<a href="login.php" class="setaVoltar">';
+        }
+        ?>
+        <!-- <a href="homeGestao.php" class="setaVoltar"> -->
             <img src="img/svg/setaVoltar.svg" alt="voltar">
         </a>
 

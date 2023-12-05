@@ -262,6 +262,12 @@
             animation: moveWave2 3s ease-in-out infinite alternate;
             opacity: 90%;
         }
+
+        .setaVoltar{
+            width: 50px;
+            align-self: center;
+            justify-self: start;
+        }
   
   
     
@@ -281,7 +287,39 @@
 <body id="visualizarMaquinas">
 
     <header class="topo-index">
-    <a href="inicialAluno.html"><img width="140" src="img/logo-senai-branco.png" alt="" /></a>
+        <?php
+        if ($_SERVER['HTTP_REFERER']){
+            if(!strpos($_SERVER['HTTP_REFERER'], "Checklist.php") && !strpos($_SERVER['HTTP_REFERER'], "processaChecklist.php") && !strpos($_SERVER['HTTP_REFERER'], "checklist.php")){
+                echo '<a href='.$_SERVER['HTTP_REFERER'].' class="setaVoltar">';
+            }else{
+                if($_SESSION['tipo']){
+                    switch($_SESSION['tipo']){
+                        case 'aluno':
+                            echo '<a href="homeAluno.php" class="setaVoltar">';
+                            break;
+                        case 'professor':
+                            echo '<a href="homeProfessor.php" class="setaVoltar">';
+                            break;
+                        case 'gestor':
+                                echo '<a href="homeGestao.php" class="setaVoltar">';
+                                break;
+                        case 'defalt':
+                            echo '<a href="homeGestaoDefault.php" class="setaVoltar">';
+                            break;
+                        }
+                    }
+                }
+            }else{
+                echo '<a href="login.php" class="setaVoltar">';
+            }
+            ?>
+            <!-- <a href="login.php" onClick="history.back()" class="setaVoltar"> -->
+                <img src="img/svg/setaVoltar.svg" alt="voltar">
+            </a>    
+
+        <!-- <a href="homeAluno.php"> -->
+            <img width="140" src="img/logo-senai-branco.png" alt="" />
+        <!-- </a> -->
     </header>
     <main id="main_visualizarMaquina">
         <section class="informacoes_maquina">

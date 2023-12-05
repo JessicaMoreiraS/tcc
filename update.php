@@ -161,11 +161,31 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
         <header class="topo-inicial">
             <?php
             if ($_SERVER['HTTP_REFERER']){
-                echo '<a href='.$_SERVER['HTTP_REFERER'].' class="setaVoltar">';
+                if(!strpos($_SERVER['HTTP_REFERER'], "update.php")){
+                    echo '<a href='.$_SERVER['HTTP_REFERER'].' class="setaVoltar">';
+                }else{
+                    if($_SESSION['tipo']){
+                        switch($_SESSION['tipo']){
+                            case 'aluno':
+                                echo '<a href="homeAluno.php" class="setaVoltar">';
+                                break;
+                            case 'professor':
+                                echo '<a href="homeProfessor.php" class="setaVoltar">';
+                                break;
+                            case 'gestor':
+                                echo '<a href="homeGestao.php" class="setaVoltar">';
+                                break;
+                            case 'defalt':
+                                echo '<a href="homeGestaoDefault.php" class="setaVoltar">';
+                                break;
+                        }
+                    }
+                }
             }else{
                 echo '<a href="login.php" class="setaVoltar">';
             }
             ?>
+            <!-- <a href="login.php" onClick="history.back()" class="setaVoltar"> -->
                 <img src="img/svg/setaVoltar.svg" alt="voltar">
             </a>
             <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />

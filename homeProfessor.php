@@ -1,7 +1,7 @@
 <?php
 //inicisnd sessão 
 session_start();
-$paginasPermitemAcesso = ["login.php","cadastro.php","salaProfessor.php", "homeProfessor.php"];
+$paginasPermitemAcesso = ["login.php","cadastro.php","salaProfessor.php", "homeProfessor.php","update.php", "visualizar.php", "Checklist.php"];
 foreach ($paginasPermitemAcesso as $pagina) {
   $len = count($paginasPermitemAcesso);
   if (!strpos($_SERVER['HTTP_REFERER'], $pagina) && $pagina == $paginasPermitemAcesso[$len-1] || $_SESSION['tipo'] != 'professor') {
@@ -50,11 +50,21 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
   <title>
     <?php echo $professorNome ?>- Inicial
   </title>
+    <style>
+        .setaVoltar{
+            width: 50px;
+            align-self: center;
+            justify-self: start;
+        }
+    </style>
 </head>
 
 <body id="body_homeProfessor">
 
   <header class="topo-inicial">
+    <a href="login.php" class="setaVoltar">
+        <img src="img/svg/setaVoltar.svg" alt="voltar">
+    </a>
     <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
 
     <div class="icons">

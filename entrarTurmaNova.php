@@ -8,7 +8,6 @@
 
     if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET ["codigoTurma"])){
         $codigoTentado = filter_input(INPUT_GET, 'codigoTurma');
-        echo $codigoTentado;
 
         $encontrarSala = "SELECT * FROM sala WHERE sala.codigo_acesso = '$codigoTentado'";
         if($sala = mysqli_fetch_assoc($mysqli->query($encontrarSala))){

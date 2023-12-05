@@ -83,10 +83,20 @@ if ($stmt) {
     <link rel="stylesheet" href="css/mediaQuery.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    <style>
+        .setaVoltar{
+            width: 50px;
+            align-self: center;
+            justify-self: start;
+        }
+    </style>
 </head>
 
 <body>
     <header class="topo-inicial">
+        <a href="homeAluno.php" class="setaVoltar">
+            <img src="img/svg/setaVoltar.svg" alt="voltar">
+        </a>
         <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
         <div class="icons">
             <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
