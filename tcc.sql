@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Dez-2023 às 16:24
+-- Tempo de geração: 05-Dez-2023 às 12:52
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -558,6 +558,12 @@ ALTER TABLE `esp32`
 --
 ALTER TABLE `gestor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `lista_aluno_sala`
+--
+ALTER TABLE `lista_aluno_sala`
+  MODIFY `id_lista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `lista_sala_tipo_maquina`
