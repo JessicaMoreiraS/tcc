@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png"/>
     <title>Cadastrar Novo Tipo de Máquina</title>
 </head>
 <body>

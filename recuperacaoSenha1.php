@@ -72,7 +72,7 @@ $mysqli->close();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png"/>
 </head>
 <body id="body_recuperacaoSenha">
 <header class="topo-index">

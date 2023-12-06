@@ -110,6 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png"/>
     <style>
         html,
         body {
@@ -135,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
             justify-items: start;
         }
     </style>
-    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    
     <title>Home - Gestor Default</title>
 </head>
 

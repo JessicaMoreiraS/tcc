@@ -167,7 +167,7 @@
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png"/>
 
     <title>Checklist</title>
     <style>

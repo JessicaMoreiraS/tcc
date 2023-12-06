@@ -52,7 +52,7 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
-    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png"/>
     <title>Confirmação de email</title>
 </head>
 <body>
