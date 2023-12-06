@@ -168,6 +168,7 @@
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script src="https://www.amcharts.com/lib/3/serial.js"></script>
     <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png"/>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="stylesheet" href="css/mediaQuery.css">
 
 
@@ -365,6 +366,7 @@
                     </div>
                 </div>
             </div>
+            </div>
 
         
             <!-- <section >  -->
@@ -449,6 +451,7 @@
         }
     </script>
     <script src="js/script.js"></script>
+    <script src="js/reveal.js"></script>
 </body>
 </html>
 <?php
