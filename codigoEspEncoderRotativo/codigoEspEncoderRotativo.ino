@@ -21,16 +21,16 @@
 #define ENC_PORT PINB
 
 #include <RotaryEncoder.h>
-int digito[8][3] = {
- { LOW, LOW, LOW }, // 0
- { LOW, LOW, HIGH }, // 1
- { LOW, HIGH, LOW }, // 2
- { LOW, HIGH, HIGH }, // 3
- { HIGH, LOW, LOW }, // 4
- { HIGH, LOW, HIGH }, // 5
- { HIGH, HIGH, LOW }, // 6
- { HIGH, HIGH, HIGH } // 7
-};
+// int digito[8][3] = {
+//  { LOW, LOW, LOW }, // 0
+//  { LOW, LOW, HIGH }, // 1
+//  { LOW, HIGH, LOW }, // 2
+//  { LOW, HIGH, HIGH }, // 3
+//  { HIGH, LOW, LOW }, // 4
+//  { HIGH, LOW, HIGH }, // 5
+//  { HIGH, HIGH, LOW }, // 6
+//  { HIGH, HIGH, HIGH } // 7
+// };
 
 RotaryEncoder encoder(A2, A3);
 
@@ -268,7 +268,7 @@ void setup() {
   Serial.println("-------------");
 
   // Inicializando o sensor DHT
-  dht11_sensor.begin();
+  // dht11_sensor.begin();
   delay(2000);
 
 
@@ -283,15 +283,11 @@ void setup() {
 
 void loop() {
 
-  
-
   // Verificando se está conectado à rede WiFi
   if(WiFi.status() == WL_CONNECTED) {
     
     HTTPClient http;
     int httpCode;
-
-
 
 //........................................ Não é para apagar.
     postData = "esp=esp32_01";
@@ -302,9 +298,8 @@ void loop() {
     Serial.println();
     Serial.println("---------------getdata.php");
    
-   
     // http.begin("http://192.168.102.214/tcc/getdata.php");
-    http.begin("https://workprojectgrup.000webhostapp.com/tcc/getdata.php");
+    http.begin("https://192.168.254.214/tcc/getdata.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
    
     httpCode = http.POST(postData);
@@ -328,11 +323,6 @@ void loop() {
     get_DHT11_sensor_data();
   
     //........................................ The process of sending the DHT11 sensor data to the database.
-
-
-
-
-
 
     // Montando os dados a serem enviados ao servidor
     postData = "id=esp32_01";
@@ -358,7 +348,7 @@ void loop() {
     Serial.println();
     Serial.println("---------------updateDHT11data.php");
     // http.begin("http://192.168.102.214/tcc/updateDHT11data.php");
-    http.begin("https://workprojectgrup.000webhostapp.com/tcc/updateDHT11data.php");
+    http.begin("https://192.168.254.214/tcc/updateDHT11data.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviando os dados ao servidor
@@ -400,17 +390,13 @@ void loop() {
 }*/
 
 void read_encoder(){
-    Serial.print("Pino 13:");
-    Serial.println(digitalRead(13));
-    Serial.print("Pino 12:");
-    Serial.println(digitalRead(12));
-    Serial.println(digitalRead(12));
-  if(digitalRead(13)){
-    iTemperatura--;
-  }
-  if(digitalRead(12)){
-    iTemperatura++;
-  }
+  Serial.print("Pino 34:");
+  Serial.println(digitalRead(34));
+  Serial.println(analogRead(34));
+   
+  iTemperatura=(analogRead(34)-3000)*100/1500;
+  Serial.println(iTemperatura);  
+
   if(iTemperatura>100 || iTemperatura<0){
     iTemperatura=0;
   }
