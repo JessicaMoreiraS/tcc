@@ -19,7 +19,7 @@
 
     <body id="body_login">
         <header class="topo-index" id="header_login">
-            <img src="img/logo-senai-branco.png" />
+            <img src="img/svg/logo_senai_vermelho.svg" width="200" />
         </header>
         <main id="main_Login">
             <div class="form-box">
@@ -133,7 +133,7 @@
 
         <footer>
             <div class="escola">
-                <img width="150" height="40" src="img/logo-senai-branco.png" alt="" />
+                <img width="150" height="40" src="img/svg/logo_senai_vermelho.svg" alt="" />
 
                 <div class="escola-info">
                     <p>Escola Senai "Nami Jafet"</p>

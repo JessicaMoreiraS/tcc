@@ -127,8 +127,16 @@ font-size:16px ;
 /*FIM  CSS HOME GESTAO*/
 
 /* Footer */
-@media (max-width: 991px){
+@media (max-width: 1400px){
+    footer{
+        padding: 40px;
+        bottom: 0;
+    }
 
+
+}
+@media (max-width: 991px){
+  
 footer{
     display: flex;
     flex-direction: column;

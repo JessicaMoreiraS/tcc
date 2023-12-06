@@ -30,20 +30,20 @@ body {
 /*solucao: add seta no canto esquerdo e usar magim 0 alto para a logo*/
 .topo-index {
   display: flex;
-  /* justify-content: center; */
-  justify-content: space-between;
+  justify-content: center; 
+  /* justify-content: space-between; */
   padding: 30px;
   align-items: center;
   background-color: var(--azulPrincipal);
 }
-.topo-index  .logoCenter{
-  margin: 0 auto;
+.topo-index img{
+  width: 200px;
 }
 
-.logo-inicial {
+/* .logo-inicial {
   margin: 0 auto;
   padding-left: 110px;
-}
+} */
 
 .topo-inicial {
   background-color: var(--azulPrincipal);
