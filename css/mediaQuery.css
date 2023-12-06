@@ -27,9 +27,6 @@
 
 @media(max-width:1100px){
 
-    .topo-index img{
-        width: 120px;
-    }
     .corpo-index{
         display: flex;
         flex-direction: column;
