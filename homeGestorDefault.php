@@ -141,11 +141,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmarExclusao'])) 
 </head>
 
 <body id="body_tables">
-    <header class="topo-index" id="header_homeGestao">
+    <header class="topo-index" id="header_homeGestaoDefault">
         <a href="login.php" class="setaVoltar">
             <img src="img/svg/setaVoltar.svg" alt="voltar">
         </a>
-        <img src="img/logo-senai-branco.png" alt="" class="logoCenter"/>
+        <img src="img/svg/logo_senai_vermelho.svg" width="200" class="logoCenter"/>
     </header>
     <main id="gestor_default_main">
 

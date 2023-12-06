@@ -41,11 +41,11 @@ $idGestor = $_SESSION['idAcesso'];
     <script src="https://unpkg.com/scrollreveal"></script>
     <title>Inicial - Gestão</title>
     <style>
-        .setaVoltar{
+        /* .setaVoltar{
             width: 50px;
             align-self: center;
             justify-self: start;
-        }
+        } */
     </style>
 </head>
 
@@ -55,7 +55,7 @@ $idGestor = $_SESSION['idAcesso'];
         <a href="login.php" class="setaVoltar">
             <img src="img/svg/setaVoltar.svg" alt="voltar">
         </a>
-        <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
+        <img  class="logo-inicial" width="200" src="img/svg/logo_senai_vermelho.svg"  class="logoCenter" />
 
         <div class="icons">
             <?php

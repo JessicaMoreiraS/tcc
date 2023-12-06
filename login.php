@@ -14,6 +14,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png"/>
         <script src="https://unpkg.com/scrollreveal"></script>
+        <style>
+            .topo-index{
+                justify-content: center;
+            }
+        </style>
         <title>Login</title>
     </head>
 

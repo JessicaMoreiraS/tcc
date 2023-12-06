@@ -27,23 +27,23 @@ body {
   background-color: var(--background-main);
 }
 
+
 /*solucao: add seta no canto esquerdo e usar magim 0 alto para a logo*/
 .topo-index {
-  display: flex;
-  justify-content: center; 
-  /* justify-content: space-between; */
+  display: flex; 
+  justify-content: space-between;
   padding: 30px;
   align-items: center;
   background-color: var(--azulPrincipal);
 }
-.topo-index img{
-  width: 200px;
+.topo-index  .logoCenter{
+  margin: 0 auto;
 }
 
-/* .logo-inicial {
+.logo-inicial {
   margin: 0 auto;
   padding-left: 110px;
-} */
+}
 
 .topo-inicial {
   background-color: var(--azulPrincipal);
@@ -2711,5 +2711,7 @@ background-color: #003f5b;
   color: #fff;
   cursor: pointer;
   width: 5px;
-  
 }
+
+
+
