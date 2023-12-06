@@ -154,6 +154,10 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                 align-self: center;
                 justify-self: start;
             }
+            .logo-inicial{
+                margin:0 auto;
+                padding-left:0;
+            }
         </style>
     </head>
 
@@ -188,7 +192,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
             <!-- <a href="login.php" onClick="history.back()" class="setaVoltar"> -->
                 <img src="img/svg/setaVoltar.svg" alt="voltar">
             </a>
-            <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
+            <img width="200" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg"  />
 
             <div class="icons">
                 <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>

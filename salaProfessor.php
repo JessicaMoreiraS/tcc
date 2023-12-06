@@ -80,7 +80,7 @@ if ($stmt) {
         <a href="homeProfessor.php" class="setaVoltar">
             <img src="img/svg/setaVoltar.svg" alt="voltar">
         </a>
-        <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
+        <img width="140" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg" alt="" />
         <div class="icons">
             <input id="menuh" type="checkbox" role="button" aria-label="Display the menu" class="menu" />
         </div>

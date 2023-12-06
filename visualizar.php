@@ -243,11 +243,10 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
             align-self: center;
             justify-self: start;
         }
-        .topo-index {
-            display:flex;
-            flex-direction: row;
-            align-items: center;
-            justify-items: start;
+        .logo {
+          margin:0 auto;
+          padding-left: 0;
+          position: relative;
         }
     </style>
 </head>
@@ -280,11 +279,11 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
             echo '<a href="login.php" class="setaVoltar">';
         }
         ?>
-        <!-- <a href="homeGestao.php" class="setaVoltar"> -->
+        <a href="homeGestao.php" class="setaVoltar">
             <img src="img/svg/setaVoltar.svg" alt="voltar">
         </a>
 
-        <img src="img/logo-senai-branco.png" />
+        <img src="img/svg/logo_senai_vermelho.svg" width="200" class="logo" />
     </header>
 
 

@@ -318,7 +318,7 @@
             </a>    
 
         <!-- <a href="homeAluno.php"> -->
-            <img width="140" src="img/logo-senai-branco.png" alt="" />
+        <img width="200" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg" />
         <!-- </a> -->
     </header>
     <main id="main_visualizarMaquina">

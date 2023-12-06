@@ -118,7 +118,7 @@ if ($stmt) {
         <a href="homeAluno.php" class="setaVoltar">
             <img src="img/svg/setaVoltar.svg" alt="voltar">
         </a>
-        <img width="140" class="logo-inicial" src="img/logo-senai-branco.png" alt="" />
+        <img width="200" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg" />
         <div class="icons">
             <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
             <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />

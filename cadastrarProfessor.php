@@ -37,7 +37,7 @@ session_start();
                     <div class="header">
                         <div>
                             <div class="icone">
-                                <img src="img/svg/School Director-branco.svg" alt="" />
+                            <img width="200" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg" />
                             </div>
                         </div>
                     </div>

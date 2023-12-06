@@ -41,11 +41,15 @@ $idGestor = $_SESSION['idAcesso'];
     <script src="https://unpkg.com/scrollreveal"></script>
     <title>Inicial - Gestão</title>
     <style>
-        /* .setaVoltar{
+        .setaVoltar{
             width: 50px;
             align-self: center;
             justify-self: start;
-        } */
+        }
+        .logo-inicial{
+                margin:0 auto;
+                padding-left:0;
+        }
     </style>
 </head>
 

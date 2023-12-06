@@ -42,7 +42,7 @@
   <body>
 
   <header class="topo-index">
-    <a href="inicialAluno.html"><img width="140" src="img/logo-senai-branco.png" alt="" /></a>
+    <a href="inicialAluno.html"><img width="200" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg" /></a>
   </header>
 
   <main class="conteudoTurmaNova">

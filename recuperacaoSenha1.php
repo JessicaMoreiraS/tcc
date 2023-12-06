@@ -77,8 +77,7 @@ $mysqli->close();
 <body id="body_recuperacaoSenha">
 <header class="topo-index">
       <a href="inicialAluno.html"
-        ><img width="140" src="img/logo-senai-branco.png"
-      /></a>
+        > <img width="200" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg" /></a>
 </header>
     <main class="conteudoConfirmarSenha">
  
