@@ -196,7 +196,6 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
 
             <div class="icons">
                 <i class="fa fa-user-circle" style="color: rgb(255, 255, 255); cursor: pointer"></i>
-                <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
             </div>
         </header>
        

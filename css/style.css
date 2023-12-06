@@ -742,17 +742,24 @@ div:where(.swal2-container) .swal2-html-container {
 #menu li {
   padding: 15px;
   text-align: center;
+  transition: 0.5s ease;
 }
 
-#menu a {
+#menu a, #menu button {
   text-decoration: none;
   color: white;
   font-size: 18px;
 }
+#menu button{
+  background-color: var(--azulPrincipal) ;
+}
+#menu button:hover,#menu a:hover{
+background-color: var(--azulEscuro);
+cursor: pointer;
+}
 
 #menu li:hover {
 background-color: var(--azulEscuro);
-cursor: pointer;
 transition: 0.5s ease-in;
 }
 
@@ -1975,7 +1982,7 @@ background-color: #003f5b;
 
 #main_maquinasDaTurmas .maquinas .card .imgBx {
   position: absolute;
-  width: 300px;
+  width: 240px;
   height: 200px;
   top: 20px;
   border-radius: 12px;
@@ -2711,6 +2718,13 @@ background-color: #003f5b;
   color: #fff;
   cursor: pointer;
   width: 5px;
+}
+
+.setaVoltar{
+  transition: .3s ease;
+}
+.setaVoltar:hover{
+  transform: scale(0.9,0.9);
 }
 
 

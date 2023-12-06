@@ -1,13 +1,13 @@
 <?php
 //inicisnd sessão 
 session_start();
-$paginasPermitemAcesso = ["login.php","cadastro.php","salaProfessor.php", "homeProfessor.php","update.php", "visualizar.php", "Checklist.php"];
+$paginasPermitemAcesso = ["login.php", "cadastro.php", "salaProfessor.php", "homeProfessor.php", "update.php", "visualizar.php", "Checklist.php"];
 foreach ($paginasPermitemAcesso as $pagina) {
   $len = count($paginasPermitemAcesso);
-  if (!strpos($_SERVER['HTTP_REFERER'], $pagina) && $pagina == $paginasPermitemAcesso[$len-1] || $_SESSION['tipo'] != 'professor') {
+  if (!strpos($_SERVER['HTTP_REFERER'], $pagina) && $pagina == $paginasPermitemAcesso[$len - 1] || $_SESSION['tipo'] != 'professor') {
     header('Location: index.html');
-  }else{
-    if(strpos($_SERVER['HTTP_REFERER'], $pagina)){
+  } else {
+    if (strpos($_SERVER['HTTP_REFERER'], $pagina)) {
       break;
     }
   }
@@ -45,25 +45,29 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="css/mediaQuery.css" />
-  <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png"/>
+  <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" />
   <script src="https://unpkg.com/scrollreveal"></script>
   <title>
     <?php echo $professorNome ?>- Inicial
   </title>
-    <style>
-        .setaVoltar{
-            width: 50px;
-            align-self: center;
-            justify-self: start;
-        }
-    </style>
+  <style>
+    .setaVoltar {
+      width: 50px;
+      align-self: center;
+      justify-self: start;
+    }
+    .logo-inicial{
+      margin: 0 auto;
+      padding: 0;
+    }
+  </style>
 </head>
 
 <body id="body_homeProfessor">
 
   <header class="topo-inicial">
     <a href="login.php" class="setaVoltar">
-        <img src="img/svg/setaVoltar.svg" alt="voltar">
+      <img src="img/svg/setaVoltar.svg" alt="voltar">
     </a>
     <img width="200" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg" />
 
@@ -78,36 +82,11 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
       </a>';
 
       ?>
-      <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
+
     </div>
-    <style>
-      .logo-inicial{
-        padding-left: 0px;
-      }
-    </style>
+
   </header>
 
-  <section class="local-menu">
-
-
-<div id="menu">
-  <ul>
-    <div class="icone-texto">
-    <li><i class="fa fa-cogs" style="font-size:24px;color:rgb(255, 255, 255);"></i><a href="#">Máquinas</a></li>
-    </div>
-    <div class="icone-texto">
-    <li><a target="_blank" href="https://drive.google.com/drive/folders/13PZ04RBnXA7RsN4lV2t9E1EVdSJNtgpO"><i class="fa fa-book" style="font-size:24px;color:rgb(255, 255, 255);"></i> Manuais</a></li>
-  </div>
-  <div class="icone-texto">
-    <li><i class="fa fa-users" style="font-size:24px;color:rgb(255, 255, 255);"></i><a href="#">Pessoas</a></li>
-  </div>
-  <div class="icone-texto">
-    <li><i class="fa fa-users" style="font-size:24px;color:rgb(255, 255, 255);"></i><a href="#">Configurações da Turma</a></li>
-  </div>
-  </ul>
-
-</div>
-</section>
 
   <main id="main_homeProfessor">
     <section>
@@ -123,7 +102,7 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
         </a>
       </div>
       <div class="pesquisa">
-        <input  id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por uma turma" class="pesquisar" type="text" />
+        <input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise por uma turma" class="pesquisar" type="text" />
       </div>
     </section>
     <div class="turmas">
@@ -148,7 +127,7 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
               </div>
             </a>
           </div>
-          <?php
+      <?php
         }
       } else {
         echo '
@@ -164,16 +143,16 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
   </main>
 
   <section id="section_form" style="display: none;">
-    <div class="form_cadastrarTurma" >
+    <div class="form_cadastrarTurma">
       <div class="container">
         <div class="header">
           <div class="logo">
-          <img width="200" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg" />
+            <img width="200" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg" />
           </div>
           <div class="icone">
             <img src="img/svg/icone_chapeu_academico.svg" alt="" />
           </div>
-          
+
         </div>
         <form id="form_cria_sala" action="cadastro.php" method="POST">
           <input name="idProfessor" type="text" value="1" hidden>
@@ -188,16 +167,15 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
             $conteudo = $mysqli->query($sqlConteudoRadios);
             while ($radio = mysqli_fetch_assoc($conteudo)) {
               echo
-                ' <label for="tipo_maquina" class="cyberpunk-checkbox-label">
+              ' <label for="tipo_maquina" class="cyberpunk-checkbox-label">
                     <input  class="cyberpunk-checkbox" type="checkbox" id="' . $radio['tipo'] . '" name="maquinas[]" value="' . $radio['tipo'] . '">  
                     ' . $radio['tipo'] . '
                 </label>';
-            }
-            ;
+            };
             ?>
           </div>
           <div class="bnts">
-            <input disabled name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar" >
+            <input disabled name="cadastrarSala" id="submitCadastrarSala" type="submit" value="Criar">
             <button id="cancelar_button">cancelar</button>
 
           </div>
@@ -207,59 +185,51 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
   </section>
 
 </body>
+<script src="js/reveal.js"></script>
 <script>
- //TRECHO DO CODIGO QUE LIBERA A CRIAÇÃO DE SALA, HOME PROFESSOR
-document.addEventListener("DOMContentLoaded", function() {
+  //TRECHO DO CODIGO QUE LIBERA A CRIAÇÃO DE SALA, HOME PROFESSOR
+  document.addEventListener("DOMContentLoaded", function() {
     // aplicando os inputs qye precisam ser preechidos em variaveis
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const cadastrarSalaButton = document.querySelector('#submitCadastrarSala');
 
     //  ouvinte de eventos de mudança a todos os checkboxes
     checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', verificarFormulario);
+      checkbox.addEventListener('change', verificarFormulario);
     });
 
 
     // Funçao que verificar o formulario(para habiliyar ou na a criação)
     function verificarFormulario() {
-        // Veridica se pelo menos um checkbox esta selecionado e o codigo esta preenchido
-        const checkboxSelecionado = Array.from(checkboxes).some(checkbox => checkbox.checked);
-        // Habilita ou desabilita a criaçao
-        if (checkboxSelecionado) {
-            cadastrarSalaButton.removeAttribute('disabled');
-        } else {
-            cadastrarSalaButton.setAttribute('disabled', 'disabled');
-        }
-    }
-});
-////////////////////////////////////////////////// 
-//SCRIPTS DO HOME PROFESSOR//
-
-//front-end do botao de criar turma
-var from_criar_sala = document.getElementById("section_form");
-var mostrarBotao = document.getElementById("criar_turma");
-var ocultarBotao = document.getElementById("cancelar_button");
-mostrarBotao.addEventListener("click", function() {
-    from_criar_sala.style.display = "block"; 
-});
-ocultarBotao.addEventListener("click", function() {
-    from_criar_sala.style.display = "none"; 
-});
-////////
-
-//JS PARA HABILITAR O BOTAO DE CRIAR A SALA NO FORMULARIO CRIAR SALA
-  const checkboxes =  form_cria_sala.querySelectorAll("input");
-  const habilitarCriarSala = false;
-  const CriarSalaButton = document.getElementById("submitCadastrarSala");
-
-  checkboxes.foreach(function (input) {
-    if(checkboxes.checked || !checkboxes.value == " "){
-      CriarSalaButton.removeAttribute('disabled')
+      // Veridica se pelo menos um checkbox esta selecionado e o codigo esta preenchido
+      const checkboxSelecionado = Array.from(checkboxes).some(checkbox => checkbox.checked);
+      // Habilita ou desabilita a criaçao
+      if (checkboxSelecionado) {
+        cadastrarSalaButton.removeAttribute('disabled');
+      } else {
+        cadastrarSalaButton.setAttribute('disabled', 'disabled');
+      }
     }
   });
+  ////////////////////////////////////////////////// 
+  //SCRIPTS DO HOME PROFESSOR//
 
-//JS DA PESQUISA
-  document.addEventListener("DOMContentLoaded", function() {
+  //front-end do botao de criar turma
+  var from_criar_sala = document.getElementById("section_form");
+  var mostrarBotao = document.getElementById("criar_turma");
+  var ocultarBotao = document.getElementById("cancelar_button");
+  mostrarBotao.addEventListener("click", function() {
+    from_criar_sala.style.display = "block";
+  });
+  ocultarBotao.addEventListener("click", function() {
+    from_criar_sala.style.display = "none";
+  });
+  ////////
+
+
+
+    //JS DA PESQUISA
+    document.addEventListener("DOMContentLoaded", function() {
         const campoPesquisa = document.getElementById("pesquisa-campo");
         const turmas = document.querySelectorAll(".turma-card");
 
@@ -270,34 +240,37 @@ ocultarBotao.addEventListener("click", function() {
                 const turmaNome = turma.querySelector("#first_p").textContent.toLowerCase();
 
                 if (turmaNome.includes(termoPesquisa)) {
-                    turma.style.display = "block";
+                    turma.style.opacity = "1";
                 } else {
-                    turma.style.display = "none";
+					turma.style.opacity = "0";
                 }
             });
         });
     });
-</script>
-<script src="js/reveal.js"></script>
-<script src="js/script.js"></script>
-<script>
 
-  var menuButton = document.getElementById("menuh");
-  var menu = document.getElementById("menu");
-  
-  menuButton.addEventListener("click", function() {
-    if (menu.style.display === "block") {
-      menu.style.display = "none";
-    } else {
-      menu.style.display = "block";
+
+
+
+  //JS PARA HABILITAR O BOTAO DE CRIAR A SALA NO FORMULARIO CRIAR SALA
+  const checkboxes = form_cria_sala.querySelectorAll("input");
+  const habilitarCriarSala = false;
+  const CriarSalaButton = document.getElementById("submitCadastrarSala");
+
+  checkboxes.foreach(function(input) {
+    if (checkboxes.checked || !checkboxes.value == " ") {
+      CriarSalaButton.removeAttribute('disabled')
     }
-  }); 
-  </script> 
+  });
+
+
+</script>
+
+<script src="js/script.js"></script>
 </html>
 
 <?php
-    if (filter_input(INPUT_GET, 'e')) {
-        $mensagem_erro = filter_input(INPUT_GET, 'e');
-        echo '<script>erroLogin('.$mensagem_erro.')</script>';
-    }
+if (filter_input(INPUT_GET, 'e')) {
+  $mensagem_erro = filter_input(INPUT_GET, 'e');
+  echo '<script>erroLogin(' . $mensagem_erro . ')</script>';
+}
 ?>

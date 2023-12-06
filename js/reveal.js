@@ -137,20 +137,14 @@ sr.reveal('#main_homeProfessor .pesquisa',{
   distance: '150px',
   origin: 'right'
 });
-sr.reveal('#main_homeProfessor .card',{ 
+sr.reveal('#main_homeProfessor .turmas .card',{ 
   duration: 1000,
   scale: 1,
   opacity: 1,
   distance: '100px',
   origin: 'left'
 });
-sr.reveal('#main_homeProfessor .card',{ 
-  duration: 1000,
-  scale: 1,
-  opacity: 1,
-  distance: '100px',
-  origin: 'left'
-});
+
 /////////////////
 
 
