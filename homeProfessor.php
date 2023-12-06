@@ -80,6 +80,11 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
       ?>
       <input type="checkbox" role="button" aria-label="Display the menu" class="menu" />
     </div>
+    <style>
+      .logo-inicial{
+        padding-left: 0px;
+      }
+    </style>
   </header>
 
   <section class="local-menu">
@@ -163,7 +168,7 @@ $sqlConteudoRadios = "SELECT * FROM tipo_maquina";
       <div class="container">
         <div class="header">
           <div class="logo">
-            <img src="img/svg/Senai _logoSVG.svg" />
+          <img width="200" class="logo-inicial" src="img/svg/logo_senai_vermelho.svg" />
           </div>
           <div class="icone">
             <img src="img/svg/icone_chapeu_academico.svg" alt="" />
