@@ -137,7 +137,7 @@ if ($stmt) {
         <div class="pesquisa">
             <input id="pesquisa-campo" style="font-size: 16px" placeholder="Pesquise modelo ou ID" class="pesquisar" type="text" />
         </div>
-        <div class="maquinas">
+        <div class="maquinas" style="margin-top:-120px;">
             <?php
             for ($i = 0; $i < count($tiposDaSalaId); $i++) {
                 $tipoId = $tiposDaSalaId[$i];
@@ -174,7 +174,7 @@ if ($stmt) {
 
                             </h2>
                             <p>
-                                <?php echo 'Fabricante:' . $rowMaquina['fabricante'] ?>
+                                <?php echo 'Fabricante: ' . $rowMaquina['fabricante'] ?>
                             </p>
                             <div>
                                 <a href="<?php echo "checklist.php?id_maquina=" . $rowMaquina['id'] ?>">Acessar</a>

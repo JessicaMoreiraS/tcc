@@ -168,6 +168,8 @@
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script src="https://www.amcharts.com/lib/3/serial.js"></script>
     <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png"/>
+    <link rel="stylesheet" href="css/mediaQuery.css">
+
 
     <title>Checklist</title>
     <style>
@@ -280,6 +282,10 @@
         from{
             transform: translateX(20%);
         }
+    }
+
+    .logo-inicial{
+        padding-left: 0px;
     }
 
     </style>
