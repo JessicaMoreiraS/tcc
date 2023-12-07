@@ -288,7 +288,7 @@
     .logo-inicial{
         padding-left: 0px;
     }
-    .btn{
+    .btnCheck{
         margin-bottom:100px;
     }
 
@@ -393,7 +393,7 @@
                                 atributosChecklist($idDaMaquina);
                                 ?>
                                 <div class="btns" >
-                                    <div class="btn">
+                                    <div class="btn btnCheck">
                                         <input type="submit" value="Enviar">
                                     </div>
                                 </div>  

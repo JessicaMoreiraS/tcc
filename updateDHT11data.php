@@ -28,7 +28,7 @@ if (!empty($_POST)) {
     $arrayAtributos = carregaArrayAtributos($id_maquina);
 
     //acende o led verde
-    acendeVerde($id_maquina);
+    // acendeVerde($id_maquina);
 
     if($status_read_sensor_dht11 == "SUCCEED"){
         

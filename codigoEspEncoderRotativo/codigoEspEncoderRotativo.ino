@@ -299,7 +299,7 @@ void loop() {
     Serial.println("---------------getdata.php");
    
     // http.begin("http://192.168.102.214/tcc/getdata.php");
-    http.begin("https://192.168.254.214/tcc/getdata.php");
+    http.begin("https://192.168.98.214/iot/getdata.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
    
     httpCode = http.POST(postData);
@@ -348,7 +348,7 @@ void loop() {
     Serial.println();
     Serial.println("---------------updateDHT11data.php");
     // http.begin("http://192.168.102.214/tcc/updateDHT11data.php");
-    http.begin("https://192.168.254.214/tcc/updateDHT11data.php");
+    http.begin("https://192.168.98.214/iot/updateDHT11data.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviando os dados ao servidor
@@ -394,10 +394,10 @@ void read_encoder(){
   Serial.println(digitalRead(34));
   Serial.println(analogRead(34));
    
-  iTemperatura=(analogRead(34)-3000)*100/1500;
+  iTemperatura=(analogRead(34)-2000)*100/1000;
   Serial.println(iTemperatura);  
 
-  if(iTemperatura>100 || iTemperatura<0){
+  if(iTemperatura>1000 || iTemperatura<0){
     iTemperatura=0;
   }
   Serial.print("iTemperatura: ");

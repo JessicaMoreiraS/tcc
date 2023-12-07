@@ -177,9 +177,9 @@ function enviaEmail($conteudo, $email, $nome){
     $mail->SMTPSecure = 'tls'; 
     
     //Recipients
-    $mail->setFrom('profissionalmensagem@outlook.com', 'Jessica M');
+    $mail->setFrom('profissionalmensagem@outlook.com', 'Monitoramento IOT');
     $mail->addAddress($email, $nome); 
-    $mail->addReplyTo('profissionalmensagem@outlook.com', 'Jessica M');
+    $mail->addReplyTo('profissionalmensagem@outlook.com', 'Monitoramento IOT');
 
     //Content
     $mail->isHTML(true);                                  
