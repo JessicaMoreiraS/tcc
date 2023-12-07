@@ -28,7 +28,7 @@ $sql_query = $mysqli->query($sql_code) or die($mysqli->error);*/
 //reenvia email de confirmacao para criar conta
 if(isset($_GET['reenviarCodigo']) && isset($_GET['email'])){
     $email = $_GET['email'];
-    $sql="SELECT * FROM conta_pendente_aluno WHERE email = $email";
+    $sql="SELECT * FROM aluno WHERE email = '$email' AND conta_pendente = 1";
     $conteudoAlunoPendente = $mysqli->query($sql);
     $nome;
     $codigo;
@@ -58,6 +58,7 @@ if(isset($_POST['criarConta'])){
         $email = filter_input(INPUT_POST, 'email');
         $senha = filter_input(INPUT_POST, 'senha');
         $confimarSenha = filter_input(INPUT_POST, 'confimarSenha');
+
         
         if($senha != $confimarSenha){
             //senhas não coincidem
@@ -74,7 +75,7 @@ if(isset($_POST['criarConta'])){
         $codConfirmacao = substr(password_hash(time(), PASSWORD_DEFAULT), -7, -1);
         
         
-        $sqlCriaContaPendente = "INSERT INTO conta_pendente_aluno (`nome`, `email`, `senha`, `cod_confimacao`) VALUES ('$nome', '$email', '$senhaCriptografada', '$codConfirmacao')"; 
+        $sqlCriaContaPendente = "INSERT INTO aluno (`nome`, `email`, `senha`,`codigo_recuperacao`,`conta_pendente`, `cod_confimacao`) VALUES ('$nome', '$email', '$senhaCriptografada','','1', '$codConfirmacao')"; 
         
         $conteudo='Seu código de confirmação é: <b>'.$codConfirmacao.'</b>';
 

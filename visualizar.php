@@ -29,7 +29,7 @@ if (filter_input(INPUT_GET, 'view')) {
 
     } else if ($_GET['view'] == 'aluno') {
         $tema = "Alunos";
-        $query = "SELECT * FROM aluno";
+        $query = "SELECT * FROM aluno WHERE conta_pendente = 0";
         $camposBusca = ['nome', 'email'];
         $aluno = true;
         $camposTema = ['Nome', 'Email', 'Turma(s)'];

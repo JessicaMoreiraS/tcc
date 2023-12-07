@@ -11,7 +11,7 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
 
     echo "<script>console.log(aqui)</script>";
 
-    $sqlBuscaConta = "SELECT * FROM conta_pendente_aluno WHERE email = '$email'";
+    $sqlBuscaConta = "SELECT * FROM aluno WHERE email = '$email' AND conta_pendente = 1";
     $preparaSqlBuscaConta = $mysqli->query($sqlBuscaConta);
 
     if ($busca = mysqli_fetch_assoc($preparaSqlBuscaConta)) {
@@ -23,10 +23,9 @@ if (isset($_GET["codigo"]) && isset($_GET["emailconf"])) {
             $nome = $busca['nome'];
             $senha = $busca['senha'];
 
-            $sqlCriaContaAluno = "INSERT INTO aluno (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
-            $sqlDeletaContaPendente = "DELETE FROM conta_pendente_aluno WHERE id = '$id'";
+            $sqlDeletaContaPendente = "UPDATE aluno SET conta_pendente=0, cod_confimacao='' WHERE id = '$id' ";
 
-            if ($mysqli->query($sqlCriaContaAluno) && $mysqli->query($sqlDeletaContaPendente)) {
+            if ($mysqli->query($sqlDeletaContaPendente)) {
                 // Sucesso - redirecionar 
                 header('Location: direcionamentoLogin.php?email='.$email.'&senha='.$senha);
             } else {

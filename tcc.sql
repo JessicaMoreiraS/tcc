@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Dez-2023 às 12:52
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- Tempo de geração: 07-Dez-2023 às 12:55
+-- Versão do servidor: 10.4.25-MariaDB
+-- versão do PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,15 +32,19 @@ CREATE TABLE `aluno` (
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `codigo_recuperacao` varchar(7) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `codigo_recuperacao` varchar(7) NOT NULL,
+  `conta_pendente` tinyint(1) NOT NULL,
+  `cod_confimacao` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `aluno`
 --
 
-INSERT INTO `aluno` (`id`, `nome`, `email`, `senha`, `codigo_recuperacao`) VALUES
-(1, 'Aluno Teste', 'teste@aluno.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', '');
+INSERT INTO `aluno` (`id`, `nome`, `email`, `senha`, `codigo_recuperacao`, `conta_pendente`, `cod_confimacao`) VALUES
+(1, 'Aluno Teste', 'teste@aluno.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', '', 0, ''),
+(6, 'Jéssica M', 'jessicamoreirars09@gmail.com', '$2y$10$yz.rhq5xv3lIWy7VPy64NeNgODB6WFroF0Fc27b2/7nX9Q9mnfqcO', '', 0, ''),
+(7, 'Thalitinha L', 'thalitahlimah@gmail.com', '$2y$10$pjyL7w3qJ0FW5qEQI2K9JOfPwCUgm2IJ4IaZDkFbMboBQCeaMwAYm', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -53,7 +57,7 @@ CREATE TABLE `atributo_tipo` (
   `atributo` varchar(255) NOT NULL,
   `atributo_esp` varchar(255) NOT NULL,
   `valor_referencia` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `atributo_tipo`
@@ -82,7 +86,7 @@ CREATE TABLE `checklist` (
   `id_professor` int(11) DEFAULT NULL,
   `id_maquina` varchar(255) NOT NULL,
   `date_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `checklist`
@@ -91,20 +95,6 @@ CREATE TABLE `checklist` (
 INSERT INTO `checklist` (`id`, `id_aluno`, `id_professor`, `id_maquina`, `date_time`) VALUES
 (1, 0, 1, '1', '2023-11-13 15:06:42'),
 (2, 0, 1, '1', '2023-11-13 15:07:58');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `conta_pendente_aluno`
---
-
-CREATE TABLE `conta_pendente_aluno` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `senha` varchar(255) NOT NULL,
-  `cod_confimacao` varchar(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -119,7 +109,7 @@ CREATE TABLE `esp32` (
   `id_atributos` int(11) NOT NULL,
   `valor` float NOT NULL,
   `date_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `esp32`
@@ -143,7 +133,7 @@ CREATE TABLE `gestor` (
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `codigo_recuperacao` varchar(7) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `gestor`
@@ -163,7 +153,7 @@ CREATE TABLE `item_checklist` (
   `id` int(11) NOT NULL,
   `item` varchar(50) NOT NULL,
   `name_item` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `item_checklist`
@@ -184,7 +174,7 @@ CREATE TABLE `lista_aluno_sala` (
   `id_lista` int(11) NOT NULL,
   `id_aluno` int(11) NOT NULL,
   `id_sala` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_aluno_sala`
@@ -205,7 +195,7 @@ CREATE TABLE `lista_sala_tipo_maquina` (
   `id` int(11) NOT NULL,
   `id_sala` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_sala_tipo_maquina`
@@ -227,7 +217,7 @@ CREATE TABLE `lista_tipo_maquina_atributo` (
   `id` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL,
   `id_atributos` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_tipo_maquina_atributo`
@@ -266,7 +256,7 @@ CREATE TABLE `lista_tipo_maquina_item_checklist` (
   `id` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL,
   `id_item_checklist` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_tipo_maquina_item_checklist`
@@ -290,7 +280,7 @@ CREATE TABLE `lista_tipo_maquina_peca` (
   `id` int(11) NOT NULL,
   `id_tipo_maquina` int(11) NOT NULL,
   `id_peca` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `lista_tipo_maquina_peca`
@@ -314,7 +304,7 @@ CREATE TABLE `maquina` (
   `led_verde` varchar(50) NOT NULL,
   `led_amarelo` varchar(50) NOT NULL,
   `led_vermelho` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `maquina`
@@ -338,7 +328,7 @@ CREATE TABLE `peca_tipo` (
   `codigo` varchar(50) NOT NULL,
   `peca` varchar(50) NOT NULL,
   `tempo_de_troca` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `peca_tipo`
@@ -360,15 +350,14 @@ CREATE TABLE `professor` (
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `codigo_recuperacao` varchar(7) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `professor`
 --
 
 INSERT INTO `professor` (`id`, `nome`, `cpf`, `email`, `senha`, `codigo_recuperacao`) VALUES
-(1, 'Carlinho', '123456', 'carlinhos@professor.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', ''),
-(3, 'Jessica', '123123', 'jessicamoreirars09@gmail.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', '');
+(1, 'Carlinho', '123456', 'carlinhos@professor.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', '');
 
 -- --------------------------------------------------------
 
@@ -381,7 +370,7 @@ CREATE TABLE `sala` (
   `turma` varchar(50) NOT NULL,
   `id_professor` int(11) NOT NULL,
   `codigo_acesso` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `sala`
@@ -401,7 +390,7 @@ CREATE TABLE `tipo_maquina` (
   `id` int(11) NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `imagem_padrao` longblob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `tipo_maquina`
@@ -433,12 +422,6 @@ ALTER TABLE `atributo_tipo`
 -- Índices para tabela `checklist`
 --
 ALTER TABLE `checklist`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `conta_pendente_aluno`
---
-ALTER TABLE `conta_pendente_aluno`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -527,7 +510,7 @@ ALTER TABLE `tipo_maquina`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `atributo_tipo`
@@ -540,12 +523,6 @@ ALTER TABLE `atributo_tipo`
 --
 ALTER TABLE `checklist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de tabela `conta_pendente_aluno`
---
-ALTER TABLE `conta_pendente_aluno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `esp32`
