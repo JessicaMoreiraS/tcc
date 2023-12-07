@@ -288,6 +288,9 @@
     .logo-inicial{
         padding-left: 0px;
     }
+    .btn{
+        margin-bottom:100px;
+    }
 
     </style>
 </head>

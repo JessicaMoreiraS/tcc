@@ -76,6 +76,23 @@ if ($stmt) {
         .logo-inicial {
             padding-left: 0;
         }
+        .ledOff,
+        .ledVerde,
+        .ledVermelho{
+            display: flex;
+            align-self: center;
+            margin-left:12px;
+            width: 20px;
+            height:20px;
+            border-radius:100px;
+            background-color: grey;
+        }
+        .ledVerde{
+            background-color: rgb(98, 199, 98);
+        }
+        .ledVermelho{
+            background-color: rgb(226, 96, 96);
+        }
     </style>
 </head>
 
@@ -148,6 +165,8 @@ if ($stmt) {
                 <?php
                 $conteudo = $mysqli->query($sqlBuscaMaquinas);
                 while ($rowMaquina = mysqli_fetch_assoc($conteudo)) {
+                    $ledVerde = $rowMaquina['led_verde'];
+                    $ledVermelho = $rowMaquina['led_vermelho'];
 
                     //utilizando a funcao string base64 do php para coverter a imagem, e aplicar ela no html
                     $imagem = $rowMaquina['imagem'];
@@ -168,9 +187,18 @@ if ($stmt) {
                         <div class="content">
                             <h2 id="modelo-maquina">
                                 <?php echo $rowMaquina['modelo'] ?>
-                                <p id="ID-maquina">
+                                <div id="ID-maquina">
                                     <?php echo 'ID: ' . $rowMaquina['id'] ?>
-                                </p>
+                                    <?php 
+                                        if($ledVerde == "ON"){
+                                            echo '<div class="ledVerde"></div>';
+                                        }else if($ledVermelho == "ON"){
+                                            echo '<div class="ledVermelho"></div>';
+                                        }else{
+                                            echo '<div class="ledOff"></div>';
+                                        }
+                                    ?>
+                                </div>
 
                             </h2>
                             <p>
