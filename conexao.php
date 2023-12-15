@@ -1,7 +1,7 @@
 <?php
     $usuario = "root";
     $senha = "";
-    $database = "tcc";
+    $database = "iot";
     $host = "localhost";
 
     //$mysqli = new mysqli($host, $usuario, $senha, $database);

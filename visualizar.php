@@ -258,7 +258,7 @@ function buscarDados($query, $camposBusca, $camposTema, $aluno, $checklist, $tip
             if(!strpos($_SERVER['HTTP_REFERER'], "visualizar.php") && !strpos($_SERVER['HTTP_REFERER'], "delete.php") && !strpos($_SERVER['HTTP_REFERER'], "cadastr")){
                 echo '<a href='.$_SERVER['HTTP_REFERER'].' class="setaVoltar">';
             }else{
-                if($_SESSION['tipo']){
+                if(isset($_SESSION['tipo'])){
                     switch($_SESSION['tipo']){
                         case 'aluno':
                             echo '<a href="homeAluno.php" class="setaVoltar">';

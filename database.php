@@ -1,7 +1,7 @@
 <?php
 // PHP code to access the database.
 	class Database {
-		private static $dbName = 'tcc'; // Example: private static $dbName = 'myDB';
+		private static $dbName = 'iot'; // Example: private static $dbName = 'myDB';
 		private static $dbHost = 'localhost'; // Example: private static $dbHost = 'localhost';
 		private static $dbUsername = 'root'; // Example: private static $dbUsername = 'myUserName';
 		private static $dbUserPassword = ''; // // Example: private static $dbUserPassword = 'myPassword';

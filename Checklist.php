@@ -240,7 +240,7 @@
             position: absolute;
             bottom: 0;
             width: 100%;
-            background-color: #800000;
+            background-color: #e3a900;
             transition: height 0.5s ease;
             /*height: 50%;*/
         }
@@ -263,7 +263,7 @@
         }
         .wave2{
             animation: moveWave2 3s ease-in-out infinite alternate;
-            opacity: 90%;
+            opacity: 80%;
         }
 
         .setaVoltar{
@@ -302,7 +302,7 @@
             if(!strpos($_SERVER['HTTP_REFERER'], "Checklist.php") && !strpos($_SERVER['HTTP_REFERER'], "processaChecklist.php") && !strpos($_SERVER['HTTP_REFERER'], "checklist.php")){
                 echo '<a href='.$_SERVER['HTTP_REFERER'].' class="setaVoltar">';
             }else{
-                if($_SESSION['tipo']){
+                if(isset($_SESSION['tipo'])){
                     switch($_SESSION['tipo']){
                         case 'aluno':
                             echo '<a href="homeAluno.php" class="setaVoltar">';

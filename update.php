@@ -168,7 +168,7 @@ if (isset($_GET['option']) && isset($_GET['id_atualizacao'])) {
                 if(!strpos($_SERVER['HTTP_REFERER'], "update.php")){
                     echo '<a href='.$_SERVER['HTTP_REFERER'].' class="setaVoltar">';
                 }else{
-                    if($_SESSION['tipo']){
+                    if(isset($_SESSION['tipo'])){
                         switch($_SESSION['tipo']){
                             case 'aluno':
                                 echo '<a href="homeAluno.php" class="setaVoltar">';

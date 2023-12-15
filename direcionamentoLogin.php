@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 include("conexao.php");
-$conn = mysqli_connect("localhost", "root", "", "tcc"); 
+$conn = mysqli_connect("localhost", "root", "", "iot"); 
 
 //verifica acesso do gestor
 if(filter_input(INPUT_GET, 'sg')){

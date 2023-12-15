@@ -298,7 +298,7 @@ void loop() {
     Serial.println();
     Serial.println("---------------getdata.php");
    
-    // http.begin("http://192.168.102.214/tcc/getdata.php");
+    // http.begin("http://192.168.102.214/iot/getdata.php");
     http.begin("https://192.168.98.214/iot/getdata.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
    

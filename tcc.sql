@@ -18,8 +18,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `tcc`
+-- Banco de dados: `iot`
 --
+
+CREATE DATABASE `iot`;
+USE `iot`;
 
 -- --------------------------------------------------------
 
