@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07-Dez-2023 às 12:55
+-- Tempo de geração: 15-Dez-2023 às 15:01
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -68,14 +68,14 @@ CREATE TABLE `atributo_tipo` (
 
 INSERT INTO `atributo_tipo` (`id`, `atributo`, `atributo_esp`, `valor_referencia`) VALUES
 (1, 'temperatura', 'temperatura', 100),
-(2, 'velocidade', 'velocidade', 60),
-(3, 'óleo caixa de velocidade', 'oleo_caixaDeVelocidade', 20),
-(4, 'viscosidade caixa de velocidade', 'viscosidade_caixaDeVelocidade', 35),
-(5, 'óleo caixa norton', 'oleo_caixaDeNorton', 29),
-(6, 'viscosidade caixa norton', 'viscosidade_caixaDeNorton', 8),
-(7, 'óleo avental do torno', 'oleo_aventalDoTorno', 52),
-(8, 'viscosidade avental do torno', 'viscosidade_aventalDoTorno', 78),
-(9, 'vibracao', 'vibracao', 16);
+(2, 'velocidade', 'velocidade', 100),
+(3, 'óleo caixa de velocidade', 'oleo_caixaDeVelocidade', 100),
+(4, 'viscosidade caixa de velocidade', 'viscosidade_caixaDeVelocidade', 100),
+(5, 'óleo caixa norton', 'oleo_caixaDeNorton', 100),
+(6, 'viscosidade caixa norton', 'viscosidade_caixaDeNorton', 100),
+(7, 'óleo avental do torno', 'oleo_aventalDoTorno', 100),
+(8, 'viscosidade avental do torno', 'viscosidade_aventalDoTorno', 100),
+(9, 'vibracao', 'vibracao', 100);
 
 -- --------------------------------------------------------
 
@@ -119,9 +119,15 @@ CREATE TABLE `esp32` (
 --
 
 INSERT INTO `esp32` (`id`, `esp`, `id_maquina`, `id_atributos`, `valor`, `date_time`) VALUES
-(1, 'esp32_01', '1', 5, 5, '2023-10-27 15:01:20'),
-(2, 'esp32_01', '1', 2, 2, '2023-10-27 15:01:20'),
-(3, 'esp32_01', '1', 1, 30, '2023-10-27 15:01:20');
+(1, 'esp32_01', '1', 5, 54, '2023-10-27 15:01:20'),
+(2, 'esp32_01', '1', 2, 22, '2023-10-27 15:01:20'),
+(3, 'esp32_01', '1', 1, 30, '2023-10-27 15:01:20'),
+(4, 'esp32_01', '1', 3, 50, '2023-12-15 14:22:32'),
+(5, 'esp32_01', '1', 4, 62, '2023-12-15 14:22:32'),
+(6, 'esp32_01', '1', 6, 50, '2023-12-15 14:24:36'),
+(7, 'esp32_01', '1', 7, 32, '2023-12-15 14:24:36'),
+(8, 'esp32_01', '1', 8, 40, '2023-12-15 14:24:36'),
+(9, 'esp32_01', '1', 9, 36, '2023-12-15 14:24:36');
 
 -- --------------------------------------------------------
 
@@ -531,7 +537,7 @@ ALTER TABLE `checklist`
 -- AUTO_INCREMENT de tabela `esp32`
 --
 ALTER TABLE `esp32`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `gestor`
