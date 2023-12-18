@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15-Dez-2023 às 15:01
+-- Tempo de geração: 18-Dez-2023 às 15:23
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `iot`
 --
-
 CREATE DATABASE `iot`;
 USE `iot`;
 
@@ -358,15 +357,17 @@ CREATE TABLE `professor` (
   `cpf` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `codigo_recuperacao` varchar(7) NOT NULL
+  `codigo_recuperacao` varchar(7) NOT NULL,
+  `id_gestor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `professor`
 --
 
-INSERT INTO `professor` (`id`, `nome`, `cpf`, `email`, `senha`, `codigo_recuperacao`) VALUES
-(1, 'Carlinho', '123456', 'carlinhos@professor.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', '');
+INSERT INTO `professor` (`id`, `nome`, `cpf`, `email`, `senha`, `codigo_recuperacao`, `id_gestor`) VALUES
+(1, 'Carlinho', '123456', 'carlinhos@professor.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', '', 1),
+(3, 'Ismael', '78945612789', 'ismael@email.com', '$2y$10$VOyKLQGc8hAHMtxQdyNQBu99mVwGv0p0tDFUKFyrslIoYzn5cdYWK', '', 1);
 
 -- --------------------------------------------------------
 
@@ -585,7 +586,7 @@ ALTER TABLE `peca_tipo`
 -- AUTO_INCREMENT de tabela `professor`
 --
 ALTER TABLE `professor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `sala`

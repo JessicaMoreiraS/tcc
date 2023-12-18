@@ -38,8 +38,8 @@ RotaryEncoder encoder(A2, A3);
 
 
 // Informações da rede WiFi
-const char* ssid = "Mi 9T Pro";//"Galaxy A125CE6";//"Mi 9T Pro";
-const char* password = "e18ff26ed35ba";//"pclb8148";//"e18ff26ed35ba";
+const char* ssid = "NOME_DA_REDE";
+const char* password = "SENHA";
 
 // Strings para armazenar dados a serem enviados ao servidor
 String postData = "";
@@ -348,7 +348,7 @@ void loop() {
     Serial.println();
     Serial.println("---------------updateDHT11data.php");
     // http.begin("http://192.168.102.214/tcc/updateDHT11data.php");
-    http.begin("https://192.168.98.214/iot/updateDHT11data.php");
+    http.begin("https://192.168.56.1/iot/updateDHT11data.php");
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviando os dados ao servidor

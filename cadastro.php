@@ -139,12 +139,17 @@ if (filter_input(INPUT_POST, 'cadastrarSala')) {
 
 //Criar conta de Professor
 if (filter_input(INPUT_POST, 'cadastrarProfessor')) {
+    $idGestor = 0;
+    if(isset($_SESSION['idAcesso'])){
+        $idGestor = $_SESSION['idAcesso'];
+    }
+
     $nome = filter_input(INPUT_POST, 'nome');
     $email = filter_input(INPUT_POST, 'email');
     $cpf = filter_input(INPUT_POST, 'cpf');
     $primeiraSenhaCriptografada = password_hash($cpf, PASSWORD_DEFAULT);
 
-    $sqlCriarContaProfessor = "INSERT INTO professor (nome, cpf, email, senha) VALUES ('$nome', '$cpf', '$email', '$primeiraSenhaCriptografada')";
+    $sqlCriarContaProfessor = "INSERT INTO professor (nome, cpf, email, senha, id_gestor) VALUES ('$nome', '$cpf', '$email', '$primeiraSenhaCriptografada','$idGestor')";
 
     if ($mysqli->query($sqlCriarContaProfessor)) {
         header("location: visualizar.php?view=professor&e=12");
