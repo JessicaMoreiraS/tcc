@@ -169,17 +169,17 @@ function enviaEmail($conteudo, $email, $nome){
     $mail->isSMTP();                                           
     $mail->Host       = 'smtp-mail.outlook.com';                    
     $mail->SMTPAuth   = true;                                   
-    $mail->Username   = 'profissionalmensagem@outlook.com';  //'profissionalmensagem@outlook.com';              
-    $mail->Password   = 'CONTA#acesso963';     //'CONTA#acesso963';                               
+    $mail->Username   = 'EMAIL';               
+    $mail->Password   = 'SENHA';                               
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
     $mail->Port       = 587;                                    
 
     $mail->SMTPSecure = 'tls'; 
     
     //Recipients
-    $mail->setFrom('profissionalmensagem@outlook.com', 'Monitoramento IOT');
+    $mail->setFrom('EMAIL', 'Monitoramento IOT');
     $mail->addAddress($email, $nome); 
-    $mail->addReplyTo('profissionalmensagem@outlook.com', 'Monitoramento IOT');
+    $mail->addReplyTo('EMAIL', 'Monitoramento IOT');
 
     //Content
     $mail->isHTML(true);                                  
